@@ -1,8 +1,8 @@
 ---
 title: PyTorch 深度学习常用函数总结
 date: 2026-01-11 15:30:00
-categories: 
-tags: [PyTorch, 深度学习]
+categories: 编程与算法
+tags: [Python, 深度学习, PyTorch]
 layout: post
 ---
 @[toc]

@@ -1,8 +1,8 @@
 ---
 title: 【IC设计】复旦微行业分析
 date: 2026-01-11 15:30:00
-categories: IC设计
-tags: [IC设计]
+categories: 数字IC设计
+tags: []
 layout: post
 ---
 @[toc]

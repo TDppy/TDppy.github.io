@@ -1,8 +1,8 @@
 ---
 title: 【IC设计】跨时钟异步处理系列——单比特跨时钟
 date: 2026-01-11 15:30:00
-categories: IC设计
-tags: [IC设计]
+categories: 数字IC设计
+tags: [异步电路]
 layout: post
 ---
 @[TOC]

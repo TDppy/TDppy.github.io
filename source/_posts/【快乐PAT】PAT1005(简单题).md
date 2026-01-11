@@ -1,8 +1,8 @@
 ---
 title: 【快乐PAT】PAT1005(简单题)
 date: 2026-01-11 15:30:00
-categories: 快乐PAT
-tags: [快乐PAT]
+categories: 
+tags: []
 layout: post
 ---
 

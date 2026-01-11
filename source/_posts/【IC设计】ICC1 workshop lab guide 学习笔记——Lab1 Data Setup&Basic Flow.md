@@ -1,8 +1,8 @@
 ---
 title: 【IC设计】ICC1 workshop lab guide 学习笔记——Lab1 Data Setup&Basic Flow
 date: 2026-01-11 15:30:00
-categories: IC设计
-tags: [IC设计]
+categories: 数字IC设计
+tags: [EDA工具]
 layout: post
 ---
 @[TOC]

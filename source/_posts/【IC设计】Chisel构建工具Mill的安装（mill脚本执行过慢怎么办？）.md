@@ -1,8 +1,8 @@
 ---
 title: 【IC设计】Chisel构建工具Mill的安装（mill脚本执行过慢怎么办？）
 date: 2026-01-11 15:30:00
-categories: IC设计
-tags: [IC设计]
+categories: 数字IC设计
+tags: [Mill, Chisel]
 layout: post
 ---
 @[toc]

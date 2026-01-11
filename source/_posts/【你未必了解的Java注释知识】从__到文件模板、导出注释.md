@@ -1,8 +1,8 @@
 ---
 title: 【你未必了解的Java注释知识】从__到文件模板、导出注释
 date: 2026-01-11 15:30:00
-categories: 你未必了解的Java注释知识
-tags: [你未必了解的Java注释知识]
+categories: 编程与算法
+tags: [Java, 注释]
 layout: post
 ---
 

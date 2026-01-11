@@ -1,8 +1,8 @@
 ---
 title: 【IC设计】时序分析面试题总结（亚稳态、建立_保持裕量计算、最高时钟频率计算、时序违例解决办法）
 date: 2026-01-11 15:30:00
-categories: IC设计
-tags: [IC设计]
+categories: 数字IC设计
+tags: [时序分析]
 layout: post
 ---
 @[toc]

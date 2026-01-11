@@ -1,8 +1,8 @@
 ---
 title: 【安装配置】WSL安装及linux下helloworld教程（有手就行）
 date: 2026-01-11 15:30:00
-categories: 安装配置
-tags: [安装配置]
+categories: 环境配置
+tags: [WSL, Linux]
 layout: post
 ---
 

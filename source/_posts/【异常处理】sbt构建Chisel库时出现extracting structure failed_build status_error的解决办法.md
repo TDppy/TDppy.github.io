@@ -2,7 +2,7 @@
 title: 【异常处理】sbt构建Chisel库时出现extracting structure failed_build status_error的解决办法
 date: 2026-01-11 15:30:00
 categories: 异常处理
-tags: [异常处理]
+tags: [错误解决, 调试, Chisel]
 layout: post
 ---
 @[TOC]

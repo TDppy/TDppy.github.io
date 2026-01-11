@@ -1,8 +1,8 @@
 ---
 title: 【CCNA第四天】vlan和trunk的应用场景
 date: 2026-01-11 15:30:00
-categories: CCNA第四天
-tags: [CCNA第四天]
+categories: 计算机网络
+tags: [路由器, 思科, CCNA, 交换机]
 layout: post
 ---
 

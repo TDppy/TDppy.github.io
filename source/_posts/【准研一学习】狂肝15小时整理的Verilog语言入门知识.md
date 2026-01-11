@@ -1,8 +1,8 @@
 ---
 title: 【准研一学习】狂肝15小时整理的Verilog语言入门知识
 date: 2026-01-11 15:30:00
-categories: 准研一学习
-tags: [准研一学习]
+categories: 编程与算法
+tags: [FPGA, Verilog]
 layout: post
 ---
 

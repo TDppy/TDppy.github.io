@@ -1,8 +1,8 @@
 ---
 title: 【环境配置】基于Docker配置Chisel-Bootcamp环境
 date: 2026-01-11 15:30:00
-categories: 环境配置
-tags: [环境配置]
+categories: 
+tags: []
 layout: post
 ---
 @[TOC]

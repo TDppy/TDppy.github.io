@@ -1,8 +1,8 @@
 ---
 title: 【蓝桥杯备战】位运算（快速幂）与STL（set、vector、全排列）
 date: 2026-01-11 15:30:00
-categories: 蓝桥杯备战
-tags: [蓝桥杯备战]
+categories: 
+tags: []
 layout: post
 ---
 

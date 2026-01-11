@@ -1,8 +1,8 @@
 ---
 title: 【IC设计】数字IC_FPGA秋招手撕代码总结
 date: 2026-01-11 15:30:00
-categories: IC设计
-tags: [IC设计]
+categories: 数字IC设计
+tags: [FPGA]
 layout: post
 ---
 @[toc]

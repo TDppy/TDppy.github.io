@@ -1,8 +1,8 @@
 ---
 title: 【蓝桥杯备战】第十一届蓝桥杯D题REPEAT程序
 date: 2026-01-11 15:30:00
-categories: 蓝桥杯备战
-tags: [蓝桥杯备战]
+categories: 
+tags: []
 layout: post
 ---
 

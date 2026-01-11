@@ -1,8 +1,8 @@
 ---
 title: 【考研复试】Linux快速过一遍
 date: 2026-01-11 15:30:00
-categories: 考研复试
-tags: [考研复试]
+categories: 
+tags: []
 layout: post
 ---
 

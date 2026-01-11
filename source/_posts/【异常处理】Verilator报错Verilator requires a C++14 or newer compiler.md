@@ -2,7 +2,7 @@
 title: 【异常处理】Verilator报错Verilator requires a C++14 or newer compiler
 date: 2026-01-11 15:30:00
 categories: 异常处理
-tags: [异常处理]
+tags: [错误解决, 调试]
 layout: post
 ---
 > riscv-mini是UC Berkeley用Chisel编写的三级流水线RISC-V处理器，它实现了RV32I的用户级2.0版本ISA和机器级1.7版本ISA，是Berkeley著名的Rocket-chip项目的简化版

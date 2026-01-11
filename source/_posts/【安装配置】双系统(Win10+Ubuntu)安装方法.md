@@ -1,8 +1,8 @@
 ---
 title: 【安装配置】双系统(Win10+Ubuntu)安装方法
 date: 2026-01-11 15:30:00
-categories: 安装配置
-tags: [安装配置]
+categories: 环境配置
+tags: [Windows, 双系统]
 layout: post
 ---
 

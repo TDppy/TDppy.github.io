@@ -1,8 +1,8 @@
 ---
 title: 【IC设计】ZC706板卡点灯入门（含Verilog代码，xdc约束，实验截图）
 date: 2026-01-11 15:30:00
-categories: IC设计
-tags: [IC设计]
+categories: 数字IC设计
+tags: [FPGA, Verilog]
 layout: post
 ---
 @[TOC]

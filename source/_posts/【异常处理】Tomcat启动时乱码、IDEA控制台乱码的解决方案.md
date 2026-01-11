@@ -2,7 +2,7 @@
 title: 【异常处理】Tomcat启动时乱码、IDEA控制台乱码的解决方案
 date: 2026-01-11 15:30:00
 categories: 异常处理
-tags: [异常处理]
+tags: [错误解决, 调试]
 layout: post
 ---
 

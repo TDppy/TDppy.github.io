@@ -1,8 +1,8 @@
 ---
 title: 【蓝桥杯备战】个人赛总结（涉及：STL,字典序，io加速）
 date: 2026-01-11 15:30:00
-categories: 蓝桥杯备战
-tags: [蓝桥杯备战]
+categories: 
+tags: []
 layout: post
 ---
 

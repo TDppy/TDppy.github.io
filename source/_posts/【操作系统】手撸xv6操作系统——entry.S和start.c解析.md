@@ -2,7 +2,7 @@
 title: 【操作系统】手撸xv6操作系统——entry.S和start.c解析
 date: 2026-01-11 15:30:00
 categories: 操作系统
-tags: [操作系统, RISC-V,嵌入式软件开发]
+tags: [教学操作系统, xv6, 操作系统]
 layout: post
 ---
 @[toc]

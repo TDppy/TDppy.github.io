@@ -1,8 +1,8 @@
 ---
 title: 【IC设计】草履虫都能看懂的AXI入门博客（大量图文来袭，手把手教学，波形仿真）
 date: 2026-01-11 15:30:00
-categories: IC设计
-tags: [IC设计]
+categories: 数字IC设计
+tags: [AXI]
 layout: post
 ---
 @[TOC]

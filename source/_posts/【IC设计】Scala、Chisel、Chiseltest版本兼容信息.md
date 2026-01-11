@@ -1,8 +1,8 @@
 ---
 title: 【IC设计】Scala、Chisel、Chiseltest版本兼容信息
 date: 2026-01-11 15:30:00
-categories: IC设计
-tags: [IC设计]
+categories: 数字IC设计
+tags: [Scala, Chisel]
 layout: post
 ---
 在maven仓库中精心整理的Scala、Chisel、Chiseltest的版本兼容信息，有了这个再也不怕sbt构建时找不到库文件了！

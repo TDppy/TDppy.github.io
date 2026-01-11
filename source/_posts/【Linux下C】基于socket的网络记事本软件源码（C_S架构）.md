@@ -1,8 +1,8 @@
 ---
 title: 【Linux下C】基于socket的网络记事本软件源码（C_S架构）
 date: 2026-01-11 15:30:00
-categories: Linux下C
-tags: [Linux下C]
+categories: 编程与算法
+tags: [C语言, Linux, 多进程]
 layout: post
 ---
 

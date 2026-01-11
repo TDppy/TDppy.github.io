@@ -1,8 +1,8 @@
 ---
 title: 【字符编码】GB2312、GBK、Unicode
 date: 2026-01-11 15:30:00
-categories: 字符编码
-tags: [字符编码]
+categories: 编程与算法
+tags: [字符编码, GB2312]
 layout: post
 ---
 

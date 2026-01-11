@@ -1,8 +1,8 @@
 ---
 title: 【期末复习】Intel多核程序设计
 date: 2026-01-11 15:30:00
-categories: 期末复习
-tags: [期末复习]
+categories: 
+tags: []
 layout: post
 ---
 

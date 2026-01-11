@@ -1,8 +1,8 @@
 ---
 title: 【安装配置】阿里云白嫖免费SSL证书步骤
 date: 2026-01-11 15:30:00
-categories: 安装配置
-tags: [安装配置]
+categories: 环境配置
+tags: [SSL证书]
 layout: post
 ---
 

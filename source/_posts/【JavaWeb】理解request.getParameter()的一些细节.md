@@ -1,8 +1,8 @@
 ---
 title: 【JavaWeb】理解request.getParameter()的一些细节
 date: 2026-01-11 15:30:00
-categories: JavaWeb
-tags: [JavaWeb]
+categories: 编程与算法
+tags: [Web开发, Java]
 layout: post
 ---
 

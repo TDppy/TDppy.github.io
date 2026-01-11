@@ -1,8 +1,8 @@
 ---
 title: 【安装配置】Tomcat配置SSL证书步骤(含Element type “Connector“ must be followed by either attribute...的处理方案)
 date: 2026-01-11 15:30:00
-categories: 安装配置
-tags: [安装配置]
+categories: 环境配置
+tags: [Tomcat]
 layout: post
 ---
 

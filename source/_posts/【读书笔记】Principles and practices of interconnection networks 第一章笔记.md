@@ -2,7 +2,7 @@
 title: 【读书笔记】Principles and practices of interconnection networks 第一章笔记
 date: 2026-01-11 15:30:00
 categories: 读书笔记
-tags: [读书笔记]
+tags: [学术, 读书笔记]
 layout: post
 ---
 # 互联网络导论

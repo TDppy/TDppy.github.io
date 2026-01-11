@@ -1,8 +1,8 @@
 ---
 title: 【CCNA第三天】交换机Mac地址的静态绑定
 date: 2026-01-11 15:30:00
-categories: CCNA第三天
-tags: [CCNA第三天]
+categories: 计算机网络
+tags: [路由器, 思科, CCNA, 交换机]
 layout: post
 ---
 

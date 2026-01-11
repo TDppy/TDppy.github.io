@@ -1,8 +1,8 @@
 ---
 title: 【IC设计】Cache基础入门（地址映射方式、hit_miss的判断、替换策略、一致性问题）
 date: 2026-01-11 15:30:00
-categories: IC设计
-tags: [IC设计]
+categories: 数字IC设计
+tags: [Cache]
 layout: post
 ---
 ---

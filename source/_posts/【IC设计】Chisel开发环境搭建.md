@@ -1,8 +1,8 @@
 ---
 title: 【IC设计】Chisel开发环境搭建
 date: 2026-01-11 15:30:00
-categories: IC设计
-tags: [IC设计]
+categories: 数字IC设计
+tags: [Chisel]
 layout: post
 ---
 @[TOC]

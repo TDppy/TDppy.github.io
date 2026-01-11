@@ -1,8 +1,8 @@
 ---
 title: 【IC设计】NoC路由算法（整理自On-Chip Communication Architectures System on Chip Interconnect）
 date: 2026-01-11 15:30:00
-categories: IC设计
-tags: [IC设计]
+categories: 数字IC设计
+tags: [NoC]
 layout: post
 ---
 @[TOC]
