@@ -3,17 +3,18 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle: ''
+title: 潘业成的博客
+subtitle: '你好，我是潘业成，一个热爱编程与分享的开发者。欢迎来到我的个人博客，在这里我将分享我的技术经验、项目心得以及生活点滴。希望我的文章能为你带来帮助和启发！'
 description: ''
 keywords:
-author: John Doe
-language: en
+author: TDppy
+language: CN
 timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 url: https://www.whyc.fun
+root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
