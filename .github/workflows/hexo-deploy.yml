@@ -24,6 +24,11 @@ jobs:
           npm install -g hexo-cli@4.3.0
           npm install hexo@6.3.0 --save-exact
           npm install --force  # 强制解析依赖冲突，优先使用兼容版本
+      
+      - name: Build Hexo Static Files
+        run: |
+          hexo clean
+          hexo generate
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
