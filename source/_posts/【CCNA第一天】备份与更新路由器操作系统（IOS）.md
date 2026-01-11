@@ -1,6 +1,6 @@
 ---
 title: 【CCNA第一天】备份与更新路由器操作系统（IOS）
-date: 2026-01-11 15:30:00
+date: 2020-07-06 16:58:06
 categories: 计算机网络
 tags: [路由器, 思科, CCNA]
 layout: post

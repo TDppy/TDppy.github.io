@@ -1,6 +1,6 @@
 ---
 title: 【IC设计】ICC workshop Lab1 数据准备&基本流程 【脚本总结】 (1)
-date: 2026-01-11 15:30:00
+date: 2023-08-04 16:15:27
 categories: 数字IC设计
 tags: [EDA工具]
 layout: post

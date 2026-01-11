@@ -1,11 +1,11 @@
 ---
 title: 【IC设计】Chisel开发环境搭建
-date: 2026-01-11 15:30:00
+date: 2023-09-06 17:12:32
 categories: 数字IC设计
 tags: [Chisel]
 layout: post
 ---
-@[TOC]
+
 ## README
 
  1. **如果想快速搭建好环境，不关心具体的安装过程**

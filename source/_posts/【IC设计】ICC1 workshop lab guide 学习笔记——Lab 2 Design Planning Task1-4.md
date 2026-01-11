@@ -1,6 +1,6 @@
 ---
 title: 【IC设计】ICC1 workshop lab guide 学习笔记——Lab 2 Design Planning Task1-4
-date: 2026-01-11 15:30:00
+date: 2023-06-18 00:21:45
 categories: 数字IC设计
 tags: [EDA工具]
 layout: post

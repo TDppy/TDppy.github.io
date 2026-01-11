@@ -1,6 +1,6 @@
 ---
 title: 【IC设计】DC工具的target、link、synthetic、symbol库
-date: 2026-01-11 15:30:00
+date: 2023-08-01 10:44:49
 categories: 数字IC设计
 tags: [EDA工具]
 layout: post

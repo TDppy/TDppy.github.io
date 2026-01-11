@@ -5,13 +5,6 @@ categories: 数字IC设计
 tags: [Cache]
 layout: post
 ---
----
-title: 【IC设计】Cache基础入门（地址映射方式、hit_miss的判断、替换策略、一致性问题）
-date: 2024-09-12 19:40:36
-categories: IC设计
-tags: [IC设计, Cache]
-layout: post
----
 
 @[toc]
 # Cache基础
