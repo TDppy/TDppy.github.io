@@ -1,0 +1,44 @@
+# Hexo博客自动部署到GitHub Pages的工作流
+name: Hexo Auto Deploy to GitHub Pages
+
+# 触发条件：当有代码推送到main（或master）分支时，自动执行该工作流（适合大量文章批量提交/更新）
+on:
+  push:
+    branches:
+      - main  # 若你的源码分支是master，替换为master
+
+# 工作流任务
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest  # 使用GitHub提供的Ubuntu服务器运行任务（免费）
+    steps:
+      # 步骤1：拉取GitHub仓库中的main分支源码（包含你的所有Markdown文章）
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # 拉取完整历史记录，避免大量文章构建时出错
+
+      # 步骤2：安装Node.js环境（Hexo构建依赖）
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'  # 选择稳定的Node.js版本（和本地环境一致更佳）
+          cache: 'npm'  # 缓存npm依赖，提升大量文章的构建速度
+
+      # 步骤3：安装Hexo及相关依赖（自动读取package.json中的依赖配置）
+      - name: Install Hexo Dependencies
+        run: |
+          npm install -g hexo-cli
+          npm install
+
+      # 步骤4：构建Hexo静态文件（将所有Markdown文章转换为HTML/CSS/JS）
+      - name: Build Hexo Static Site
+        run: hexo clean && hexo generate
+
+      # 步骤5：自动部署静态文件到GitHub Pages的gh-pages分支
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}  # GitHub自动生成的令牌，无需手动配置
+          publish_branch: gh-pages  # 部署到gh-pages分支（GitHub Pages默认读取该分支）
+          publish_dir: ./public  # Hexo构建后静态文件的存放目录（固定为public）
