@@ -9,16 +9,16 @@ layout: post
 @[TOC]
 > 为备战蓝桥杯，我每天把刷题经验总结成博客，鞭策自己学习，争取暑假输出三十篇以上。
 > 
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/c609ecb2067b282cc88eb83b0c834da4.png)
+![在这里插入图片描述](/images/c609ecb2067b282cc88eb83b0c834da4.png)
 ## 位运算与快速幂
 位运算有左移、右移、同或、异或、与、或、取反，这里先写个应用，就是快速幂，后面有空再补充例题。
 下面图片如果看不清可以右击新标签页打开。
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/df6659b944173dea53ce53da3ca6581b.png)
+![在这里插入图片描述](/images/df6659b944173dea53ce53da3ca6581b.png)
 
 
 
 ## STL（set、vector、全排列）
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/5a66674b523f115f5354545728a3b226.png)
+![在这里插入图片描述](/images/5a66674b523f115f5354545728a3b226.png)
 STL有好多，把今天用到的写一下。
 今天主要用到了set 、vector还有next_permutation(字符数组或string)
 

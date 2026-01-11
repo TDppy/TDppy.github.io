@@ -36,7 +36,7 @@ while(true){
 循环开始时父进程陷入等待，子进程写完以后父进程才能写文件，然后下一次循环子进程再次写文件。
 
 ### 演示动图
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/58140e7dae0e6e203cd9d13a2d14b72b.gif)
+![在这里插入图片描述](./images/58140e7dae0e6e203cd9d13a2d14b72b.gif)
 
 ### 源码
 

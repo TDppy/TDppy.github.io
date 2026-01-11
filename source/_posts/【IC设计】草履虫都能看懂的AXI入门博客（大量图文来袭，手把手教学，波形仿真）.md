@@ -55,12 +55,12 @@ valid和ready不能相互依赖，避免产生相互等待的死锁， 通常建
 **注意②：**
 根据 valid、ready 到达时间，可以分为 3 种情况，如右图。 应当注意到，在 valid 置高的同时，发送方就应该给出有效数据，并将有效数据保持在总线，而在之后的 ACLK 上升沿，若 valid、ready 均有效，则应更新有效数据。
 
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/643805d340bc262afe99969eefb83202.png)
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/25c80ea0a77be13ade07867a89034663.png)
+![在这里插入图片描述](./images/643805d340bc262afe99969eefb83202.png)
+![在这里插入图片描述](./images/25c80ea0a77be13ade07867a89034663.png)
 
 
 **关键时序图形的约定**
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/8b8b5365ebb5f9c3be79e4a3eec97efa.png)
+![在这里插入图片描述](./images/8b8b5365ebb5f9c3be79e4a3eec97efa.png)
 
 ## AXI的读写流程
 ### 写操作
@@ -68,7 +68,7 @@ valid和ready不能相互依赖，避免产生相互等待的死锁， 通常建
  1. 首先， master 在 **写地址通道** 上给出写地址和控制信息。
  2. 然后，在 **写数据通道** 上传输数据，AXI 的数据传输是突发性的，一次可传输多个数据，在传输最后一个数据时，须同步给出 last 信号以表示数据传输即将终止。
  3. 最后， slave 将在 **写响应通道** 上给出写响应消息，对本次数据传输表示确认。
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/f1eeccfe03a0871ba2033cc222331731.png)
+![在这里插入图片描述](./images/f1eeccfe03a0871ba2033cc222331731.png)
 ### 读操作
 **读流程如图，**涉及读地址通道 ARC、读数据通道 DRC 两个通道。
  4. 首先， master 在 读地址通道 上给出读地址和控制消息， 
@@ -76,7 +76,7 @@ valid和ready不能相互依赖，避免产生相互等待的死锁， 通常建
 值得注意的是，读数据通道 集成了读回复功能，且是从 slave 发送给 master 的，在 slave 完成数据传输后，会在读数据通道 上给出回复消息，标志一次读取结束。
 
  此外，AXI 可以连接成多对多的拓扑，这可以借助 AXI Interconnect IP 来实现。
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/e9c4cfc675a7e837043931b0eff3d211.png)
+![在这里插入图片描述](./images/e9c4cfc675a7e837043931b0eff3d211.png)
 ## AXI-Full的接口信号
 为了阅读时序图，需要先了解AXI五个通道具体有哪些接口信号。
 包括： 
@@ -101,19 +101,19 @@ AXI使用低有效的复位信号ARESETn，复位信号可以异步使能。
 ④去使能后，主接口的Valid变高至少要等ARESETn为high的上升沿边缘。
 
 ### 2. 写地址通道信号
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/774af9a5d32ca3651bf88fe603c8316a.png)
+![在这里插入图片描述](./images/774af9a5d32ca3651bf88fe603c8316a.png)
 ### 3. 写数据通道信号
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/c59dc4825a983d504f1d30b3789f8f52.png)
+![在这里插入图片描述](./images/c59dc4825a983d504f1d30b3789f8f52.png)
 ### 4. 写响应通道信号
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/d348ca2accbdb2f4738e3434dc7d59a4.png)
+![在这里插入图片描述](./images/d348ca2accbdb2f4738e3434dc7d59a4.png)
 ### 5.读地址通道信号
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/564bc2a4065644bfa82f87bfa852a145.png)
+![在这里插入图片描述](./images/564bc2a4065644bfa82f87bfa852a145.png)
 ### 6.读数据通道信号
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/fb96102d71e65642520564a0a98a5817.png)
+![在这里插入图片描述](./images/fb96102d71e65642520564a0a98a5817.png)
 ## AXI-Full的读写时序
 ### 时序图图例
 首先我们先读一下时序图的图例，了解各个图形的含义。
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/ac6f8a7e8201a4cc5226e7eefedfd7b2.png)
+![在这里插入图片描述](./images/ac6f8a7e8201a4cc5226e7eefedfd7b2.png)
 ### 写时序
 如图所示，AXI4协议主从设备间的写操作使用写地址、写数据和写响应通道。只需要一个地址就可以执行最大为256的突发长度的写操作。 
 
@@ -126,7 +126,7 @@ AXI使用低有效的复位信号ARESETn，复位信号可以异步使能。
 3. 第三步，写响应： 
 当设备接收完所有数据之后，设备会向主机发送一个写响应BRESP来表明写事务完成，当BVALID 和 BREADY 同时为高的时候表明是有效的响应。
 
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/b185382040926664193ac63bedff812d.png)
+![在这里插入图片描述](./images/b185382040926664193ac63bedff812d.png)
 ### 读时序
 如图所示，AXI4协议主从设备间的读操作使用独立的读地址和读数据通道，只需要一个地址就可以执行最大为256的突发长度的读操作。 
 
@@ -138,46 +138,46 @@ AXI使用低有效的复位信号ARESETn，复位信号可以异步使能。
 
 **注意：**在数据读取时，读取的数据从图中可以看到不是连续读取，说明slave是空闲时才传递
 
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/947c12f58575cab44a0c9a5311ef0a4f.png)
+![在这里插入图片描述](./images/947c12f58575cab44a0c9a5311ef0a4f.png)
 
 # AXI读写实例
 下面将通过Block Design的方式封装一个含有AXI主从接口的IP，然后利用这个自定义IP进行Block Design，创建一个简单的AXI收发实例，最后进行仿真，查看波形图，通过实践验证前面学习的AXI时序。
 ## 封装自定义AXI IP
 首先自己新建一个工程，下面跟着步骤来：
 第一步：点击Tools->Create and Package New IP ，创建自定义IP
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/67724cc01bd43d56f890e8e7c71adc1c.png)
+![在这里插入图片描述](./images/67724cc01bd43d56f890e8e7c71adc1c.png)
 
 第二步：直接点下一步
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/5c65174c030be5c3419302b98879db18.png)
+![在这里插入图片描述](./images/5c65174c030be5c3419302b98879db18.png)
 第三步：选中【Create AXI4 Peripheral】，点下一步
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/6bdec48b6d0175fa96eb69326d1aa397.png)
+![在这里插入图片描述](./images/6bdec48b6d0175fa96eb69326d1aa397.png)
 **第四步：**修改IP名称和IP的存储位置。
 **注意：**这里存储位置需要记下来，一会导入IP时会用到。这里我放在一个新的文件夹my_ip_repo
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/b8f90d518279be3b83c439baf22f9bde.png)
+![在这里插入图片描述](./images/b8f90d518279be3b83c439baf22f9bde.png)
 **第五步：**将现有的一个AXI接口类型修改为full类型，接口模式修改为Master
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/9c1013c980715273f99c6e857aaa92af.png)
+![在这里插入图片描述](./images/9c1013c980715273f99c6e857aaa92af.png)
 **第六步：**添加一个新的AXI接口，接口类型修改为full类型，接口模式修改为Slave
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/d4bb2bb50bc983f9aca6d1a8e87cc351.png)
+![在这里插入图片描述](./images/d4bb2bb50bc983f9aca6d1a8e87cc351.png)
 
 **第七步：** 选择添加到IP仓库，完成创建。
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/8745cdb8dda92eaf567d2858c246e4f8.png)
+![在这里插入图片描述](./images/8745cdb8dda92eaf567d2858c246e4f8.png)
 
 ## Block Design
 下面创建block design，导入两个刚刚创建的自定义IP，将两个ip的clock和resetn都连到一起，触发信号init_axi_txn连到一起，一个IP的master和另一个IP的slave连到一起，实现互相收发的功能。见下图：
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/a843108130b8d434cba90fca0f7d942a.png)
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/6de6c90d1ad2229df5f310ccb0e7adb2.png)
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/214d7f077a4579570f922ddda04968b1.png)
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/96c17118288305dc07c5cd7f6e48516c.png)
+![在这里插入图片描述](./images/a843108130b8d434cba90fca0f7d942a.png)
+![在这里插入图片描述](./images/6de6c90d1ad2229df5f310ccb0e7adb2.png)
+![在这里插入图片描述](./images/214d7f077a4579570f922ddda04968b1.png)
+![在这里插入图片描述](./images/96c17118288305dc07c5cd7f6e48516c.png)
 
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/6fd932f8c4004ffda0809da3260f12a8.png)
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/3791883e2cc3c31e11628c52f8c129cd.png)
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/590db9ee6d70adfe68d91be4d6c20307.png)
+![在这里插入图片描述](./images/6fd932f8c4004ffda0809da3260f12a8.png)
+![在这里插入图片描述](./images/3791883e2cc3c31e11628c52f8c129cd.png)
+![在这里插入图片描述](./images/590db9ee6d70adfe68d91be4d6c20307.png)
 
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/4e8c4f3ddd28340ac828ee278b9a5de7.png)
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/451225e6c1a78256c484aeb4297a96fe.png)
+![在这里插入图片描述](./images/4e8c4f3ddd28340ac828ee278b9a5de7.png)
+![在这里插入图片描述](./images/451225e6c1a78256c484aeb4297a96fe.png)
 
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/c4a5182dd0952bc1dccfd1d77b8b4e19.png)
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/4a6c9be2957a9d3e177e0d74c101ad7f.png)
+![在这里插入图片描述](./images/c4a5182dd0952bc1dccfd1d77b8b4e19.png)
+![在这里插入图片描述](./images/4a6c9be2957a9d3e177e0d74c101ad7f.png)
 需要粘贴的代码如下：
 ```rust
 `timescale 1ns / 1ps
@@ -213,30 +213,30 @@ endmodule
 ```
 ## 仿真波形
 运行tb仿真，
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/a7b6523b10461fe5047192498fcd537c.png)
+![在这里插入图片描述](./images/a7b6523b10461fe5047192498fcd537c.png)
 
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/83290c3a71068b8d22b1ea605c1b7336.png)
+![在这里插入图片描述](./images/83290c3a71068b8d22b1ea605c1b7336.png)
 然后重新运行仿真。
 ### 写地址
 如图所示，主设备将AWVALID和AWREADY都拉高时，地址AWADDR的40000000被写到slave设备。
 其中，AWLEN为0f表示要连续写入15+1=16个数据，AWSIZE=2表示每个数据是2^(size)=4 bytes，AWBURST为1表示16个数据按照初始地址40000000递增的顺序依次写入。
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/e1ccbf7a9ed6af62a22e03e130e59e2f.png)
+![在这里插入图片描述](./images/e1ccbf7a9ed6af62a22e03e130e59e2f.png)
 ### 写数据
 如图所示，WVALID和WREADY都拉高时第一个数据1被写入到指定地址40000000，下面依次按照地址递增顺序写入，最后一个数据16写入时，WLAST拉高。
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/1c1f9070605bbe7223dc2e0b25c2f1d7.png)
+![在这里插入图片描述](./images/1c1f9070605bbe7223dc2e0b25c2f1d7.png)
 
 ### 写响应
 如图所示，当BVALID和BREADY同时拉高时，BRESP有效，此时BRESP为0，表示写入成功。
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/910fb00915e29a0fc718fc69c9433cc6.png)
+![在这里插入图片描述](./images/910fb00915e29a0fc718fc69c9433cc6.png)
 
 ### 读地址
 当ARVALID和ARREADY同时拉高时，ADADDR将会被传给Slave设备，之后Slave设备输出的数据将出现在读数据通道上。
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/aa44b3ec104779a758ce08574c5951ce.png)
+![在这里插入图片描述](./images/aa44b3ec104779a758ce08574c5951ce.png)
 和写数据同理，其中ARLEN为0f表示读16个数据，ARSIZE为2表示每个数据为2^2 = 4 bytes大小
 ### 读数据
 如图所示，当RVALID和RREADY同时拉高时，读数据有效，当RLAST拉高时表示读最后一个数据。
 可以看到从1009到1024是连续的，一共16个数据。
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/3ebb16166baa72c055ae91d1a1277d19.png)
+![在这里插入图片描述](./images/3ebb16166baa72c055ae91d1a1277d19.png)
 # 总结
 本文介绍了AXI协议的几种分类、五个通道、时序图，给出了如何创建一个简单的AXI收发的block design，对波形仿真进行了分析。
 由于时间仓促，写的不足的地方多多包涵，后面会继续更新手撕AXI协议以及本文配套讲解视频，感觉有用的点个关注不迷路~~

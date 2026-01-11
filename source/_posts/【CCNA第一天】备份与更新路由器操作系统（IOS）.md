@@ -26,22 +26,22 @@ layout: post
 3.RS232转换线驱动程序
 
 **连线示意图：**
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/dd7a393670177d8fb16b7fdae4d783a1.png)
+![在这里插入图片描述](./images/dd7a393670177d8fb16b7fdae4d783a1.png)
 
 ### 第一步
 按照上述示意图将设备与电脑连接
 ### 第二步
 将RS232转换线接在电脑上，安装驱动，然后查看是否安装成功。
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/793229bd778d4f796539a43e8ef3b02c.png)
+![在这里插入图片描述](./images/793229bd778d4f796539a43e8ef3b02c.png)
 PS：“com3”是RS232转接线在电脑上的硬件接口，相当于外接设备（键盘、鼠标等）
 ### 第三步
 打开CRT，选择连接，选择protocol“serial”，端口“com3”（根据第二步查看到的端口），波特率“9600”（影响的是设备输出，波特率不正确，设备会输出乱码）。
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/c2e121ccaea2e98e29f8af287479a1cf.png)
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/0837a050eddc2434785644a90d56e284.png)
+![在这里插入图片描述](./images/c2e121ccaea2e98e29f8af287479a1cf.png)
+![在这里插入图片描述](./images/0837a050eddc2434785644a90d56e284.png)
 ### 第四步
 配置路由器的接口Ip地址
 注意：网线连接的设备接口，需要清楚的记得。
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/5fa0779db132dd8901154ba7a556df55.png)
+![在这里插入图片描述](./images/5fa0779db132dd8901154ba7a556df55.png)
 
 **路由器配置命令：**
 
@@ -58,31 +58,31 @@ wr
 
 ### 第五步
 设置本地电脑的IP地址
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/ef6bf1fc46c16b0c9938249b520dd728.png)
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/9bde1adeaa7c63f32112a147232be3d5.png)
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/3840e9fca0c3f37af8f1f140197a50bf.png)
+![在这里插入图片描述](./images/ef6bf1fc46c16b0c9938249b520dd728.png)
+![在这里插入图片描述](./images/9bde1adeaa7c63f32112a147232be3d5.png)
+![在这里插入图片描述](./images/3840e9fca0c3f37af8f1f140197a50bf.png)
 测试电脑和路由器之间的联通性：
 本地电脑上，windows键+r，出现“运行”，输入“cmd”，回车，输入“ping  192.168.1.1”
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/4b9f420e51c25a494776f258f35476e6.png)
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/8959407b5f8f79bbee1b7c83fbe5f90c.png)
+![在这里插入图片描述](./images/4b9f420e51c25a494776f258f35476e6.png)
+![在这里插入图片描述](./images/8959407b5f8f79bbee1b7c83fbe5f90c.png)
 ## 开始IOS备份与更新
 ### 备份
 到目前为止，连线完成，连接顺利，下面进行IOS备份和更新。
 CRT上对路由器进行配置：
 #### 第一步
 查看设备现在的IOS文件
-Show  flash: ![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/f8ea55acb1ca559361c7b66876167460.png)
+Show  flash: ![在这里插入图片描述](./images/f8ea55acb1ca559361c7b66876167460.png)
 #### 第二步
 IOS备份操作
-先打开电脑上的“![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/2af424b8634560bcd94d7b0d05c13087.png)”，tftp服务器端开启。
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/d29bcbaa5c1b624cecd870a7c7f28cfb.png)
+先打开电脑上的“![在这里插入图片描述](./images/2af424b8634560bcd94d7b0d05c13087.png)”，tftp服务器端开启。
+![在这里插入图片描述](./images/d29bcbaa5c1b624cecd870a7c7f28cfb.png)
 
 上述完成后，不要关闭它！！！
 CRT上继续对路由器进行配置：
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/860537971b05a52343dac6bb382e4c45.png)
+![在这里插入图片描述](./images/860537971b05a52343dac6bb382e4c45.png)
 查看是否正确备份：
 按照tftp服务器上选择的根目录，打开文件夹，查看是否存在IOS。
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/6dfc428f570314039308b4274184744d.png)
+![在这里插入图片描述](./images/6dfc428f570314039308b4274184744d.png)
 
 ### 更新：
 
@@ -95,7 +95,7 @@ show flash:           //找到当前使用的操作系统
 delete flash:c2800nm-advipservicesk9-mz.124-15.T1.bin  
 ```
 
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/279bd29c426b83871c2864d949c2d324.png)
+![在这里插入图片描述](./images/279bd29c426b83871c2864d949c2d324.png)
 #### 第二步
 导入新的操作系统 
 
@@ -107,7 +107,7 @@ copy tftp: flash:
 c2800nm-advipservicesk9-mz.151-4.M4.bin
 ```
 
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/c966a47c238cc33c94ebebfb631606ed.png)
+![在这里插入图片描述](./images/c966a47c238cc33c94ebebfb631606ed.png)
 #### 第三步
 软重启设备，运行新的IOS
 
@@ -115,6 +115,6 @@ c2800nm-advipservicesk9-mz.151-4.M4.bin
 reload
 ```
 
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/dd7e0b08ebef8d5733b1a6416f1d6ad9.png)
+![在这里插入图片描述](./images/dd7e0b08ebef8d5733b1a6416f1d6ad9.png)
 
 

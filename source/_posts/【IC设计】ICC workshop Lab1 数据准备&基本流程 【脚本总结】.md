@@ -45,9 +45,9 @@ read_def $def_file
 set_pnet_options -complete {METAL3 METAL4}
 save_mw_cel -as RISC_CHIP_floorplanned
 ```
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/38c269cbca926247d80cb7b765fd1e6c.png#pic_center)
+![在这里插入图片描述](./images/38c269cbca926247d80cb7b765fd1e6c.png#pic_center)
 
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/4d01888b6afe698ce38d199a5ce9b0ac.png#pic_center)
+![在这里插入图片描述](./images/4d01888b6afe698ce38d199a5ce9b0ac.png#pic_center)
 
 
 ## Task4 placement
@@ -57,7 +57,7 @@ redirect -tee place_opt.timing {report_timing}
 report_congestion -grc_based -by_layer -routing_stage global
 save_mw_cel -as RISC_CHIP_placed
 ```
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/358604a3c461c1cbdd82fbe9aed0c237.png#pic_center)
+![在这里插入图片描述](./images/358604a3c461c1cbdd82fbe9aed0c237.png#pic_center)
 
 
 ## Task5 CTS
@@ -69,8 +69,8 @@ clock_opt
 redirect -tee clock_opt.timing {report_timing}
 save_mw_cel -as RISC_CHIP_cts
 ```
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/dd8d9ffb7af73c5ef27d33914a609a74.png#pic_center)
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/7f0bf6fee46c6aeb5c2bd9d0cc77abbf.png)
+![在这里插入图片描述](./images/dd8d9ffb7af73c5ef27d33914a609a74.png#pic_center)
+![在这里插入图片描述](./images/7f0bf6fee46c6aeb5c2bd9d0cc77abbf.png)
 
 ## Task6 Basic Flow:Routing
 File->Open design ，risc_chip.mw 
@@ -86,5 +86,5 @@ report_design -physical
 save_mw_cel -as RISC_CHIP_routed
 exit
 ```
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/d9c6bea0c705080523589b01820f1775.png#pic_center)
+![在这里插入图片描述](./images/d9c6bea0c705080523589b01820f1775.png#pic_center)
 

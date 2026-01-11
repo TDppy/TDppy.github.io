@@ -7,18 +7,18 @@ layout: post
 ---
 @[toc]
 # 状态机基础知识
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/48c7de50cbf4e18d5b809dcfadcdc800.png)
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/a6f14d648949f8feb8937672dc666214.png)
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/bf69660ba20f63ddabb9b32883b39832.png)
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/8385b621bd9124fb95a9b9bbf62df8b3.png)
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/51e7c17e42e12325a1eefa38a47f9f01.png)
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/76de4a48b28228c6225895a0ebbe1f16.png)
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/5950f39d8cbc17c388519243fbf7c5b6.png)
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/55b6a9a18e3ac2b438b49b15431cb267.png)
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/ad22ebcc44ddf0c0d5a5fdf33b67927f.png)
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/67284cf714b68ce6402516a8760baa0f.png)
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/1894ff140f2858d7321def3234c6364c.png)
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/47bed8a4f46688b46e457504095d3323.png)
+![在这里插入图片描述](./images/48c7de50cbf4e18d5b809dcfadcdc800.png)
+![在这里插入图片描述](./images/a6f14d648949f8feb8937672dc666214.png)
+![在这里插入图片描述](./images/bf69660ba20f63ddabb9b32883b39832.png)
+![在这里插入图片描述](./images/8385b621bd9124fb95a9b9bbf62df8b3.png)
+![在这里插入图片描述](./images/51e7c17e42e12325a1eefa38a47f9f01.png)
+![在这里插入图片描述](./images/76de4a48b28228c6225895a0ebbe1f16.png)
+![在这里插入图片描述](./images/5950f39d8cbc17c388519243fbf7c5b6.png)
+![在这里插入图片描述](./images/55b6a9a18e3ac2b438b49b15431cb267.png)
+![在这里插入图片描述](./images/ad22ebcc44ddf0c0d5a5fdf33b67927f.png)
+![在这里插入图片描述](./images/67284cf714b68ce6402516a8760baa0f.png)
+![在这里插入图片描述](./images/1894ff140f2858d7321def3234c6364c.png)
+![在这里插入图片描述](./images/47bed8a4f46688b46e457504095d3323.png)
 
 
 # VL25 输入序列连续的序列检测

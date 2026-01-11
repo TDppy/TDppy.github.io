@@ -60,7 +60,7 @@ Verilog的部分描述语句可以并行执行，而C只能串行执行。
 Verilog的基本设计思想是自顶向下（top-down），设计实体是模块，所有Verilog代码都将在模块内书写。
 如下图所示，先定义顶层模块，分析顶层模块中所需的各个子模块，然后进一步对各个子模块进行分解和设计，最终可以将一个大的系统分解为多个子系统。
  在Verilog中，成熟的、封装好的模块称为IP(intelligent property)，调用已有IP的本质就是模块实例化。
- ![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/568b60b97f8ec399024879e57904f829.png)
+ ![在这里插入图片描述](./images/568b60b97f8ec399024879e57904f829.png)
  
 ### 2.2 模块声明
   模块是Verilog的基本设计实体，模块声明的第一行指定了模块名称和端口列表，下面若干行指定了每个端口的方向、位宽、数据类型。
@@ -93,7 +93,7 @@ endmodule
   二是按照位置
 和定义时一一对应
 下面我们将在top_module顶层模块中实例化mod_a，如图所示：
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/4eaf0a4293a9102bde53028d6db7b97a.png)
+![在这里插入图片描述](./images/4eaf0a4293a9102bde53028d6db7b97a.png)
 其中mod_a实现的功能是将输入的a、b、c、d四个信号相与、相或，赋给out1和out2，mod_a的声明如下：
 
 ```rust
@@ -159,10 +159,10 @@ endmodule
 
 1. net型变量
 相当于硬件电路中的物理连接，特点是输出的值随着输入值的变化而变化。
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/be61e5e32b35689fcb052cfbdec5bff4.png)
+![在这里插入图片描述](./images/be61e5e32b35689fcb052cfbdec5bff4.png)
 2. variable型变量
 该变量是有存储功能的数据类型
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/7047b9b1a96fb23ff65d0867d8a0441d.png)
+![在这里插入图片描述](./images/7047b9b1a96fb23ff65d0867d8a0441d.png)
   当变量声明中的位宽大于1时，对应的变量是向量。
   例：`wire [3:0] bus;` 
   该语句声明了4位的wire型向量bus，其中冒号前面的是最高有效位(MSB,Most Significant Bit)，冒号后面的是最低有效位(LSB,Least Significant Bit)。
@@ -369,12 +369,12 @@ endmodule
 
 2）阻塞赋值(Blocking)
 赋值符号为”= “，是串行执行的
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/bcf5671829d6d09a0b666bf13099f981.png)
+![在这里插入图片描述](./images/bcf5671829d6d09a0b666bf13099f981.png)
 
 ### 4.4 条件语句
 #### 4.4.1 if-else语句
 格式有三种：
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/87e05e2a3343ef15834f0068b88ff927.png)
+![在这里插入图片描述](./images/87e05e2a3343ef15834f0068b88ff927.png)
 其中语句序列可以是单句，可以是多句，多句时要用begin...end块语句括起来。
 #### 4.4.2 case语句
 格式如下：
@@ -442,7 +442,7 @@ end
 Verilog是用来设计电路的，并且模块是Verilog的设计实体，那么设计好的模块需要验证其功能和性能是否符合预期目标，Testbench正是为了满足这一需要产生的。下图展示了Testbench的功能。
 **概念：**
 Testbench的本质仍是Verilog模块，但它是用于产生激励信号，对所设计的电路进行测试的特殊Verilog模块。
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/f6be1de5b9bfe6b299dafa9cb05b841e.png)
+![在这里插入图片描述](./images/f6be1de5b9bfe6b299dafa9cb05b841e.png)
 
 
 ### 5.2 Testbench的目的和结构
@@ -521,7 +521,7 @@ end
 clk_2使用always产生10MHz时钟，
 clk_3使用repeat指定循环6次，产生3个周期的时钟，
 clk_4通过设定不同的延时(延时30ns后置1，延时10ns后置0)产生占空比非50%的时钟。
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/3dfffaaaf943613863c1598d2e8a044d.png)
+![在这里插入图片描述](./images/3dfffaaaf943613863c1598d2e8a044d.png)
 
 #### 5.3.2 产生复位信号的方式
 **同步复位和异步复位的概念**
@@ -568,7 +568,7 @@ end
 实现2-4解码器
      根据输入A,B的变化，来改变输出Z的值
 源码如下：
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/3a6e82971d1363ca82e5797314908987.png)
+![在这里插入图片描述](./images/3a6e82971d1363ca82e5797314908987.png)
 tb核心代码如下(省略例化和信号声明)：
 
 ```rust
@@ -589,15 +589,15 @@ end
 ```
 通过系统任务$display将程序执行相关信息输出到控制台
 **仿真结果分析**
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/77a52d533c731eb1f4e1705cef85d2fe.png)
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/c3a04ed09bce8357d82dce567e8e33a2.png)
+![在这里插入图片描述](./images/77a52d533c731eb1f4e1705cef85d2fe.png)
+![在这里插入图片描述](./images/c3a04ed09bce8357d82dce567e8e33a2.png)
 通过查看波形可以发现，z随着{a,b}产生对应的编码，因此2-4编码器满足设计要求
 
 
 #### 5.5.2 时序检测器
 下面是一个时序检测器的原码，用于检测数据线上连续3个1的序列，在时钟的每个上升沿检查数据。
 源代码如下图所示。
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/d509b8c28f2ff6944c989813e01642c0.png)
+![在这里插入图片描述](./images/d509b8c28f2ff6944c989813e01642c0.png)
 
 ```rust
 `timescale 1ns / 1ps
@@ -624,7 +624,7 @@ end
 在第一个initial语句中，设置激励
 在第二个initial中，将程序执行的相关信息通过文件IO的系统任务$fopen和fwrite写入日志
 **仿真结果分析**
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/297d03e9b496e64346aa3cf98bb3df8d.png)
+![在这里插入图片描述](./images/297d03e9b496e64346aa3cf98bb3df8d.png)
 时钟Clock一个周期为10ns，在Data连续三次上升沿为1后，Detect置为1。时序检测器满足设计要求。
 ### 5.6 常用的系统函数
 

@@ -12,7 +12,7 @@ layout: post
 
 想要网站以https://访问，需要将购买的SSL证书配置到Tomcat服务器中。
 参考了几篇文章，花了几小时完成了。
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/8dccd9f1df4d0deb42c578a63b16d3f9.png)
+![在这里插入图片描述](./images/8dccd9f1df4d0deb42c578a63b16d3f9.png)
 先列出参考文章，然后再给出步骤和我的心得：
 1.[Tomcat配置SSL证书](https://www.cnblogs.com/cx-code/p/10059109.html)
 2.Element type "Connector" must be followed by either attribute specifications
@@ -25,7 +25,7 @@ https://blog.csdn.net/u014000377/article/details/50845920
  ## 2. 使用java jdk将PFX格式证书转换为JKS格式证书
 
 下载的证书文件，解压后是这个样子：只有两个文件的，一个是pfx格式的证书，一个是密码文本。
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/3d2819c325ab10ca9df983745209b632.png)
+![在这里插入图片描述](./images/3d2819c325ab10ca9df983745209b632.png)
 
 在解压后的路径中输入cmd并回车，会进入该目录的命令行界面。
 输入以下代码：
@@ -41,7 +41,7 @@ domains.jks是生成的jks格式证书名称，可以根据需要改。
 ```bash
 keytool -changealias -keystore domain name.jks -alias alias -destalias tomcat
 ```
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/845aaabaec4ce0a084039a7b50139dc6.png)
+![在这里插入图片描述](./images/845aaabaec4ce0a084039a7b50139dc6.png)
 
 ## 3. 将jks文件上传到tomcat/conf目录中
 
@@ -49,7 +49,7 @@ keytool -changealias -keystore domain name.jks -alias alias -destalias tomcat
 
 ## 4. 配置conf中的server.xml
 
- 找到：![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/e101af99393bba4b0d9f9b4561b7d422.png)
+ 找到：![在这里插入图片描述](./images/e101af99393bba4b0d9f9b4561b7d422.png)
 修改成以下代码：（443为https默认访问端口）
 
 ```html
@@ -64,13 +64,13 @@ keytool -changealias -keystore domain name.jks -alias alias -destalias tomcat
 Catalina.start using conf/server.xml: Element type "Connector" must be followed by either attribute ！
 解决办法是不复制，手敲进去，或者复制进去以后把空格全删掉再加上！**
 
-找到：![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/063942ff9a50d607ecb570c10b0d63b6.png)
-改成：![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/2a1ed3ccd8a926ec14449dd2439336d7.png)
+找到：![在这里插入图片描述](./images/063942ff9a50d607ecb570c10b0d63b6.png)
+改成：![在这里插入图片描述](./images/2a1ed3ccd8a926ec14449dd2439336d7.png)
 找到：
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/42cddaf5daf401942385bf2cb191e4dc.png)
+![在这里插入图片描述](./images/42cddaf5daf401942385bf2cb191e4dc.png)
 
 改成：
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/4d1e1e8752539076ed28cd3f4f0842d6.png)
+![在这里插入图片描述](./images/4d1e1e8752539076ed28cd3f4f0842d6.png)
 保存，退出。
 ## 5.配置web.xml
 
@@ -93,9 +93,9 @@ Catalina.start using conf/server.xml: Element type "Connector" must be followed 
     </user-data-constraint>  
 </security-constraint>
 ```
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/209ed707f4f408c2e65223bd05713251.png)
+![在这里插入图片描述](./images/209ed707f4f408c2e65223bd05713251.png)
 ## 6.将443端口加入安全组入口
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/edd5ca7de28c536b8979f413c02c12cb.png)
+![在这里插入图片描述](./images/edd5ca7de28c536b8979f413c02c12cb.png)
 我是在阿里云买的服务器，所以到阿里云服务器的安全组改就行了，你在哪个厂商买的就到哪改。
 有的可能不叫安全组，叫防火墙，总之把443开着，让用户能进去。
 
@@ -179,6 +179,6 @@ Catalina.start using conf/server.xml: Element type "Connector" must be followed 
 ### web.xml
 
 这文件太长了，没必要贴了，反正就是在welcome-file-list后边加点内容：
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/a4bba554be7e9eece4cf27556306155d.png)
+![在这里插入图片描述](./images/a4bba554be7e9eece4cf27556306155d.png)
 
 

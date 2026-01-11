@@ -12,18 +12,18 @@ layout: post
 
 ## 前端设计
 ### RTL编写和HDL仿真
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/c33fa49085488d1e8020ccfeec2d4303.png)
+![在这里插入图片描述](./images/c33fa49085488d1e8020ccfeec2d4303.png)
 
 用Verilog实现芯片各个模块的功能，如写一个四位乘法器multipleir.v和它的测试文件tb_multiplier.v并使用VCS编译并仿真，使用Verdi查看波形，通过RTL功能验证。
 
 ### 逻辑综合
 使用DC（Design Compiler）综合RTL代码，生成门级网表（Gate-Level Netlist）。
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/f2c18dd2e965e5064f5e8cb386b861eb.png)
+![在这里插入图片描述](./images/f2c18dd2e965e5064f5e8cb386b861eb.png)
 
 具体来说，DC实际上将RTL先翻译成 了内部可识别的GTECH形式的中间代码，然后再根据所提供的**目标库**和**设计约束**来映射和优化出最终的网表文件netlist.v。
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/712b74c3a428b41545a741a4ba746000.png)
+![在这里插入图片描述](./images/712b74c3a428b41545a741a4ba746000.png)
 
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/fecdf4ae29eb6ae43958ff294ee160d6.png)
+![在这里插入图片描述](./images/fecdf4ae29eb6ae43958ff294ee160d6.png)
 
 在使用Synopsys DC进行逻辑综合时，基本可以分为四步：
 
@@ -39,7 +39,7 @@ layout: post
 使用formality进行形式化验证，是对网表文件和RTL代码之间映射的检验，在数学上验证该网表能实现对应RTL的功能。
 
 ## 后端设计
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/94aaa8ef90929669b00c4149fb21a502.png)
+![在这里插入图片描述](./images/94aaa8ef90929669b00c4149fb21a502.png)
 
 后端工作的**输入**是前端生成的网表文件和sdc约束文件
 后端工作的**输出**的是GDS（Geometry Data Standard）版图，GDS是描述电路版图的格式，包含制造一颗芯片所需的全部信息，芯片制造商（fab）只需要IC设计公司提交GDS用于芯片生产。
@@ -49,7 +49,7 @@ layout: post
 3. PPA，即性能，功耗，面积尽可能达到最优
 
 后端设计的**基本流程（basic flow）**如下图所示：
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/40e7af444f9fe981bf828c78a266298e.png)
+![在这里插入图片描述](./images/40e7af444f9fe981bf828c78a266298e.png)
 ### 数据准备
 下面将介绍数据准备工作中涉及重要命令及相关概念。
 #### set mw_phys_refs *
@@ -57,21 +57,21 @@ layout: post
  物理库文件以LEF为后缀 (Cadence)或以Milkyway database(Synopsys) 形式出现，包含PR 所需的必要 的物理信息和几何信息。
  物理库文件分为两种，一种与工艺相关，包含金属层的所有几何定义，通常foundry 提供不同的金属 层范围供设计者选择。另外一种和IP 包含的CELL 相关， 所有的standard cell 、IO cell 、Macro 都需要提 供相应的物理库文件。
  导入数据时需要导入一个工艺相关的LEF文件和所有CELL 的LEF 文件。
- ![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/ec5d81347913eade3227219bda85f4cd.png) ![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/edf127a984f2f30d7f346a0003c6a7d0.png)
+ ![在这里插入图片描述](./images/ec5d81347913eade3227219bda85f4cd.png) ![在这里插入图片描述](./images/edf127a984f2f30d7f346a0003c6a7d0.png)
 #### set link_library *
 •  用于描述物理单元的时序和功耗信息的重要库文 件
 •  时序库可以依据不同的延时模型来建库，常用的 有NLDM 和CCS 两种模型， CCS 比NLDM 更精确。 一个IP 库通常提供一套lib 文件，分别对应不同的 PVT corner ，通常lib 文件数量是PVT corner 的各种 排列组合。
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/498f01e548b6bc83aa8261a55fb2ea7e.png)
+![在这里插入图片描述](./images/498f01e548b6bc83aa8261a55fb2ea7e.png)
 #### 数据准备 (SDC)
 •  SDC是一个设计中至关重要的一部分，它对电路的时序、面积、功耗进行约束，是设计的命 脉，决定了芯片是否满足设计要求的规范。
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/0ed58732b7d05fb232d68fc548778f6b.png)
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/adab953c517fa176139224a57a5ca83b.png)
+![在这里插入图片描述](./images/0ed58732b7d05fb232d68fc548778f6b.png)
+![在这里插入图片描述](./images/adab953c517fa176139224a57a5ca83b.png)
 #### 数据准备 (RC Techfile) set_tlu_plus_files
 •  RC techfile 包含了对金属层做RC 提取所需的所有信息，通常以qrcTechfile  (Cadence)或者 tluplus  (Synopsys)两种形式出现，保存在foundry 提供的PDK 中。
 •  65nm 以下设计需要5种RC corner：typical, cbest, cworst, rcbest,rcworst。 每个corner 对应一份RC techfile，均需要导入PR 工具用以计算线延时。
 •  准备好物理文件及时序文件，即可建立相应的database，
 如图所示，在做floor plan之前，芯片的IO、Macro全部堆叠在一起。
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/8d4a34f62b76d50fd0fb8eb5ff64e3da.png)
+![在这里插入图片描述](./images/8d4a34f62b76d50fd0fb8eb5ff64e3da.png)
 
 
 ### floor plan
@@ -92,7 +92,7 @@ layout: post
   - create_power_straps
   - create_fp_placement
 
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/e32391e0829e3b280c44a689ec9915d1.png)
+![在这里插入图片描述](./images/e32391e0829e3b280c44a689ec9915d1.png)
 
 ### placement
 布局 (Placement)
@@ -110,7 +110,7 @@ layout: post
 - Logic Optimization:根据需要个性优化,过程主要有cell sizing, moving, net spitting,
 - gate cloning, buffer insertion和area recovery等小步骤组成
 - Placement Legalization：标准单元放置在row上，保证所有cell处于legal的状态
-  ![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/5901f97d9107817f757e96f3e551693c.png)
+  ![在这里插入图片描述](./images/5901f97d9107817f757e96f3e551693c.png)
 
 
 ### cts
@@ -132,7 +132,7 @@ layout: post
   clock_opt
  
 时钟树相关连线高亮图如下，其中时钟分4级，分别用黄色、紫色、蓝色、橙色表示，其中时钟源从clk_iopad引出，用黄色表示。
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/5e6ffba674dcb054fbc2a18bb0cd8743.png)
+![在这里插入图片描述](./images/5e6ffba674dcb054fbc2a18bb0cd8743.png)
 
 
 ### route
@@ -150,9 +150,9 @@ layout: post
 这个阶段不做DRC检查
 -  Detail routing: 将TA产生的DRC violation移除，使用固定尺寸的switch box来修复违规
 -  Search and repair: 通过逐渐增大Sbox的尺寸,寻找和消除Detail routing中没有完全消除的DRC违规。
-  ![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/aa965270fcb7f0befe91a404bd1583de.png)
+  ![在这里插入图片描述](./images/aa965270fcb7f0befe91a404bd1583de.png)
   布线后的图（可以看到除了之前时钟树的连线外，增加了对各个模块的连线）
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/7f7ab3b6eebc92218ccb6eef5bdbc712.png)
+![在这里插入图片描述](./images/7f7ab3b6eebc92218ccb6eef5bdbc712.png)
 
 ### 签核（sign off）
 签核包括chip finish、后仿工作

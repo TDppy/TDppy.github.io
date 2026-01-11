@@ -14,10 +14,10 @@ layout: post
 ## 慢时钟域的信号传输到快时钟域
 ### 打两拍
 ## 快时钟域的信号传输到慢时钟域
-![在这里插入图片描述](https://i-blog.csdnimg.cn/direct/1469bf8aac834bbcbd234c0b6c9c770e.png)
+![在这里插入图片描述](./images/1469bf8aac834bbcbd234c0b6c9c770e.png)
 如图所示，第一行是脉冲信号，第二行是慢时钟域的时钟。如果从快时钟域要同步一个脉冲信号到慢时钟域，容易出现上升沿没有采样到脉冲信号的情况。
 ### 方案一  脉冲展宽+同步   (打拍打拍，进行或)
-![在这里插入图片描述](https://i-blog.csdnimg.cn/direct/6d3e233447d74efe9c9d7e12d5498abe.png)
+![在这里插入图片描述](./images/6d3e233447d74efe9c9d7e12d5498abe.png)
 #### 代码
 ```rust
 module fast2slow_cdc 
@@ -66,11 +66,11 @@ endmodule
 存在的问题：采用脉冲展宽+同步，在或时可能产生毛刺 
 
 #### 原理图
-![在这里插入图片描述](https://i-blog.csdnimg.cn/direct/08eb5c77ca414820af4e3f91877b83b2.png)
+![在这里插入图片描述](./images/08eb5c77ca414820af4e3f91877b83b2.png)
 ### 方案二  脉冲电平检测+双触发器同步+边沿检测
 **优点：** 对时序比较友好
 **缺点：** 相邻的脉冲太近时，会检测不到
-![在这里插入图片描述](https://i-blog.csdnimg.cn/direct/38c276442cb1471cb2e99abc87c6f097.png)
+![在这里插入图片描述](./images/38c276442cb1471cb2e99abc87c6f097.png)
 #### 代码
 ```rust
 module fast2slow_cdc2(
@@ -98,5 +98,5 @@ module fast2slow_cdc2(
 endmodule
 ```
 #### 原理图
-![在这里插入图片描述](https://i-blog.csdnimg.cn/direct/c3ffb86d231b4697a68d0b8cca44875e.png)
+![在这里插入图片描述](./images/c3ffb86d231b4697a68d0b8cca44875e.png)
 

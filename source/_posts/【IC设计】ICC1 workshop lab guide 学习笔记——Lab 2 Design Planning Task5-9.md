@@ -134,7 +134,7 @@ source scripts/2nd_pass_setup.tcl
 ```
 
 This script executes the following standard data setup steps:
-![](https://i-blog.csdnimg.cn/blog_migrate/2da4a3a9f5b85ccfdcd219f498cc2750.png)
+![](./images/2da4a3a9f5b85ccfdcd219f498cc2750.png)
 
 
 2.Read the DEF file that was written out in the previous task:

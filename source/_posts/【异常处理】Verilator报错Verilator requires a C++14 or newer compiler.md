@@ -20,5 +20,5 @@ layout: post
 
 # 解决办法
 解决办法是将项目目录下Makefile中的 CXXFLAG后面的 -std=c++11改成-std=c++14即可
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/814fbba7f713728efd1da018c3e91860.png)
+![在这里插入图片描述](/images/814fbba7f713728efd1da018c3e91860.png)
 

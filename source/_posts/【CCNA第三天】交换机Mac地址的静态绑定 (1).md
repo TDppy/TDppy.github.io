@@ -9,14 +9,14 @@ layout: post
 > CCNA第三天主要讲了交换机mac地址的静态绑定，以及这个实验的一些前置知识。
 
 ## OSI参考模型：
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/17a493b0a9ae94972fa9c0f4260027c1.png)
+![在这里插入图片描述](./images/17a493b0a9ae94972fa9c0f4260027c1.png)
 
 这一天我们主要学习前两层：物理层和数据链路层。
 ### 物理层：
 作用：定义线缆标准，例如：电压、线速、规格等。
-设备：modem调制解调器、[集线器](https://img-blog.csdnimg.cn/20200709221643823.png)、[中继器](https://img-blog.csdnimg.cn/20200709221809179.png)
+设备：modem调制解调器、[集线器](./images/20200709221643823.png)、[中继器](./images/20200709221809179.png)
 
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/d9ef92a4188872e1fbc92d7dcebc144e.png)
+![在这里插入图片描述](./images/d9ef92a4188872e1fbc92d7dcebc144e.png)
 ### 数据链路层
 作用：定义的是线路物理标准，连接器标准，物理地址。
 协议：IEEE 802协议

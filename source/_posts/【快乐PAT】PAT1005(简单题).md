@@ -10,7 +10,7 @@ layout: post
 ## 题目描述
 [原题链接点我](https://pintia.cn/problem-sets/994805342720868352/problems/994805519074574336)
 
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/d163836def2b3d066d3a06bddc67f599.png)
+![在这里插入图片描述](/images/d163836def2b3d066d3a06bddc67f599.png)
 ## 题解与代码
 将输入的数字串每个数字求个累加和，然后将累加和的每个数字以英文单词的形式输出。
 涉及知识点：**字符-48为数字** 和 **sprintf**   这两个是我用到的主要知识点，也可能有别的做法不用sprintf。

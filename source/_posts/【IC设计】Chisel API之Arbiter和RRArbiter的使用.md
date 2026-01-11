@@ -31,7 +31,7 @@ Ready-Valid接口是一种简单的控制流接口，包含：
  1. data：发送端向接收端发送的数据；
  2. valid：发送端到接收端的信号，用于指示发送端是否准备好发送数据；
  3. ready：接收端到发送端的信号，用于指示接收端是否准备好接收数据；
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/66cf202e8fbd4feb36fea047b5b5f92c.png)
+![在这里插入图片描述](./images/66cf202e8fbd4feb36fea047b5b5f92c.png)
 发送端在data准备好之后就会设置valid信号，接收端在准备好接收一个字的数据的时候就会设置ready信号。数据的传输会在两个信号，valid信号和ready信号，都被设置时才会进行。**如果两个信号有任何一个没被设置，那就不会进行数据传输。**
 **[更详细的内容参考该博客](https://blog.csdn.net/weixin_43681766/article/details/126112310)**
 
@@ -70,7 +70,7 @@ lazy val root = (project in file("."))
 ## RRArbiter代码示例
 以下代码可以直接运行，并给出了详细注释。
 输出结果：
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/18970815a68ee3cd8b74fca5fe7c4c4f.png)
+![在这里插入图片描述](./images/18970815a68ee3cd8b74fca5fe7c4c4f.png)
 
 ```scala
 //3个输入的RRArbiter官方API测试

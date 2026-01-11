@@ -20,7 +20,7 @@ Zynq-7000 xc7z010clg400-1 板卡
 # 设计目标
 在案例（三）中提到让一个led根据8个拨码开关的值来循环变化，每个拨码开关负责0.25秒，一共是2秒。
 在任务（四）中我们需要在每次动态变化前加入1秒的空闲时间（空闲时间led是熄灭的）
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/5f3242f7654e375b4625600feef45bb1.png)
+![在这里插入图片描述](./images/5f3242f7654e375b4625600feef45bb1.png)
 # 设计思路
 1秒的空闲时间需要一个计数器来计算，假设为counter0
 2秒的动态变化可以像案例（二）中一样用两个计数器来完成，假设为counter1和counter2
@@ -206,7 +206,7 @@ set_property PACKAGE_PIN K14 [get_ports {sw[0]}]
 
 
 # 仿真结果
-![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/99ef3792d0b8b56b0218ef3341227c1d.png)
+![在这里插入图片描述](./images/99ef3792d0b8b56b0218ef3341227c1d.png)
 
 
 
