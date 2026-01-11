@@ -22,7 +22,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'  # 选择稳定的Node.js版本（和本地环境一致更佳）
+          node-version: '16'  # 选择稳定的Node.js版本（和本地环境一致更佳）
           cache: 'npm'  # 缓存npm依赖，提升大量文章的构建速度
 
       # 步骤3：安装Hexo及相关依赖（自动读取package.json中的依赖配置）
