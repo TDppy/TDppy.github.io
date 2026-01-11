@@ -25,14 +25,14 @@ jobs:
           npm install hexo@6.3.0 --save-exact
           npm install --force  # 强制解析依赖冲突，优先使用兼容版本
 
-      - name: Build Hexo Static Files
-        run: |
-          hexo clean
-          hexo generate
-
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           publish_dir: ./public
           force_orphan: true  # 确保gh-pages分支干净，避免部署冲突
+          # 新增1：cname配置，自动在gh-pages根目录生成CNAME文件，持久化自定义域名
+          # 替换为你的实际自定义域名（如www.whyc.fun，无https://）
+          cname: www.whyc.fun
+          # 新增2：保留.nojekyll文件，禁用Jekyll构建，避免额外冲突（可选但推荐）
+          disable_nojekyll: false
