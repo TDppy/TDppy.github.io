@@ -9,7 +9,7 @@ layout: post
 # Xilinx Zynq SoC 系列
 针对不同的应用领域，Xilinx 公司设计开发了各种逻辑资源规模和集成各种外设功能的 Zynq SOC 器件，包括专为成本优化的 Zynq-7000 平台，面向高性能实时计算应用领域的 Zynq UltraScale+ MPSoC，面向射频通信的 Zynq UltraScale+ RFSoC，以及具备高度可扩展特性的自适应加速平台 ACAP。
 ## 专为成本优化的 Zynq-7000 平台
-![在这里插入图片描述](./images/f04bddf1148cdba61cf557a05ba9d984.png)
+![在这里插入图片描述](/images/f04bddf1148cdba61cf557a05ba9d984.png)
 Zynq-7000 SoC 属于成本优化的可扩展 SoC 平台，该系列器件集成了单核或双核的 Arm Cortex-A9，28nm 7 系列可编程逻辑，以及速率高达 12.5G 的收发器。
 Zynq-7000 SoC 非常适合以下应用领域：
 ADAS
@@ -30,7 +30,7 @@ Zynq UltraScale+ MPSoC 器件不仅提供 64 位可扩展性处理器，同时�
 机器视觉
 
 ## 面向射频通信的 Zynq UltraScale+ RFSoC
-Zynq® UltraScale+™ RFSoC 是在 Zynq® UltraScale+™ MPSoC 基础上，通过集成一个全面的 RF 模数信号链，实现了对射频信号的高性能收发。![在这里插入图片描述](./images/d11949c4f3446fd95d5a802a5c4031ac.png)
+Zynq® UltraScale+™ RFSoC 是在 Zynq® UltraScale+™ MPSoC 基础上，通过集成一个全面的 RF 模数信号链，实现了对射频信号的高性能收发。![在这里插入图片描述](/images/d11949c4f3446fd95d5a802a5c4031ac.png)
 Zynq® UltraScale+™ RFSoC 在 SoC 架构中集成数千兆采样 RF 数据转换器和软判决前向纠错 (SD-FEC)。 配 有 ARM® Cortex®-A53 处 理 子 系 统 和UltraScale + 可编程逻辑，该系列是业界唯一单芯片自适应射频平台。
 Zynq UltraScale+ RFSoC 系列可为模拟、数字和嵌入式设计提供适当的平台，从而可简化信号链上的校准和同步。多代产品系列包含广泛的器件类型，具有不同的直接 RF 性能，可满足各种频谱需求和使用案例。
 目前，Zynq UltraScale+ RFSoC 已经推出了 3 代产品，每代产品都实现了更加优异的射频性能。

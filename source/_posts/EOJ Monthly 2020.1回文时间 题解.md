@@ -6,5 +6,5 @@ tags: []
 layout: post
 ---
 
-![在这里插入图片描述](./images/37960ddceb6a03a39e72ceb260674537.png#pic_center)
+![在这里插入图片描述](/images/37960ddceb6a03a39e72ceb260674537.png)
 

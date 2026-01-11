@@ -6,7 +6,7 @@ tags: [JavaWeb]
 layout: post
 ---
 
-![在这里插入图片描述](./images/8c66efdad4c2e5c941594d0107c0c2be.png)
+![在这里插入图片描述](/images/8c66efdad4c2e5c941594d0107c0c2be.png)
 **先捋一下图中这个登录的逻辑**：
 表单中的登录按钮的action属性绑定了一个servlet的路径，当点击登录时，可以看到网页的地址栏会跳转到一个servlet，后台程序执行了这个servlet的代码。
 这个servlet中，我们可以用request.getParameter()；来获取表单中填写的用户名、密码、验证码，然后再进行查询数据库中是否有这个用户，如果有则登录成功，否则登录失败。

@@ -54,16 +54,16 @@ layout: post
      * @see     java.util.HashMap
      */
      如果英文不行，就看中文jdk文档：
-     ![在这里插入图片描述](./images/8ff7b326817f4e9e58676075adaa659a.png)
+     ![在这里插入图片描述](/images/8ff7b326817f4e9e58676075adaa659a.png)
 总结一下：
 ①性质：自反 对称 传递 一致 (也就是离散数学那些东西)
 ②euqals比较的是地址(引用)，因此true的条件比==更加严格
 ③重写时要重写hashCode方法
 
 实际操作一波：
-![在这里插入图片描述](./images/fcf704b8f05a41479e6d6d17f50d0306.png)
+![在这里插入图片描述](/images/fcf704b8f05a41479e6d6d17f50d0306.png)
 e1和e2的地址不同，所以false，s1和s2的内容相同但是地址不同，本来按照Object的equals方法应当输出false，但是String类重写了equals方法，当内容相同时会输出true。
-![在这里插入图片描述](./images/5840a0c5682e7c5ed8bd8045c161d68b.png)
+![在这里插入图片描述](/images/5840a0c5682e7c5ed8bd8045c161d68b.png)
 
 
 
