@@ -1,6 +1,6 @@
 ---
 title: 【安装配置】WSL虚拟机导出、导入镜像（涉及到docker无法在wsl下使用的问题）
-date: 2026-01-11 15:30:00
+date: 2024-05-20 13:43:46
 categories: 环境配置
 tags: [WSL, Linux]
 layout: post

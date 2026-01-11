@@ -1,6 +1,6 @@
 ---
 title: 【IC设计】牛客网-序列检测习题总结
-date: 2026-01-11 15:30:00
+date: 2024-05-19 21:27:09
 categories: 数字IC设计
 tags: []
 layout: post

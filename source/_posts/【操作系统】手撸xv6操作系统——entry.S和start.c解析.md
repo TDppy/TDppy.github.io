@@ -1,6 +1,6 @@
 ---
 title: 【操作系统】手撸xv6操作系统——entry.S和start.c解析
-date: 2026-01-11 15:30:00
+date: 2025-12-30 15:57:42
 categories: 操作系统
 tags: [教学操作系统, xv6, 操作系统]
 layout: post
