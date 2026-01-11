@@ -5,7 +5,7 @@ categories: 异常处理
 tags: [异常处理]
 layout: post
 ---
-﻿下面一行命令解决
+下面一行命令解决
 ```bash
 sudo apt-get install git make autoconf g++ flex bison
 ```

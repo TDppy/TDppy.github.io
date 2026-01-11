@@ -5,7 +5,7 @@ categories: IC设计
 tags: [IC设计]
 layout: post
 ---
-﻿在maven仓库中精心整理的Scala、Chisel、Chiseltest的版本兼容信息，有了这个再也不怕sbt构建时找不到库文件了！
+在maven仓库中精心整理的Scala、Chisel、Chiseltest的版本兼容信息，有了这个再也不怕sbt构建时找不到库文件了！
 目前百度上我搜不到这个资料，是我从maven官网上整理的，如果对你有用希望点点赞~
 
 > scala 2.11系列兼容的chisel版本为兼容的chisel版本3.0.0到3.4.4，chiseltest版本为0.2.0到0.3.4 scala

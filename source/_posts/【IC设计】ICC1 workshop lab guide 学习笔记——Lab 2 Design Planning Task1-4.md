@@ -5,7 +5,7 @@ categories: IC设计
 tags: [IC设计]
 layout: post
 ---
-﻿@[TOC]
+@[TOC]
 # Lab 2 Design Planning
 ## 2.1 Load the Design
 

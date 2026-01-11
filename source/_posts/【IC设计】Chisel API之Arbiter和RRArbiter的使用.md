@@ -5,7 +5,7 @@ categories: IC设计
 tags: [IC设计]
 layout: post
 ---
-﻿---
+---
 title: 【IC设计】Chisel API之Arbiter和RRArbiter的使用
 date: 2026-01-11 15:30:00
 categories: IC设计
@@ -13,7 +13,7 @@ tags: [IC设计, Chisel, Arbiter, RRArbiter]
 layout: post
 ---
 
-﻿@[TOC]
+@[TOC]
 ## 介绍
 仲裁器在NoC路由器中是重要的组成部分，虚通道仲裁和交叉开关仲裁都需要使用仲裁器。
 Chisel提供了Arbiter和RRArbiter仲裁器

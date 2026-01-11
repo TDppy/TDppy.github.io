@@ -5,7 +5,7 @@ categories: IC设计
 tags: [IC设计]
 layout: post
 ---
-﻿## Specifying Libraries
+## Specifying Libraries
 > You use dc_shell variables to specify the libraries used by Design  Compiler. 
 > Table 4-1 lists  the variables for each library type as well  as the typical file extension for the library.
 

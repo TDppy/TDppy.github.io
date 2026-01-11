@@ -5,7 +5,7 @@ categories: IC设计
 tags: [IC设计]
 layout: post
 ---
-﻿@[TOC]
+@[TOC]
 # ICC1 workshop lab guide
 ## 2.5 Create P/G Rings Around Macro Groups
 In the task following this one you will use “Power Network Synthesis” (PNS) to 

@@ -5,7 +5,7 @@ categories: 安装配置
 tags: [安装配置]
 layout: post
 ---
-﻿# 背景
+# 背景
 WSL（Windows Subsystem Linux），是微软提供的在Windows下便携地使用Linux系统的方式，它支持使用虚拟化技术（也就是要在bios和控制面板中开启虚拟化支持），完美支持Ubuntu和Windows文件系统之间的使用。相比于VMware，速度更快。
 
 本文主要介绍将已有的wsl环境导出为.tar格式的镜像文件，然后通过U盘或者网盘将tar文件发给另一台电脑，在另一台电脑上只需要导入tar包，无需重新安装和配置环境，就可以无缝衔接工作。（~~主要是我们组没服务器~~ ）

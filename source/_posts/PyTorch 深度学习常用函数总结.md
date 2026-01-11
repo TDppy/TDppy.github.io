@@ -5,7 +5,7 @@ categories:
 tags: [PyTorch, 深度学习]
 layout: post
 ---
-﻿@[toc]
+@[toc]
 
 > 近期要做AI编译器相关工作，需要把PyTorch入门下，在Google的Colab云平台上跑了LeNet/ResNet/GoogleNet/MobileNet，通过豆包整理了下所涉及到的函数，形成本文。
 

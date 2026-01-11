@@ -5,7 +5,7 @@ categories: IC设计
 tags: [IC设计]
 layout: post
 ---
-﻿## Task 1 Create a Milkyway library
+## Task 1 Create a Milkyway library
 先进入lab1_data_setup目录，打开icc_shell，创建项目
 
 ```bash

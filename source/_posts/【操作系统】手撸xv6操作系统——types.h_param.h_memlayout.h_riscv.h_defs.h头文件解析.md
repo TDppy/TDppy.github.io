@@ -5,7 +5,7 @@ categories: 操作系统
 tags: [操作系统, RISC-V,嵌入式软件开发]
 layout: post
 ---
-﻿---
+---
 title: 【操作系统】手撸xv6操作系统——types.h/param.h/memlayout.h/riscv.h/defs.h头文件解析
 date: 2026-01-11 15:30:00  # 文章发布日期，格式：年-月-日 时:分:秒
 categories: 操作系统  # 可选，如：技术分享、生活随笔

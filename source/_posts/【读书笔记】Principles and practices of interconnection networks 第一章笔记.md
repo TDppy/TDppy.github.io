@@ -5,7 +5,7 @@ categories: 读书笔记
 tags: [读书笔记]
 layout: post
 ---
-﻿# 互联网络导论
+# 互联网络导论
 ## 互联网络的三个问题
 **数字系统的三个基本构件：**
 数字系统由3个基本构件组成：逻辑（logic）、内存（memory）、通信（communication）。

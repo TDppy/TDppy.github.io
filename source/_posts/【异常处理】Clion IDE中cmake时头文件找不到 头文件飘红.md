@@ -5,7 +5,7 @@ categories: 异常处理
 tags: [异常处理]
 layout: post
 ---
-﻿如图所示是我的clion项目目录
+如图所示是我的clion项目目录
 ![在这里插入图片描述](https://i-blog.csdnimg.cn/direct/8d97ef11d03842da9a1b6514298078f7.png)
 我自定义的data_structure.h和func_declaration.h在unit_test.c中无法检索到
 ![在这里插入图片描述](https://i-blog.csdnimg.cn/direct/f5127f74ef204c1f9a7ba04409c28d58.png)

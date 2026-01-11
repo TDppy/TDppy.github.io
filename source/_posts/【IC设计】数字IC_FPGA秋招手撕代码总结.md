@@ -5,7 +5,7 @@ categories: IC设计
 tags: [IC设计]
 layout: post
 ---
-﻿@[toc]
+@[toc]
 > 总结下秋招需要学习的手撕代码题，还有很多不足之处陆续补充！
 # FIFO
 [【IC设计】同步FIFO设计（Verilog源码、参数化设计、面试必备）](https://blog.csdn.net/qq_42622433/article/details/139046484)

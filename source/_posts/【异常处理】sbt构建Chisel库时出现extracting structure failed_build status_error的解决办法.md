@@ -5,7 +5,7 @@ categories: 异常处理
 tags: [异常处理]
 layout: post
 ---
-﻿@[TOC]
+@[TOC]
 # 报错背景：
 最近在写Chisel时，构建项目常常需要等待很久，然后报错extracting structure failed:build status:error
 这个报错实际上告诉我们，在build.sbt中**指定的依赖没有下载到**，导致依赖的结构无法实现。

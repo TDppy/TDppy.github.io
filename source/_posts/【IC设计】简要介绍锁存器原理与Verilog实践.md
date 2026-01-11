@@ -5,7 +5,7 @@ categories: IC设计
 tags: [IC设计]
 layout: post
 ---
-﻿@[TOC]
+@[TOC]
 # 锁存器原理
 ![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/b52f2ee3e5f1f2a7c9d2dd90dae8389e.png)
 

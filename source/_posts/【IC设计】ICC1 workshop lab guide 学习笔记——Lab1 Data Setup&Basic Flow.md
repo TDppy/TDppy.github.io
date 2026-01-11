@@ -5,7 +5,7 @@ categories: IC设计
 tags: [IC设计]
 layout: post
 ---
-﻿@[TOC]
+@[TOC]
 # Lab1 Data Setup&Basic Flow
 ## 1.1 Create a Milkyway library
 

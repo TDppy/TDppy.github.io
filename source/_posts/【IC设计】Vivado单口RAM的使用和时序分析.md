@@ -5,7 +5,7 @@ categories: IC设计
 tags: [IC设计]
 layout: post
 ---
-﻿@[TOC]
+@[TOC]
 # 创建单口RAM IP
 ## IP Catalog中选择单口RAM IP
 ![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/baa45c9a16cb7a55c93fd423265843aa.png)

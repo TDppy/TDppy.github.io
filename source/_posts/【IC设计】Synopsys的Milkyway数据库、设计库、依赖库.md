@@ -5,7 +5,7 @@ categories: IC设计
 tags: [IC设计]
 layout: post
 ---
-﻿## Milkyway database for Synopsys Galaxy Design Platform
+## Milkyway database for Synopsys Galaxy Design Platform
 Synopsys Galaxy Design Platform（Synopsys银河设计平台）包括的系列工具有：
 DC、ICC、StarRC、IC Validator、PrimeRail、Milkyway Environment
 

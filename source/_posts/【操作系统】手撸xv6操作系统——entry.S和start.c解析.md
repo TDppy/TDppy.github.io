@@ -5,7 +5,7 @@ categories: 操作系统
 tags: [操作系统, RISC-V,嵌入式软件开发]
 layout: post
 ---
-﻿@[toc]
+@[toc]
 # entry.S解析和调试
 ## 代码分析
 entry.S是xv6上电后执行的第一段代码，用于设置每个CPU的栈指针并跳转到start函数，每个CPU拥有4KB的栈空间。

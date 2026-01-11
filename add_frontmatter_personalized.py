@@ -43,6 +43,7 @@ categories: {categories}
 tags: {tags}
 layout: {layout}
 ---
+
 '''
         # Read the file
         with open(filepath, 'r', encoding='utf-8') as f:

@@ -5,7 +5,7 @@ categories: IC设计
 tags: [IC设计]
 layout: post
 ---
-﻿@[TOC]
+@[TOC]
 > 案例和代码来自小梅哥课程，本人仅对知识点做做笔记，如有学习需要请支持官方正版。
 # 该系列目录：
 [Verilog线性序列机点灯案例（一）](https://blog.csdn.net/qq_42622433/article/details/136727036)

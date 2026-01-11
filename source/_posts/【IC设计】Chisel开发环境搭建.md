@@ -5,7 +5,7 @@ categories: IC设计
 tags: [IC设计]
 layout: post
 ---
-﻿@[TOC]
+@[TOC]
 ## README
 
  1. **如果想快速搭建好环境，不关心具体的安装过程**

@@ -5,7 +5,7 @@ categories: IC设计
 tags: [IC设计]
 layout: post
 ---
-﻿@[toc]
+@[toc]
 # 状态机基础知识
 ![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/48c7de50cbf4e18d5b809dcfadcdc800.png)
 ![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/a6f14d648949f8feb8937672dc666214.png)

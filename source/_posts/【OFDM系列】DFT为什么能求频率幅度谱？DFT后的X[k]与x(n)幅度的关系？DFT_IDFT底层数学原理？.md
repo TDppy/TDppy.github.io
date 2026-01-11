@@ -5,7 +5,7 @@ categories: OFDM系列
 tags: [OFDM, 通信]
 layout: post
 ---
-﻿@[TOC]
+@[TOC]
 ## 问题引入
 ![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/c4245f2374669972b1dfcc690cef7fb3.png)
 上面是DFT和IDFT的公式，IDFT先不谈。在实践中常使用FFT算法来快速算出DFT，获得时域采样信号x(n)的频率幅度谱。
