@@ -1,8 +1,8 @@
 ---
 title: 【安装配置】在DEV c++ 中如何设置默认的代码模板
-date: 2026-01-11 15:30:00
+date: 2020-10-11 15:45:18
 categories: 环境配置
-tags: []
+tags: [转载]
 layout: post
 ---
 

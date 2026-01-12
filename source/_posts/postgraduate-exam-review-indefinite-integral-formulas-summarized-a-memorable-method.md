@@ -1,6 +1,6 @@
 ---
 title: 【考研复习】不定积分公式，总结了个好记的办法
-date: 2026-01-11 15:30:00
+date: 2021-10-14 13:17:41
 categories: 
 tags: []
 layout: post

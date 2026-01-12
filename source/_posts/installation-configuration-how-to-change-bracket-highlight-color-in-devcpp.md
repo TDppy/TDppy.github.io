@@ -1,8 +1,8 @@
 ---
 title: 【安装配置】devc++怎么改变括号高亮颜色？
-date: 2026-01-11 15:30:00
+date: 2020-07-19 15:41:09
 categories: 环境配置
-tags: [C++, Dev-C++]
+tags: [C++, Dev-C++ , 转载]
 layout: post
 ---
 

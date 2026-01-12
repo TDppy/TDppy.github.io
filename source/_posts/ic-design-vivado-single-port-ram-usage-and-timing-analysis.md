@@ -1,6 +1,6 @@
 ---
 title: 【IC设计】Vivado单口RAM的使用和时序分析
-date: 2026-01-11 15:30:00
+date: 2024-01-25 15:54:37
 categories: 数字IC设计
 tags: [FPGA, Verilog, 时序分析]
 layout: post

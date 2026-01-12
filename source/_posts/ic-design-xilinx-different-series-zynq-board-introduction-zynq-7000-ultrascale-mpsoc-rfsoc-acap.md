@@ -1,6 +1,6 @@
 ---
 title: 【IC设计】Xilinx不同系列的Zynq板卡介绍(Zynq-7000，UltraScale MPSoC_RFSoC，ACAP）
-date: 2026-01-11 15:30:00
+date: 2024-05-06 11:39:54
 categories: 数字IC设计
 tags: [FPGA]
 layout: post

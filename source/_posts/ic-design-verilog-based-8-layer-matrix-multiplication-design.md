@@ -1,6 +1,6 @@
 ---
 title: 【IC设计】基于Verilog的8层矩阵乘法设计
-date: 2026-01-11 15:30:00
+date: 2023-06-04 21:01:36
 categories: 数字IC设计
 tags: [Verilog]
 layout: post

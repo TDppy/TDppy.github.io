@@ -1,6 +1,6 @@
 ---
 title: 【异常处理】Verilator报错Verilator requires a C++14 or newer compiler
-date: 2026-01-11 15:30:00
+date: 2024-03-08 15:19:20
 categories: 异常处理
 tags: [错误解决, 调试]
 layout: post

@@ -1,6 +1,6 @@
 ---
 title: 【Java学习】如何使用Java发短信
-date: 2026-01-11 15:30:00
+date: 2021-03-04 12:06:20
 categories: 编程与算法
 tags: [短信, Java]
 layout: post

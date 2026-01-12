@@ -1,6 +1,6 @@
 ---
 title: 【蓝桥杯备战】闻闻与砖（动态规划）
-date: 2026-01-11 15:30:00
+date: 2020-07-22 10:24:57
 categories: 
 tags: []
 layout: post

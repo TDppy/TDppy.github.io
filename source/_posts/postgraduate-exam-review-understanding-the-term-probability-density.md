@@ -1,6 +1,6 @@
 ---
 title: 【考研复习】“概率密度”一词的理解
-date: 2026-01-11 15:30:00
+date: 2021-10-16 15:13:46
 categories: 
 tags: []
 layout: post

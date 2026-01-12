@@ -1,6 +1,6 @@
 ---
 title: 【IC设计】奇数分频与偶数分频 电路设计（含讲解、RTL代码、Testbench代码）
-date: 2026-01-11 15:30:00
+date: 2024-04-24 18:19:14
 categories: 数字IC设计
 tags: [分频器, Verilog]
 layout: post

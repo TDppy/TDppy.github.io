@@ -1,6 +1,6 @@
 ---
 title: 【IC设计】任意倍数占空比为50%的奇数分频和偶数分频（Verilog源码、仿真波形、讲解）
-date: 2026-01-11 15:30:00
+date: 2024-05-19 12:13:31
 categories: 数字IC设计
 tags: [分频器, Verilog]
 layout: post

@@ -1,6 +1,6 @@
 ---
 title: 【IC设计】Windows和Ubuntu下安装Verilator
-date: 2026-01-11 15:30:00
+date: 2024-03-07 19:26:10
 categories: 数字IC设计
 tags: [Verilator]
 layout: post

@@ -1,6 +1,6 @@
 ---
 title: 【IC设计】Synopsys的Milkyway数据库、设计库、依赖库
-date: 2026-01-11 15:30:00
+date: 2023-08-04 11:41:47
 categories: 数字IC设计
 tags: [EDA工具]
 layout: post

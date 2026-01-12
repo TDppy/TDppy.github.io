@@ -1,6 +1,6 @@
 ---
 title: 【IC设计】简要介绍锁存器原理与Verilog实践
-date: 2026-01-11 15:30:00
+date: 2024-04-27 12:47:58
 categories: 数字IC设计
 tags: [Verilog]
 layout: post

@@ -1,6 +1,6 @@
 ---
 title: 【linux下C】动态库与静态库快速入门
-date: 2026-01-11 15:30:00
+date: 2020-04-20 10:26:48
 categories: 编程与算法
 tags: [C语言, 动态库, Linux]
 layout: post

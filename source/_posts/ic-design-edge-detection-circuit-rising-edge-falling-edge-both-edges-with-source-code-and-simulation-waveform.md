@@ -1,6 +1,6 @@
 ---
 title: 【IC设计】边沿检测电路（上升沿、下降沿、双沿，附带源代码和仿真波形）
-date: 2026-01-11 15:30:00
+date: 2024-04-25 13:42:04
 categories: 数字IC设计
 tags: [Verilog]
 layout: post

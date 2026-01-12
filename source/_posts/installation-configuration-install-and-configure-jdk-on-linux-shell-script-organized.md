@@ -1,6 +1,6 @@
 ---
 title: 【安装配置】linux下安装配置jdk（已整理好shell脚本）
-date: 2026-01-11 15:30:00
+date: 2020-04-15 10:55:23
 categories: 环境配置
 tags: []
 layout: post

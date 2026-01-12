@@ -1,6 +1,6 @@
 ---
 title: 【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析
-date: 2026-01-11 15:30:00
+date: 2026-01-06 23:02:58
 categories: 操作系统
 tags: [教学操作系统, xv6, 操作系统]
 layout: post

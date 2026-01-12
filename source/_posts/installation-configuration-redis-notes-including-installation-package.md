@@ -1,6 +1,6 @@
 ---
 title: 【安装配置】redis笔记（含安装包）
-date: 2026-01-11 15:30:00
+date: 2020-07-11 21:09:42
 categories: 环境配置
 tags: [Redis]
 layout: post

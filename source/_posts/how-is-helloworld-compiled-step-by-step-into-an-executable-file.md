@@ -1,6 +1,6 @@
 ---
 title: helloworld是怎样被一步步编译为可执行文件的？
-date: 2026-01-11 15:30:00
+date: 2020-07-06 19:52:30
 categories: 编程与算法
 tags: [C语言, 编程入门]
 layout: post

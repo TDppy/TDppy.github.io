@@ -1,6 +1,6 @@
 ---
 title: 【OFDM系列】DFT为什么能求频率幅度谱？DFT后的X[k]与x(n)幅度的关系？DFT_IDFT底层数学原理？
-date: 2026-01-11 15:30:00
+date: 2023-08-16 10:20:33
 categories: 通信系统
 tags: [DFT, OFDM, 信号处理]
 layout: post

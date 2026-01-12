@@ -1,6 +1,6 @@
 ---
 title: 【安装配置】linux下mysql安装 (已整理好shell脚本)
-date: 2026-01-11 15:30:00
+date: 2020-04-14 21:05:19
 categories: 环境配置
 tags: []
 layout: post

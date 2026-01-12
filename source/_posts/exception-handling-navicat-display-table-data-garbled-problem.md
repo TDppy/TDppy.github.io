@@ -1,6 +1,6 @@
 ---
 title: 【异常处理】navicat展示表中数据的乱码问题
-date: 2026-01-11 15:30:00
+date: 2020-10-08 09:36:35
 categories: 异常处理
 tags: [错误解决, 调试]
 layout: post

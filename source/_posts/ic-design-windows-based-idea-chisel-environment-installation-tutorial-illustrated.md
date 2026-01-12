@@ -1,6 +1,6 @@
 ---
 title: 【IC设计】Windows下基于IDEA的Chisel环境安装教程（图文并茂）
-date: 2025-05-27 10:23:25
+date: 2024-02-01 20:28:25
 categories: 数字IC设计
 tags: [Chisel]
 layout: post

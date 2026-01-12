@@ -1,6 +1,6 @@
 ---
 title: 【异常处理】onenote打开时报错：应用程序无法正常启动(Oxc0000142)
-date: 2026-01-11 15:30:00
+date: 2020-10-08 09:58:27
 categories: 异常处理
 tags: [错误解决, 调试]
 layout: post

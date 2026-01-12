@@ -1,6 +1,6 @@
 ---
 title: 【IC设计】Synopsys数字IC设计流程
-date: 2026-01-11 15:30:00
+date: 2023-06-11 21:27:02
 categories: 数字IC设计
 tags: [EDA工具]
 layout: post

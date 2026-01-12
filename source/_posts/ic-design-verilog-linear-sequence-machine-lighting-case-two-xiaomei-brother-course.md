@@ -1,6 +1,6 @@
 ---
 title: 【IC设计】Verilog线性序列机点灯案例(二)（小梅哥课程）
-date: 2026-01-11 15:30:00
+date: 2024-03-15 16:13:53
 categories: 数字IC设计
 tags: [Verilog]
 layout: post

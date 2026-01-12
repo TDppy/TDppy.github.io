@@ -1,6 +1,6 @@
 ---
 title: 【安装配置】IDEA中配置Maven本地仓库后pom.xml飘红
-date: 2026-01-11 15:30:00
+date: 2021-03-06 21:02:36
 categories: 环境配置
 tags: [Java, IDEA]
 layout: post

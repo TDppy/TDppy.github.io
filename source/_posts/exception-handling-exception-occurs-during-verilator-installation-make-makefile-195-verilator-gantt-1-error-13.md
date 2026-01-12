@@ -1,6 +1,6 @@
 ---
 title: 【异常处理】verilator安装时出现异常 make_ ___ [Makefile_195_ verilator_gantt.1] Error 13
-date: 2026-01-11 15:30:00
+date: 2024-03-07 19:32:18
 categories: 异常处理
 tags: [错误解决, Verilator, 调试]
 layout: post

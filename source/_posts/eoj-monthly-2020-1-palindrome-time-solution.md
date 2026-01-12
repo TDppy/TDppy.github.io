@@ -1,6 +1,6 @@
 ---
 title: EOJ Monthly 2020.1回文时间 题解
-date: 2026-01-11 15:30:00
+date: 2020-09-26 19:30:42
 categories: 编程与算法
 tags: [C++, 算法, 编程竞赛]
 layout: post

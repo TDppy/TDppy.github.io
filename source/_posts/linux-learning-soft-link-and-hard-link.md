@@ -1,6 +1,6 @@
 ---
 title: 【linux学习】软链接与硬链接
-date: 2026-01-11 15:30:00
+date: 2020-10-16 05:18:32
 categories: 编程与算法
 tags: [链接, Linux]
 layout: post

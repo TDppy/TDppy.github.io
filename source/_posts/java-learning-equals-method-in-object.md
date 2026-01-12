@@ -1,6 +1,6 @@
 ---
 title: 【java学习】object中的equals方法
-date: 2026-01-11 15:30:00
+date: 2021-04-02 16:27:16
 categories: 编程与算法
 tags: [面向对象, Java]
 layout: post

@@ -1,6 +1,6 @@
 ---
 title: 【Linux下C】Linux下多进程轮流写文件
-date: 2026-01-11 15:30:00
+date: 2021-01-14 13:52:26
 categories: 编程与算法
 tags: [C语言, Linux, 多进程]
 layout: post

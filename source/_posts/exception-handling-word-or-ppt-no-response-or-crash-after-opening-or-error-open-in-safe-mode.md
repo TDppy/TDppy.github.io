@@ -1,6 +1,6 @@
 ---
 title: 【异常处理】word或ppt打开后没反应或闪退，或者报错由安全模式打开
-date: 2026-01-11 15:30:00
+date: 2024-02-01 23:36:14
 categories: 异常处理
 tags: [错误解决, 调试, Office]
 layout: post

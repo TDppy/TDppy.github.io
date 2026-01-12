@@ -1,6 +1,6 @@
 ---
 title: 【异常处理】测试risc-mini项目出现 Cannot run program “z3“ CreateProcess error=2, 系统找不到指定的文件。
-date: 2026-01-11 15:30:00
+date: 2024-03-08 11:37:31
 categories: 异常处理
 tags: [错误解决, z3, 调试]
 layout: post
