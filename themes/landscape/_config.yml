@@ -45,7 +45,6 @@ sidebar: right
 # Widgets displaying in sidebar
 widgets:
 - category
-- tag
 - tagcloud
 - archive
 - recent_posts
