@@ -1,6 +1,6 @@
 ---
 title: 欢迎来到潘业成的博客
-date: 2026-01-11 00:00:00
+date: 2026-01-12 00:00:00
 categories: 程序人生
 tags: [博客介绍, 程序人生]
 layout: post
