@@ -18,7 +18,7 @@ WSL（Windows Subsystem Linux），是微软提供的在Windows下便携地使�
  # 导出wsl tar镜像    例如我这里filepath写的是D:\chisel_env\wsl_pkg\Ubuntu2204.tar        
 ```
 导出完成如图所示：
-![在这里插入图片描述](/images/3ee876f0bfaf012ed6b8f246c001f744.png)
+<!-- ![在这里插入图片描述](/images/3ee876f0bfaf012ed6b8f246c001f744.png) -->
 在要安装wsl的主机上打开windows cmd命令行，
 
 

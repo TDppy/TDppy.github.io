@@ -34,14 +34,14 @@ add sp , sp , a0，是让sp = sp + a0，即sp = stack0的地址 + 4096 × (mhart
 ## gdb调试
 
  1. 首先启动项目以及gdb调试
-![在这里插入图片描述](/images/079835ab84314c1b8425863a8ea00860.png)
+<!-- ![在这里插入图片描述](/images/079835ab84314c1b8425863a8ea00860.png) -->
  2. 运行到_entry断点处
-![在这里插入图片描述](/images/d1f7d7af72d541629fa6ed6350e94d75.png)
+<!-- ![在这里插入图片描述](/images/d1f7d7af72d541629fa6ed6350e94d75.png) -->
 3.依次查看各条指令执行情况
 首先输入layout asm，然后依次执行各条指令，并查看执行结果的寄存器值，验证之前的代码分析。可以看出其实真实执行的汇编和编写的entry.S是有所不同的，因为编写的entry.S中有伪指令，例如la sp,stack0在实际执行时是ld sp,-1552(sp)，call start在实际执行的时候是用jal无条件跳转到start的地址，并将start地址后的0x80000086+4赋值给返回地址寄存器ra中。
-![在这里插入图片描述](/images/0b7b9c6621db45079db7b0f59f6e980a.png)
-![在这里插入图片描述](/images/59afa1c791e24c08bee549582841e0f0.png)
-![在这里插入图片描述](/images/d935d3daf3494d988c1553d491a37548.png)
+<!-- ![在这里插入图片描述](/images/0b7b9c6621db45079db7b0f59f6e980a.png) -->
+<!-- ![在这里插入图片描述](/images/59afa1c791e24c08bee549582841e0f0.png) -->
+<!-- ![在这里插入图片描述](/images/d935d3daf3494d988c1553d491a37548.png) -->
 
 # start.c解析和调试
 ## start.c解析
@@ -65,7 +65,7 @@ start函数运行在机器模式，它主要做的事情就是将CPU从机器模
  MSTATUS_MPP_MASK为3L<<11，即1100000000000，取反后为0011111111111，x&=~MSTATUS_MPP_MASK意思是让x其余位不变，MPP位变为00。MSTATUS_MPP_S是1L<<11，即100000000000，x|=MSTATUS_MPP_S意思是让MPP低位为1，即MPP变为01。
  
  因此，这几句话的作用是将mstatus寄存器的MPP位设置为01，从而在执行mret时CPU能够返回到S模式。
-![在这里插入图片描述](/images/8b0d2c71f2c54728bb783cb22b90c9e0.png)
+<!-- ![在这里插入图片描述](/images/8b0d2c71f2c54728bb783cb22b90c9e0.png) -->
 这行代码的作用是设置mepc寄存器指向main函数的地址，即在执行mret后CPU会开始执行main函数。
 ```c
 w_mepc((uint64)main); // riscv.h中定义了内联函数w_mepc执行asm volatile("csrw mepc, %0" : : "r" (x));
@@ -96,7 +96,7 @@ r_sie()
   return x;
 }
 ```
-![在这里插入图片描述](/images/6db197f2a1f74040b6b082042d20e783.png)
+<!-- ![在这里插入图片描述](/images/6db197f2a1f74040b6b082042d20e783.png) -->
 
 下面几行代码初始化定时器，然后读取mhartid赋值给tp寄存器，tp是thread pointer寄存器，最后执行mret返回到s模式，并执行main函数。
 ```c

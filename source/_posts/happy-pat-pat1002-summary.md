@@ -9,7 +9,7 @@ layout: post
 @[TOC]
 
 ## [题目(链接点我)](https://pintia.cn/problem-sets/994805342720868352/problems/994805526272000000)
-![在这里插入图片描述](/images/999364d99de2cd8bf65c06f906177fff.png)
+<!-- ![在这里插入图片描述](/images/999364d99de2cd8bf65c06f906177fff.png) -->
 
 ## 代码和解析：
 详细解析在下面AC代码的注释中已给出，主要的坑在于判断系数是否为0

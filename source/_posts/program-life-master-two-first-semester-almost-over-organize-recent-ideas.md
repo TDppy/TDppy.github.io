@@ -9,7 +9,7 @@ layout: post
 
 **1月1日到1月7日** 在整理NoC Router执行流程和Chisel环境Setup流程：
 **NoC Router执行流程**
-![在这里插入图片描述](/images/7d193689013a3e407d5c0ded02f2dd45.png)
+<!-- ![在这里插入图片描述](/images/7d193689013a3e407d5c0ded02f2dd45.png) -->
 
 **Chisel安装流程总结：**
 1. 先安装jdk，配置环境变量

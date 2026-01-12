@@ -8,7 +8,7 @@ layout: post
 
 这篇主要写一下DFS解全排列问题。
 
-![在这里插入图片描述](/images/9787edb69c0f7eca28c2e0cb0c2d7843.png#pic_center)
+<!-- ![在这里插入图片描述](/images/9787edb69c0f7eca28c2e0cb0c2d7843.png#pic_center) -->
 这题有两种做法，一是DFS，二是利用STL的next_permutation函数，第二种比较简单，分析一下第一种做法。
 以N=3为例，结果为：
 1 2 3
@@ -18,9 +18,9 @@ layout: post
 3 1 2
 3 2 1
 先上一下搜索结果示意图：
-![在这里插入图片描述](/images/8fbfa0591b1be94a7a13988b0668392d.png)
+<!-- ![在这里插入图片描述](/images/8fbfa0591b1be94a7a13988b0668392d.png) -->
 从图中我们可以看到，如果要用深度优先搜索来解决这个问题，当遇到相同的元素时应当避开（题目要求所产生的任一数字序列中不允许出现重复数字。）
-![在这里插入图片描述](/images/c9fc37eeb872f3499629a237dbcf225e.png)
+<!-- ![在这里插入图片描述](/images/c9fc37eeb872f3499629a237dbcf225e.png) -->
 
 因此，我们需要用一个chosen[i]来表示i这个值是否已经被选过。chosen[i]=1时已经被选过，chosen[i]=0时未选过。
 此外，对于每一层选中的元素，需要一个order[k]来表示第k层选中元素的值。
