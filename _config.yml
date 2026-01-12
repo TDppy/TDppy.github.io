@@ -85,7 +85,7 @@ updated_option: 'mtime'
 # Pagination
 ## Set per_page to 0 to disable pagination
 ## 每个分类和标签页面显示的文章数量
-per_page: 10
+per_page: 12
 pagination_dir: page
 
 # Include / Exclude file(s)
