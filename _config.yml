@@ -104,9 +104,10 @@ theme: butterfly
 # 部署配置（适配GitHub Pages）
 deploy:
   type: git
-  repo: https://github.com/TDppy/TDppy.github.io.git  # 替换为你的仓库地址
+  repo: git@github.com:TDppy/TDppy.github.io.git  # 替换为你的仓库地址
   branch: gh-pages  # GitHub Pages推荐使用gh-pages分支托管静态文件（避免和源码分支冲突，更利于大量文章管理）
   message: "Site updated: {{ now('YYYY-MM-DD HH:mm:ss') }}"  # 自动提交部署信息，方便追溯大量文章的更新记录
+
 
 # 优化大量文章生成配置
 generator:
