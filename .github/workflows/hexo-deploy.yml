@@ -25,6 +25,7 @@ jobs:
           npm install hexo@6.3.0 --save-exact
           npm install --force  # 强制解析依赖冲突，优先使用兼容版本
           npm install hexo-theme-butterfly --save
+          cd themes/butterfly && npm install
       
       - name: Build Hexo Static Files
         run: |
