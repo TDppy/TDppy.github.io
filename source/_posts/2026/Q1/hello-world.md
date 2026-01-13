@@ -57,20 +57,20 @@ QQ:2287015934
 
 ### 4. 程序人生系列
 分享编程学习的心路历程和感悟。
-- [【程序人生】研二上快结束了~整理最近的思路](/2024/Q1/program-life-master-two-first-semester-almost-over-organize-recent-ideas.md)
-- [【程序人生】研二，来北京100天了，记录一下](/2023/Q4/program-life-master-two-been-in-beijing-100-days-record.md)
+- [【程序人生】研二上快结束了~整理最近的思路](/2024/Q1/program-life-master-two-first-semester-almost-over-organize-recent-ideas.html)
+- [【程序人生】研二，来北京100天了，记录一下](/2023/Q4/program-life-master-two-been-in-beijing-100-days-record.html)
 
 ### 5. 总结系列
 整理知识点，快速复习回顾。
-- [【考研复试】Linux快速过一遍](/2022/Q1/postgraduate-exam-retest-linux-quick-review.md)
-- [PyTorch 深度学习常用函数总结](/2025/Q3/pytorch-deep-learning-common-functions-summary.md)
-- [【IC设计】任意倍数占空比为50%的奇数分频和偶数分频（Verilog源码、仿真波形、讲解）](/2024/Q2/ic-design-50-duty-cycle-odd-even-frequency-division-verilog.md)
+- [【考研复试】Linux快速过一遍](/2022/Q1/postgraduate-exam-retest-linux-quick-review.html)
+- [PyTorch 深度学习常用函数总结](/2025/Q3/pytorch-deep-learning-common-functions-summary.html)
+- [【IC设计】任意倍数占空比为50%的奇数分频和偶数分频（Verilog源码、仿真波形、讲解）](/2024/Q2/ic-design-50-duty-cycle-odd-even-frequency-division-verilog.html)
 
 ### 6. 有趣实践系列
 动手实验，探索技术乐趣。
-- [【Java学习】如何使用Java发短信](/2021/Q1/java-learning-how-to-send-sms-using-java.md)
-- [【安装配置】阿里云白嫖免费SSL证书步骤](/2021/Q1/installation-configuration-alicloud-free-ssl-certificate-steps.md)
-- [arpspoof实现断网、中间人攻击](/2021/Q2/arpspoof-implement-disconnect-network-man-in-the-middle-attack.md)
+- [【Java学习】如何使用Java发短信](/2021/Q1/java-learning-how-to-send-sms-using-java.html)
+- [【安装配置】阿里云白嫖免费SSL证书步骤](/2021/Q1/installation-configuration-alicloud-free-ssl-certificate-steps.html)
+- [arpspoof实现断网、中间人攻击](/2021/Q2/arpspoof-implement-disconnect-network-man-in-the-middle-attack.html)
 
 ## 最新动态
 
