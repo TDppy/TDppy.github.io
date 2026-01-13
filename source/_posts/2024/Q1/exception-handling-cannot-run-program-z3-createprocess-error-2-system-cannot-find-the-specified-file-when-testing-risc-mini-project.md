@@ -7,7 +7,7 @@ layout: post
 ---
 > riscv-mini是UC Berkeley用Chisel编写的三级流水线RISC-V处理器，它实现了RV32I的用户级2.0版本ISA和机器级1.7版本ISA，是Berkeley著名的Rocket-chip项目的简化版
 
-@[toc]
+
 # 报错场景
 下载risc-mini项目，sbt构建完成后，运行ALUTest.scala下的ALUArea测试，结果出现报错：
 <!-- ![在这里插入图片描述](/images/8ee2584cac4e7a422809b4c225f4c5f5.png) -->

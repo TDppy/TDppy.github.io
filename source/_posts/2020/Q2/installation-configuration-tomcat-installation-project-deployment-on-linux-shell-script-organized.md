@@ -14,7 +14,7 @@ linux下tomcat的压缩包已上传至百度网盘：
 我已经把所有步骤整理为shell脚本，不想看过程的可直接复制粘贴，链接戳这👉[链接戳这](https://pasteme.cn/64309)👈
 
 
-@[TOC]
+
 ## 安装tomcat,访问到汤姆猫页面
 进入/usr/local目录
 

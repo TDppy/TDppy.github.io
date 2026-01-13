@@ -6,7 +6,7 @@ tags: []
 layout: post
 ---
 
-@[TOC]
+
 
 # Intel多核程序设计
 

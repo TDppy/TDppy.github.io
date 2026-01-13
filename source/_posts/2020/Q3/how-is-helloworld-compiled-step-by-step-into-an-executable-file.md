@@ -6,7 +6,7 @@ tags: [C语言, 编程入门]
 layout: post
 ---
 
-@[TOC]
+
 ```c
 #include<stdio.h>
 int main(){

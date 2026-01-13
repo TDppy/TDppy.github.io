@@ -6,7 +6,7 @@ tags: []
 layout: post
 ---
 
-@[TOC]
+
 ## 题目描述
 [原题链接点我](https://pintia.cn/problem-sets/994805342720868352/problems/994805519074574336)
 

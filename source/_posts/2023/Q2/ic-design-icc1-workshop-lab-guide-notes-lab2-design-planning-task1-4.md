@@ -5,7 +5,7 @@ categories: 数字IC设计
 tags: [EDA工具]
 layout: post
 ---
-@[TOC]
+
 # Lab 2 Design Planning
 ## 2.1 Load the Design
 

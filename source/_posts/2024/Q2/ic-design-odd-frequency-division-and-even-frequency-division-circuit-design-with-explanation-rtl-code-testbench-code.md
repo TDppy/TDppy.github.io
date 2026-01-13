@@ -5,7 +5,7 @@ categories: 数字IC设计
 tags: [分频器, Verilog]
 layout: post
 ---
-@[TOC]
+
 # 原理分析
 分频电路是将给定clk时钟信号频率降低为div_clk的电路，假设原时钟的频率为M Hz，分频后的时钟为N Hz，那么就称该分频电路为M/N分频。
 

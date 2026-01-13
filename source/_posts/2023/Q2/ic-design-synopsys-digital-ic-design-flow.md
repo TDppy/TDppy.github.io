@@ -5,7 +5,7 @@ categories: 数字IC设计
 tags: [EDA工具]
 layout: post
 ---
-@[TOC]
+
 # 数字IC设计流程
 数字IC设计流程如下：
 需求->芯片定义specification->算法描述（一般用C++)->RTL级描述（Verilog）->HDL功能仿真->逻辑综合（DC）->门级仿真（仿真网表）->形式化验证>物理设计（floor plan，place，cts，route等）->签核（chip finish，StarRC提取寄生RC，PT时序分析，DRC&LVS等）

@@ -5,7 +5,7 @@ categories: 数字IC设计
 tags: [Verilator]
 layout: post
 ---
-@[TOC]
+
 # Windows下安装verilator
 windows下安装比较麻烦，需要首先安装cygwin，cygwin是一个包管理工具，类似apt，然后通过cygwin安装verilator所需的各种依赖，然后再安装verilator。
 [参考这篇文章，非常详细](https://blog.csdn.net/weixin_44989713/article/details/128652981#%E5%A6%82%E6%9E%9Ccygwin%E4%B8%AD%E6%9C%89%E5%8C%85%E5%BF%98%E8%AE%B0%E5%AE%89%E8%A3%85%E4%BA%86%E6%80%8E%E4%B9%88%E5%8A%9E)

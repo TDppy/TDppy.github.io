@@ -5,7 +5,7 @@ categories: 数字IC设计
 tags: [AXI]
 layout: post
 ---
-@[TOC]
+
 > AXI：Advanced eXtensible Interface 高级可扩展接口 
 > AXI是AMBA总线协议的一种，AMBA是ARM公司1996年首次推出的微控制器总线协议。
 

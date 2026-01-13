@@ -5,7 +5,7 @@ categories: 数字IC设计
 tags: [EDA工具]
 layout: post
 ---
-@[TOC]
+
 # ICC1 workshop lab guide
 ## 2.5 Create P/G Rings Around Macro Groups
 In the task following this one you will use “Power Network Synthesis” (PNS) to 

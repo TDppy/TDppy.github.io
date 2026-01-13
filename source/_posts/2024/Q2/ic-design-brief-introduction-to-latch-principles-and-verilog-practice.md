@@ -5,7 +5,7 @@ categories: 数字IC设计
 tags: [Verilog]
 layout: post
 ---
-@[TOC]
+
 # 锁存器原理
 ![在这里插入图片描述](b52f2ee3e5f1f2a7c9d2dd90dae8389e.png)
 

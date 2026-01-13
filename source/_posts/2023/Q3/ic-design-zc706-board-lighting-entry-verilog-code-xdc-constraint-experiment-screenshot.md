@@ -5,7 +5,7 @@ categories: 数字IC设计
 tags: [FPGA, Verilog]
 layout: post
 ---
-@[TOC]
+
 > 这篇博客将针对AMD Zynq 7000 SoC ZC706 Evaluation Kit板卡(对应Vivado创建工程时FPGA型号：XC7Z045ffg900-2)实现基本的点灯程序。
 ## 假定已知的前置知识
 本文对以下内容不再介绍，

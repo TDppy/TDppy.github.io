@@ -6,7 +6,7 @@ tags: [FPGA, Verilog]
 layout: post
 ---
 
-@[TOC]
+
 ## 闲言稍叙
 Verilog和VHDL就是目前使用最多的两个硬件描述语言(HDL)，如果阅读本文的你也是Verilog新手，这部分闲言或许对你有所启发。
 

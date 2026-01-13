@@ -6,7 +6,7 @@ tags: []
 layout: post
 ---
 
-@[TOC]
+
 ### 1.Linux根目录下有什么？
 /bin 所有用户的可执行文件
 /sbin 系统管理员的可执行文件

@@ -5,7 +5,7 @@ categories: 数字IC设计
 tags: [FPGA]
 layout: post
 ---
-@[TOC]
+
 # Xilinx Zynq SoC 系列
 针对不同的应用领域，Xilinx 公司设计开发了各种逻辑资源规模和集成各种外设功能的 Zynq SOC 器件，包括专为成本优化的 Zynq-7000 平台，面向高性能实时计算应用领域的 Zynq UltraScale+ MPSoC，面向射频通信的 Zynq UltraScale+ RFSoC，以及具备高度可扩展特性的自适应加速平台 ACAP。
 ## 专为成本优化的 Zynq-7000 平台

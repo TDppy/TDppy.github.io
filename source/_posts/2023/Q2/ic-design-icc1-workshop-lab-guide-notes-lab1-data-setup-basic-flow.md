@@ -5,7 +5,7 @@ categories: 数字IC设计
 tags: [EDA工具]
 layout: post
 ---
-@[TOC]
+
 # Lab1 Data Setup&Basic Flow
 ## 1.1 Create a Milkyway library
 

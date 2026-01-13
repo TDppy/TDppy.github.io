@@ -5,7 +5,7 @@ categories: 数字IC设计
 tags: []
 layout: post
 ---
-@[toc]
+
 
 > 参加复旦微电子杯·FPGA赛道期间，由于后续可能拿奖会发offer，阅读了相关行研报告，初步了解下这个公司。
 # 概述

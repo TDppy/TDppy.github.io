@@ -7,7 +7,7 @@ layout: post
 ---
 > riscv-mini是UC Berkeley用Chisel编写的三级流水线RISC-V处理器，它实现了RV32I的用户级2.0版本ISA和机器级1.7版本ISA，是Berkeley著名的Rocket-chip项目的简化版
 
-@[toc]
+
 # 环境版本：
 
 > Verilator 5.022 

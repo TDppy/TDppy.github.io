@@ -5,7 +5,7 @@ categories: 数字IC设计
 tags: [Mill, Chisel]
 layout: post
 ---
-@[toc]
+
 # 背景
 Chisel传统的项目构建工具是sbt，但是最近我需要学习Rocket Chip SoC Generator中的BOOM处理器核，而Rocket Chip的项目所使用的项目构建工具是Mill，所以我需要安装下mill工具。
 

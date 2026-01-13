@@ -6,7 +6,7 @@ tags: []
 layout: post
 ---
 
-@[TOC]
+
 ## [题目(点我)](https://pintia.cn/problem-sets/994805342720868352/problems/994805528788582400)
 <!-- ![在这里插入图片描述](/images/e80a263b90e8c1748a2affb287f762d8.png) -->
 ## 代码与解析

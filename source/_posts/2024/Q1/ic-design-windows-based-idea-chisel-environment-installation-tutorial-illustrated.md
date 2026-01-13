@@ -5,7 +5,7 @@ categories: 数字IC设计
 tags: [Chisel]
 layout: post
 ---
-@[TOC](Chisel环境安装教程)
+(Chisel环境安装教程)
 
 > 传统数字芯片的RTL设计采用Verilog语言为主，Chisel语言的全称是Constructing Harward in Scala Embeded Language，即在Scala语言中导入Chisel3库，即可使用Chisel语言。其特点是面向对象编程，可以方便地参数化定制硬件电路，加快设计流程。目前在RISC-V生态中应用较多，中科院计算所主持的培育下一代处理器设计人才的“[一生一芯](https://ysyx.oscc.cc/project/intro.html)”项目也在极力推进该语言。
 

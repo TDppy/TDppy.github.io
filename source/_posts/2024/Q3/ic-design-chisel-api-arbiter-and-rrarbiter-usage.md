@@ -7,7 +7,7 @@ layout: post
 ---
 
 
-@[TOC]
+
 ## 介绍
 仲裁器在NoC路由器中是重要的组成部分，虚通道仲裁和交叉开关仲裁都需要使用仲裁器。
 Chisel提供了Arbiter和RRArbiter仲裁器

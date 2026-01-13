@@ -5,7 +5,7 @@ categories:
 tags: []
 layout: post
 ---
-@[TOC]
+
 ## Chisel是什么
 Chisel是Scala语言的一个库，可以由Scala语言通过import引入。
 Chisel编程可以生成Verilog代码或C++仿真代码，目前国内主要由中科院计算所的包云岗老师团队做香山处理器使用，它不仅是一门语言，也代表一个硬件敏捷开发的方向。

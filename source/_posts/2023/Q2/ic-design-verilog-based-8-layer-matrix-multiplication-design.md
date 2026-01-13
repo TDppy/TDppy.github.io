@@ -6,7 +6,7 @@ tags: [Verilog]
 layout: post
 ---
 
-@[TOC]
+
 ## 项目要求
 ### 基本要求
 输入有9个矩阵，权重矩阵有8个，分别是Weight I0~I7，Input矩阵I ~-1~。

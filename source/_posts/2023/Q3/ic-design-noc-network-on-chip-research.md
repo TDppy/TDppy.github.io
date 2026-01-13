@@ -5,7 +5,7 @@ categories: 数字IC设计
 tags: [NoC]
 layout: post
 ---
-@[TOC]
+
 ## SoC（System on Chip）片上系统
 ### SoC的概念
 SOC（System on Chip，片上系统）指在单一芯片上实现的数字计算机系统，**总线架构**是该系统的主要特征。

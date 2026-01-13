@@ -5,7 +5,7 @@ categories: 数字IC设计
 tags: [FPGA, Verilog, 时序分析]
 layout: post
 ---
-@[TOC]
+
 # 创建单口RAM IP
 ## IP Catalog中选择单口RAM IP
 ![在这里插入图片描述](baa45c9a16cb7a55c93fd423265843aa.png)
