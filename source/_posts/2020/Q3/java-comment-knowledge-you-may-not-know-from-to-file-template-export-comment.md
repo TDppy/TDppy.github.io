@@ -151,13 +151,13 @@ public class Example02 {
 
  **1.** 在桌面建立一个文件夹，命名为FILE
  **2.** 复制你的Person.java类到FILE文件夹中
-<!--  **3.** 见图![在这里插入图片描述](/images/d468b19a728ae79dbf1353db282fbb68.png) -->
+<!--  **3.** 见图![在这里插入图片描述](/images/d468b19a728ae79dbf1353db282fbb68.png) 
 **4.**写好后回车，此时会进入当前目录的控制台，输入这样一条命令并回车：
 
 ```bash
 javadoc -d . -version -author Person.java
 ```
-<!-- ![在这里插入图片描述](/images/05b3cd27a83bd2682cb5efd67aedbc31.png) -->
+ ![ ](/images/05b3cd27a83bd2682cb5efd67aedbc31.png) 
 
 **5.**此时FILE文件夹中会有一个index.html，以浏览器打开即可看到相关的注释！
 

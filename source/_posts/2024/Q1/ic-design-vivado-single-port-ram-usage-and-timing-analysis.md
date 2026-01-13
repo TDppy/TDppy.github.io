@@ -8,19 +8,19 @@ layout: post
 
 # 创建单口RAM IP
 ## IP Catalog中选择单口RAM IP
-![在这里插入图片描述](baa45c9a16cb7a55c93fd423265843aa.png)
+![在这里插入图片描述](./1.png)
 
 ## Basic
-![在这里插入图片描述](bcf9e49e84ca339e7e87b885212cc2c4.png)
+![在这里插入图片描述](./2.png)
 ## Port A Options
-![在这里插入图片描述](487b3e7d0ddd87aa4b2af37bd35d19a3.png)
+![在这里插入图片描述](./3.png)
 ## Other Options
-![在这里插入图片描述](7b551b4afd2ba2e358716f56718ae142.png)
+![在这里插入图片描述](./4.png)
 
 # 仿真
 ## 找到IP例化原语
 IP Sources-Instantiation Template-veo文件中找到IP例化原语
-![在这里插入图片描述](52c0f950e509a80f644da3c7612f8859.png)
+![在这里插入图片描述](./5.png)
 ## 编写Testbench
 创建single_port_ram_test.v，代码如下：
 
@@ -126,5 +126,5 @@ endmodule
 
 # 波形分析
 
-![在这里插入图片描述](e1d824b5d3efd57d450636859ec4272f.png)
+![在这里插入图片描述](./6.png)
 

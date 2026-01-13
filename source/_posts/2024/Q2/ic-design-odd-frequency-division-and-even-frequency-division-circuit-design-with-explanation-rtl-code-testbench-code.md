@@ -31,7 +31,7 @@ layout: post
  1. 构造out_clk1和out_clk2信号，高电平都是1个周期，低电平都是2个周期，两个信号的区别是相差半个周期的相位。
  2. assign out_clk = out_clk1 | out_clk2
  3. out_clk就是分频的结果
-![在这里插入图片描述](2935ac82c26f9263734cbd3938195458.png)
+![在这里插入图片描述](./1.png)
 同理，任意奇数分频都可以用类似的思路实现。因为3 5 7 9 11...总是可以分解成3=1+2，5=2+3，7=3+4，9=4+5...
 
 
@@ -96,7 +96,7 @@ endmodule
 
 ```
 ## 偶数分频的电路仿真波形
-![在这里插入图片描述](a84545e0f89426f7a5c5102d246e58d9.png)
+![在这里插入图片描述](./2.png)
 
 
 ## 占空比为50%的三分频电路RTL代码
@@ -194,7 +194,7 @@ endmodule
 ```
 
 ## 占空比为50%的三分频电路仿真波形
-![在这里插入图片描述](6607ffa2c18e0df38d9e16279549341d.png)
+![在这里插入图片描述](./3.png)
 # 参考资料
 1. [正点原子逻辑设计指南](http://www.yuanzige.com)
 2. [B站 FPGA探索者 牛客Verilog刷题 奇数分频](https://www.bilibili.com/video/BV1A34y1Y7UM/?spm_id_from=333.1007.top_right_bar_window_history.content.click)

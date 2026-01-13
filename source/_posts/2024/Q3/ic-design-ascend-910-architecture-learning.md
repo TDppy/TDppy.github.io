@@ -14,6 +14,6 @@ layout: post
  - 相邻节点（我的理解是Ascend-Max核）带宽为1024bit*2GHz=256GB/s
  - 昇腾910每秒提供256万亿次fp16浮点运算，512万亿次int8运算
  - LLC总吞吐量为4TB/s
-![在这里插入图片描述](ab01aa7fd7c34b76bdddf40538bf2b91.png)
+![在这里插入图片描述](./1.png)
 
 

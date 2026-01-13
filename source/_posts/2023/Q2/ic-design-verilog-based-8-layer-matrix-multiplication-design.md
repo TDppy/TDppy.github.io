@@ -11,7 +11,7 @@ layout: post
 ### 基本要求
 输入有9个矩阵，权重矩阵有8个，分别是Weight I0~I7，Input矩阵I ~-1~。
 8个矩阵都是都是16行*16列的，且矩阵中的每个元素是16位补码形式的有符号定点数（1位符号位，6位整数位，9位小数位）
-![在这里插入图片描述](45a06b0e65b752626d69cdda865ce2b1.png)
+![在这里插入图片描述](./1.png)
 要求将Weight I0依次乘以Input I~-1~ ，Weight I~1~ ，Weight I~2~ ，Weight I~3~ ，Weight I~4~，  Weight I~5~，  Weight I~6~ ， Weight I~7~，依次得到Input I~0~ ，Input I~1~ ，Input I~2~ ，Input I~3~ ，Input I~4~ ，Input I~5~ ，Input I~6~ ，Input I~7~ 
 最终输出Input I~7~
 
@@ -20,7 +20,7 @@ layout: post
 由于矩阵的元素是16位，两个16位元素相乘结果需要用2*16-1=31位表示，再考虑相加，因此需要31+4=35位来表示。
 在这个项目中不考虑相加后会超过31位的情况，只用31位表示。
 对于Weight I~0~ * Input I~-1~=Input I~0~，Input I0中的每个元素都是31位的，有1位符号位，18位小数，12位整数，要求截断为16位再作为下一层的输入。
-![在这里插入图片描述](917fc692deb02e4b3e4c273441f9451d.png)
+![在这里插入图片描述](./2.png)
 A[15:0]*B[15:0]=C_31[30:0] 要将C_31[30:0]转为C_16[15:0]需要考虑**低位截断**和**高位饱和**操作：
 
 #### 低位截断
@@ -28,7 +28,7 @@ A[15:0]*B[15:0]=C_31[30:0] 要将C_31[30:0]转为C_16[15:0]需要考虑**低位�
 如果符号位为0，则向前进1，
 如果符号位为1，直接截断。
 这个操作的正确性证明如下：
-![在这里插入图片描述](4cd3dc52f86216dfec218664ee2e7719.png)
+![在这里插入图片描述](./3.png)
 
 
 #### 高位饱和
@@ -38,8 +38,8 @@ C[15:9]能表示的范围在[-64:63]，如果C_31[30:24]超过该范围，产生
  
 ### 参考结果
 这里给出第一层和最后一层（第八层）的输出作为参考，需要注意的是矩阵A*B和B*A结果是不同的，这里第一层的结果是Weight I~0~在左边乘以Input ~-1~ ，得到的Input ~0~ 
- ![在这里插入图片描述](f0728dd927c7b46c4613ee1ce922274b.png)
-![在这里插入图片描述](87df88ca235983d30e880b7c2b490c30.png)
+ ![在这里插入图片描述](./4.png)
+![在这里插入图片描述](./5.png)
 
 ## 项目实现
 ### 实现思路
@@ -53,7 +53,7 @@ Weight I~0~，Input I~-1~ ，Weight I~1~ ，Weight I~2~ ，Weight I~3~ ，Weight
 
 3. 下面，反复实例化matrix_multiplier_16，每次将上一层计算结果和对应的Weight矩阵作为输入，得到相乘的结果，最终结果是第八层的输出I7_16_2d。
 
-![在这里插入图片描述](1941fd4971b8b03ce81a235dd63d1222.png)
+![在这里插入图片描述](./6.png)
 
 
 ### 实现代码
@@ -513,9 +513,9 @@ vcs -full64 -fgp -y ./ic_lab/sim_ver +libext+.v -timescale=1ns/1ps -file ./filel
 verdi -ssf mm_mlp.fsdb
 ```
 可以看到输出和参考结果的图一致
-![在这里插入图片描述](3e2a1bf77c06ab8c52bc0f8df66d2a23.png)
+![在这里插入图片描述](./7.png)
 参考结果：
-![在这里插入图片描述](3ebe911641ec23787d3bea83fdb6d0ed.png)
+![在这里插入图片描述](./8.png)
 
 ## dc综合
 
@@ -541,9 +541,9 @@ write_sdf ./matrix_multipleir_16.sdf
 
 `write −format verilog −output ./matrix_multiplier_16_nelist.v`执行结果：
 注意只编译这一个模块，就不要加hierarchy，因为hierarchy是层次化的意思，会自顶向下找其他模块，只编译一个模块加这个参数会报错。
-![在这里插入图片描述](9837e7874dc7cc142112a913ec1dc8c9.png)
+![在这里插入图片描述](./9.png)
 `write_sdf ./matrix_multiplier_16.sdf`执行结果：
-![在这里插入图片描述](b5c2c0e6f2415bb18a39c92e3823206f.png#pic_center)
+![在这里插入图片描述](./10.png)
 
 ## VCS&Verdi综合后仿真
 综合后仿真是仿真dc综合出来的网表文件
@@ -562,7 +562,7 @@ write_sdf ./matrix_multipleir_16.sdf
 vcs -full64 -fgp -y ./ic_lab/sim_ver +libext+.v -timescale=1ns/1ps -file ./filelist.f -kdb -fsdb -debug_access+all +lint=TFIPC +neg_tchk -negdelay -v ./ic_lab/data/PDK/verilog/*.v
 ```
 后方跑完截图
-![在这里插入图片描述](2ccce9ac3eed344f80af96ed737e02d5.png)
+![在这里插入图片描述](./11.png)
 
  3. 使用verdi查看波形
 

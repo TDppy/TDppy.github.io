@@ -6,9 +6,9 @@ tags: [错误解决, CMake, 调试]
 layout: post
 ---
 如图所示是我的clion项目目录
-<!-- ![在这里插入图片描述](/images/8d97ef11d03842da9a1b6514298078f7.png) -->
+ ![ ](./1.png) 
 我自定义的data_structure.h和func_declaration.h在unit_test.c中无法检索到
-<!-- ![在这里插入图片描述](/images/f5127f74ef204c1f9a7ba04409c28d58.png) -->
+ ![ ](./2.png) 
 cmakelists.txt配置文件如下所示：
 
 ```rust
@@ -46,6 +46,6 @@ add_executable(unit_test
 
 解决办法：
 如图所示，当前处于unit_test.c状态，无法检索到头文件，点unit_test后就可以检索到了
-<!-- ![在这里插入图片描述](/images/52eb4ac57afc4e03a26055d3df988edb.png) -->
-<!-- ![在这里插入图片描述](/images/6f12c3de4ad448b1b1f3d3b8123e7d6d.png) -->
+ ![ ](./3.png) 
+ ![ ](./4.png) 
 

@@ -39,38 +39,38 @@ QQ:2287015934
 
 ### 1. IC设计系列
 探索数字芯片设计的世界，从基础到实践。
-- [【IC设计】Windows下基于IDEA的Chisel环境安装教程（图文并茂）](/2024/02/01/ic-design-windows-based-idea-chisel-environment-installation-tutorial-illustrated.html)
-- [【IC设计】Cache基础入门（地址映射方式、hit/miss的判断、替换策略、一致性问题）](/2024/09/12/ic-design-cache-basics-address-mapping-hit-miss-replacement-policy-consistency.html)
-- [【IC设计】同步FIFO设计（Verilog源码、参数化设计、面试必备）](/2024/05/19/ic-design-synchronous-fifo-design-verilog-source-parameterized-design-interview-essential.html)
+- [【IC设计】Windows下基于IDEA的Chisel环境安装教程（图文并茂）](/2024/Q1/ic-design-windows-based-idea-chisel-environment-installation-tutorial-illustrated.html)
+- [【IC设计】Cache基础入门（地址映射方式、hit/miss的判断、替换策略、一致性问题）](/2024/Q3/ic-design-cache-basics-address-mapping-hit-miss-replacement-policy-consistency.html)
+- [【IC设计】同步FIFO设计（Verilog源码、参数化设计、面试必备）](/2024/Q2/ic-design-synchronous-fifo-design-verilog-source-parameterized-design-interview-essential.html)
 
 ### 2. 操作系统系列
 深入理解操作系统内核，手撸xv6代码。
-- [【操作系统】手撸xv6操作系统——entry.S和start.c解析](/2025/12/30/operating-system-hand-write-xv6-operating-system-entry-s-and-start-c-analysis.html)
-- [【操作系统】手撸xv6操作系统——按下键盘回车后发生的事情](/2026/01/10/operating-system-what-happens-after-pressing-enter-in-xv6-operating-system.html)
-- [【操作系统】手撸xv6操作系统——types.h/param.h/memlayout.h/riscv.h/defs.h头文件解析](/2026/01/06/operating-system-hand-write-xv6-operating-system-types-h-param-h-memlayout-h-riscv-h-defs-h-header-file-analysis.html)
+- [【操作系统】手撸xv6操作系统——entry.S和start.c解析](/2025/Q4/operating-system-hand-write-xv6-operating-system-entry-s-and-start-c-analysis.html)
+- [【操作系统】手撸xv6操作系统——按下键盘回车后发生的事情](/2026/Q1/operating-system-what-happens-after-pressing-enter-in-xv6-operating-system.html)
+- [【操作系统】手撸xv6操作系统——types.h/param.h/memlayout.h/riscv.h/defs.h头文件解析](/2026/Q1/operating-system-hand-write-xv6-operating-system-types-h-param-h-memlayout-h-riscv-h-defs-h-header-file-analysis.html)
 
 ### 3. 数据结构系列
 用C语言实现经典数据结构，夯实基础。
-- [【数据结构】C语言数据结构第二版MOOC版本——单链表示例](/2020/06/06/data-structure-c-language-second-edition-mooc-version-singlelist-example.html)
-- [【数据结构】C语言数据结构第二版MOOC版本——顺序表示例](/2020/06/04/data-structure-c-language-second-edition-mooc-version-seqlist-example.html)
-- [【数据结构】学习数据结构——二叉树C语言实现](/2021/04/22/data-structure-learning-binary-tree-c-implementation.html)
+- [【数据结构】C语言数据结构第二版MOOC版本——单链表示例](/2020/Q2/data-structure-c-language-second-edition-mooc-version-singlelist-example.html)
+- [【数据结构】C语言数据结构第二版MOOC版本——顺序表示例](/2020/Q2/data-structure-c-language-second-edition-mooc-version-seqlist-example.html)
+- [【数据结构】学习数据结构——二叉树C语言实现](/2021/Q2/data-structure-learning-binary-tree-c-implementation.html)
 
 ### 4. 程序人生系列
 分享编程学习的心路历程和感悟。
-- [【程序人生】研二上快结束了~整理最近的思路](/2024/01/18/program-life-master-two-first-semester-almost-over-organize-recent-ideas.md)
-- [【程序人生】研二，来北京100天了，记录一下](/2023/10/31/program-life-master-two-been-in-beijing-100-days-record.md)
+- [【程序人生】研二上快结束了~整理最近的思路](/2024/Q1/program-life-master-two-first-semester-almost-over-organize-recent-ideas.md)
+- [【程序人生】研二，来北京100天了，记录一下](/2023/Q4/program-life-master-two-been-in-beijing-100-days-record.md)
 
 ### 5. 总结系列
 整理知识点，快速复习回顾。
-- [【考研复试】Linux快速过一遍](/2022/03/25/postgraduate-exam-retest-linux-quick-review.md)
-- [PyTorch 深度学习常用函数总结](/2025/08/20/pytorch-deep-learning-common-functions-summary.md)
-- [【IC设计】任意倍数占空比为50%的奇数分频和偶数分频（Verilog源码、仿真波形、讲解）](/2024/05/19/ic-design-50-duty-cycle-odd-even-frequency-division-verilog.md)
+- [【考研复试】Linux快速过一遍](/2022/Q1/postgraduate-exam-retest-linux-quick-review.md)
+- [PyTorch 深度学习常用函数总结](/2025/Q3/pytorch-deep-learning-common-functions-summary.md)
+- [【IC设计】任意倍数占空比为50%的奇数分频和偶数分频（Verilog源码、仿真波形、讲解）](/2024/Q2/ic-design-50-duty-cycle-odd-even-frequency-division-verilog.md)
 
 ### 6. 有趣实践系列
 动手实验，探索技术乐趣。
-- [【Java学习】如何使用Java发短信](/2021/03/04/java-learning-how-to-send-sms-using-java.md)
-- [【安装配置】阿里云白嫖免费SSL证书步骤](/2021/03/06/installation-configuration-alicloud-free-ssl-certificate-steps.md)
-- [arpspoof实现断网、中间人攻击](/2021/05/10/arpspoof-implement-disconnect-network-man-in-the-middle-attack.md)
+- [【Java学习】如何使用Java发短信](/2021/Q1/java-learning-how-to-send-sms-using-java.md)
+- [【安装配置】阿里云白嫖免费SSL证书步骤](/2021/Q1/installation-configuration-alicloud-free-ssl-certificate-steps.md)
+- [arpspoof实现断网、中间人攻击](/2021/Q2/arpspoof-implement-disconnect-network-man-in-the-middle-attack.md)
 
 ## 最新动态
 

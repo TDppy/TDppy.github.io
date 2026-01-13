@@ -16,7 +16,7 @@ layout: post
  *  清空二叉树
  
  **运行截图：**
-<!--  ![在这里插入图片描述](/images/40c29783ecef9be65d1f21f7987afeeb.png) -->
+<!--  ![在这里插入图片描述](./1.png) 
 
 ```c
 #include <stdio.h>

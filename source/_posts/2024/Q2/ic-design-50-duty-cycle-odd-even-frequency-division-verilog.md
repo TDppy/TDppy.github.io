@@ -112,7 +112,7 @@ endmodule
 ```
 
 # Testbench
-![在这里插入图片描述](4cc67f8574381ff1b27aaff0f1e8060a.png)
+![在这里插入图片描述](./1.png)
 ```rust
 `timescale 1ns / 1ps
 

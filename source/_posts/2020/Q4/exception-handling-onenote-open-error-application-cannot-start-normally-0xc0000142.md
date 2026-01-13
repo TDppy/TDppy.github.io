@@ -7,7 +7,7 @@ layout: post
 ---
 
 
-<!-- ![在这里插入图片描述](/images/340c9b2c0f688761aec358bdc25635ca.png#pic_center) -->
+ ![ ](./1.png) -->
 解决方案：
 Ctrl+Alt+Esc打开任务管理器 找到OfficeClickToRun.exe 结束这个进程
 然后就好了。
