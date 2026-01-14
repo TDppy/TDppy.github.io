@@ -6,9 +6,9 @@ tags: [错误解决, CMake, 调试]
 layout: post
 ---
 如图所示是我的clion项目目录
- ![ ](./1.png) 
+ {% asset_img 1.png   %} 
 我自定义的data_structure.h和func_declaration.h在unit_test.c中无法检索到
- ![ ](./2.png) 
+ {% asset_img 2.png   %} 
 cmakelists.txt配置文件如下所示：
 
 ```rust
@@ -46,6 +46,6 @@ add_executable(unit_test
 
 解决办法：
 如图所示，当前处于unit_test.c状态，无法检索到头文件，点unit_test后就可以检索到了
- ![ ](./3.png) 
- ![ ](./4.png) 
+ {% asset_img 3.png   %} 
+ {% asset_img 4.png   %} 
 

@@ -20,8 +20,7 @@ nav:
 menu:
   首頁: / 
   时间轴: /archives/ 
-  标签: /tags/ 
-  分类: /categories/ 
+  标签: /tags/  
 
   # Home: / || fas fa-home
   # List||fas fa-list:

@@ -12,13 +12,13 @@ layout: post
  - 使用Vivado进行综合、实现、生成比特流并烧录FPGA
  - FPGA的概念、Verilog的基础语法
 
-![在这里插入图片描述](./1.png)
+{% asset_img 1.png 在这里插入图片描述 %}
 ## 需求：
 板卡时钟为200MHz，让板子上的一个LED灯**保持**0.5秒亮，0.5秒灭。
 
 ## 注意点：
 ①板卡使用JTAG接口烧录时，必须将SW4拨为01，如图所示：
-![在这里插入图片描述](./2.png)
+{% asset_img 2.png 在这里插入图片描述 %}
 ②ZC706的时钟都是差分时钟，必须使用Verilog原语将其转换为单端时钟才可以直接使用：
 >     IBUFGDS IBUFGDS_inst(
 >         .O(single_clock),    //Clock buffer Output

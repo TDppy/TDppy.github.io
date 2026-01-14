@@ -7,7 +7,7 @@ layout: post
 ---
 
 
- ![ ](./1.png) -->
+ {% asset_img 1.png   %} -->
 解决方案：
 Ctrl+Alt+Esc打开任务管理器 找到OfficeClickToRun.exe 结束这个进程
 然后就好了。

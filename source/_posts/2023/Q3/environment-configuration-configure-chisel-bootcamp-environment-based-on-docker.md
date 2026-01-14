@@ -37,7 +37,7 @@ docker run -it --rm -p 8888:8888 ucbbar/chisel-bootcamp
 > -p：指定端口映射，格式为：主机(宿主)端口:容器端口
 
 最后出现这样的界面就对了：
- ![ ](./1.png) -->
+ {% asset_img 1.png   %} -->
 把红框框的部分从浏览器打开就可以用jupytor开始学习Chisel了，这里的jupytor的内核是scala编译器，因为chisel本质是scala语言的一个库。
 
 ### 常用docker命令

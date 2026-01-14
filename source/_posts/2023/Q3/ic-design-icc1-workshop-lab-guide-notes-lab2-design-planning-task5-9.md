@@ -134,7 +134,7 @@ source scripts/2nd_pass_setup.tcl
 ```
 
 This script executes the following standard data setup steps:
-![](./1.png)
+{% asset_img 1.png  %}
 
 
 2.Read the DEF file that was written out in the previous task:

@@ -54,7 +54,7 @@ USB是IP核，也是输入输出设备。
 dc综合时没考虑互连线的寄生效应（或者只是考虑了线负载模型，并不全面），互连线的寄生效应要在后仿时考虑进去，涉及到StarRC和PT工具。
 关于负载与RC，这个视频里有讲。
 [RC负载与延迟](https://www.bilibili.com/video/BV1ia411L7dU/?spm_id_from=333.337.top_right_bar_window_history.content.click)
-![在这里插入图片描述](./1.png)
+{% asset_img 1.png 在这里插入图片描述 %}
 
 ### 集成电路的设计流程
 其实dc和icc似乎并不是割裂的工具，他们采用的数据格式是互通的，突然发现这一点。
@@ -90,7 +90,7 @@ Hold Time指的是在时钟上升沿之后，输入信号必须保持稳定的�
 
 举个例子来说，假设有一个触发器电路，其时钟信号为CLK，数据输入信号为D。该电路的Setup Time为5纳秒，Hold Time为3纳秒。如果输入信号D在CLK的上升沿之前保持稳定状态至少5纳秒，并且在CLK的上升沿之后保持稳定状态至少3纳秒，那么电路输出会正确响应。否则，输出可能会出现错误的值或亚稳态行为。
 
-![在这里插入图片描述](./2.png)
+{% asset_img 2.png 在这里插入图片描述 %}
 **个人总结：**
 一个D触发器，在时钟上升沿时，D的值要传递给Q，自然就要在时钟上升沿对D进行采样。为了保证采样的值是对的，那就不允许上升沿前后D有变化，上升沿之前这个禁止变化的时间是setup time，上升沿之后的这个时间是hold time。
 下降沿也同理。
@@ -118,9 +118,9 @@ DC中，target_library是保留变量，设置这个变量以指向厂商提供�
 #### link library
 set link_library "* my_tech.db"
 星号表示DC先搜寻其内存里已有的库；一般放在综合库之前。
-![在这里插入图片描述](./3.png)
+{% asset_img 3.png 在这里插入图片描述 %}
 
-![在这里插入图片描述](./4.png)
+{% asset_img 4.png 在这里插入图片描述 %}
 
 ## 《高级ASIC芯片综合》
 下载了pdf，等我看了再总结
@@ -296,7 +296,7 @@ In other words, hierarchical design is not as efficient as flat design in terms 
 
 Figure 4.27 is one floorplan example of a real chip.
 图4.27是一个真实芯片的布局规划示例。
-![在这里插入图片描述](./5.png)
+{% asset_img 5.png 在这里插入图片描述 %}
 
 In this chip, there are almost 400 I/Os, which are located on the chip periphery.About one-third of them are power and ground pins. 
 There are five PLLs, one DLL (delaylocked loop), one high-speed DAC, one large, hard macro on-chip processor, and more than 80 SRAM memories in this mixed-signal SoC chip.

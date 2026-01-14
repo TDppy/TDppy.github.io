@@ -44,5 +44,5 @@ export VERILATOR_ROOT=$INSTALL_DIR  #这里INSTALL_DIR写verilator要安装的�
 verilator --version
 ```
 出现版本号就成功了。
-![在这里插入图片描述](./1.png)
+{% asset_img 1.png 在这里插入图片描述 %}
 

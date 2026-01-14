@@ -6,7 +6,7 @@ tags: [错误解决, 调试]
 layout: post
 ---
 
- ![ ](./1.png) -->
+ {% asset_img 1.png   %} -->
 处理方案：
- ![ ](./2.png) -->
+ {% asset_img 2.png   %} -->
 

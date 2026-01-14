@@ -6,6 +6,6 @@ tags: [图标库, 前端]
 layout: post
 ---
 
- ![ ](./1.png) 
- ![ ](./2.png) 
+ {% asset_img 1.png   %} 
+ {% asset_img 2.png   %} 
 

@@ -9,16 +9,16 @@ layout: post
 > 看完还有什么疑问，可以联系博主QQ1908269843，加的时候直接备注你遇到了什么情况。
 
 今天发现我的SSL证书快到期了，根据提示到SSL控制台。
- ![ ](./1.png) 
+ {% asset_img 1.png   %} 
 根据提示到证书资源包
- ![ ](./2.png) 
- ![ ](./3.png) 
+ {% asset_img 2.png   %} 
+ {% asset_img 3.png   %} 
 由于我已经领取过了，所以显示不能再领取，今年没领的正常领取就行。
- ![ ](./4.png) 
- ![ ](./5.png) 
- ![ ](./6.png) 
- ![ ](./7.png) 
- ![ ](./8.png) 
+ {% asset_img 4.png   %} 
+ {% asset_img 5.png   %} 
+ {% asset_img 6.png   %} 
+ {% asset_img 7.png   %} 
+ {% asset_img 8.png   %} 
 
 下载对应的web服务器证书即可。
 由于篇幅有限，Tomcat配置证书的步骤总结在这里：

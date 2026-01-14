@@ -16,7 +16,7 @@ layout: post
  *  清空二叉树
  
  **运行截图：**
-<!--  ![在这里插入图片描述](./1.png) 
+<!--  {% asset_img 1.png 在这里插入图片描述 %} 
 
 ```c
 #include <stdio.h>

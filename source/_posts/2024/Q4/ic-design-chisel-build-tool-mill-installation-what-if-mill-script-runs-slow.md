@@ -19,7 +19,7 @@ sh -c "curl -L https://github.com/com-lihaoyi/mill/releases/download/0.11.12/0.1
 这行命令本质上是去github上下载了mill安装的一个shell脚本，存放在~/.local/bin/mill下，然后按理说我们需要执行这个脚本，**但不推荐这么做！！**
 
 实际上该脚本核心是去maven下载mill的可执行jar包，这个jar包就是我们真正需要执行的mill文件，而它使用的是maven官方仓库，下载的巨无敌慢，所以我选择自己去浏览器下载这个jar包，然后传到linux里面来使用。
-![在这里插入图片描述](./1.png)
+{% asset_img 1.png 在这里插入图片描述 %}
 # 使用mill构建工程
-![在这里插入图片描述](./2.png)
+{% asset_img 2.png 在这里插入图片描述 %}
 

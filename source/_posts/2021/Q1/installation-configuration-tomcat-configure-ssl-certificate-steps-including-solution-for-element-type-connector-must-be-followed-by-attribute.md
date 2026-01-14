@@ -12,7 +12,7 @@ layout: post
 
 想要网站以https://访问，需要将购买的SSL证书配置到Tomcat服务器中。
 参考了几篇文章，花了几小时完成了。
- ![ ](./1.png) 
+ {% asset_img 1.png   %} 
 先列出参考文章，然后再给出步骤和我的心得：
 1.[Tomcat配置SSL证书](https://www.cnblogs.com/cx-code/p/10059109.html)
 2.Element type "Connector" must be followed by either attribute specifications
@@ -25,7 +25,7 @@ https://blog.csdn.net/u014000377/article/details/50845920
  ## 2. 使用java jdk将PFX格式证书转换为JKS格式证书
 
 下载的证书文件，解压后是这个样子：只有两个文件的，一个是pfx格式的证书，一个是密码文本。
- ![ ](./2.png) 
+ {% asset_img 2.png   %} 
 
 在解压后的路径中输入cmd并回车，会进入该目录的命令行界面。
 输入以下代码：
@@ -41,7 +41,7 @@ domains.jks是生成的jks格式证书名称，可以根据需要改。
 ```bash
 keytool -changealias -keystore domain name.jks -alias alias -destalias tomcat
 ```
- ![ ](./3.png) 
+ {% asset_img 3.png   %} 
 
 ## 3. 将jks文件上传到tomcat/conf目录中
 
@@ -49,7 +49,7 @@ keytool -changealias -keystore domain name.jks -alias alias -destalias tomcat
 
 ## 4. 配置conf中的server.xml
 
-<!--  找到：![在这里插入图片描述](./4.png) 
+<!--  找到：{% asset_img 4.png 在这里插入图片描述 %} 
 修改成以下代码：（443为https默认访问端口）
 
 ```html
@@ -64,13 +64,13 @@ keytool -changealias -keystore domain name.jks -alias alias -destalias tomcat
 Catalina.start using conf/server.xml: Element type "Connector" must be followed by either attribute ！
 解决办法是不复制，手敲进去，或者复制进去以后把空格全删掉再加上！**
 
-<!-- 找到：![在这里插入图片描述](./5.png) 
-<!-- 改成：![在这里插入图片描述](./6.png) 
+<!-- 找到：{% asset_img 5.png 在这里插入图片描述 %} 
+<!-- 改成：{% asset_img 6.png 在这里插入图片描述 %} 
 找到：
- ![ ](./7.png) 
+ {% asset_img 7.png   %} 
 
 改成：
- ![ ](./8.png) 
+ {% asset_img 8.png   %} 
 保存，退出。
 ## 5.配置web.xml
 
@@ -93,9 +93,9 @@ Catalina.start using conf/server.xml: Element type "Connector" must be followed 
     </user-data-constraint>  
 </security-constraint>
 ```
- ![ ](./9.png) 
+ {% asset_img 9.png   %} 
 ## 6.将443端口加入安全组入口
- ![ ](./10.png) 
+ {% asset_img 10.png   %} 
 我是在阿里云买的服务器，所以到阿里云服务器的安全组改就行了，你在哪个厂商买的就到哪改。
 有的可能不叫安全组，叫防火墙，总之把443开着，让用户能进去。
 
@@ -179,6 +179,6 @@ Catalina.start using conf/server.xml: Element type "Connector" must be followed 
 ### web.xml
 
 这文件太长了，没必要贴了，反正就是在welcome-file-list后边加点内容：
- ![ ](./11.png) 
+ {% asset_img 11.png   %} 
 
 

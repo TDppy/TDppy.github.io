@@ -20,5 +20,5 @@ layout: post
 
 # 解决办法
 解决办法是将项目目录下Makefile中的 CXXFLAG后面的 -std=c++11改成-std=c++14即可
- ![ ](./1.png) 
+ {% asset_img 1.png   %} 
 

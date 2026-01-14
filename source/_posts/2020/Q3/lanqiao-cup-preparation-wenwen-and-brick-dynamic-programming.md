@@ -12,13 +12,13 @@ layout: post
 
 ## 题目链接
 [题目链接](https://nytdoj.com/#/contest/3/problem/D)
- ![ ](./1.png) 
- ![ ](./2.png) 
- ![ ](./3.png) 
+ {% asset_img 1.png   %} 
+ {% asset_img 2.png   %} 
+ {% asset_img 3.png   %} 
 
 
 ## 题解
- ![ ](./4.png) 
+ {% asset_img 4.png   %} 
 ## 实现代码：
 ```cpp
 #include <bits/stdc++.h>

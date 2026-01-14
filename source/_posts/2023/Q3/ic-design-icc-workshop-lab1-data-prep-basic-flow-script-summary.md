@@ -45,9 +45,9 @@ read_def $def_file
 set_pnet_options -complete {METAL3 METAL4}
 save_mw_cel -as RISC_CHIP_floorplanned
 ```
-![在这里插入图片描述](./1.png)
+{% asset_img 1.png 在这里插入图片描述 %}
 
-![在这里插入图片描述](./2.png)
+{% asset_img 2.png 在这里插入图片描述 %}
 
 
 ## Task4 placement
@@ -57,7 +57,7 @@ redirect -tee place_opt.timing {report_timing}
 report_congestion -grc_based -by_layer -routing_stage global
 save_mw_cel -as RISC_CHIP_placed
 ```
-![在这里插入图片描述](./3.png)
+{% asset_img 3.png 在这里插入图片描述 %}
 
 
 ## Task5 CTS
@@ -69,8 +69,8 @@ clock_opt
 redirect -tee clock_opt.timing {report_timing}
 save_mw_cel -as RISC_CHIP_cts
 ```
-![在这里插入图片描述](./4.png)
-![在这里插入图片描述](./5.png)
+{% asset_img 4.png 在这里插入图片描述 %}
+{% asset_img 5.png 在这里插入图片描述 %}
 
 ## Task6 Basic Flow:Routing
 File->Open design ，risc_chip.mw 
@@ -86,5 +86,5 @@ report_design -physical
 save_mw_cel -as RISC_CHIP_routed
 exit
 ```
-![在这里插入图片描述](./6.png)
+{% asset_img 6.png 在这里插入图片描述 %}
 

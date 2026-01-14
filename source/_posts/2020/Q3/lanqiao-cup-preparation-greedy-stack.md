@@ -8,7 +8,7 @@ layout: post
 
 > 为备战蓝桥杯，我每天把刷题经验总结成博客，鞭策自己学习，争取暑假输出三十篇以上。
 
- ![ ](./1.png) 
+ {% asset_img 1.png   %} 
 
 ## 战况报告：
 **水题：**
@@ -24,13 +24,13 @@ G题 洛谷1981
 
 下面写一下F题单调栈POJ 2559  和G题 洛谷1981的题解，CD两题有一定难度，掌握的还不是很好，题解后面再写！
 **POJ2559题解**
- ![ ](./2.png) 
- ![ ](./3.png) 
+ {% asset_img 2.png   %} 
+ {% asset_img 3.png   %} 
 [AC代码点击查看](https://pasteme.cn/44560)
 
 
 [洛谷1981](https://www.luogu.com.cn/problem/P1981)
 我的题解：
- ![ ](./4.png) 
+ {% asset_img 4.png   %} 
 [AC代码点击查看](https://pasteme.cn/44425)
 

@@ -7,7 +7,7 @@ layout: post
 ---
 
 # 锁存器原理
-![在这里插入图片描述](./1.png)
+{% asset_img 1.png 在这里插入图片描述 %}
 
  - **当控制信号 C=0 时，Q维持不变**
    根据与非门的逻辑定律，无论 D 输入什么信号，RD 和 SD 信号同时为 1。根据由与非门组成的 RS 锁存器的逻辑定律，RD 和 SD 都同时 等于 1 的话，锁存器的输出端 Q 将维持原状态不变。
@@ -17,7 +17,7 @@ layout: post
 也就是说，此时锁存器的状态是由激励输入端 D 来确定的，
 并且 D 等于什么，锁存器的状态就是什么，这就是我们前面所说的，将单路数据 D 存入到锁存器之中。
 
-![在这里插入图片描述](./2.png)
+{% asset_img 2.png 在这里插入图片描述 %}
 在绝大多数设计中我们要避免产生锁存器。它会让您设计的时序出问题，并且它的隐蔽性很强，新人很难查出问题。锁存器最大的危害在于不能过滤毛刺和影响工具进行时序分析。这对于下一级电路是极其危险的。所以，只要能用触发器的地方，就不用锁存器。
 # if语句
 ## if语句不带else
@@ -43,7 +43,7 @@ endmodule
 ```
 
 ## if语句不带else 对应 RTL原理图
-![在这里插入图片描述](./3.png)
+{% asset_img 3.png 在这里插入图片描述 %}
 ## if语句带else
 
 ```rust
@@ -70,7 +70,7 @@ endmodule
 ```
 
 ## if语句带else 对应 RTL原理图
-![在这里插入图片描述](./4.png)
+{% asset_img 4.png 在这里插入图片描述 %}
 
 ## if语句带else 对应 RTL原理图
 
@@ -100,7 +100,7 @@ module latch
 endmodule
 ```
 ## Case语句不带feault 对应 RTL原理图
-![在这里插入图片描述](./5.png)
+{% asset_img 5.png 在这里插入图片描述 %}
 
 ## Case语句带default
 ```rust
@@ -130,7 +130,7 @@ endmodule
 ```
 
 ## Case语句不带feault 对应 RTL原理图
-![在这里插入图片描述](./6.png)
+{% asset_img 6.png 在这里插入图片描述 %}
 # 参考资料
 1. [正点原子逻辑设计](http://yuanzige.com)
 2. [B站 花几分钟理解锁存器](https://www.bilibili.com/video/BV16w4m1d7Re/?spm_id_from=333.1007.top_right_bar_window_history.content.click)

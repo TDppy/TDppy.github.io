@@ -6,5 +6,5 @@ tags: [C++, 算法, 编程竞赛]
 layout: post
 ---
 
-![在这里插入图片描述](./1.png)
+{% asset_img 1.png 在这里插入图片描述 %}
 

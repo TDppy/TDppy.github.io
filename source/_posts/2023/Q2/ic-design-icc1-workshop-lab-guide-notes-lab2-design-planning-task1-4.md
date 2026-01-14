@@ -54,7 +54,7 @@ set_ideal_network [all_fanout -flat -clock_tree]
 Most of these settings are discussed in the Appendix of Unit 1. Some are discussed in later Units. Do not spend time here trying to 
 understand them
 这些设置大多数在第一单元的附录中讨论过。其中一些将在后面的单元中讨论。不要在这里花时间试图去理解它们。
-![在这里插入图片描述](./1.png)
+{% asset_img 1.png 在这里插入图片描述 %}
 
 ## 2.2 Initialize the Floorplan
 [16、大概阐述下做floorplan的步骤？](https://zhuanlan.zhihu.com/p/269635272)
@@ -252,7 +252,7 @@ man这个命令部分结果：
 **个人总结：**
 我的理解是这样的，side为1~4分别指定的是pad在芯片的左、上、右、下，而order指定了在side确定的情况下，pad的顺序。
 如图所示，我们将红框内放大，可以看到pad的具体名称。
-![在这里插入图片描述](./2.png)![在这里插入图片描述](./3.png)
+{% asset_img 2.png 在这里插入图片描述 %}{% asset_img 3.png 在这里插入图片描述 %}
 其中test_mode_iopad在最上面，是order最大的，即对应命令
 
 ```bash
@@ -318,7 +318,7 @@ man insert_pad_filler的部分结果：
 6. Zoom into the space between two pad cells and notice the filler cells that have 
 been inserted.
 放大两个pad cell之间的空间，注意到filler cell已经被插入了。
-![在这里插入图片描述](./4.png)
+{% asset_img 4.png 在这里插入图片描述 %}
 
 7. Make the “logical” connection (no physical routing) between the 
 power/ground signals and all power/ground pins of the I/O pads, macros and 
@@ -373,20 +373,20 @@ Click OK.
 
 Notice that all the macros are now selected – highlighted in white.
 注意所有macro现在都被选中了，以白色高亮。
-![在这里插入图片描述](./5.png)
+{% asset_img 5.png 在这里插入图片描述 %}
 Select the **Flylines** button from the top banner section of the LayoutWindow.
 从LayoutWindow的顶部选择Flylines按钮
 
 In the "Show flylines" panel that appears on the right side of the window click on the pull-down menu and choose Select to IO and Apply.
 在窗口右侧的Show flylines面板中点击下拉菜单并选中Select to IO并Apply
-![在这里插入图片描述](./6.png)
-![在这里插入图片描述](./7.png)
+{% asset_img 6.png 在这里插入图片描述 %}
+{% asset_img 7.png 在这里插入图片描述 %}
 Reduce the "brightness" to 50% or less to better see the three flylines.The three lower left macros show connections to the top IO pads.
 把"亮度"调整到50%或者更小，以更好地看见3条飞线。左下角的三个macro显示了到顶层IO端口的连线。
 
   3. Keep the "Show flylines" panel open and,if needed,adjust the viewing area(pan/zoom) to see the picture below.If you accidentally unselect the macros and the flylines disappear,use the [Ctrl] key to reselect the three circled macros shown here,and the flylines will reappear.
       保持"Show flylines"面板打开，并且如果需要的话调整视图区域以查看下面的图。如果你意外地失去选中这些宏并飞线消失了，使用[Ctrl]键去重新选中这三个macros，并且飞线会重新出现。
-![在这里插入图片描述](./8.png)
+{% asset_img 8.png 在这里插入图片描述 %}
   4. The three macros with a direct connection to IO pad cells are called I_CLOCK_GEN/I_PLL_PCI, I_CLOCK_GEM_PLL_SD and I_CLOCK_GEN/I_CLKMUL. Hover your mouse arrow over a cell to see its 
 information window in the lower-left area. The two PLLs in this design should 
 be placed towards the top left and right corners of the chip so they are closer 
@@ -432,7 +432,7 @@ much time on this step to get them perfectly placed. A script in the next step
 will ensure correct placement
   下面的步骤中你会重复这些上述的步骤来移动另外两个macro到核心区域并且靠近他们对应的IO端口单元。不要花太多时间在这一步来得到他们完美的位置。下一步会给个脚本来确保正确地布局。
 
-![在这里插入图片描述](./9.png)
+{% asset_img 9.png 在这里插入图片描述 %}
 点击I_PLL_SD来选择它，移动到core区域的右上角并对齐到右边和上边的边上。将其旋转180°以减少其互联线的长度。点击padlock按钮来锁住它。
 
 选择并拖动I_CLKMUL到I_PLL_SD的左边。对齐到顶部的边。
@@ -476,7 +476,7 @@ placement will be performed again. You will notice a marked difference.
 ```bash
 create_fp_placement -timing_driven -no_hierarchy_gravity
 ```
-  4. Examine the global route congestion map:![在这里插入图片描述](./10.png)
+  4. Examine the global route congestion map:{% asset_img 10.png 在这里插入图片描述 %}
 
  检查全局路径拥塞图
  点击全局路径拥塞图按钮，在弹出的面板上点击reload按钮
@@ -522,7 +522,7 @@ report_fp_macro_options
 ```bash
 source -echo scripts/keepout.tcl
 ```
-![](./11.png)
+{% asset_img 11.png  %}
 
  10. Take one last look at the macro placement before running the VF placer again:
  在再次运行VF placer之前再次看一遍宏布局

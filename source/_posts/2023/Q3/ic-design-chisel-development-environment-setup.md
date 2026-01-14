@@ -11,7 +11,7 @@ layout: post
  1. **如果想快速搭建好环境，不关心具体的安装过程**
  直接复制文章后面的【脚本附录】，以root用户在任意目录下执行该脚本
 它会帮助你完成安装java11、ubuntu换源、sbt换源、下载sbt，执行完以后是这样的：
-![在这里插入图片描述](./1.png)
+{% asset_img 1.png 在这里插入图片描述 %}
 
 然后从安装步骤的【第9步】开始测试scala和chisel是否能正常使用即可
 
@@ -61,7 +61,7 @@ set tabstop=4
 sudo apt-get install default-jdk
 ```
 安装完成后使用`java -version`测试结果为：
-![在这里插入图片描述](./2.png)
+{% asset_img 2.png 在这里插入图片描述 %}
 
 6. 安装sbt构建工具
 sbt是Scala的构建工具，类似C的Make和Java的Maven，都是依赖管理工具。
@@ -76,7 +76,7 @@ sudo apt-get update
 sudo apt-get install sbt
 ```
 安装完成后使用`sbt --version`查看版本：
-![在这里插入图片描述](./3.png)
+{% asset_img 3.png 在这里插入图片描述 %}
 
 7. 修改sbt源
 默认sbt是使用maven官方库解决依赖，这里修改它的源。
@@ -100,7 +100,7 @@ sbt-plugin-repo: https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases, [organ
 
 8. 安装VS Code并配置插件
 首先在软件商店中安装VS Code，打开VS Code，在View->extensions中安装Scala(Syntax)和Scala(Metals)
-![在这里插入图片描述](./4.png)
+{% asset_img 4.png 在这里插入图片描述 %}
 
 9. 安装make
 ```bash
@@ -119,7 +119,7 @@ object HelloScala{
 }
 ```
 使用sbt run进行构建，会输出helloworld
-![在这里插入图片描述](./5.png)
+{% asset_img 5.png 在这里插入图片描述 %}
 
 10. 测试Chisel
 
@@ -130,7 +130,7 @@ make
 sbt test
 ```
 **测试成功：**
-![在这里插入图片描述](./6.png)
+{% asset_img 6.png 在这里插入图片描述 %}
 
 ## 脚本附录
 该脚本完成了更改Ubuntu下载源、java11安装、更改sbt下载源、下载sbt

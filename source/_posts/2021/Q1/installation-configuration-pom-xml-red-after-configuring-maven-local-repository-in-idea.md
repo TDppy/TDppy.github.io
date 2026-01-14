@@ -6,20 +6,20 @@ tags: [Java, IDEA]
 layout: post
 ---
 
- ![ ](./1.png) 
+ {% asset_img 1.png   %} 
 在IDEA中配置Maven后(如图)，pom.xml一片飘红，显然是依赖没了。
 此时IDEA右下角冒出小窗口报错：
 `Unable to import maven project: See logs for details`
 叫我们看日志，那我们就看一下日志。
-<!-- 点击help->Show log in Explorer![在这里插入图片描述](./2.png) 
+<!-- 点击help->Show log in Explorer{% asset_img 2.png 在这里插入图片描述 %} 
 点了以后就会打开你的log所在的目录，然后我们点开`idea.log`
- ![ ](./3.png) 
+ {% asset_img 3.png   %} 
 
 总之可以看出来本地仓库里没这个依赖了。这时候我在想为什么没有这个依赖，Maven不会自动下载呢？
- ![ ](./4.png) 
+ {% asset_img 4.png   %} 
 这时候又看到这个拒绝访问，我就联想到是权限的问题。
 于是把maven整个目录的权限都扩大了。
- ![ ](./5.png) 
+ {% asset_img 5.png   %} 
 点应用 、确定。
 
 结果就是不飘红了，能运行了。
