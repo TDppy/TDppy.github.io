@@ -301,7 +301,7 @@ aside:
       link: https://github.com/TDppy
   card_announcement:
     enable: true
-    content: This is my Blog
+    content: 如何呢，又能怎。
   card_recent_post:
     enable: true
     # If set 0 will show all
