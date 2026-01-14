@@ -1,12 +1,12 @@
 # --------------------------------------
-# Hexo Butterfly Theme Configuration
-# If you have any questions, please refer to the documentation
-# Chinese: https://butterfly.js.org/
-# English: https://butterfly.js.org/en/
+# Hexo Butterfly 主题配置文件
+# 如果有疑问，请参考文档
+# 中文: https://butterfly.js.org/
+# 英文: https://butterfly.js.org/en/
 # --------------------------------------
 
 # --------------------------------------
-# Navigation Settings
+# 导航栏设置
 # --------------------------------------
 
 nav:
@@ -18,18 +18,23 @@ nav:
   fixed: false
 
 menu:
+  首頁: / 
+  时间轴: /archives/ 
+  标签: /tags/ 
+  分类: /categories/ 
+
   # Home: / || fas fa-home
   # List||fas fa-list:
   #   Music: /music/ || fas fa-music
   #   Movie: /movies/ || fas fa-video
 
 # --------------------------------------
-# Code Blocks Settings
+# 代码块设置
 # --------------------------------------
 
 code_blocks:
   # Code block theme: darker / pale night / light / ocean / false
-  theme: light
+  theme: ocean
   macStyle: false
   # Code block height limit (unit: px)
   height_limit: false
@@ -46,11 +51,11 @@ code_blocks:
 # Formal:
 #   icon: link || the description || color
 social:
-  # fab fa-github: https://github.com/xxxxx || Github || '#24292e'
-  # fas fa-envelope: mailto:xxxxxx@gmail.com || Email || '#4a7dbe'
+  fab fa-github: https://github.com/TDppy || Github || '#24292e'
+  fas fa-envelope: mailto:2287015934@qq.com || Email || '#4a7dbe'
 
 # --------------------------------------
-# Image Settings
+# 图片设置
 # --------------------------------------
 
 favicon: /img/favicon.png
@@ -93,7 +98,7 @@ footer_img: false
 # Website Background
 # Can set it to color, image URL or an array containing colors and/or image URLs
 # If an array is provided, a random background will be selected from the array on each load
-background:
+background: https://oss.012700.xyz/butterfly/2024/10/index.jpg
 
 cover:
   # Disable the cover or not
@@ -137,19 +142,19 @@ post_meta:
     label: true
 
 # --------------------------------------
-# Index page settings
+# 首页设置
 # --------------------------------------
 
 # The top_img settings of home page
 # default: top img - full screen, site info - middle
 # The position of site info, eg: 300px/300em/300rem/10%
-index_site_info_top:
+index_site_info_top: 300px
 # The height of top_img, eg: 300px/300em/300rem
-index_top_img_height:
+index_top_img_height: 80vh
 
 # The subtitle on homepage
 subtitle:
-  enable: false
+  enable: true
   # Typewriter Effect
   effect: true
   # Customize typed.js
@@ -165,6 +170,8 @@ subtitle:
   source: false
   # If you close the typewriter effect, the subtitle will only show the first line of sub
   sub:
+    - 蝴蝶效应
+    - Butterfly Effect
 
 # Article layout on the homepage
 # 1: Cover on the left, info on the right
@@ -187,7 +194,7 @@ index_post_content:
   length: 500
 
 # --------------------------------------
-# Post Settings
+# 文章设置
 # --------------------------------------
 
 toc:
@@ -267,7 +274,7 @@ footer:
   custom_text:
 
 # --------------------------------------
-# Aside Settings
+# 侧边栏设置
 # --------------------------------------
 
 aside:
@@ -289,7 +296,7 @@ aside:
       enable: true
       icon: fab fa-github
       text: Follow Me
-      link: https://github.com/xxxxxx
+      link: https://github.com/TDppy
   card_announcement:
     enable: true
     content: This is my Blog
@@ -354,7 +361,7 @@ aside:
     runtime_date:
 
 # --------------------------------------
-# Bottom right button
+# 右下角按钮设置
 # --------------------------------------
 
 # The distance between the bottom right button and the bottom (default unit: px)
@@ -408,7 +415,7 @@ rightside_item_order:
 rightside_config_animation: true
 
 # --------------------------------------
-# Global Settings
+# 全局设置
 # --------------------------------------
 
 anchor:
@@ -443,7 +450,7 @@ busuanzi:
   page_pv: true
 
 # --------------------------------------
-# Math
+# 数学公式设置
 # --------------------------------------
 
 # About the per_page
@@ -467,7 +474,7 @@ math:
     copy_tex: false
 
 # --------------------------------------
-# Search
+# 搜索设置
 # --------------------------------------
 
 search:
@@ -505,7 +512,7 @@ search:
     option:
 
 # --------------------------------------
-# Share System
+# 分享系统设置
 # --------------------------------------
 
 share:
@@ -524,7 +531,7 @@ share:
     item: facebook,x,wechat,sina_weibo,facebook_messenger,email,copy_link
 
 # --------------------------------------
-# Comments System
+# 评论系统设置
 # --------------------------------------
 
 comments:
@@ -654,7 +661,7 @@ artalk:
   option:
 
 # --------------------------------------
-# Chat Services
+# 聊天服务设置
 # --------------------------------------
 
 chat:
@@ -680,7 +687,7 @@ crisp:
   website_id:
 
 # --------------------------------------
-# Analysis
+# 分析统计设置
 # --------------------------------------
 
 # https://tongji.baidu.com/web/welcome/login
@@ -717,7 +724,7 @@ google_tag_manager:
   domain:
 
 # --------------------------------------
-# Advertisement
+# 广告设置
 # --------------------------------------
 
 # Google Adsense
@@ -739,7 +746,7 @@ ad:
   post:
 
 # --------------------------------------
-# Verification
+# 验证设置
 # --------------------------------------
 
 site_verification:
@@ -749,7 +756,7 @@ site_verification:
   #   content: xxxxxxx
 
 # --------------------------------------
-# Beautify / Effect
+# 美化/效果设置
 # --------------------------------------
 
 # Theme color for customize
@@ -844,13 +851,13 @@ activate_power_mode:
   shake: true
   mobile: false
 
-# Background effects
+# 背景效果设置
 # --------------------------------------
 
 # canvas_ribbon
 # See: https://github.com/hustcc/ribbon.js
 canvas_ribbon:
-  enable: false
+  enable: true
   # The size of ribbon
   size: 150
   # The opacity of ribbon (0 ~ 1)
@@ -901,7 +908,7 @@ clickShowText:
   mobile: false
 
 # --------------------------------------
-# Lightbox Settings
+# 灯箱设置
 # --------------------------------------
 
 # Choose: fancybox / medium_zoom
@@ -911,7 +918,7 @@ clickShowText:
 lightbox:
 
 # --------------------------------------
-# Tag Plugins settings
+# 标签插件设置
 # --------------------------------------
 
 # Series
@@ -974,7 +981,7 @@ note:
   light_bg_offset: 0
 
 # --------------------------------------
-# Other Settings
+# 其他设置
 # --------------------------------------
 
 # https://github.com/MoOx/pjax
@@ -1057,8 +1064,8 @@ inject:
   bottom:
     # - <script src="xxxx"></script>
 
-# CDN Settings
-# Don't modify the following settings unless you know how they work
+# CDN设置
+# 除非你知道如何工作，否则不要修改以下设置
 CDN:
   # The CDN provider for internal and third-party scripts
   # Options for both: local/jsdelivr/unpkg/cdnjs/custom
