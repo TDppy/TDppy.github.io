@@ -6,123 +6,370 @@ tags: [教学操作系统, xv6, 操作系统]
 layout: post
 ---
 
-# 学习XV6的意义
-xv6是麻省理工学院在MIT6.S081课为教学设计的操作系统，总代码约1W+行，由C语言和部分汇编代码组成，覆盖了进程调度、文件描述符与文件系统、中断与异常处理、设备管理等操作系统的核心内容。命名由来是xv6基于UNIX6的整体风格改进，所以叫v6，x是eXtensible的意思。xv6提供了基本的操作系统原型，相比于uCos这种嵌入式操作系统，xv6更加完善，反应了现代Linux操作系统的基本原理。早期的xv6是基于x86指令系统编写的，随着RISC-V的兴起，在2020年后也推出了RISC-V版本。
-学习xv6可以让我们掌握使用C语言实现一个操作系统，一方面这能够让我们了解printf的背后发生了什么、按下键盘后发生了什么、Windows/Linux是如何管理各种进程的、软硬件之间的接口是什么，另一方面，操作系统是嵌入式软件开发岗位常要求的技能，对于应聘要求firmware、bsp、AI芯片运行时等岗位都有意义。从长远角度看，无论是学习什么知识，真正需要掌握的都不是语法和函数调用过程，而是系统设计思想，这样当我们面临新的复杂的系统问题时，便可以从过往的设计思路中得到启迪。
-# 全流程概述
-**假设我们启动xv6后，什么都不做，直接按下键盘回车，会发生什么？**
-键盘的UART控制器发送中断到PLIC，PLIC接收所有设备的中断信号、按照优先级仲裁、发送给CPU，设置CPU的SIE寄存器，CPU检测SIE寄存器发现中断，并执行trampoline.S中的uservec函数，uservec会跳转到trap.c中的usertrap函数，保存用户程序计数器epc、stvec寄存器，然后跳转到devintr()函数去发现是哪个设备发起的中断，发现是uart后执行uartintr()函数，uartintr()函数接收键盘输入的字符并调用consoleintr()函数处理特殊字符。consoleintr()函数会唤醒shell进程，将状态由SLEEPING改为RUNNABLE，并加入到调度队列。
+# xv6概述与学习价值
 
-> 键盘按键 → UART接收 → PLIC仲裁 → CPU中断 → trampoline.S/uservec → trap.c/usertrap
-> → trap.c/devintr → plic.c/plic_claim → uart.c/uartintr → console.c/consoleintr → proc.c/wakeup
-> → Shell进程从SLEEPING → RUNNABLE → 继续执行gets()
+xv6是麻省理工学院为MIT 6.S081操作系统课程设计的教学操作系统。总代码量约1万行，主要使用C语言编写，辅以少量汇编代码。它涵盖操作系统核心机制：进程调度、文件系统、中断处理、设备驱动等。
 
-# 各步骤详解
-## UART
-> UART 芯片有多个引脚 (pins)，包括：
-> UART 芯片引脚示例：
-├── TXD (Transmit Data) - 发送数据线
-├── RXD (Receive Data) - 接收数据线  
-├── GND (Ground) - 地线
-├── INTR (Interrupt) - 中断信号线 ⭐⭐⭐
-├── RTS/CTS - 流控制信号
-└── 电源引脚
-INTR 引脚的作用：
-INTR 引脚是 UART 向 CPU 报告"需要注意"的信号线：
-常态: 低电平 (0V)
-中断时: 高电平 (通常 3.3V 或 5V)
+xv6基于Unix V6系统改进设计，"x"表示可扩展(eXtensible)。相比简单嵌入式OS如uC/OS，xv6更接近现代操作系统架构。早期版本基于x86架构，2020年后推出RISC-V版本，本文分析该版本。
 
-## PLIC
+学习xv6的价值体现在多个方面：
+
+1. **深入理解系统实现**：通过阅读和修改代码，掌握操作系统核心原理，包括：
+   - I/O机制：printf如何输出到屏幕
+   - 输入处理：键盘按键如何被捕获和处理
+   - 进程管理：操作系统如何调度和管理进程
+   - 软硬件接口：软件与硬件的交互方式
+
+2. **应聘技能提升**：操作系统知识是嵌入式开发、固件开发、芯片运行时等岗位的核心要求，可以作为简历上的项目备战招聘。
+
+3. **系统设计思维培养**：操作系统是典型的系统设计课程，我们需要了解其中的系统设计思想，为解决复杂问题提供思路。
+
+本文通过分析按下键盘回车键后的完整执行流程，展示xv6的中断处理机制。
+# 场景假设与整体流程
+
+本文分析的场景：启动xv6操作系统后，用户在shell提示符下直接按下回车键（不输入任何命令）。
+
+这个简单动作会触发操作系统中断处理的全流程，涉及硬件、CPU、内核、用户程序多个层次。
+
+**整体流程图：**
+
+```
+键盘按键
+    ↓
+UART接收中断信号
+    ↓
+PLIC仲裁并转发给CPU
+    ↓
+CPU执行中断向量(uservec)
+    ↓
+内核陷阱处理(usertrap → devintr)
+    ↓
+UART中断处理(uartintr → consoleintr)
+    ↓
+唤醒shell进程(wakeup)
+    ↓
+shell读取输入并退出
+```
+
+接下来按时间顺序详细分析每个步骤。
+
+# 详细执行流程
+
+## 1. 硬件中断：键盘信号到UART
+
+键盘按键首先被键盘控制器捕获，转换为扫描码，然后通过串口(UART)传输到计算机。
+
+UART(Universal Asynchronous Receiver/Transmitter)是串口通信的核心硬件。它有多个引脚：
+- TXD/RXD：数据发送/接收
+- GND：地线
+- INTR：中断信号线
+
+当UART接收到数据时，INTR引脚从低电平(0V)变为高电平(3.3V或5V)，向CPU发出"有数据需要处理"的信号。
+
+## 2. 中断控制器：PLIC仲裁
 PLIC 是 RISC-V 平台的中断控制器，负责：
  1. 收集所有外部设备的中断信号
  2. 仲裁多个同时发生的中断的优先级
  3. 分发最高优先级的中断给 CPU
-## PLIC初始化
-```c
-void plicinit(void) {
-  // 设置 UART 中断优先级为 1 (非零表示启用)
-  *(uint32*)(PLIC + UART0_IRQ*4) = 1;
-}
 
+PLIC初始化会调用plicinit函数和plicinithart函数，在系统启动时main函数中调用一次，plicinit设置中断请求的优先级，plicinithart则启用中断并设置中断优先级阈值。
+### plicinit函数
+每个中断源都有一个优先级值 (0-7 或更高，取决于实现)
+- 优先级 = 0: 中断被禁用
+- 优先级 > 0: 中断启用，数值越大优先级越高
+
+```c
+void plicinit(void)
+{
+  // 将可能产生的中断请求(Interrupt ReQuest, IRQ)设为非 0
+  *(uint32*)(PLIC + UART0_IRQ*4) = 1;
+  *(uint32*)(PLIC + VIRTIO0_IRQ*4) = 1;
+}
+```
+
+### plicinithart函数
+plicinithart 为每个 CPU 核心初始化 PLIC（中断控制器）的设置。每个 CPU 核心都需要独立配置，因为中断可以被分配到不同的核心处理。
+1. 首先启用中断
+PLIC_SENABLE(hart) = PLIC + 0x2080 + (hart)*0x100 作用是控制哪些中断可以发送到这个 CPU 核心的 S-mode（supervisor mode），设置为(1 << UART0_IRQ) | (1 << VIRTIO0_IRQ)意味着：
+- UART 中断 (IRQ 10) 被启用
+- VirtIO 磁盘中断 (IRQ 1) 被启用
+- 其他中断被禁用
+2. 然后设置优先级阈值
+PLIC_SPRIORITY(hart) = PLIC + 0x201000 + (hart)*0x2000 作用是设置中断优先级阈值，只有优先级高于此值的才会被发送到 CPU，阈值设置为 0 表示接受所有优先级 > 0 的中断。由于 plicinit() 中设置 UART 和 VirtIO 的优先级为 1，所以这些中断会被接受。如果阈值设为 1，则只有优先级 > 1 的中断才会被处理。
+```c
 void plicinithart(void) {
-  // 启用 UART 中断到这个 CPU 的 S-mode
-  *(uint32*)PLIC_SENABLE(hart) = (1 << UART0_IRQ);
-  // 设置中断优先级阈值为 0 (接受所有中断)
+  int hart = cpuid();
+  *(uint32*)PLIC_SENABLE(hart)= (1 << UART0_IRQ) | (1 << VIRTIO0_IRQ);
   *(uint32*)PLIC_SPRIORITY(hart) = 0;
 }
 ```
+为什么需要每个 CPU 独立配置：
+1. 多核支持: 不同的中断可以路由到不同的 CPU 核心
+2. 负载均衡: 可以将中断处理分散到多个核心
+3. 隔离性: 每个核心可以独立控制接收哪些中断
 
-## CPU中断响应
-CPU检测到中断，检查当前模式：
- 1. 如果在用户模式，stvec指向uservec（用户中断向量），跳转到uservec
- 2. 如果在内核模式，stvec指向kernelvec，跳转到kernelvec
-对于用户模式的处理（uservec）：
- 1. 保存所有用户寄存器到trapframe
- 2. 切换到内核栈
- 3. 切换到内核页表
- 4. 跳转到usertrap()
- 对于内核模式，跳转到usertrap()
- 
-## 内核陷阱处理
-检查scause寄存器，找到中断的原因并调用对应函数进行处理。
-```c
-void usertrap(void) {
-  // 检查 scause 寄存器
-  uint64 scause = r_scause();
-  
-  if(scause == 8){
-    // 系统调用
-  } else if((which_dev = devintr()) != 0){
-    // 设备中断
-  }
-}
+优先级阈值的意义
+- 阈值 = 0: 接受所有非零优先级中断
+- 阈值 = 1: 只接受优先级 > 1 的中断
+- 阈值 = 最大值: 屏蔽所有中断
 
+S-mode vs M-mode
+- PLIC_SENABLE: 控制 S-mode（supervisor mode）中断
+- PLIC_MENABLE: 控制 M-mode（machine mode）中断
+- xv6 运行在 S-mode，所以使用 S-mode 设置
+
+## 3.CPU中断响应
+一旦 PLIC 决定发送中断，它就会向 CPU 的**外部中断引脚**发送信号。CPU 检测到这个信号后，会暂停当前执行的指令，保存当前的执行状态，然后跳转到一个预先设置好的地址去执行中断处理代码。在 RISC-V 架构中，这个地址叫做 stvec，如果当前 CPU 运行在用户模式，这个地址会指向一个叫做 uservec 的函数。
+
+首先，我们需要了解 CPU 的中断引脚。在 RISC-V 架构中，有一个专门的引脚叫做 SEI，也就是 Supervisor External Interrupt。当 PLIC 决定发送中断时，它会通过这个引脚向 CPU 发送一个电信号。这个引脚是 CPU 芯片上的物理引脚，平时保持低电平，当有外部中断时会被拉高。
+
+当 CPU 检测到 SEI 引脚的信号变高时，它会立即中断当前的指令执行。这个过程是完全由硬件控制的，不需要软件干预。CPU 会自动做以下几件事：
+
+- 首先，它会保存当前的程序计数器（PC）到 sepc 寄存器。这个寄存器专门用来存储发生异常或中断时的指令地址，这样软件就可以知道中断发生的确切位置。
+
+- 然后，CPU 会保存当前的状态信息到 sstatus 寄存器。这个寄存器包含了很多重要的状态位，比如当前是否在用户模式、是否启用了中断等。
+
+- 同时，CPU 还会将中断的原因编码保存到 scause 寄存器。对于外部中断，scause 的值会是 0x8000000000000009，其中最高位设置为 1 表示这是中断而不是异常，后面的值 9 表示外部中断。
+
+- 做完这些保存工作后，CPU 就会跳转到 stvec 寄存器指向的地址执行。这个跳转是由硬件直接完成的，没有任何条件判断。在 xv6 中，如果 CPU 当前运行在用户模式，stvec 会指向 uservec 函数的地址，该函数的实现在 **trampoline.S** 中。
+
+---
+
+下面，让我们详细看看 uservec 函数的具体实现。
+
+首先是函数的入口和初始设置：
+
+```riscv
+uservec:    
+    # swap a0 and sscratch
+    # so that a0 is TRAPFRAME
+    csrrw a0, sscratch, a0
 ```
 
-## 设备中断识别
+这一开始的注释说明了这个函数的作用：处理来自用户空间的陷阱（traps），包括中断和异常。函数开始时，sscratch 寄存器被设置为指向当前进程的 trapframe 结构。`csrrw` 指令交换 a0 和 sscratch 的值，这样 a0 就指向了 trapframe，而原来的 a0 值被保存到 sscratch 中。
+
+接下来是保存用户寄存器到 trapframe：
+
+```riscv
+# save the user registers in TRAPFRAME
+sd ra, 40(a0)
+sd sp, 48(a0)
+sd gp, 56(a0)
+sd tp, 64(a0)
+sd t0, 72(a0)
+# ... 继续保存其他寄存器
+```
+
+这里使用 `sd` 指令（store double word）将所有用户空间的寄存器保存到 trapframe 结构中。每个寄存器都有固定的偏移量，比如 ra 保存到距离 trapframe 基地址 40 字节的位置，sp 保存到 48 字节的位置。这些偏移量是预定义的，对应 `proc.h` 中 `struct trapframe` 的字段定义。
+
+特别需要注意的是 a0 的处理：
+
+```riscv
+# save the user a0 in p->trapframe->a0
+csrr t0, sscratch
+sd t0, 112(a0)
+```
+
+由于 a0 在一开始就被交换了，这里需要从 sscratch 中读取原始的 a0 值，然后保存到 trapframe 的 112 字节偏移位置。
+
+保存完用户状态后，开始恢复内核环境：
+
+```riscv
+# restore kernel stack pointer from p->trapframe->kernel_sp
+ld sp, 8(a0)
+
+# make tp hold the current hartid, from p->trapframe->kernel_hartid
+ld tp, 32(a0)
+```
+
+`ld` 指令（load double word）从 trapframe 中读取内核栈指针和 hart ID。sp 设置为内核栈指针，这样后续的函数调用就会使用内核栈。tp 设置为当前 CPU 核心的 ID，这在多核系统中很重要。
+
+接下来是关键的页表切换：
+
+```riscv
+# restore kernel page table from p->trapframe->kernel_satp
+ld t1, 0(a0)
+csrw satp, t1
+sfence.vma zero, zero
+```
+
+这里从 trapframe 中读取内核页表的地址，写入 satp 寄存器，然后执行 `sfence.vma` 指令刷新 TLB。这个操作将页表从用户页表切换到内核页表，确保后续代码使用正确的地址映射。
+
+最后是跳转到 C 函数：
+
+```riscv
+# load the address of usertrap(), p->trapframe->kernel_trap
+ld t0, 16(a0)
+
+# jump to usertrap(), which does not return
+jr t0
+```
+
+从 trapframe 中读取 usertrap 函数的地址，然后无条件跳转。这个跳转将控制权转移给 C 语言编写的 usertrap 函数，继续处理具体的陷阱类型。
+
+整个 uservec 函数展示了从硬件中断到软件处理的无缝衔接。它精确地保存了用户状态，恢复了内核环境，然后将控制权交给更高层次的处理函数。这种设计既保证了性能，又确保了安全性。每个指令都有其特定的作用，共同构成了操作系统中断处理的基础设施。
+
+通过这个函数，xv6 能够在发生中断时安全地从用户模式切换到内核模式，处理各种异步事件，然后在适当的时候恢复用户程序的执行。这种机制是现代操作系统能够可靠运行的关键。
+
+---
+
+
+ 
+## 4. 内核中断处理
+
+### usertrap函数：陷阱分类
+
+uservec跳转到usertrap函数(位于kernel/trap.c)，该函数分析中断类型。
+
+首先验证是从用户模式进入，然后切换stvec指向kernelvec。
+
+保存程序计数器后，通过scause判断：
+- scause == 8：系统调用
+- 其他：调用devintr()处理设备中断
+
+### devintr函数：设备中断识别
+
+devintr函数识别外部中断(scause最高位为1，低8位为9)。
+
+调用plic_claim()获取中断号：
+- UART0_IRQ(10)：调用uartintr()
+- VIRTIO0_IRQ(1)：磁盘中断处理
+
+处理完成后调用plic_complete()通知PLIC。
+
+### UART和控制台数据处理
+
+uartintr()循环读取UART数据，调用consoleintr()处理每个字符。
+
+consoleintr()将字符存储到控制台缓冲区，当遇到换行符时：
+- 更新写指针cons.w
+- 调用wakeup(&cons.r)唤醒等待输入的进程
+
+usertrap 函数首先会验证当前确实是从用户模式进入的中断。如果不是，它会直接 panic，因为这说明系统状态出现了异常。然后它会立即切换 stvec 寄存器，将其指向 kernelvec（位于 `kernel/kernelvec.S`)。
+
 ```c
+// kernel/trap.c
+void usertrap(void) {
+  int which_dev = 0;
+
+  if((r_sstatus() & SSTATUS_SPP) != 0)
+    panic("usertrap: not from user mode");
+
+  // send interrupts and exceptions to kerneltrap(),
+  // since we're now in the kernel.
+  w_stvec((uint64)kernelvec);
+```
+
+函数接下来会获取当前进程的指针，并保存发生中断时的程序计数器。这个计数器指向用户程序中被中断的指令位置，对于系统调用来说，这个位置需要调整，因为 ecall 指令执行完后，程序计数器应该指向下一条指令。
+
+现在到了关键的判断部分。usertrap 通过检查 scause 寄存器来确定中断或异常的类型。如果 scause 等于 8，就表示这是一个系统调用。如果是其他值，就需要进一步检查是否是设备中断。
+
+```c
+// kernel/trap.c - usertrap 函数继续
+struct proc *p = myproc();
+  
+// save user program counter.
+p->trapframe->epc = r_sepc();
+  
+if(r_scause() == 8){
+  // system call handling
+} else if((which_dev = devintr()) != 0){
+  // device interrupt handled successfully
+} else {
+  // unexpected trap
+}
+```
+
+在我们的按回车键的例子中，这是一个外部中断，所以程序会进入 `devintr()` 函数。这个函数也位于 `kernel/trap.c` 文件中，它专门处理设备中断。
+
+devintr 函数通过位运算来识别中断类型。对于外部中断，scause 的最高位是 1，低 8 位是 9。这个模式表明中断来自 PLIC 管理的外部设备。
+
+```c
+// kernel/trap.c - devintr 函数
 int devintr() {
+  uint64 scause = r_scause();
+
   if((scause & 0x8000000000000000L) && (scause & 0xff) == 9){
-    // 外部中断
-    int irq = plic_claim();  // 询问 PLIC 哪个中断
+    // supervisor external interrupt via PLIC
+    int irq = plic_claim();  // 位于 kernel/plic.c
     
     if(irq == UART0_IRQ){
-      uartintr();            // 处理 UART 中断
+      uartintr();  // 位于 kernel/uart.c
+    } else if(irq == VIRTIO0_IRQ){
+      virtio_disk_intr();
     }
     
-    plic_complete(irq);      // 告诉 PLIC 中断处理完成
+    // 告诉 PLIC 中断处理完成
+    if(irq)
+      plic_complete(irq);
+    
     return 1;
   }
 }
 ```
 
-## UART中断处理
+一旦确认是外部中断，函数就会调用 `plic_claim()`（位于 `kernel/plic.c`）来询问 PLIC 当前应该处理哪个中断。在我们的场景中，这个函数会返回 10，也就是 UART0_IRQ。
+
+有了中断号之后，devintr 就会根据不同的设备类型调用相应的处理函数。对于 UART 中断，它会调用 `uartintr()`（位于 `kernel/uart.c`）。
+
+uartintr 函数会检查 UART 的接收缓冲区，看看有没有新的数据可以读取。在我们的按回车键的例子中，这里应该有字符数据（换行符）。
+
 ```c
+// kernel/uart.c - uartintr 函数
 void uartintr(void) {
   while(1){
-    int c = uartgetc();      // 从 UART 读取字符
-    if(c == -1) break;
-    consoleintr(c);          // 传递给控制台
+    int c = uartgetc();
+    if(c == -1)
+      break;
+    consoleintr(c);  // 位于 kernel/console.c
   }
 }
 ```
 
-## 控制台字符处理
+从 UART 读取到的每个字符都会被传递给 `consoleintr()` 函数（位于 `kernel/console.c`）。这个函数不仅负责将字符回显到屏幕，还会将其存储到控制台的输入缓冲区。
+
+当 consoleintr 处理到换行符时，它就会更新输入缓冲区的写指针，并唤醒任何正在等待输入的进程。在我们的例子中，被唤醒的就是 shell 进程。
+
 ```c
+// kernel/console.c - consoleintr 函数片段
 void consoleintr(int c) {
-  // 处理特殊字符 (退格等)
+  // ... 处理字符 ...
   
-  // 存储到缓冲区
-  cons.buf[cons.e++ % INPUT_BUF] = c;
-  
-  // 如果是换行符或缓冲区满
-  if(c == '\n' || cons.e == cons.r + INPUT_BUF){
-    cons.w = cons.e;        // 标记行结束
-    wakeup(&cons.r);        // 唤醒等待的进程！
+  if(c == '\n' || c == C('D') || cons.e == cons.r + INPUT_BUF){
+    cons.w = cons.e;
+    wakeup(&cons.r);  // 唤醒等待输入的进程
   }
 }
-
 ```
 
- 
+处理完中断后，usertrap 函数会检查是否需要进行进程调度。在外部中断的情况下，通常不需要立即切换进程，除非这是定时器中断。最后，usertrap 会调用 `usertrapret()` 函数来准备返回用户空间。
 
+```c
+// kernel/trap.c - usertrap 函数结尾
+if(which_dev == 2)
+  yield();  // only for timer interrupts
+
+usertrapret();  // 准备返回用户空间
+```
+
+整个中断处理过程就这样完成了。从按下回车键的物理动作开始，经过层层硬件和软件的处理，最终唤醒了 shell 进程，让它能够读取到用户的输入。
+
+## 5. 用户空间响应：Shell进程
+
+### 系统调用与数据读取
+
+shell进程被wakeup()唤醒后，继续执行getcmd()中的gets()调用。
+
+gets()通过read()系统调用读取控制台：
+- 用户空间read() → 内核consoleread()
+- consoleread()等待缓冲区有数据，读取并返回
+
+### 输入处理与进程退出
+
+consoleread读取换行符后返回，gets()添加\0并返回。
+
+getcmd()移除\n，发现缓冲区为空，返回-1(EOF)。
+
+shell主循环退出，调用exit(0)终止。
+
+这就是按下回车键导致shell退出的完整流程。如果输入命令，shell会解析并执行fork/exec。
