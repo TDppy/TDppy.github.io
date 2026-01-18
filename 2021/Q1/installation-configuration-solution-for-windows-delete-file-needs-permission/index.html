@@ -1,0 +1,166 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【安装配置】windows删除文件需要权限的解决办法 | 潘业成的博客</title><meta name="author" content="TDppy"><meta name="copyright" content="TDppy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Win+X打开Windows Powershell(管理员)，如果你要删除的东西不在C盘需要先切换盘符，如输入d:切换到d盘。 1cd 你要进入的目录名 然后del 文件名  就ok了，如果要删除整个目录和目录下的所有东西， 1del -r 目录名">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【安装配置】windows删除文件需要权限的解决办法">
+<meta property="og:url" content="https://www.whyc.fun/2021/Q1/installation-configuration-solution-for-windows-delete-file-needs-permission/index.html">
+<meta property="og:site_name" content="潘业成的博客">
+<meta property="og:description" content="Win+X打开Windows Powershell(管理员)，如果你要删除的东西不在C盘需要先切换盘符，如输入d:切换到d盘。 1cd 你要进入的目录名 然后del 文件名  就ok了，如果要删除整个目录和目录下的所有东西， 1del -r 目录名">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.whyc.fun/img/butterfly-icon.png">
+<meta property="article:published_time" content="2021-03-06T18:39:45.000Z">
+<meta property="article:modified_time" content="2026-01-18T08:18:02.768Z">
+<meta property="article:author" content="TDppy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.whyc.fun/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "【安装配置】windows删除文件需要权限的解决办法",
+  "url": "https://www.whyc.fun/2021/Q1/installation-configuration-solution-for-windows-delete-file-needs-permission/",
+  "image": "https://www.whyc.fun/img/butterfly-icon.png",
+  "datePublished": "2021-03-06T18:39:45.000Z",
+  "dateModified": "2026-01-18T08:18:02.768Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "TDppy",
+      "url": "https://www.whyc.fun"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://www.whyc.fun/2021/Q1/installation-configuration-solution-for-windows-delete-file-needs-permission/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4-b1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【安装配置】windows删除文件需要权限的解决办法',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(https://oss.012700.xyz/butterfly/2024/10/index.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">130</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://oss.012700.xyz/butterfly/2024/10/index.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">潘业成的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">【安装配置】windows删除文件需要权限的解决办法</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">【安装配置】windows删除文件需要权限的解决办法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-03-06T18:39:45.000Z" title="发表于 2021-03-06 18:39:45">2021-03-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-01-18T08:18:02.768Z" title="更新于 2026-01-18 08:18:02">2026-01-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">环境配置</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>Win+X打开Windows Powershell(管理员)，<br>如果你要删除的东西不在C盘需要先切换盘符，如输入<code>d:</code>切换到d盘。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> 你要进入的目录名</span><br></pre></td></tr></table></figure>
+<p>然后<code>del 文件名</code>  就ok了，如果要删除整个目录和目录下的所有东西，</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">del -r 目录名</span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://www.whyc.fun">TDppy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://www.whyc.fun/2021/Q1/installation-configuration-solution-for-windows-delete-file-needs-permission/">https://www.whyc.fun/2021/Q1/installation-configuration-solution-for-windows-delete-file-needs-permission/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://www.whyc.fun" target="_blank">潘业成的博客</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2021/Q1/installation-configuration-pom-xml-red-after-configuring-maven-local-repository-in-idea/" title="【安装配置】IDEA中配置Maven本地仓库后pom.xml飘红"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">【安装配置】IDEA中配置Maven本地仓库后pom.xml飘红</div></div><div class="info-2"><div class="info-item-1">   在IDEA中配置Maven后(如图)，pom.xml一片飘红，显然是依赖没了。此时IDEA右下角冒出小窗口报错：Unable to import maven project: See logs for details叫我们看日志，那我们就看一下日志。 </div></div></div></a><a class="pagination-related" href="/2021/Q1/installation-configuration-tomcat-configure-ssl-certificate-steps-including-solution-for-element-type-connector-must-be-followed-by-attribute/" title="【安装配置】Tomcat配置SSL证书步骤(含Element type “Connector“ must be followed by either attribute...的处理方案)"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">【安装配置】Tomcat配置SSL证书步骤(含Element type “Connector“ must be followed by either attribute...的处理方案)</div></div><div class="info-2"><div class="info-item-1"> 看完还有什么疑问，可以联系博主QQ2287015934，加的时候直接备注你遇到了什么情况。  想要网站以https:&#x2F;&#x2F;访问，需要将购买的SSL证书配置到Tomcat服务器中。参考了几篇文章，花了几小时完成了。 先列出参考文章，然后再给出步骤和我的心得：1.Tomcat配置SSL证书2.Element type “Connector” must be followed by either attribute specifications为了解决这个异常参考了以下两篇文章：http://blog.sina.com.cn/s/blog_5d2054d90102vt7y.htmlhttps://blog.csdn.net/u014000377/article/details/50845920 步骤： 1. 先购买并下载证书，总结在这篇文章↓。 【安装配置】阿里云白嫖免费SSL证书步骤 2. 使用java jdk将PFX格式证书转换为JKS格式证书下载的证书文件，解压后是这个样子：只有两个文件的，一个是pfx格式的证书，一个是密码文本。   在解压后的路径中输入cm...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">TDppy</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">130</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/TDppy"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/TDppy" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2287015934@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">如何呢，又能怎。</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-riscv-plic/" title="【操作系统】RISC-V PLIC总结">【操作系统】RISC-V PLIC总结</a><time datetime="2026-01-18T15:25:18.000Z" title="发表于 2026-01-18 15:25:18">2026-01-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/hello-world/" title="欢迎来到潘业成的博客">欢迎来到潘业成的博客</a><time datetime="2026-01-12T00:00:00.000Z" title="发表于 2026-01-12 00:00:00">2026-01-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-what-happens-after-pressing-enter-in-xv6-operating-system/" title="【操作系统】xv6操作系统中按下键盘回车后发生的事情">【操作系统】xv6操作系统中按下键盘回车后发生的事情</a><time datetime="2026-01-10T11:58:18.000Z" title="发表于 2026-01-10 11:58:18">2026-01-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-hand-write-xv6-operating-system-types-h-param-h-memlayout-h-riscv-h-defs-h-header-file-analysis/" title="【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析">【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析</a><time datetime="2026-01-06T23:02:58.000Z" title="发表于 2026-01-06 23:02:58">2026-01-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/Q4/operating-system-hand-write-xv6-operating-system-entry-s-and-start-c-analysis/" title="【操作系统】手撸xv6操作系统——entry.S和start.c解析">【操作系统】手撸xv6操作系统——entry.S和start.c解析</a><time datetime="2025-12-30T15:57:42.000Z" title="发表于 2025-12-30 15:57:42">2025-12-30</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By TDppy</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4-b1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4-b1"></script><script src="/js/main.js?v=5.5.4-b1"></script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

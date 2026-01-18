@@ -1,0 +1,591 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【安装配置】redis笔记（含安装包） | 潘业成的博客</title><meta name="author" content="TDppy"><meta name="copyright" content="TDppy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="redis安装包，解压即可使用。链接：https:&#x2F;&#x2F;pan.baidu.com&#x2F;s&#x2F;1vGH9xhk_IL-eRgFNbXVtSQ  提取码：7049  今日内容1. redis 	1. 概念 	2. 下载安装 	3. 命令操作 		1. 数据结构 	4. 持久化操作 	5. 使用Java客户端操作redis  Redis1. 概念： redis是一款高性能的NOSQL系列的非关系型数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【安装配置】redis笔记（含安装包）">
+<meta property="og:url" content="https://www.whyc.fun/2020/Q3/installation-configuration-redis-notes-including-installation-package/index.html">
+<meta property="og:site_name" content="潘业成的博客">
+<meta property="og:description" content="redis安装包，解压即可使用。链接：https:&#x2F;&#x2F;pan.baidu.com&#x2F;s&#x2F;1vGH9xhk_IL-eRgFNbXVtSQ  提取码：7049  今日内容1. redis 	1. 概念 	2. 下载安装 	3. 命令操作 		1. 数据结构 	4. 持久化操作 	5. 使用Java客户端操作redis  Redis1. 概念： redis是一款高性能的NOSQL系列的非关系型数据库">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.whyc.fun/img/butterfly-icon.png">
+<meta property="article:published_time" content="2020-07-11T21:09:42.000Z">
+<meta property="article:modified_time" content="2026-01-18T08:18:02.731Z">
+<meta property="article:author" content="TDppy">
+<meta property="article:tag" content="Redis">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.whyc.fun/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "【安装配置】redis笔记（含安装包）",
+  "url": "https://www.whyc.fun/2020/Q3/installation-configuration-redis-notes-including-installation-package/",
+  "image": "https://www.whyc.fun/img/butterfly-icon.png",
+  "datePublished": "2020-07-11T21:09:42.000Z",
+  "dateModified": "2026-01-18T08:18:02.731Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "TDppy",
+      "url": "https://www.whyc.fun"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://www.whyc.fun/2020/Q3/installation-configuration-redis-notes-including-installation-package/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4-b1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【安装配置】redis笔记（含安装包）',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(https://oss.012700.xyz/butterfly/2024/10/index.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">130</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://oss.012700.xyz/butterfly/2024/10/index.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">潘业成的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">【安装配置】redis笔记（含安装包）</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">【安装配置】redis笔记（含安装包）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-07-11T21:09:42.000Z" title="发表于 2020-07-11 21:09:42">2020-07-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-01-18T08:18:02.731Z" title="更新于 2026-01-18 08:18:02">2026-01-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">环境配置</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><blockquote>
+<p>redis安装包，解压即可使用。<br>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1vGH9xhk_IL-eRgFNbXVtSQ">https://pan.baidu.com/s/1vGH9xhk_IL-eRgFNbXVtSQ</a>  提取码：7049</p>
+</blockquote>
+<h2 id="今日内容"><a href="#今日内容" class="headerlink" title="今日内容"></a>今日内容</h2><pre><code>1. redis
+	1. 概念
+	2. 下载安装
+	3. 命令操作
+		1. 数据结构
+	4. 持久化操作
+	5. 使用Java客户端操作redis
+</code></pre>
+<h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><pre><code>1. 概念： redis是一款高性能的NOSQL系列的非关系型数据库
+	1.1.什么是NOSQL
+		NoSQL(NoSQL = Not Only SQL)，意即“不仅仅是SQL”，是一项全新的数据库理念，泛指非关系型的数据库。
+		随着互联网web2.0网站的兴起，传统的关系数据库在应付web2.0网站，特别是超大规模和高并发的SNS类型的web2.0纯动态网站已经显得力不从心，暴露了很多难以克服的问题，而非关系型的数据库则由于其本身的特点得到了非常迅速的发展。NoSQL数据库的产生就是为了解决大规模数据集合多重数据种类带来的挑战，尤其是大数据应用难题。
+
+		1.1.1.	NOSQL和关系型数据库比较
+			优点：
+				1）成本：nosql数据库简单易部署，基本都是开源软件，不需要像使用oracle那样花费大量成本购买使用，相比关系型数据库价格便宜。
+				2）查询速度：nosql数据库将数据存储于缓存之中，关系型数据库将数据存储在硬盘中，自然查询速度远不及nosql数据库。
+				3）存储数据的格式：nosql的存储格式是key,value形式、文档形式、图片形式等等，所以可以存储基础类型以及对象或者是集合等各种格式，而数据库则只支持基础类型。
+				4）扩展性：关系型数据库有类似join这样的多表查询机制的限制导致扩展很艰难。
+
+			缺点：
+				1）维护的工具和资料有限，因为nosql是属于新的技术，不能和关系型数据库10几年的技术同日而语。
+				2）不提供对sql的支持，如果不支持sql这样的工业标准，将产生一定用户的学习和使用成本。
+				3）不提供关系型数据库对事务的处理。
+
+		1.1.2.	非关系型数据库的优势：
+			1）性能NOSQL是基于键值对的，可以想象成表中的主键和值的对应关系，而且不需要经过SQL层的解析，所以性能非常高。
+			2）可扩展性同样也是因为基于键值对，数据之间没有耦合性，所以非常容易水平扩展。
+
+		1.1.3.	关系型数据库的优势：
+			1）复杂查询可以用SQL语句方便的在一个表以及多个表之间做非常复杂的数据查询。
+			2）事务支持使得对于安全性能很高的数据访问要求得以实现。对于这两类数据库，对方的优势就是自己的弱势，反之亦然。
+
+		1.1.4.	总结
+			关系型数据库与NoSQL数据库并非对立而是互补的关系，即通常情况下使用关系型数据库，在适合使用NoSQL的时候使用NoSQL数据库，
+			让NoSQL数据库对关系型数据库的不足进行弥补。
+			一般会将数据存储在关系型数据库中，在nosql数据库中备份存储关系型数据库的数据
+
+	1.2.主流的NOSQL产品
+		•	键值(Key-Value)存储数据库
+				相关产品： Tokyo Cabinet/Tyrant、Redis、Voldemort、Berkeley DB
+				典型应用： 内容缓存，主要用于处理大量数据的高访问负载。 
+				数据模型： 一系列键值对
+				优势： 快速查询
+				劣势： 存储的数据缺少结构化
+		•	列存储数据库
+				相关产品：Cassandra, HBase, Riak
+				典型应用：分布式的文件系统
+				数据模型：以列簇式存储，将同一列数据存在一起
+				优势：查找速度快，可扩展性强，更容易进行分布式扩展
+				劣势：功能相对局限
+		•	文档型数据库
+				相关产品：CouchDB、MongoDB
+				典型应用：Web应用（与Key-Value类似，Value是结构化的）
+				数据模型： 一系列键值对
+				优势：数据结构要求不严格
+				劣势： 查询性能不高，而且缺乏统一的查询语法
+		•	图形(Graph)数据库
+				相关数据库：Neo4J、InfoGrid、Infinite Graph
+				典型应用：社交网络
+				数据模型：图结构
+				优势：利用图结构相关算法。
+				劣势：需要对整个图做计算才能得出结果，不容易做分布式的集群方案。
+	1.3 什么是Redis
+		Redis是用C语言开发的一个开源的高性能键值对（key-value）数据库，官方提供测试数据，50个并发执行100000个请求,读的速度是110000次/s,写的速度是81000次/s ，且Redis通过提供多种键值数据类型来适应不同场景下的存储需求，目前为止Redis支持的键值数据类型如下：
+			1) 字符串类型 string
+			2) 哈希类型 hash
+			3) 列表类型 list
+			4) 集合类型 set
+			5) 有序集合类型 sortedset
+		1.3.1 redis的应用场景
+			•	缓存（数据查询、短连接、新闻内容、商品内容等等）
+			•	聊天室的在线好友列表
+			•	任务队列。（秒杀、抢购、12306等等）
+			•	应用排行榜
+			•	网站访问统计
+			•	数据过期处理（可以精确到毫秒
+			•	分布式集群架构中的session分离
+
+
+2. 下载安装
+	1. 官网：https://redis.io
+	2. 中文网：http://www.redis.net.cn/
+	3. 解压直接可以使用：
+		* redis.windows.conf：配置文件
+		* redis-cli.exe：redis的客户端
+		* redis-server.exe：redis服务器端
+	
+3. 命令操作
+	1. redis的数据结构：
+		* redis存储的是：key,value格式的数据，其中key都是字符串，value有5种不同的数据结构
+			* value的数据结构：
+				1) 字符串类型 string
+				2) 哈希类型 hash ： map格式  
+				3) 列表类型 list ： linkedlist格式。支持重复元素
+				4) 集合类型 set  ： 不允许重复元素
+				5) 有序集合类型 sortedset：不允许重复元素，且元素有顺序
+	
+	2. 字符串类型 string
+		1. 存储： set key value
+			127.0.0.1:6379&gt; set username zhangsan
+			OK
+		2. 获取： get key
+			127.0.0.1:6379&gt; get username
+			&quot;zhangsan&quot;
+		3. 删除： del key
+			127.0.0.1:6379&gt; del age
+			(integer) 1
+	3. 哈希类型 hash
+		1. 存储： hset key field value
+			127.0.0.1:6379&gt; hset myhash username lisi
+			(integer) 1
+			127.0.0.1:6379&gt; hset myhash password 123
+			(integer) 1
+		2. 获取： 
+			* hget key field: 获取指定的field对应的值
+				127.0.0.1:6379&gt; hget myhash username
+				&quot;lisi&quot;
+			* hgetall key：获取所有的field和value
+				127.0.0.1:6379&gt; hgetall myhash
+				1) &quot;username&quot;
+				2) &quot;lisi&quot;
+				3) &quot;password&quot;
+				4) &quot;123&quot;
+				
+		3. 删除： hdel key field
+			127.0.0.1:6379&gt; hdel myhash username
+			(integer) 1
+	
+	4. 列表类型 list:可以添加一个元素到列表的头部（左边）或者尾部（右边）
+		1. 添加：
+			1. lpush key value: 将元素加入列表左表
+				
+			2. rpush key value：将元素加入列表右边
+				
+				127.0.0.1:6379&gt; lpush myList a
+				(integer) 1
+				127.0.0.1:6379&gt; lpush myList b
+				(integer) 2
+				127.0.0.1:6379&gt; rpush myList c
+				(integer) 3
+		2. 获取：
+			* lrange key start end ：范围获取
+				127.0.0.1:6379&gt; lrange myList 0 -1
+				1) &quot;b&quot;
+				2) &quot;a&quot;
+				3) &quot;c&quot;
+		3. 删除：
+			* lpop key： 删除列表最左边的元素，并将元素返回
+			* rpop key： 删除列表最右边的元素，并将元素返回
+
+
+	5. 集合类型 set ： 不允许重复元素
+		1. 存储：sadd key value
+			127.0.0.1:6379&gt; sadd myset a
+			(integer) 1
+			127.0.0.1:6379&gt; sadd myset a
+			(integer) 0
+		2. 获取：smembers key:获取set集合中所有元素
+			127.0.0.1:6379&gt; smembers myset
+			1) &quot;a&quot;
+		3. 删除：srem key value:删除set集合中的某个元素	
+			127.0.0.1:6379&gt; srem myset a
+			(integer) 1
+	6. 有序集合类型 sortedset：不允许重复元素，且元素有顺序.每个元素都会关联一个double类型的分数。redis正是通过分数来为集合中的成员进行从小到大的排序。
+
+		1. 存储：zadd key score value
+			127.0.0.1:6379&gt; zadd mysort 60 zhangsan
+			(integer) 1
+			127.0.0.1:6379&gt; zadd mysort 50 lisi
+			(integer) 1
+			127.0.0.1:6379&gt; zadd mysort 80 wangwu
+			(integer) 1
+		2. 获取：zrange key start end [withscores]
+			127.0.0.1:6379&gt; zrange mysort 0 -1
+			1) &quot;lisi&quot;
+			2) &quot;zhangsan&quot;
+			3) &quot;wangwu&quot;
+
+			127.0.0.1:6379&gt; zrange mysort 0 -1 withscores
+			1) &quot;zhangsan&quot;
+			2) &quot;60&quot;
+			3) &quot;wangwu&quot;
+			4) &quot;80&quot;
+			5) &quot;lisi&quot;
+			6) &quot;500&quot;
+		3. 删除：zrem key value
+			127.0.0.1:6379&gt; zrem mysort lisi
+			(integer) 1
+
+	7. 通用命令
+		1. keys * : 查询所有的键
+		2. type key ： 获取键对应的value的类型
+		3. del key：删除指定的key value
+
+
+4. 持久化
+	1. redis是一个内存数据库，当redis服务器重启，获取电脑重启，数据会丢失，我们可以将redis内存中的数据持久化保存到硬盘的文件中。
+	2. redis持久化机制：
+		1. RDB：默认方式，不需要进行配置，默认就使用这种机制
+			* 在一定的间隔时间中，检测key的变化情况，然后持久化数据
+			1. 编辑redis.windwos.conf文件
+				#   after 900 sec (15 min) if at least 1 key changed
+				save 900 1
+				#   after 300 sec (5 min) if at least 10 keys changed
+				save 300 10
+				#   after 60 sec if at least 10000 keys changed
+				save 60 10000
+				
+			2. 重新启动redis服务器，并指定配置文件名称
+				D:\JavaWeb2018\day23_redis\资料\redis\windows-64\redis-2.8.9&gt;redis-server.exe redis.windows.conf	
+			
+		2. AOF：日志记录的方式，可以记录每一条命令的操作。可以每一次命令操作后，持久化数据
+			1. 编辑redis.windwos.conf文件
+				appendonly no（关闭aof） --&gt; appendonly yes （开启aof）
+				
+				# appendfsync always ： 每一次操作都进行持久化
+				appendfsync everysec ： 每隔一秒进行一次持久化
+				# appendfsync no	 ： 不进行持久化
+
+5. Java客户端 Jedis
+	* Jedis: 一款java操作redis数据库的工具.
+	* 使用步骤：
+		1. 下载jedis的jar包
+		2. 使用
+			//1. 获取连接
+    		Jedis jedis = new Jedis(&quot;localhost&quot;,6379);
+   			//2. 操作
+   			jedis.set(&quot;username&quot;,&quot;zhangsan&quot;);
+    		//3. 关闭连接
+    		jedis.close();
+
+	
+	* Jedis操作各种redis中的数据结构
+		1) 字符串类型 string
+			set
+			get
+			
+			 //1. 获取连接
+	        Jedis jedis = new Jedis();//如果使用空参构造，默认值 &quot;localhost&quot;,6379端口
+	        //2. 操作
+	        //存储
+	        jedis.set(&quot;username&quot;,&quot;zhangsan&quot;);
+	        //获取
+	        String username = jedis.get(&quot;username&quot;);
+	        System.out.println(username);
+	
+	        //可以使用setex()方法存储可以指定过期时间的 key value
+	        jedis.setex(&quot;activecode&quot;,20,&quot;hehe&quot;);//将activecode：hehe键值对存入redis，并且20秒后自动删除该键值对
+	
+	        //3. 关闭连接
+	        jedis.close();
+
+		2) 哈希类型 hash ： map格式  
+			hset
+			hget
+			hgetAll
+			//1. 获取连接
+	        Jedis jedis = new Jedis();//如果使用空参构造，默认值 &quot;localhost&quot;,6379端口
+	        //2. 操作
+	        // 存储hash
+	        jedis.hset(&quot;user&quot;,&quot;name&quot;,&quot;lisi&quot;);
+	        jedis.hset(&quot;user&quot;,&quot;age&quot;,&quot;23&quot;);
+	        jedis.hset(&quot;user&quot;,&quot;gender&quot;,&quot;female&quot;);
+	
+	        // 获取hash
+	        String name = jedis.hget(&quot;user&quot;, &quot;name&quot;);
+	        System.out.println(name);
+	
+	
+	        // 获取hash的所有map中的数据
+	        Map&lt;String, String&gt; user = jedis.hgetAll(&quot;user&quot;);
+	
+	        // keyset
+	        Set&lt;String&gt; keySet = user.keySet();
+	        for (String key : keySet) &#123;
+	            //获取value
+	            String value = user.get(key);
+	            System.out.println(key + &quot;:&quot; + value);
+	        &#125;
+	
+	        //3. 关闭连接
+	        jedis.close();
+
+
+		3) 列表类型 list ： linkedlist格式。支持重复元素
+			lpush / rpush
+			lpop / rpop
+			lrange start end : 范围获取
+			
+			 //1. 获取连接
+	        Jedis jedis = new Jedis();//如果使用空参构造，默认值 &quot;localhost&quot;,6379端口
+	        //2. 操作
+	        // list 存储
+	        jedis.lpush(&quot;mylist&quot;,&quot;a&quot;,&quot;b&quot;,&quot;c&quot;);//从左边存
+	        jedis.rpush(&quot;mylist&quot;,&quot;a&quot;,&quot;b&quot;,&quot;c&quot;);//从右边存
+	
+	        // list 范围获取
+	        List&lt;String&gt; mylist = jedis.lrange(&quot;mylist&quot;, 0, -1);
+	        System.out.println(mylist);
+	        
+	        // list 弹出
+	        String element1 = jedis.lpop(&quot;mylist&quot;);//c
+	        System.out.println(element1);
+	
+	        String element2 = jedis.rpop(&quot;mylist&quot;);//c
+	        System.out.println(element2);
+	
+	        // list 范围获取
+	        List&lt;String&gt; mylist2 = jedis.lrange(&quot;mylist&quot;, 0, -1);
+	        System.out.println(mylist2);
+	
+	        //3. 关闭连接
+	        jedis.close();
+
+
+		4) 集合类型 set  ： 不允许重复元素
+			sadd
+			smembers:获取所有元素
+
+			//1. 获取连接
+	        Jedis jedis = new Jedis();//如果使用空参构造，默认值 &quot;localhost&quot;,6379端口
+	        //2. 操作
+	
+	
+	        // set 存储
+	        jedis.sadd(&quot;myset&quot;,&quot;java&quot;,&quot;php&quot;,&quot;c++&quot;);
+	
+	        // set 获取
+	        Set&lt;String&gt; myset = jedis.smembers(&quot;myset&quot;);
+	        System.out.println(myset);
+	
+	        //3. 关闭连接
+	        jedis.close();
+		5) 有序集合类型 sortedset：不允许重复元素，且元素有顺序
+			zadd
+			zrange
+
+			//1. 获取连接
+	        Jedis jedis = new Jedis();//如果使用空参构造，默认值 &quot;localhost&quot;,6379端口
+	        //2. 操作
+	        // sortedset 存储
+	        jedis.zadd(&quot;mysortedset&quot;,3,&quot;亚瑟&quot;);
+	        jedis.zadd(&quot;mysortedset&quot;,30,&quot;后裔&quot;);
+	        jedis.zadd(&quot;mysortedset&quot;,55,&quot;孙悟空&quot;);
+	
+	        // sortedset 获取
+	        Set&lt;String&gt; mysortedset = jedis.zrange(&quot;mysortedset&quot;, 0, -1);
+	
+	        System.out.println(mysortedset);
+	
+	
+	        //3. 关闭连接
+	        jedis.close();
+
+
+	
+	* jedis连接池： JedisPool
+		* 使用：
+			1. 创建JedisPool连接池对象
+			2. 调用方法 getResource()方法获取Jedis连接
+				//0.创建一个配置对象
+		        JedisPoolConfig config = new JedisPoolConfig();
+		        config.setMaxTotal(50);
+		        config.setMaxIdle(10);
+		
+		        //1.创建Jedis连接池对象
+		        JedisPool jedisPool = new JedisPool(config,&quot;localhost&quot;,6379);
+		
+		        //2.获取连接
+		        Jedis jedis = jedisPool.getResource();
+		        //3. 使用
+		        jedis.set(&quot;hehe&quot;,&quot;heihei&quot;);
+		
+		
+		        //4. 关闭 归还到连接池中
+		        jedis.close();
+		
+		* 连接池工具类
+			public class JedisPoolUtils &#123;
+
+			    private static JedisPool jedisPool;
+			
+			    static&#123;
+			        //读取配置文件
+			        InputStream is = JedisPoolUtils.class.getClassLoader().getResourceAsStream(&quot;jedis.properties&quot;);
+			        //创建Properties对象
+			        Properties pro = new Properties();
+			        //关联文件
+			        try &#123;
+			            pro.load(is);
+			        &#125; catch (IOException e) &#123;
+			            e.printStackTrace();
+			        &#125;
+			        //获取数据，设置到JedisPoolConfig中
+			        JedisPoolConfig config = new JedisPoolConfig();
+			        config.setMaxTotal(Integer.parseInt(pro.getProperty(&quot;maxTotal&quot;)));
+			        config.setMaxIdle(Integer.parseInt(pro.getProperty(&quot;maxIdle&quot;)));
+			
+			        //初始化JedisPool
+			        jedisPool = new JedisPool(config,pro.getProperty(&quot;host&quot;),Integer.parseInt(pro.getProperty(&quot;port&quot;)));
+			
+			
+			
+			    &#125;
+			
+			
+			    /**
+			     * 获取连接方法
+			     */
+			    public static Jedis getJedis()&#123;
+			        return jedisPool.getResource();
+			    &#125;
+			&#125;
+</code></pre>
+<h2 id="案例："><a href="#案例：" class="headerlink" title="案例："></a>案例：</h2><pre><code>案例需求：
+	1. 提供index.html页面，页面中有一个省份 下拉列表
+	2. 当 页面加载完成后 发送ajax请求，加载所有省份
+
+
+* 注意：使用redis缓存一些不经常发生变化的数据。
+	* 数据库的数据一旦发生改变，则需要更新缓存。
+		* 数据库的表执行 增删改的相关操作，需要将redis缓存数据情况，再次存入
+		* 在service对应的增删改方法中，将redis数据删除。
+	
+</code></pre>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://www.whyc.fun">TDppy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://www.whyc.fun/2020/Q3/installation-configuration-redis-notes-including-installation-package/">https://www.whyc.fun/2020/Q3/installation-configuration-redis-notes-including-installation-package/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://www.whyc.fun" target="_blank">潘业成的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Redis/">Redis</a></div><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2020/Q3/casual-notes-embedded-comprehensive-exam-key-points/" title="【随手笔记】嵌入式综合考试重点"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">【随手笔记】嵌入式综合考试重点</div></div><div class="info-2"><div class="info-item-1">1、寄存器的寻址方式一般来有七种基本寻址方式：   立即寻址方式、直接寻址方式、寄存器间接寻址方式、寄存器相对寻址方式、基址加变址寻址方式、相对基址加变址寻址方式等。   后5种的寻址方式是确定内存单元有效地址的5种不同的计算算法，实现对数组元素的访问！   1）立即寻址方式：MOV AH, 80H   2）寄存器寻址方式：MOV  AX, BX   3)直接寻址方式：MOV BX,[1234H]   4)寄存器间接寻址方式：MOV BX,[DI]   5）寄存器相对寻址方式：MOV BX, [SI+100H]   6)基址加变址寻址方式:MOV BX, [BX+SI]   7）相对基址加变址寻址方式： MOV AX, [BX+SI+200H]举个栗子：有一条指令	“LDMIA R0!, {R1,R2,R3,R4}  多寄存器寻址 2、CISC复杂指令集  RISC 精简指令集   日常生活中Intel,AMD的x86 CPU就是采用CISC复杂指令集   日常生活中华为手机，鲲鹏处理器，CPU就采用RISC精简指令集   RISC只有LOAD&#x2F;STORE操作内存 3、...</div></div></div></a><a class="pagination-related" href="/2020/Q3/ccna-day4-vlan-and-trunk-application-scenarios/" title="【CCNA第四天】vlan和trunk的应用场景"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">【CCNA第四天】vlan和trunk的应用场景</div></div><div class="info-2"><div class="info-item-1">为什么要用vlan如果让公司的技术部和销售部能够自由通信，可能会出现几个核心成员一串通就开了一家新的公司。从这个简单的例子出发我们就知道，部门之间的网络应当相互隔离，划分为几个局域网——这就是为什么要用vlan  如图所示，上面的两台PC和一台服务器属于技术部的，下面的两台PC和一台服务器属于销售部的，我们想要让各部门内可以相互通信，部门与部门之间禁止通信。相关命令： 123456789101112vlan  10  ///创建vlan 10（以太网范围2-1001） name  jishubu   ///命名vlanvlan  20 name  xiaoshoubu  Int  ran  f0/1  -  2  ///同时进入f0/1-f0/2接口 sw  mode  access     ///接口设置为接入模式（用户） sw  access  vlan  10  ///接入到vlan10这个局域网int  ran  f0/3  -  4 sw  mode  access  sw  access  vlan  20 这样的话是否能实现呢？如果技术部的两台PC和服务器都连同一个...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2020/Q3/installation-configuration-heima-redis-basics/" title="【安装配置】黑马 redis基础"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-04</div><div class="info-item-2">【安装配置】黑马 redis基础</div></div><div class="info-2"><div class="info-item-1"> 笔记内容是黑马redis的笔记，非原创，为方便有需要的人下载redis，这里给出百度网盘链接：https://pan.baidu.com/s/1vGH9xhk_IL-eRgFNbXVtSQ  提取码：7049  今日内容1. redis 	1. 概念 	2. 下载安装 	3. 命令操作 		1. 数据结构 	4. 持久化操作 	5. 使用Java客户端操作redis  Redis1. 概念： redis是一款高性能的NOSQL系列的非关系型数据库   	1.1.什么是NOSQL 		NoSQL(NoSQL = Not Only SQL)，意即“不仅仅是SQL”，是一项全新的数据库理念，泛指非关系型的数据库。 		随着互联网web2.0网站的兴起，传统的关系数据库在应付web2.0网站，特别是超大规模和高并发的SNS类型的web2.0纯动态网站已经显得力不从心，暴露了很多难以克服的问题，而非关系型的数据库则由于其本身的特点得到了非常迅速的发展。NoSQL数据库的产生就是为了解决大规模数据集合多重数据种类带来的挑战，尤其是大数据应用难题。  		1.1.1.	NOSQL和关系型数据...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">TDppy</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">130</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/TDppy"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/TDppy" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2287015934@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">如何呢，又能怎。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8A%E6%97%A5%E5%86%85%E5%AE%B9"><span class="toc-number">1.</span> <span class="toc-text">今日内容</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Redis"><span class="toc-number"></span> <span class="toc-text">Redis</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">案例：</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-riscv-plic/" title="【操作系统】RISC-V PLIC总结">【操作系统】RISC-V PLIC总结</a><time datetime="2026-01-18T15:25:18.000Z" title="发表于 2026-01-18 15:25:18">2026-01-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/hello-world/" title="欢迎来到潘业成的博客">欢迎来到潘业成的博客</a><time datetime="2026-01-12T00:00:00.000Z" title="发表于 2026-01-12 00:00:00">2026-01-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-what-happens-after-pressing-enter-in-xv6-operating-system/" title="【操作系统】xv6操作系统中按下键盘回车后发生的事情">【操作系统】xv6操作系统中按下键盘回车后发生的事情</a><time datetime="2026-01-10T11:58:18.000Z" title="发表于 2026-01-10 11:58:18">2026-01-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-hand-write-xv6-operating-system-types-h-param-h-memlayout-h-riscv-h-defs-h-header-file-analysis/" title="【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析">【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析</a><time datetime="2026-01-06T23:02:58.000Z" title="发表于 2026-01-06 23:02:58">2026-01-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/Q4/operating-system-hand-write-xv6-operating-system-entry-s-and-start-c-analysis/" title="【操作系统】手撸xv6操作系统——entry.S和start.c解析">【操作系统】手撸xv6操作系统——entry.S和start.c解析</a><time datetime="2025-12-30T15:57:42.000Z" title="发表于 2025-12-30 15:57:42">2025-12-30</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By TDppy</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4-b1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4-b1"></script><script src="/js/main.js?v=5.5.4-b1"></script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

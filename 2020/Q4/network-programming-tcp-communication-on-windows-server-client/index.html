@@ -1,0 +1,167 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【网络编程】windows下的TCP通信（server_client） | 潘业成的博客</title><meta name="author" content="TDppy"><meta name="copyright" content="TDppy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="该程序用C++和socket相关api实现了客户端和服务端的聊天，我使用devcpp成功编译运行（需要在编译选项中添加-lwsock32）。 server.cpp 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748#include &lt;iostream&gt;&#x2F;&#x2F;#inc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【网络编程】windows下的TCP通信（server_client）">
+<meta property="og:url" content="https://www.whyc.fun/2020/Q4/network-programming-tcp-communication-on-windows-server-client/index.html">
+<meta property="og:site_name" content="潘业成的博客">
+<meta property="og:description" content="该程序用C++和socket相关api实现了客户端和服务端的聊天，我使用devcpp成功编译运行（需要在编译选项中添加-lwsock32）。 server.cpp 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748#include &lt;iostream&gt;&#x2F;&#x2F;#inc">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.whyc.fun/img/butterfly-icon.png">
+<meta property="article:published_time" content="2020-12-03T04:26:58.000Z">
+<meta property="article:modified_time" content="2026-01-18T08:18:02.762Z">
+<meta property="article:author" content="TDppy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.whyc.fun/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "【网络编程】windows下的TCP通信（server_client）",
+  "url": "https://www.whyc.fun/2020/Q4/network-programming-tcp-communication-on-windows-server-client/",
+  "image": "https://www.whyc.fun/img/butterfly-icon.png",
+  "datePublished": "2020-12-03T04:26:58.000Z",
+  "dateModified": "2026-01-18T08:18:02.762Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "TDppy",
+      "url": "https://www.whyc.fun"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://www.whyc.fun/2020/Q4/network-programming-tcp-communication-on-windows-server-client/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4-b1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【网络编程】windows下的TCP通信（server_client）',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(https://oss.012700.xyz/butterfly/2024/10/index.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">130</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://oss.012700.xyz/butterfly/2024/10/index.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">潘业成的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">【网络编程】windows下的TCP通信（server_client）</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">【网络编程】windows下的TCP通信（server_client）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-12-03T04:26:58.000Z" title="发表于 2020-12-03 04:26:58">2020-12-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-01-18T08:18:02.762Z" title="更新于 2026-01-18 08:18:02">2026-01-18</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>该程序用C++和socket相关api实现了客户端和服务端的聊天，我使用devcpp成功编译运行（需要在编译选项中添加-lwsock32）。</p>
+<p><strong>server.cpp</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="comment">//#include &quot;stdafx.h&quot;</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;winsock2.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> comment(lib,<span class="string">&quot;ws2_32.lib&quot;</span>)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	WSADATA wsaData;</span><br><span class="line">	<span class="keyword">if</span>(<span class="built_in">WSAStartup</span>(<span class="built_in">MAKEWORD</span>(<span class="number">2</span>,<span class="number">2</span>),&amp;wsaData))&#123;</span><br><span class="line">		cout&lt;&lt;<span class="string">&quot;WinSock不能被初始化&quot;</span>;</span><br><span class="line">		<span class="built_in">WSACleanup</span>();</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	SOCKET sockSer,sockConn;</span><br><span class="line">	sockSer=<span class="built_in">socket</span>(AF_INET,SOCK_STREAM,<span class="number">0</span>);</span><br><span class="line">	SOCKADDR_IN addrSer,addrCli;</span><br><span class="line">	addrSer.sin_family=AF_INET;</span><br><span class="line">	addrSer.sin_port=<span class="built_in">htons</span>(<span class="number">5566</span>);</span><br><span class="line">	addrSer.sin_addr.S_un.S_addr=<span class="built_in">inet_addr</span>(<span class="string">&quot;127.0.0.1&quot;</span>);</span><br><span class="line">	<span class="built_in">bind</span>(sockSer,(SOCKADDR *)&amp;addrSer,<span class="built_in">sizeof</span>(SOCKADDR));</span><br><span class="line">	<span class="built_in">listen</span>(sockSer,<span class="number">5</span>);</span><br><span class="line">	<span class="type">int</span> len=<span class="built_in">sizeof</span>(SOCKADDR);</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;服务器等待客户端的连接……&quot;</span>&lt;&lt;endl;</span><br><span class="line">	sockConn=<span class="built_in">accept</span>(sockSer,(SOCKADDR *)&amp;addrCli,&amp;len);</span><br><span class="line">	<span class="keyword">if</span>(sockConn==INVALID_SOCKET)&#123;</span><br><span class="line">		cout&lt;&lt;<span class="string">&quot;服务器接受客户端连接请求失败!&quot;</span>&lt;&lt;endl;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span>&#123;</span><br><span class="line">		cout&lt;&lt;<span class="string">&quot;服务器接受客户端连接请求成功！&quot;</span>&lt;&lt;endl; </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">char</span> sendbuf[<span class="number">256</span>],recvbuf[<span class="number">256</span>];</span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">		<span class="keyword">if</span>(<span class="built_in">recv</span>(sockConn,recvbuf,<span class="number">256</span>,<span class="number">0</span>)&gt;<span class="number">0</span>)&#123;</span><br><span class="line">			cout&lt;&lt;<span class="string">&quot;客户端说:&gt;&quot;</span>&lt;&lt;recvbuf&lt;&lt;endl;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			cout&lt;&lt;<span class="string">&quot;客户端已断开连接&quot;</span>&lt;&lt;endl;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		cout&lt;&lt;<span class="string">&quot;服务器说:&gt;&quot;</span>;</span><br><span class="line">		cin&gt;&gt;sendbuf;</span><br><span class="line">		<span class="keyword">if</span>(<span class="built_in">strcmp</span>(sendbuf,<span class="string">&quot;bye&quot;</span>)==<span class="number">0</span>)	<span class="keyword">break</span>;</span><br><span class="line">		<span class="built_in">send</span>(sockConn,sendbuf,<span class="built_in">strlen</span>(sendbuf)<span class="number">+1</span>,<span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">closesocket</span>(sockSer);</span><br><span class="line">	<span class="built_in">WSACleanup</span>();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>client.cpp</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="comment">//#include &quot;stdafx.h&quot;</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;winsock2.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> comment(lib,<span class="string">&quot;ws2_32.lib&quot;</span>)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	WSADATA wsaData;</span><br><span class="line">	<span class="keyword">if</span>(<span class="built_in">WSAStartup</span>(<span class="built_in">MAKEWORD</span>(<span class="number">2</span>,<span class="number">2</span>),&amp;wsaData))&#123;</span><br><span class="line">		cout&lt;&lt;<span class="string">&quot;WinSock不能被初始化&quot;</span>;</span><br><span class="line">		<span class="built_in">WSACleanup</span>();</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	SOCKET sockCli;</span><br><span class="line">	sockCli=<span class="built_in">socket</span>(AF_INET,SOCK_STREAM,<span class="number">0</span>);</span><br><span class="line">	SOCKADDR_IN addrSer;</span><br><span class="line">	addrSer.sin_family=AF_INET;</span><br><span class="line">	addrSer.sin_port=<span class="built_in">htons</span>(<span class="number">5566</span>);</span><br><span class="line">	addrSer.sin_addr.S_un.S_addr=<span class="built_in">inet_addr</span>(<span class="string">&quot;127.0.0.1&quot;</span>);</span><br><span class="line">	<span class="type">int</span> res=<span class="built_in">connect</span>(sockCli,(SOCKADDR *)&amp;addrSer,<span class="built_in">sizeof</span>(SOCKADDR));</span><br><span class="line">	<span class="keyword">if</span>(res)&#123;</span><br><span class="line">		cout&lt;&lt;<span class="string">&quot;客户端连接服务器失败&quot;</span>&lt;&lt;endl;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		cout&lt;&lt;<span class="string">&quot;客户端连接服务器成功&quot;</span>&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">char</span> sendbuf[<span class="number">256</span>],recvbuf[<span class="number">256</span>];</span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">		cout&lt;&lt;<span class="string">&quot;客户端说:&gt;&quot;</span>;</span><br><span class="line">		cin&gt;&gt;sendbuf;</span><br><span class="line">		<span class="keyword">if</span>(<span class="built_in">strcmp</span>(sendbuf,<span class="string">&quot;bye&quot;</span>)==<span class="number">0</span>)	<span class="keyword">break</span>;</span><br><span class="line">		<span class="built_in">send</span>(sockCli,sendbuf,<span class="built_in">strlen</span>(sendbuf)<span class="number">+1</span>,<span class="number">0</span>);</span><br><span class="line">		<span class="keyword">if</span>(<span class="built_in">recv</span>(sockCli,recvbuf,<span class="number">256</span>,<span class="number">0</span>)&gt;<span class="number">0</span>)&#123;</span><br><span class="line">			cout&lt;&lt;<span class="string">&quot;服务器说:&gt;&quot;</span>&lt;&lt;recvbuf&lt;&lt;endl;</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			cout&lt;&lt;<span class="string">&quot;服务器已关闭连接&quot;</span>&lt;&lt;endl;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">closesocket</span>(sockCli);</span><br><span class="line">	<span class="built_in">WSACleanup</span>();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://www.whyc.fun">TDppy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://www.whyc.fun/2020/Q4/network-programming-tcp-communication-on-windows-server-client/">https://www.whyc.fun/2020/Q4/network-programming-tcp-communication-on-windows-server-client/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://www.whyc.fun" target="_blank">潘业成的博客</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2021/Q1/linux-c-multi-process-alternating-write-file/" title="【Linux下C】Linux下多进程轮流写文件"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">【Linux下C】Linux下多进程轮流写文件</div></div><div class="info-2"><div class="info-item-1"> 由于时间紧张和学识有限，代码定有不足之处(后面会抽时间优化)大佬勿笑~😀如果需要帮助或有任何建议，加我qq：2287015934  需求程序中包括两个进程，P1和P2。它们分别向一个文件，轮流写入字符串。例如：P1写入字符串“XXXXXX”，P2写入字符串“YYYYYY”。关键词功能是轮流写入，P1写完后必须P2写，P2写完后必须P1写。 实现思路我们利用fork函数可以创建一个子进程，假设我们先让子进程写文件，此时父进程不得写文件，怎么实现呢？linux中的wait(函数)可以实现父进程等待子进程的死亡再执行。根据这个思路可以写出伪代码： 12345678910while(true)&#123;       创建子进程;	if(子进程)&#123;	   写&quot;I am child.&quot;到文件	&#125;	if(父进程)&#123;	   wait()	   写文件	&#125;&#125;  循环开始时父进程陷入等待，子进程写完以后父进程才能写文件，然后下一次循环子进程再次写文件。 演示动图  源码1234567891011121314151617181...</div></div></div></a><a class="pagination-related" href="/2020/Q4/installation-configuration-wsl-installation-and-linux-helloworld-tutorial-just-hands/" title="【安装配置】WSL安装及linux下helloworld教程（有手就行）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">【安装配置】WSL安装及linux下helloworld教程（有手就行）</div></div><div class="info-2"><div class="info-item-1">先上微软商店下一个wsl  windwos subsystem linux（windows下的linux子系统），选择ubuntu，安装。有的电脑下载好后启动ubuntu可能出现这个报错 12345Installing, this may take a few minutes...WslRegisterDistribution failed with error: 0x8007019eThe Windows Subsystem for Linux optional component is not enabled. Please enable it and try again.See https://aka.ms/wslinstall for details.Press any key to continue.. 解决方案：使用Win键+x 打开Powershell(管理员) 粘贴这一段命令解决上面的报错，然后输入y回车，注意这里回车会自动重启 1Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Window...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">TDppy</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">130</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/TDppy"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/TDppy" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2287015934@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">如何呢，又能怎。</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-riscv-plic/" title="【操作系统】RISC-V PLIC总结">【操作系统】RISC-V PLIC总结</a><time datetime="2026-01-18T15:25:18.000Z" title="发表于 2026-01-18 15:25:18">2026-01-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/hello-world/" title="欢迎来到潘业成的博客">欢迎来到潘业成的博客</a><time datetime="2026-01-12T00:00:00.000Z" title="发表于 2026-01-12 00:00:00">2026-01-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-what-happens-after-pressing-enter-in-xv6-operating-system/" title="【操作系统】xv6操作系统中按下键盘回车后发生的事情">【操作系统】xv6操作系统中按下键盘回车后发生的事情</a><time datetime="2026-01-10T11:58:18.000Z" title="发表于 2026-01-10 11:58:18">2026-01-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-hand-write-xv6-operating-system-types-h-param-h-memlayout-h-riscv-h-defs-h-header-file-analysis/" title="【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析">【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析</a><time datetime="2026-01-06T23:02:58.000Z" title="发表于 2026-01-06 23:02:58">2026-01-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/Q4/operating-system-hand-write-xv6-operating-system-entry-s-and-start-c-analysis/" title="【操作系统】手撸xv6操作系统——entry.S和start.c解析">【操作系统】手撸xv6操作系统——entry.S和start.c解析</a><time datetime="2025-12-30T15:57:42.000Z" title="发表于 2025-12-30 15:57:42">2025-12-30</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By TDppy</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4-b1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4-b1"></script><script src="/js/main.js?v=5.5.4-b1"></script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -1,0 +1,290 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>潘业成的博客 - 欢迎来到我的个人博客，在这里我将分享我的技术经验、项目心得以及生活点滴。希望我的文章能为你带来帮助和启发！微信:fancymvc,QQ:2287015934</title><meta name="author" content="TDppy"><meta name="copyright" content="TDppy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="潘业成的博客">
+<meta property="og:url" content="https://www.whyc.fun/index.html">
+<meta property="og:site_name" content="潘业成的博客">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.whyc.fun/img/butterfly-icon.png">
+<meta property="article:author" content="TDppy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.whyc.fun/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "潘业成的博客",
+  "alternateName": [
+    "欢迎来到我的个人博客，在这里我将分享我的技术经验、项目心得以及生活点滴。希望我的文章能为你带来帮助和启发！微信:fancymvc,QQ:2287015934",
+    "www.whyc.fun"
+  ],
+  "url": "https://www.whyc.fun/"
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://www.whyc.fun/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4-b1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '潘业成的博客',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(https://oss.012700.xyz/butterfly/2024/10/index.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">130</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(https://oss.012700.xyz/butterfly/2024/10/index.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">潘业成的博客</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">潘业成的博客</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/TDppy" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2287015934@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/Q1/operating-system-riscv-plic/" title="【操作系统】RISC-V PLIC总结">【操作系统】RISC-V PLIC总结</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-18T15:25:18.000Z" title="发表于 2026-01-18 15:25:18">2026-01-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></span></div><div class="content">本文是对【操作系统】xv6操作系统中按下键盘回车后发生的事情一文的补充阅读。如果你对PLIC（Platform-Level Interrupt Controller，平台级中断控制器）感到困惑，不妨先阅读这篇文章，了解PLIC的基本概念和工作原理。 什么是PLIC？在现代计算机系统中，CPU需要与各种外部设备（如键盘、鼠标、硬盘、网络卡等）进行通信。这些设备往往需要主动向CPU报告某些事件，比如键盘被按下、数据传输完成等。为了实现这种主动通知，设备会发出中断信号。 然而，在一个复杂的系统中，可能有数十甚至数百个设备同时发出中断请求。如果所有中断信号都直接涌向CPU，会导致混乱。因此，需要一个专门的硬件来管理和协调这些中断请求。这个硬件就是PLIC（Platform-Level Interrupt Controller，平台级中断控制器）。 通俗地理解，PLIC就像公司的秘书，中断目标就像公司的老板，而外部中断请求就像要拜访老板的访客。由于访客众多，如果没有处理就让他们全挤在老板办公室，会非常嘈杂。于是，老板聘请了一个秘书，规定所有访客都要在秘书那里登记。秘书会根据访客的重要性排序...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/Q1/hello-world/" title="欢迎来到潘业成的博客">欢迎来到潘业成的博客</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-12T00:00:00.000Z" title="发表于 2026-01-12 00:00:00">2026-01-12</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%A8%8B%E5%BA%8F%E4%BA%BA%E7%94%9F/">程序人生</a></span></div><div class="content">欢迎来到我的博客！我是潘业成，一名热爱计算机软硬件技术的程序员，致力于既会做网站与应用，也懂芯片与板卡。如果你也对计算机系统原理和实践感兴趣，请关注我！ 关于我 高中时期我是江苏的一名普通文科生，那时江苏高考满分480分，18年高考我考了304分，在全省排名中下游，去了一个普通的三本，南京邮电大学通达学院。填报志愿时，我突然发现自己想学一点炫酷的东西，于是在一众金融、师范、管理专业中勉强找到了一个和信息挂点勾的专业————信息管理与信息系统。  大一上学期有一门C语言程序设计的课程，我发现用这个可以做点有趣的事情，比如写个让别人电脑关机的程序、或者控制键盘和鼠标让他不断给QQ好友轰炸信息。一学期结束，我惊奇的发现，我的绩点竟然是专业第4，而我只是按时上课，作业也常常是临时赶的或者抄的。大二开学，辅导员在群里发转专业的通知，其中规定，绩点前5%可以无条件转入我校的任意专业。我还记得那时我们寝室是8415还是8409来着，室友问我“你要转吗？”。  那时是2018年，周围朋友都说，南邮的王牌专业是通信工程，而我觉得计算机专业好像听起来更酷一些，我有点兴趣的编程知识似乎也是在计算机专业...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/Q1/operating-system-what-happens-after-pressing-enter-in-xv6-operating-system/" title="【操作系统】xv6操作系统中按下键盘回车后发生的事情">【操作系统】xv6操作系统中按下键盘回车后发生的事情</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-10T11:58:18.000Z" title="发表于 2026-01-10 11:58:18">2026-01-10</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></span></div><div class="content">xv6概述与学习价值xv6是麻省理工学院为MIT 6.S081操作系统课程设计的教学操作系统。总代码量约1万行，主要使用C语言编写，辅以少量汇编代码。它涵盖操作系统核心机制：进程调度、文件系统、中断处理、设备驱动等。 xv6基于Unix V6系统改进设计，”x”表示可扩展(eXtensible)。相比简单嵌入式OS如uC&#x2F;OS，xv6更接近现代操作系统架构。早期版本基于x86架构，2020年后推出RISC-V版本，本文分析该版本。 学习xv6的价值体现在多个方面：  深入理解系统实现：通过阅读和修改代码，掌握操作系统核心原理，包括：  I&#x2F;O机制：printf如何输出到屏幕 输入处理：键盘按键如何被捕获和处理 进程管理：操作系统如何调度和管理进程 软硬件接口：软件与硬件的交互方式   应聘技能提升：操作系统知识是嵌入式开发、固件开发、芯片运行时等岗位的核心要求，可以作为简历上的项目备战招聘。  系统设计思维培养：操作系统是典型的系统设计课程，我们需要了解其中的系统设计思想，为解决复杂问题提供思路。   本文通过分析按下键盘回车键后的完整执行流程，展示xv6的中...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/Q1/operating-system-hand-write-xv6-operating-system-types-h-param-h-memlayout-h-riscv-h-defs-h-header-file-analysis/" title="【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析">【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-06T23:02:58.000Z" title="发表于 2026-01-06 23:02:58">2026-01-06</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></span></div><div class="content">概要main.c中引入了types.h&#x2F;param.h&#x2F;memlayout.h&#x2F;riscv.h&#x2F;defs.h头文件，各文件主要功能如下： 123456789101112131415161718192021// 数据类型重命名:// uint/ushort/uchar/uint8/uint16/uint32/uint64/pde_t 的定义#include &quot;types.h&quot;// 参数定义:// params.h 通过一系列宏定义，统一指定了操作系统内核中进程、CPU、文件、设备、文件系统等核心模块的最大值，// 为内核各功能模块的运行提供统一的参数配置依据#include &quot;param.h&quot;// 内存布局:// 定义QEMU virt平台下RISC-V架构的物理内存（硬件设备、内核RAM）与虚拟内存（内核栈、用户空间、trampoline/trapframe）布局，// 以及中断控制器等硬件地址常量，为内核内存管理和硬件交互提供地址映射依据#include &quot;memlayout.h&quot...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/Q4/operating-system-hand-write-xv6-operating-system-entry-s-and-start-c-analysis/" title="【操作系统】手撸xv6操作系统——entry.S和start.c解析">【操作系统】手撸xv6操作系统——entry.S和start.c解析</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2025-12-30T15:57:42.000Z" title="发表于 2025-12-30 15:57:42">2025-12-30</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></span></div><div class="content">entry.S解析和调试代码分析entry.S是xv6上电后执行的第一段代码，用于设置每个CPU的栈指针并跳转到start函数，每个CPU拥有4KB的栈空间。 123456789101112.section .text_entry:        la sp, stack0        li a0, 1024*4			 csrr a1, mhartid        addi a1, a1, 1        mul a0, a0, a1        add sp, sp, a0	# jump to start() in start.c        call startspin:        j spin 整段代码的作用是令sp &#x3D; stack0的地址 + 4096 × (当前运行的CPU核心编号 + 1)。la sp,stack0，la是load address，将stack0的地址赋值到sp寄存器，在RISC-V架构中sp是栈指针寄存器。li a0,1024*4，li是load immediate，加载立即数4096到a0。csrr a1,mhartid，是...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/Q4/on-chip-network-special-discussion-one-development-history-of-on-chip-bus/" title="【片上网络专题讨论一】 片上总线的发展历程">【片上网络专题讨论一】 片上总线的发展历程</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2025-10-19T21:27:38.000Z" title="发表于 2025-10-19 21:27:38">2025-10-19</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%89%87%E4%B8%8A%E7%BD%91%E7%BB%9C/">片上网络</a></span></div><div class="content">闲言稍叙我在研二的2023年10月开始接触片上网络，中间也学习过一段时间超标量CPU设计，也算都是相关的课题。随着研究生毕业，也许以后不一定能再用到这块的知识，就想着趁着最近有时间，把这块的知识整理整理输出到社区，发挥一点余热也好过留在我的脑子里，在岁月的橱柜中逐渐吃灰。相比于写学位论文所要求的格式完美、结果丰满，我可能更喜欢写博客，因为可以更加充分和完整地表述在研究过程中经历的种种思考，而不是只是给出一个完美的答案。我希望用相对口语化的表述来讲清楚我理解的片上总线以及片上网络，并无偿分享所做的片上网络仿真器设计以及电路设计，因此这个系列会带有比较多的个人观点，可能有许多未必正确，有兴趣的朋友点个关注不迷路。 片上总线的发展随着芯片上晶体管数量的变多，对于连接片上各模块的总线要求也在提高。高带宽、高可靠、低延迟、可扩展、低功耗是片上总线关心的重点指标。 首先出现的总线应当是点到点互联，也就是将需要通信的模块直接连起来，比如CPU和内存之间用一个512bits的总线连接。从芯片后端物理实现的角度来说，总线的本质是金属，可以传导信号。但是点到点互联的问题是，在不进行数据传输的时候，显...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/Q3/pytorch-deep-learning-common-functions-summary/" title="PyTorch 深度学习常用函数总结">PyTorch 深度学习常用函数总结</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2025-08-20T13:43:47.000Z" title="发表于 2025-08-20 13:43:47">2025-08-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%BC%96%E7%A8%8B%E4%B8%8E%E7%AE%97%E6%B3%95/">编程与算法</a></span></div><div class="content"> 近期要做AI编译器相关工作，需要把PyTorch入门下，在Google的Colab云平台上跑了LeNet&#x2F;ResNet&#x2F;GoogleNet&#x2F;MobileNet，通过豆包整理了下所涉及到的函数，形成本文。  PyTorch 深度学习常用函数总结一、PyTorch 核心操作（基础张量与自动求导）1. 张量创建与操作   函数 &#x2F; 方法 功能描述 参数说明 返回值 示例    torch.tensor(data) 从数据（列表、数组等）创建张量 data：输入数据；dtype：数据类型（如torch.float32，默认自动推断）；device：设备（CPU&#x2F;GPU） 多维张量（torch.Tensor） torch.tensor([[1,2],[3,4]]) → 形状为(2,2)的张量   torch.zeros(shape) 创建全零张量 shape：张量形状（如(2,3)）；dtype：数据类型 形状为shape的全零张量 torch.zeros((2,3)) → tensor([[0.,0.,0.],[0.,0.,0.]]) ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/Q2/exception-handling-header-file-not-found-header-file-red-when-cmake-in-clion-ide/" title="【异常处理】Clion IDE中cmake时头文件找不到 头文件飘红">【异常处理】Clion IDE中cmake时头文件找不到 头文件飘红</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2025-04-12T21:26:13.000Z" title="发表于 2025-04-12 21:26:13">2025-04-12</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/">异常处理</a></span></div><div class="content">如图所示是我的clion项目目录 我自定义的data_structure.h和func_declaration.h在unit_test.c中无法检索到 cmakelists.txt配置文件如下所示： 123456789101112131415161718192021222324252627282930cmake_minimum_required(VERSION 3.30)project(noc C)#设置头文件的目录include_directories($&#123;CMAKE_SOURCE_DIR&#125;/header)set(CMAKE_C_STANDARD 11)add_executable(noc        header/func_declaration.h        header/data_structure.h        src/design/router.c        src/design/main.c        src/design/memory_oper.c        src/design/io_utils.c        src...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/Q4/ic-design-chisel-build-tool-mill-installation-what-if-mill-script-runs-slow/" title="【IC设计】Chisel构建工具Mill的安装（mill脚本执行过慢怎么办？）">【IC设计】Chisel构建工具Mill的安装（mill脚本执行过慢怎么办？）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-10-23T19:21:27.000Z" title="发表于 2024-10-23 19:21:27">2024-10-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%97IC%E8%AE%BE%E8%AE%A1/">数字IC设计</a></span></div><div class="content">背景Chisel传统的项目构建工具是sbt，但是最近我需要学习Rocket Chip SoC Generator中的BOOM处理器核，而Rocket Chip的项目所使用的项目构建工具是Mill，所以我需要安装下mill工具。 安装过程sbt和mill的区别是，sbt工具在项目目录中的配置文件是build.sbt，mill工具在项目目录中的配置文件是build.sc在mill官方文档中给出了一行命令来安装这个工具，链接点我 1sh -c &quot;curl -L https://github.com/com-lihaoyi/mill/releases/download/0.11.12/0.11.12 &gt; ~/.local/bin/mill &amp;&amp; chmod +x ~/.local/bin/mill&quot; 这行命令本质上是去github上下载了mill安装的一个shell脚本，存放在~&#x2F;.local&#x2F;bin&#x2F;mill下，然后按理说我们需要执行这个脚本，但不推荐这么做！！ 实际上该脚本核心是去maven下载mill的可执行j...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/Q4/ic-design-fudan-micro-industry-analysis/" title="【IC设计】复旦微行业分析">【IC设计】复旦微行业分析</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-10-17T21:14:05.000Z" title="发表于 2024-10-17 21:14:05">2024-10-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%97IC%E8%AE%BE%E8%AE%A1/">数字IC设计</a></span></div><div class="content"> 参加复旦微电子杯·FPGA赛道期间，由于后续可能拿奖会发offer，阅读了相关行研报告，初步了解下这个公司。  概述复旦微电子公司，前身是复旦大学在1993年成立的复旦高技术公司，1998年7月复旦微电子成立于复旦大学逸夫楼，于2000年8月成功在香港创业板上市，和复旦大学有良好的合作关系。截止2023年4月，复旦微没有能控股的股东，其中上海国资委占股13%（国有控股），复旦大学占股13%，大股东是香港中央结算有限公司。 管理人员多数毕业于复旦，技术背景和管理经验丰富。 公司产品线齐全，包括安全与识别芯片（业务占比27.58%）、非挥发存储器（业务占比26.57%）、智能电表芯片（业务占比16.8%）、FPGA（22.07%）四大类产品线，并通过控股子公司为客户提供芯片测试服务（业务占6.18%）。 各产品线安全与识别芯片： 复旦微电安全与识别产品线依托自主研发的射频、存储器和安全防攻击技术，已形成了 RFID 与传感芯片、智能卡与安全芯片、智能识别设备芯片等多个产 品系列。产品覆盖存储卡、高频&#x2F; 超高频标签、NFC TAG、接触式&#x2F;非接触式&#x2F;双界...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/Q3/ic-design-cache-basics-address-mapping-hit-miss-replacement-policy-consistency/" title="【IC设计】Cache基础入门（地址映射方式、hit_miss的判断、替换策略、一致性问题）">【IC设计】Cache基础入门（地址映射方式、hit_miss的判断、替换策略、一致性问题）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-09-12T19:40:36.000Z" title="发表于 2024-09-12 19:40:36">2024-09-12</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%97IC%E8%AE%BE%E8%AE%A1/">数字IC设计</a></span></div><div class="content">Cache基础 为什么要学习Cache？本人是研究NoC总线的，NoC主要应用于大量CPU core的互联，NoC的本质在于利用存储资源构建路由拓扑，将主从机挂在路由器下，实现将计算和通信解耦合。单个路由节点的设计并不复杂，本质就是路由计算+交叉开关，总线的关键难度在于验证，要支持缓存一致性，并且在拓扑复杂、异构负载的情况下保证高可靠性。因此，学习Cache是精通NoC总线的前置知识，这里补充一下相关基础。时间有限，没有绘制精美的图片，有兴趣深入的可以读本文的【参考文献】  CPU所计算的数据要从内存中取，计算的结果要写入到内存。内存价格低，容量大，读写速度慢cache价格高，容量小，读写速度快。因此，CPU和内存间往往会加Cache，来加速存取数据的速度。  Cache line：Cache和Memory之间数据传输的最小单位，因为从memory中取数据到cache不会一个byte一个byte取，效率太低。通常一个Cache line是32byte或64byte，在CHI-E中一个Cache line是64 byte  内存地址A的数据存在Cache的什么位置？——Cache和...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/Q3/ic-design-cross-clock-asynchronous-processing-series-single-bit-cross-clock/" title="【IC设计】跨时钟异步处理系列——单比特跨时钟">【IC设计】跨时钟异步处理系列——单比特跨时钟</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-08-27T12:48:43.000Z" title="发表于 2024-08-27 12:48:43">2024-08-27</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%97IC%E8%AE%BE%E8%AE%A1/">数字IC设计</a></span></div><div class="content">建立时间和保持时间 所谓的建立时间或者保持时间都是在描述一种时钟变化的边沿上的数据状态。 建立时间：在时钟的有效沿（以上升沿为例）到来之前，数据的输入端信号必须保持稳定的最短时间 保持时间：在时钟的有效沿（以上升沿为例）到来之后，数据的输入端信号必须保持稳定的最短时间  单比特信号的跨时钟处理慢时钟域的信号传输到快时钟域打两拍快时钟域的信号传输到慢时钟域 如图所示，第一行是脉冲信号，第二行是慢时钟域的时钟。如果从快时钟域要同步一个脉冲信号到慢时钟域，容易出现上升沿没有采样到脉冲信号的情况。 方案一  脉冲展宽+同步   (打拍打拍，进行或) 代码123456789101112131415161718192021222324252627282930313233343536373839404142module fast2slow_cdc (    input   i_clk_f     ,    input   i_pluse_f   ,    input   i_rst_n     ,    input   i_clk_s     ,    output  o_pluse_s  )...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/Q3/ic-design-chisel-api-arbiter-and-rrarbiter-usage/" title="【IC设计】Chisel API之Arbiter和RRArbiter的使用">【IC设计】Chisel API之Arbiter和RRArbiter的使用</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-08-15T15:38:58.000Z" title="发表于 2024-08-15 15:38:58">2024-08-15</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%97IC%E8%AE%BE%E8%AE%A1/">数字IC设计</a></span></div><div class="content">介绍仲裁器在NoC路由器中是重要的组成部分，虚通道仲裁和交叉开关仲裁都需要使用仲裁器。Chisel提供了Arbiter和RRArbiter仲裁器Arbiter是基础的低位优先仲裁器，RRArbiter初始情况下也是低位优先仲裁（也可以配置成高位优先），但在某个通道仲裁胜出后，下一次仲裁会从获胜通道的下一个通道开始轮询，如果检测到有请求就授权。举例：假设有3个通道的请求，wire [2:0] req。第一轮仲裁，初始情况下0优先级最高，1其次，2最低。假设1和2同时请求资源，0没有请求，那么根据低位优先的原则，通道1获胜。第二轮仲裁，仲裁器会记住上次获胜的通道1，然后下一次0和2同时请求资源，我们需要从通道1的下一个通道进行轮询，那么通道0获胜。第三轮仲裁，仲裁器会记住上次获胜的通道0，然后从通道2开始轮询… Chisel的Valid和Ready流控Ready-Valid接口是一种简单的控制流接口，包含：  data：发送端向接收端发送的数据； valid：发送端到接收端的信号，用于指示发送端是否准备好发送数据； ready：接收端到发送端的信号，用于指示接收端是否准备好接收数据；...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/Q3/ic-design-ascend-910-architecture-learning/" title="【IC设计】昇腾910架构学习">【IC设计】昇腾910架构学习</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-08-10T19:46:27.000Z" title="发表于 2024-08-10 19:46:27">2024-08-10</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%97IC%E8%AE%BE%E8%AE%A1/">数字IC设计</a></span></div><div class="content"> 本文内容是参考华为公开资料形成的个人观点，无侵权行为，内容仅供学习！  昇腾910是华为的AI训练卡，基于7nm EUV工艺，其中有16个基于ARMv8定制的CPU，32个Ascend-Max AI加速器，使用4*6的无缓存NoC Mesh进行互联，使用HBM（High Bandwidth Memory）进行存储，提供128通道的视频译码器。 指标：  四个HBM总带宽1.2TB&#x2F;s 相邻节点（我的理解是Ascend-Max核）带宽为1024bit*2GHz&#x3D;256GB&#x2F;s 昇腾910每秒提供256万亿次fp16浮点运算，512万亿次int8运算 LLC总吞吐量为4TB&#x2F;s     </div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/Q3/ic-design-timing-analysis-interview-questions-summary-metastability-setup-hold-margin-calculation-max-clock-frequency-timing-violation-solutions/" title="【IC设计】时序分析面试题总结（亚稳态、建立_保持裕量计算、最高时钟频率计算、时序违例解决办法）">【IC设计】时序分析面试题总结（亚稳态、建立_保持裕量计算、最高时钟频率计算、时序违例解决办法）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-08-07T23:44:51.000Z" title="发表于 2024-08-07 23:44:51">2024-08-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%97IC%E8%AE%BE%E8%AE%A1/">数字IC设计</a></span></div><div class="content"> 这篇文章旨在总结【数字IC设计】秋招面试过程中在【时序分析】方面的重点知识，另外还会开一个帖子总结在跨时钟方面的重点知识，这两块是非常重要的面试题，需要系统总结下来，持续更新。  基本概念亚稳态亚稳态（metastable）指的是触发器在时钟上升沿前后一段时间内无法达到确定的状态，在这个时间区间内输入如果不能保持稳定，采样到的数据不一定是正确的数值。 建立时间和保持时间建立时间：触发器在时钟上升沿到来之前，其数据输入端的数据必须保持不变的最小时间。保持时间：触发器在时钟上升沿到来之后，其数据输入端的数据必须保持不变的最小时间。 常见问题1.为什么触发器要满足建立时间和保持时间？  因为触发器内部数据的形成是需要一定的时间的，如果不满足建立和保持时间，触发器将进入亚稳态，进入亚稳态后触发器的输出将不稳定，在 0 和 1 之间变化，这时需要经过一个恢复时间，其输出才能稳定，但稳定后的值并不一定是你的输入值。这就是为什么要用两级触发器来同步异步输入信号。这样做可以防止由于异步输入信号对于本级时钟可能不满足建立保持时间而使本级触发器产生的亚稳态传播到后面逻辑中，导致亚稳态的传播。（比较...</div></div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/#content-inner">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/#content-inner">9</a><a class="extend next" rel="next" href="/page/2/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">TDppy</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">130</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/TDppy"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/TDppy" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2287015934@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">如何呢，又能怎。</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-riscv-plic/" title="【操作系统】RISC-V PLIC总结">【操作系统】RISC-V PLIC总结</a><time datetime="2026-01-18T15:25:18.000Z" title="发表于 2026-01-18 15:25:18">2026-01-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/hello-world/" title="欢迎来到潘业成的博客">欢迎来到潘业成的博客</a><time datetime="2026-01-12T00:00:00.000Z" title="发表于 2026-01-12 00:00:00">2026-01-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-what-happens-after-pressing-enter-in-xv6-operating-system/" title="【操作系统】xv6操作系统中按下键盘回车后发生的事情">【操作系统】xv6操作系统中按下键盘回车后发生的事情</a><time datetime="2026-01-10T11:58:18.000Z" title="发表于 2026-01-10 11:58:18">2026-01-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-hand-write-xv6-operating-system-types-h-param-h-memlayout-h-riscv-h-defs-h-header-file-analysis/" title="【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析">【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析</a><time datetime="2026-01-06T23:02:58.000Z" title="发表于 2026-01-06 23:02:58">2026-01-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/Q4/operating-system-hand-write-xv6-operating-system-entry-s-and-start-c-analysis/" title="【操作系统】手撸xv6操作系统——entry.S和start.c解析">【操作系统】手撸xv6操作系统——entry.S和start.c解析</a><time datetime="2025-12-30T15:57:42.000Z" title="发表于 2025-12-30 15:57:42">2025-12-30</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+      <i class="fas fa-angle-right"></i></a>
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/"><span class="card-category-list-name">异常处理</span><span class="card-category-list-count">15</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><span class="card-category-list-name">操作系统</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%B0%E5%AD%97IC%E8%AE%BE%E8%AE%A1/"><span class="card-category-list-name">数字IC设计</span><span class="card-category-list-count">38</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%89%87%E4%B8%8A%E7%BD%91%E7%BB%9C/"><span class="card-category-list-name">片上网络</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"><span class="card-category-list-name">环境配置</span><span class="card-category-list-count">14</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%A8%8B%E5%BA%8F%E4%BA%BA%E7%94%9F/"><span class="card-category-list-name">程序人生</span><span class="card-category-list-count">7</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%BC%96%E7%A8%8B%E4%B8%8E%E7%AE%97%E6%B3%95/"><span class="card-category-list-name">编程与算法</span><span class="card-category-list-count">17</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"><span class="card-category-list-name">网络安全</span><span class="card-category-list-count">1</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/%E8%B0%83%E8%AF%95/" style="font-size: 1.5em; color: #99a9bf">调试</a> <a href="/tags/%E4%BA%A4%E6%8D%A2%E6%9C%BA/" style="font-size: 1.21em; color: #999ea4">交换机</a> <a href="/tags/%E8%BF%90%E7%AE%97%E7%AC%A6/" style="font-size: 1.1em; color: #999">运算符</a> <a href="/tags/%E5%9B%BE%E6%A0%87%E5%BA%93/" style="font-size: 1.1em; color: #999">图标库</a> <a href="/tags/%E5%A4%9A%E8%BF%9B%E7%A8%8B/" style="font-size: 1.16em; color: #999b9e">多进程</a> <a href="/tags/IDEA/" style="font-size: 1.1em; color: #999">IDEA</a> <a href="/tags/Verilog/" style="font-size: 1.44em; color: #99a7ba">Verilog</a> <a href="/tags/EDA%E5%B7%A5%E5%85%B7/" style="font-size: 1.39em; color: #99a4b4">EDA工具</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 1.16em; color: #999b9e">转载</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 1.27em; color: #99a0a9">C语言</a> <a href="/tags/%E7%89%87%E4%B8%8A%E7%BD%91%E7%BB%9C/" style="font-size: 1.1em; color: #999">片上网络</a> <a href="/tags/SSL%E8%AF%81%E4%B9%A6/" style="font-size: 1.1em; color: #999">SSL证书</a> <a href="/tags/Dev-C/" style="font-size: 1.1em; color: #999">Dev-C++</a> <a href="/tags/Office/" style="font-size: 1.1em; color: #999">Office</a> <a href="/tags/DFT/" style="font-size: 1.1em; color: #999">DFT</a> <a href="/tags/%E4%B8%AD%E6%96%AD/" style="font-size: 1.1em; color: #999">中断</a> <a href="/tags/Web%E5%BC%80%E5%8F%91/" style="font-size: 1.1em; color: #999">Web开发</a> <a href="/tags/%E6%80%BB%E7%BA%BF/" style="font-size: 1.1em; color: #999">总线</a> <a href="/tags/z3/" style="font-size: 1.1em; color: #999">z3</a> <a href="/tags/CMake/" style="font-size: 1.1em; color: #999">CMake</a> <a href="/tags/%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90/" style="font-size: 1.16em; color: #999b9e">时序分析</a> <a href="/tags/Git/" style="font-size: 1.16em; color: #999b9e">Git</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 1.1em; color: #999">前端</a> <a href="/tags/OFDM/" style="font-size: 1.1em; color: #999">OFDM</a> <a href="/tags/PyTorch/" style="font-size: 1.1em; color: #999">PyTorch</a> <a href="/tags/Java/" style="font-size: 1.33em; color: #99a2af">Java</a> <a href="/tags/CCNA/" style="font-size: 1.27em; color: #99a0a9">CCNA</a> <a href="/tags/AXI/" style="font-size: 1.1em; color: #999">AXI</a> <a href="/tags/%E7%9F%AD%E4%BF%A1/" style="font-size: 1.1em; color: #999">短信</a> <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" style="font-size: 1.1em; color: #999">读书笔记</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E4%BB%8B%E7%BB%8D/" style="font-size: 1.1em; color: #999">博客介绍</a> <a href="/tags/%E5%8F%8C%E7%B3%BB%E7%BB%9F/" style="font-size: 1.1em; color: #999">双系统</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" style="font-size: 1.1em; color: #999">网络安全</a> <a href="/tags/Tomcat/" style="font-size: 1.1em; color: #999">Tomcat</a> <a href="/tags/GitHub/" style="font-size: 1.1em; color: #999">GitHub</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 1.1em; color: #999">算法</a> <a href="/tags/Mill/" style="font-size: 1.1em; color: #999">Mill</a> <a href="/tags/%E6%95%99%E5%AD%A6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 1.21em; color: #999ea4">教学操作系统</a> <a href="/tags/%E9%93%BE%E6%8E%A5/" style="font-size: 1.1em; color: #999">链接</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB/" style="font-size: 1.1em; color: #999">中间人攻击</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      <a class="card-more-btn" href="/archives/"
+            title="查看更多">
+            <i class="fas fa-angle-right"></i>
+          </a>
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/01/">
+            <span class="card-archive-list-date">
+              一月 2026
+            </span>
+            <span class="card-archive-list-count">4</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/12/">
+            <span class="card-archive-list-date">
+              十二月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/10/">
+            <span class="card-archive-list-date">
+              十月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/08/">
+            <span class="card-archive-list-date">
+              八月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/04/">
+            <span class="card-archive-list-date">
+              四月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/10/">
+            <span class="card-archive-list-date">
+              十月 2024
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/09/">
+            <span class="card-archive-list-date">
+              九月 2024
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/08/">
+            <span class="card-archive-list-date">
+              八月 2024
+            </span>
+            <span class="card-archive-list-count">4</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">130</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-01-18T08:18:23.548Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By TDppy</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4-b1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4-b1"></script><script src="/js/main.js?v=5.5.4-b1"></script><div class="js-pjax"><script>window.typedJSFn = {
+  init: str => {
+    window.typed = new Typed('#subtitle', Object.assign({
+      strings: str,
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50,
+    }, null))
+  },
+  run: subtitleType => {
+    if (true) {
+      if (typeof Typed === 'function') {
+        subtitleType()
+      } else {
+        btf.getScript('https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.min.js').then(subtitleType)
+      }
+    } else {
+      subtitleType()
+    }
+  },
+  processSubtitle: (content, extraContents = []) => {
+    if (true) {
+      const sub = ["灵魂的渴望是命运的先知","Soul driven is the desire of the prophet","斯人若彩虹，遇上方知有","Every once in a while,you find someone who is iridescent."].slice()
+
+      if (extraContents.length > 0) {
+        sub.unshift(...extraContents)
+      }
+
+      if (typeof content === 'string') {
+        sub.unshift(content)
+      } else if (Array.isArray(content)) {
+        sub.unshift(...content)
+      }
+
+      sub.length > 0 && typedJSFn.init(sub)
+    } else {
+      document.getElementById('subtitle').textContent = typeof content === 'string' ? content :
+        (Array.isArray(content) && content.length > 0 ? content[0] : '')
+    }
+  }
+}
+btf.addGlobalFn('pjaxSendOnce', () => { typed.destroy() }, 'typedDestroy')
+</script><script>function subtitleType () {
+  typedJSFn.processSubtitle(["灵魂的渴望是命运的先知","Soul driven is the desire of the prophet","斯人若彩虹，遇上方知有","Every once in a while,you find someone who is iridescent."])
+}
+typedJSFn.run(subtitleType)</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

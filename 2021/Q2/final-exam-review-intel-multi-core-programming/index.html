@@ -1,0 +1,266 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【期末复习】Intel多核程序设计 | 潘业成的博客</title><meta name="author" content="TDppy"><meta name="copyright" content="TDppy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Intel多核程序设计期末考试题型：1、简答题  6道×5分&#x3D;30分2、画图题  2道×10分&#x3D;20分3、程序题  5道×10分&#x3D;50分 一、简答题1.按照硬件工艺可以将计算机的发展分为哪五代？第一代（1946-1958）：电子管数字计算机;第二代（1958-1964）：晶体管数字计算机;第三代（1964-1971）：集成电路数字计算机，如：SSI&#x2F;MSI;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【期末复习】Intel多核程序设计">
+<meta property="og:url" content="https://www.whyc.fun/2021/Q2/final-exam-review-intel-multi-core-programming/index.html">
+<meta property="og:site_name" content="潘业成的博客">
+<meta property="og:description" content="Intel多核程序设计期末考试题型：1、简答题  6道×5分&#x3D;30分2、画图题  2道×10分&#x3D;20分3、程序题  5道×10分&#x3D;50分 一、简答题1.按照硬件工艺可以将计算机的发展分为哪五代？第一代（1946-1958）：电子管数字计算机;第二代（1958-1964）：晶体管数字计算机;第三代（1964-1971）：集成电路数字计算机，如：SSI&#x2F;MSI;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.whyc.fun/img/butterfly-icon.png">
+<meta property="article:published_time" content="2021-06-26T19:30:14.000Z">
+<meta property="article:modified_time" content="2026-01-18T08:18:02.813Z">
+<meta property="article:author" content="TDppy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.whyc.fun/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "【期末复习】Intel多核程序设计",
+  "url": "https://www.whyc.fun/2021/Q2/final-exam-review-intel-multi-core-programming/",
+  "image": "https://www.whyc.fun/img/butterfly-icon.png",
+  "datePublished": "2021-06-26T19:30:14.000Z",
+  "dateModified": "2026-01-18T08:18:02.813Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "TDppy",
+      "url": "https://www.whyc.fun"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://www.whyc.fun/2021/Q2/final-exam-review-intel-multi-core-programming/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4-b1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【期末复习】Intel多核程序设计',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(https://oss.012700.xyz/butterfly/2024/10/index.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">130</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://oss.012700.xyz/butterfly/2024/10/index.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">潘业成的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">【期末复习】Intel多核程序设计</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">【期末复习】Intel多核程序设计</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-06-26T19:30:14.000Z" title="发表于 2021-06-26 19:30:14">2021-06-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-01-18T08:18:02.813Z" title="更新于 2026-01-18 08:18:02">2026-01-18</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="Intel多核程序设计"><a href="#Intel多核程序设计" class="headerlink" title="Intel多核程序设计"></a>Intel多核程序设计</h1><h2 id="期末考试题型："><a href="#期末考试题型：" class="headerlink" title="期末考试题型："></a>期末考试题型：</h2><p>1、简答题  6道×5分&#x3D;30分<br>2、画图题  2道×10分&#x3D;20分<br>3、程序题  5道×10分&#x3D;50分</p>
+<h2 id="一、简答题"><a href="#一、简答题" class="headerlink" title="一、简答题"></a>一、简答题</h2><h3 id="1-按照硬件工艺可以将计算机的发展分为哪五代？"><a href="#1-按照硬件工艺可以将计算机的发展分为哪五代？" class="headerlink" title="1.按照硬件工艺可以将计算机的发展分为哪五代？"></a>1.按照硬件工艺可以将计算机的发展分为哪五代？</h3><p>第一代（1946-1958）：电子管数字计算机;<br>第二代（1958-1964）：晶体管数字计算机;<br>第三代（1964-1971）：集成电路数字计算机，如：SSI&#x2F;MSI;<br>第四代 (1971-1990）：大规模&#x2F;超大规模集成电路数字计算机，如：LSI&#x2F;VLSI;<br>第五代 (1991-）：甚大规模集成电路数字计算机，如：ULSI<br>SSI &#x2F; MSI：Small&#x2F;Medium Scale Integration<br>LSI &#x2F; VLSI: Large Scale Integration&#x2F;Very Large Scale Integration<br>ULSI: Ultra Large Scale Integration</p>
+<h3 id="2-可以从哪两个角度对微处理器进行分类？并分别列举出相应的类型。"><a href="#2-可以从哪两个角度对微处理器进行分类？并分别列举出相应的类型。" class="headerlink" title="2.可以从哪两个角度对微处理器进行分类？并分别列举出相应的类型。"></a>2.可以从哪两个角度对微处理器进行分类？并分别列举出相应的类型。</h3><p>微处理器的分类：</p>
+<p>（1）按照CPU处理信息的字长可以分为：<br>        4位微处理、8位微处理器、16位微处理器、32位微处理器及64位微处理器<br>（2）按照CPU内部结构中核心数的多少，又可以分为：单核、多核</p>
+<h3 id="3-Intel公司的理论贡献有哪两个方面？并分别进行阐述。"><a href="#3-Intel公司的理论贡献有哪两个方面？并分别进行阐述。" class="headerlink" title="3.Intel公司的理论贡献有哪两个方面？并分别进行阐述。"></a>3.Intel公司的理论贡献有哪两个方面？并分别进行阐述。</h3><p>Intel公司的理论贡献如下：<br><strong>摩尔定律</strong><br>每隔18个月，芯片上可以集成的晶体管数目将增加一倍。<br><strong>钟摆理论</strong><br>在奇数年，英特尔将会推出新的工艺；而在偶数年，英特尔则<br>会推出新的架构。简单的说，就是奇数工艺年和偶数架构年的<br>概念。例如：2005年英特尔更新从90纳米走向65纳米，2006年<br>英特尔推出酷睿架构。 2007年走向45纳米。值得注意的是，<br>首先它不会在一年内两个技术同时出现。每一年都可以在上个<br>技术上再提升一个规模。</p>
+<h3 id="4-请列出五种国产CPU品牌的名称并指出对应的研发单位。"><a href="#4-请列出五种国产CPU品牌的名称并指出对应的研发单位。" class="headerlink" title="4.请列出五种国产CPU品牌的名称并指出对应的研发单位。"></a>4.请列出五种国产CPU品牌的名称并指出对应的研发单位。</h3><p>龙芯（Loongson）：中国科学院计算机技术研究所<br>申威（SW处理器）：江南计算机所（总参56所）（无锡）<br>飞腾：国防科学技术大学<br>北大众志（MPRC）：北京北大众志微系统科技有限责任公司<br>兆芯：兆芯集成电路公司（威盛与上海市政府合资成立的公司）<br>海思（Hisilicon）：深圳海思半导体有限公司（属于华为集团）<br>展讯：展讯通信有限公司（隶属于清华紫光集团）</p>
+<h3 id="5-什么叫多核处理器？"><a href="#5-什么叫多核处理器？" class="headerlink" title="5.什么叫多核处理器？"></a>5.什么叫多核处理器？</h3><p>定义：多核（即多核心）CPU是指，在同一个CPU硅晶片上集成了多个独立物理核心，每个核心都具有独立的逻辑结构，包括一二级缓存、执行单元、指令级单元和总线接口等逻辑单元，在实际工作中多个核心协同工作，能达到比具有同级单个独立物理核心（即单核）的CPU增倍的工作性能。</p>
+<h3 id="6-弗林分类法的依据是什么？他把计算机系统的结构分成哪四类？-PPT第二章"><a href="#6-弗林分类法的依据是什么？他把计算机系统的结构分成哪四类？-PPT第二章" class="headerlink" title="6.弗林分类法的依据是什么？他把计算机系统的结构分成哪四类？(PPT第二章)"></a>6.弗林分类法的依据是什么？他把计算机系统的结构分成哪四类？(PPT第二章)</h3><p>按照指令流和数据流的不同组织方式，把计算机系统的结构分为以下四类： </p>
+<h4 id="单指令流单数据流-SISD-，Single-Instruction-stream-Single-Data-stream"><a href="#单指令流单数据流-SISD-，Single-Instruction-stream-Single-Data-stream" class="headerlink" title="单指令流单数据流 (SISD ，Single Instruction stream Single Data stream)"></a>单指令流单数据流 (SISD ，Single Instruction stream Single Data stream)</h4><p>SISD计算机是传统的顺序执行的计算机，在同一时刻只能执行一条指令(即只有一个指令流)，处理一个数据(即只有一个数据流)。<br>SISD计算机通常由一个处理单元和一个存储器组成，如下图所示。它通过执行单一的指令流，对单一的数据流进行操作，指令按顺序读取，数据在每一时刻也只能读取一个。<br>    其主要缺点是单个处理单元的处理能力有限，同时，这种结构也没有发挥数据处理中的并行潜力，在实时系统和高速系统中，很少采用SISD结构。</p>
+<!--     <img src="/2021/Q2/final-exam-review-intel-multi-core-programming/1.png" class="" title="在这里插入图片描述"> 
+<h4 id="单指令流多数据流-SIMD，-Single-Instruction-stream-Multiple-Data-stream"><a href="#单指令流多数据流-SIMD，-Single-Instruction-stream-Multiple-Data-stream" class="headerlink" title="单指令流多数据流 (SIMD， Single Instruction stream Multiple Data stream)"></a>单指令流多数据流 (SIMD， Single Instruction stream Multiple Data stream)</h4><p>   SIMD计算机属于属于并行结构计算机，一条指令可以同时对多个数据进行运算。<br>   SIMD计算机由单一的指令控制部件控制，按照同一指令流的要求，为多个处理单元分配各不相同的数据，并进行处理。SIMD系统结构由一个控制单元、多个处理单元、多个存储模块和一个互联网络组成，如下图所示：<br> <img src="/2021/Q2/final-exam-review-intel-multi-core-programming/2.png" class=""> </p>
+<h4 id="多指令流单数据流-MISD-，Multiple-Instruction-stream-Single-Data-stream"><a href="#多指令流单数据流-MISD-，Multiple-Instruction-stream-Single-Data-stream" class="headerlink" title="多指令流单数据流 (MISD ，Multiple Instruction stream Single Data stream)"></a>多指令流单数据流 (MISD ，Multiple Instruction stream Single Data stream)</h4><p>  MISD计算机具有多个处理单元，这些处理单元组成一个线性阵列，分别执行不同的指令流，而同一个数据流则顺序通过这个阵列中的各个处理单元，如下图所示：</p>
+<!--       <img src="/2021/Q2/final-exam-review-intel-multi-core-programming/3.png" class="" title="在这里插入图片描述"> 
+<p>   MISD系统结构只适用于某些特定算法，在目前常见的计算机系统中很少见。</p>
+<h4 id="多指令流多数据流-MIMD-，Multiple-Instruction-stream-Multiple-Data-stream"><a href="#多指令流多数据流-MIMD-，Multiple-Instruction-stream-Multiple-Data-stream" class="headerlink" title="多指令流多数据流 (MIMD ，Multiple Instruction stream Multiple Data stream)"></a>多指令流多数据流 (MIMD ，Multiple Instruction stream Multiple Data stream)</h4><p> MIMD计算机属于并行结构计算机，多个处理单元根据不同的指令流执行不同的操作，处理不同的数据。<br> MIMD系统是计算机能够实现指令、数据作业、任务等各级全面并行计算的多处理系统。典型的MIMD系统由多个处理单元、多个存储模块和一个互联网络组成，如下图所示：</p>
+<!--   <img src="/2021/Q2/final-exam-review-intel-multi-core-programming/4.png" class="" title="在这里插入图片描述"> 
+
+<h3 id="7-在多核芯片体系结构中，同构多核和异构多核的定义分别是什么？-第一章"><a href="#7-在多核芯片体系结构中，同构多核和异构多核的定义分别是什么？-第一章" class="headerlink" title="7.在多核芯片体系结构中，同构多核和异构多核的定义分别是什么？(第一章)"></a>7.在多核芯片体系结构中，同构多核和异构多核的定义分别是什么？(第一章)</h3><p>根据计算内核的对等与否，CMP可分为同构多核和异构多核.</p>
+<h4 id="1-同构多核"><a href="#1-同构多核" class="headerlink" title="(1)  同构多核"></a>(1)  同构多核</h4><p>  计算内核相同，地位对等的称为同构多核，现在Intel和AMD主推的双核处理器，就是同构的双核处理器。</p>
+<p>  也可以理解成同构多核是指：CPU里面只有单纯的CPU运算模块 ，没有其他模块在里面。</p>
+<h4 id="2-异构多核"><a href="#2-异构多核" class="headerlink" title="(2)  异构多核"></a>(2)  异构多核</h4><p>   计算内核不同，地位不对等的称为异构多核，异构多核多采用“主处理核+协处理核”的设计，IBM、索尼和东芝等联手设计推出的Cell处理器正是这种架构的典范。</p>
+<p>  也可以理解成异构多核处理器是指：在CPU里集成了CPU与其他模块一起同步工作，也就是说一块CPU里不单有 CPU运算模块还有其他运算模块，例如 ：GPU 显卡运算模块，也就是现在的所谓核显。 </p>
+<h3 id="8-请列举五种主要的并行计算机系统名称。-第二章-1"><a href="#8-请列举五种主要的并行计算机系统名称。-第二章-1" class="headerlink" title="8.请列举五种主要的并行计算机系统名称。(第二章 (1))"></a>8.请列举五种主要的并行计算机系统名称。(第二章 (1))</h3><p> 并行计算机系统除少量早期的、专用的SIMD系统外，绝大部分为MIMD系统，目前，主要的并行计算机系统有以下五种：</p>
+<ol>
+<li>并行向量机(PVP, Parallel Vector Processor)</li>
+<li>对称多处理机(SMP, Symmetric Multiprocessor)</li>
+<li>大规模并行处理机(MPP, Massively Parallel Processor)</li>
+<li>机群(Cluster)</li>
+<li>分布式共享存储多处理机(DSM, Distributed Shared Memory)</li>
+</ol>
+<h3 id="9-在中央处理器中，指令是以某种控制形式被解释的，一般有哪几种控制方式？-第二章-1"><a href="#9-在中央处理器中，指令是以某种控制形式被解释的，一般有哪几种控制方式？-第二章-1" class="headerlink" title="9.在中央处理器中，指令是以某种控制形式被解释的，一般有哪几种控制方式？(第二章 (1))"></a>9.在中央处理器中，指令是以某种控制形式被解释的，一般有哪几种控制方式？(第二章 (1))</h3><p>  在中央处理器（Center Processing Unit，CPU）中，指令是以某种控制形式被解释的。一般有顺序控制、重叠控制和流水控制三种方式。</p>
+<ol>
+<li>顺序控制方式<br>机器指令顺序串行地执行，指令内部的微操作也顺序串行地执行，这就是顺序控制方式。若把一条指令的微操作归并为取指令，分析和执行三个阶段，则顺序方式如下图所示。</li>
+</ol>
+<!--         <img src="/2021/Q2/final-exam-review-intel-multi-core-programming/5.png" class="" title="在这里插入图片描述"> 
+<ol start="2">
+<li>重叠控制方式<br> 在第K条指令操作完成之前，就可对第K+1条指令进行操作，这就是重叠控制方式。</li>
+</ol>
+ <img src="/2021/Q2/final-exam-review-intel-multi-core-programming/6.png" class=""> 
+<ol start="3">
+<li>流水控制方式<br>  若把重叠中的分析再细分（当然，所细分成的部分必须有相应独立的功能段），也就构成了流水控制方式。<br>  我们把一条指令的解释分为如图所示的5个过程，</li>
+</ol>
+<!--      <img src="/2021/Q2/final-exam-review-intel-multi-core-programming/7.png" class="" title="在这里插入图片描述"> 
+<p>那么采用流水过程的时空关系就如下图所示。<br> <img src="/2021/Q2/final-exam-review-intel-multi-core-programming/8.png" class=""><br>4. 相关及其处理<br> 一段程序的相邻指令不能被同时操作的现象称相关。<br> 例 :<br>	<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MOV 	AX，1234H</span><br><span class="line">ADD	AX，AX</span><br></pre></td></tr></table></figure><br>	相关可以分为两类：全局相关（控制相关）和局部相关（数据相关）。<br>	由条件转移指令、转子程序指令和中断引起的相关称控制相关，执行当前指令需要前面指令的执行结果引起的相关称作数据相关。</p>
+<h3 id="10-请分别阐述并行和并发的定义，并说明二者之间的关系。"><a href="#10-请分别阐述并行和并发的定义，并说明二者之间的关系。" class="headerlink" title="10.请分别阐述并行和并发的定义，并说明二者之间的关系。"></a>10.请分别阐述并行和并发的定义，并说明二者之间的关系。</h3><p>并行和并发的区别</p>
+<p>并行是指两个或者多个事件在同一时刻发生，即：在多个核或者多个CPU上同时发生。</p>
+<p>并发是指两个或者多个事件在同一时间间隔内发生，即：在单核或者单个CPU上先后执行。</p>
+<p>并行则一定并发，但是反之不成立。</p>
+<p>例如：一个大人同时给两个小孩喂饭属于并发行为，表面上看上去，两个小孩都在吃饭。但是，若换成两个大人分别给其中的一个小孩喂饭，那么此时的行为属于并行。</p>
+<h3 id="11-请分别阐述多处理机和多计算机的定义，并简要说明二者之间最本质的区别是什么？"><a href="#11-请分别阐述多处理机和多计算机的定义，并简要说明二者之间最本质的区别是什么？" class="headerlink" title="11.请分别阐述多处理机和多计算机的定义，并简要说明二者之间最本质的区别是什么？"></a>11.请分别阐述多处理机和多计算机的定义，并简要说明二者之间最本质的区别是什么？</h3><p>多处理机和多计算机<br>        多处理机与多计算机都属于MIMD类的并行计算机。一般以是否具有共享存储器作为标志对它们进行区分。具有共享存储器的通常称为多处理机；而不具有共享存储器的称作多计算机。<br> <img src="/2021/Q2/final-exam-review-intel-multi-core-programming/9.png" class=""> </p>
+<h3 id="12-什么是多处理机？可以从哪三个方面对多处理机进行分类？"><a href="#12-什么是多处理机？可以从哪三个方面对多处理机进行分类？" class="headerlink" title="12.什么是多处理机？可以从哪三个方面对多处理机进行分类？"></a>12.什么是多处理机？可以从哪三个方面对多处理机进行分类？</h3><p>由n(n&gt;&#x3D;2)台处理机经某种互联方式连接构成的计算机系统称多处理机。<br>多处理机可以从<strong>处理机之间的耦合度</strong>、<strong>处理机之间相互连接的方式</strong>、<strong>系统结构模型</strong>三个方面来对多处理机进行分类。</p>
+<h3 id="13-请阐述程序、作业和进程的定义。-第三章"><a href="#13-请阐述程序、作业和进程的定义。-第三章" class="headerlink" title="13.请阐述程序、作业和进程的定义。(第三章)"></a>13.请阐述程序、作业和进程的定义。(第三章)</h3><h4 id="程序"><a href="#程序" class="headerlink" title="程序"></a>程序</h4><p>对数据进行处理的指令序列。其特点是存储在辅助存<br>储器(如硬盘)上。</p>
+<h4 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h4><p>程序从被选中执行,到其运行结束,并又成为程序的<br>这一完整过程中的程序。</p>
+<h4 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h4><p>被装入主存储器中的作业。</p>
+<h3 id="14-进程和线程的定义分别是什么？"><a href="#14-进程和线程的定义分别是什么？" class="headerlink" title="14.进程和线程的定义分别是什么？"></a>14.进程和线程的定义分别是什么？</h3><h4 id="进程-1"><a href="#进程-1" class="headerlink" title="进程"></a>进程</h4><p>是具有一定独立功能的程序关于某个数据集合上的一次运行活动，进程是系统进行资源分配和调度的一个独立单位。</p>
+<h4 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h4><p>是进程的一个实体，是CPU调度和分派的基本单位，它是比进程更小的能独立运行的基本单位。线程自己基本上不拥有系统资源，只拥有一点在运行中必不可少的资源(如程序计数器，一组寄存器和栈)，但是它可与同属一个进程的其他的线程共享进程所拥有的全部资源。</p>
+<h3 id="15-线程具有哪四种基本状态？"><a href="#15-线程具有哪四种基本状态？" class="headerlink" title="15.线程具有哪四种基本状态？"></a>15.线程具有哪四种基本状态？</h3> <img src="/2021/Q2/final-exam-review-intel-multi-core-programming/10.png" class=""> 
+
+<h3 id="16-线程具有哪五种基本操作？"><a href="#16-线程具有哪五种基本操作？" class="headerlink" title="16.线程具有哪五种基本操作？"></a>16.线程具有哪五种基本操作？</h3><h4 id="派生（spawn）"><a href="#派生（spawn）" class="headerlink" title="派生（spawn）"></a>派生（spawn）</h4><p> 线程在进程内派生出来，它既可由进程派生，也可由线程派生。</p>
+<h4 id="调度（schedule）"><a href="#调度（schedule）" class="headerlink" title="调度（schedule）"></a>调度（schedule）</h4><p> 选择一个就绪线程进入执行状态。</p>
+<h4 id="结束（Finish）"><a href="#结束（Finish）" class="headerlink" title="结束（Finish）"></a>结束（Finish）</h4><p> 如果一个线程执行结束，它的寄存器以及堆栈内容等将被释放。</p>
+<h4 id="阻塞（Block）"><a href="#阻塞（Block）" class="headerlink" title="阻塞（Block）"></a>阻塞（Block）</h4><p> 如果一个线程在执行过程中需要等待某个事件发生，则被阻塞。</p>
+<h4 id="激活（unblock）"><a href="#激活（unblock）" class="headerlink" title="激活（unblock）"></a>激活（unblock）</h4><p> 如果阻塞线程的事件发生，则该线程被激活并进入就绪队列。</p>
+<h3 id="17-多线程机制的优点包括哪五个方面？"><a href="#17-多线程机制的优点包括哪五个方面？" class="headerlink" title="17.多线程机制的优点包括哪五个方面？"></a>17.多线程机制的优点包括哪五个方面？</h3><ol>
+<li>创建一个线程比创建一个进程的代价要小：由于线程共享进程的资源，所以线程被创建时不需要再分配内存空间等资源。</li>
+<li>线程的切换比进程间的切换代价小：线程作为执行单元，当从同一个进程的一个线程切换到另一线程时，需要载入的信息比进程切换时要少。</li>
+<li>充分利用多处理器：同一进程的线程可以在多个处理器上并行运行，该进程的运行速度可以显著提高，而单线程的进程却只能在一个处理器上运行不能充分利用多个处理器。</li>
+<li>数据共享：对于同一进程的线程来说，它们共享同一块地址空间，可以访问相同的数据。</li>
+<li>快速响应特性：对于交互程序来说，多线程设计的优势是，当执行一些耗时或者可能被阻塞的操作时，其他部分仍然保持运行和响应。</li>
+</ol>
+<h3 id="18-可以将多线程分成哪三类？"><a href="#18-可以将多线程分成哪三类？" class="headerlink" title="18.可以将多线程分成哪三类？"></a>18.可以将多线程分成哪三类？</h3><h4 id="用户级线程"><a href="#用户级线程" class="headerlink" title="用户级线程"></a>用户级线程</h4><p>管理过程全部由用户程序完成，操作系统内核只对进程进行管理。</p>
+<h4 id="内核级线程"><a href="#内核级线程" class="headerlink" title="内核级线程"></a>内核级线程</h4><p>所有管理操作都是由操作系统内核完成的。在多处理器系统上，内核可以分派属于同一进程的多个线程在多个处理器上运行，提高进程执行的并行度。</p>
+<h4 id="组合模式"><a href="#组合模式" class="headerlink" title="组合模式"></a>组合模式</h4><p>有的操作系统提供了组和的线程模式，在Solaris中，用户创建的多个用户级线程被映射到一些内核线程上。</p>
+<h3 id="19-用户级线程和内核级线程之间存在哪三种映射模型？"><a href="#19-用户级线程和内核级线程之间存在哪三种映射模型？" class="headerlink" title="19.用户级线程和内核级线程之间存在哪三种映射模型？"></a>19.用户级线程和内核级线程之间存在哪三种映射模型？</h3><h4 id="一对一模型"><a href="#一对一模型" class="headerlink" title="一对一模型"></a>一对一模型</h4><p>把每个用户级线程映射到一个内核级线程。</p>
+<h4 id="多对一模型"><a href="#多对一模型" class="headerlink" title="多对一模型"></a>多对一模型</h4><p>把多个用户级线程映射到一个内核级线程。</p>
+<h4 id="多对多模型"><a href="#多对多模型" class="headerlink" title="多对多模型"></a>多对多模型</h4><p>将m个用户级线程映射到n个内核级线程，m大于或等于n。</p>
+<h3 id="20-多线程同步的原因是什么？"><a href="#20-多线程同步的原因是什么？" class="headerlink" title="20.多线程同步的原因是什么？"></a>20.多线程同步的原因是什么？</h3><p>由于线程共享同一进程的内存空间，多个线程可能需要同时访问同一个数据。如果没有正确的保护措施，对共享数据的访问会造成数据的不一致和错误。</p>
+<h3 id="21-什么是线程同步？"><a href="#21-什么是线程同步？" class="headerlink" title="21.什么是线程同步？"></a>21.什么是线程同步？</h3><p>   进程、线程同步，可理解为进程或线程A和B一块配合，A执行到一定程度时要依靠B的某个结果，于是停下来，示意B运行；B依言执行，再将结果给A；A再继续操作。<br>   在多线程编程里面，一些敏感数据不允许被多个线程同时访问，此时就使用同步访问技术，保证数据在任何时刻，最多有一个线程访问，以保证数据的完整性。</p>
+<h3 id="22-Win32线程同步有哪五种方式？-第四章"><a href="#22-Win32线程同步有哪五种方式？-第四章" class="headerlink" title="22.Win32线程同步有哪五种方式？(第四章)"></a>22.Win32线程同步有哪五种方式？(第四章)</h3><ol>
+<li>全局变量</li>
+<li>事件(Event)</li>
+<li>临界区(Critical section)</li>
+<li>互斥量(Mutex)</li>
+<li>信号量(Semaphore)</li>
+</ol>
+<h3 id="23-Win32-函数库中提供了操作多线程的函数，包括哪四个接口？"><a href="#23-Win32-函数库中提供了操作多线程的函数，包括哪四个接口？" class="headerlink" title="23.Win32 函数库中提供了操作多线程的函数，包括哪四个接口？"></a>23.Win32 函数库中提供了操作多线程的函数，包括哪四个接口？</h3><ol>
+<li>创建线程</li>
+<li>管理线程</li>
+<li>终止线程</li>
+<li>线程同步</li>
+</ol>
+<h3 id="24-OpenMP的执行模型采用什么形式？它的应用程序由哪三个部分组成？"><a href="#24-OpenMP的执行模型采用什么形式？它的应用程序由哪三个部分组成？" class="headerlink" title="24.OpenMP的执行模型采用什么形式？它的应用程序由哪三个部分组成？"></a>24.OpenMP的执行模型采用什么形式？它的应用程序由哪三个部分组成？</h3><p>OpenMP的执行模型采用Fork-Join的形式<br>编译指导语句(compiler directive)、运行函数库(runtime library)和环境变量(environment variables)</p>
+<h3 id="25-在OpenMP多线程应用程序中，请比较循环并行化和并行区域编程的主要区别是什么？"><a href="#25-在OpenMP多线程应用程序中，请比较循环并行化和并行区域编程的主要区别是什么？" class="headerlink" title="25.在OpenMP多线程应用程序中，请比较循环并行化和并行区域编程的主要区别是什么？"></a>25.在OpenMP多线程应用程序中，请比较循环并行化和并行区域编程的主要区别是什么？</h3><ol>
+<li>并行区域采用了复制执行的方式，将代码在所有的线程内部都执行一次</li>
+<li>循环并行化采用了工作分配的执行方式，将循环所需要的所有工作量按照一定的方式分配到各个执行线程中，所有线程执行工作的总和是原先串行执行所完成的工作量</li>
+</ol>
+<h2 id="二、画图题"><a href="#二、画图题" class="headerlink" title="二、画图题"></a>二、画图题</h2><h3 id="1、试画出求解下式的树形流程图，并求出TP、EP和SP。"><a href="#1、试画出求解下式的树形流程图，并求出TP、EP和SP。" class="headerlink" title="1、试画出求解下式的树形流程图，并求出TP、EP和SP。"></a>1、试画出求解下式的树形流程图，并求出TP、EP和SP。</h3> <img src="/2021/Q2/final-exam-review-intel-multi-core-programming/11.png" class=""> 
+
+
+<h3 id="2、试画出下列程序段中各语句之间的数据关系表达式和数据相关图。"><a href="#2、试画出下列程序段中各语句之间的数据关系表达式和数据相关图。" class="headerlink" title="2、试画出下列程序段中各语句之间的数据关系表达式和数据相关图。"></a>2、试画出下列程序段中各语句之间的数据关系表达式和数据相关图。</h3><p>S1: A&#x3D;SIN(B)<br>S2: C&#x3D;D+A<br>S3: B&#x3D;(D+2)<br>S4: A&#x3D;COS(C)<br> <img src="/2021/Q2/final-exam-review-intel-multi-core-programming/12.png" class=""> </p>
+<h3 id="3、求A1-A2-…-A8的累加和的程序如下："><a href="#3、求A1-A2-…-A8的累加和的程序如下：" class="headerlink" title="3、求A1, A2, … ,A8的累加和的程序如下："></a>3、求A1, A2, … ,A8的累加和的程序如下：</h3><p>S1：A1&#x3D;A1+A2<br>S2：A3&#x3D;A3+A4<br>S3：A5&#x3D;A5+A6<br>S4：A7&#x3D;A7+A8<br>S5：A1&#x3D;A1+A3<br>S6：A5&#x3D;A5+A7<br>S7：A1&#x3D;A1+A5</p>
+<p>(1)画出数据关系表达式和数据相关图；</p>
+<!-- <img src="/2021/Q2/final-exam-review-intel-multi-core-programming/13.png" class="" title="(1)"> 
+<p>(2)写出用fork、join语句表示其并行任务的派生和汇合关系的程序；<br> <img src="/2021/Q2/final-exam-review-intel-multi-core-programming/14.png" class=""> </p>
+<h2 id="三、程序题"><a href="#三、程序题" class="headerlink" title="三、程序题"></a>三、程序题</h2><p>4.1  4.1.1   4.3   4.5  6.1     6.10   6.11   6.15    6.18<br>6.21</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://www.whyc.fun">TDppy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://www.whyc.fun/2021/Q2/final-exam-review-intel-multi-core-programming/">https://www.whyc.fun/2021/Q2/final-exam-review-intel-multi-core-programming/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://www.whyc.fun" target="_blank">潘业成的博客</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2021/Q3/happy-pat-pat1001-summary/" title="【快乐PAT】PAT1001总结"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">【快乐PAT】PAT1001总结</div></div><div class="info-2"><div class="info-item-1">题目(点我)   代码与解析求a+b，难点在每三位用,分割 如1,001,500详细题解写在下面AC代码注释中了，核心知识点是利用%和&#x2F;分割数值和 %03d不满3位自动补0 1234567891011121314151617181920212223242526272829303132#include &lt;iostream&gt;#include &lt;cstring&gt;#include &lt;cstdlib&gt;#include &lt;cmath&gt;using namespace std;/** *  PAT 1001 *  a和b在+1,000,000和-1,000,000之间 *  这意味着二者之和在-2,000,000到+2,000,000之间 *  可以根据和的大小分段考虑： *  ·如果|sum|∈[0,1k)，无需逗号，直接输出 *  ·如果|sum|∈[1k,100w)，就加个逗号，利用%和/分割数值。 *  ·如果|sum|∈[100w,200w],加两个逗号，利用%和/分割数值。 * *  WARN：以1050为例，如果输出1050...</div></div></div></a><a class="pagination-related" href="/2021/Q2/exception-handling-tomcat-not-found-in-idea-plus-sign/" title="【异常处理】IDEA 加号中找不到Tomcat"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">【异常处理】IDEA 加号中找不到Tomcat</div></div><div class="info-2"><div class="info-item-1">今天金主爸爸的Tomcat突然不能用了，估计他也没有乱操作，我分析原因应该是快过期了，IDEA自动把你的Web插件给停了。 </div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">TDppy</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">130</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/TDppy"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/TDppy" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2287015934@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">如何呢，又能怎。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Intel%E5%A4%9A%E6%A0%B8%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.</span> <span class="toc-text">Intel多核程序设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%9F%E6%9C%AB%E8%80%83%E8%AF%95%E9%A2%98%E5%9E%8B%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">期末考试题型：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%AE%80%E7%AD%94%E9%A2%98"><span class="toc-number">1.2.</span> <span class="toc-text">一、简答题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%8C%89%E7%85%A7%E7%A1%AC%E4%BB%B6%E5%B7%A5%E8%89%BA%E5%8F%AF%E4%BB%A5%E5%B0%86%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E5%8F%91%E5%B1%95%E5%88%86%E4%B8%BA%E5%93%AA%E4%BA%94%E4%BB%A3%EF%BC%9F"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.按照硬件工艺可以将计算机的发展分为哪五代？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%8F%AF%E4%BB%A5%E4%BB%8E%E5%93%AA%E4%B8%A4%E4%B8%AA%E8%A7%92%E5%BA%A6%E5%AF%B9%E5%BE%AE%E5%A4%84%E7%90%86%E5%99%A8%E8%BF%9B%E8%A1%8C%E5%88%86%E7%B1%BB%EF%BC%9F%E5%B9%B6%E5%88%86%E5%88%AB%E5%88%97%E4%B8%BE%E5%87%BA%E7%9B%B8%E5%BA%94%E7%9A%84%E7%B1%BB%E5%9E%8B%E3%80%82"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.可以从哪两个角度对微处理器进行分类？并分别列举出相应的类型。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Intel%E5%85%AC%E5%8F%B8%E7%9A%84%E7%90%86%E8%AE%BA%E8%B4%A1%E7%8C%AE%E6%9C%89%E5%93%AA%E4%B8%A4%E4%B8%AA%E6%96%B9%E9%9D%A2%EF%BC%9F%E5%B9%B6%E5%88%86%E5%88%AB%E8%BF%9B%E8%A1%8C%E9%98%90%E8%BF%B0%E3%80%82"><span class="toc-number">1.2.3.</span> <span class="toc-text">3.Intel公司的理论贡献有哪两个方面？并分别进行阐述。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E8%AF%B7%E5%88%97%E5%87%BA%E4%BA%94%E7%A7%8D%E5%9B%BD%E4%BA%A7CPU%E5%93%81%E7%89%8C%E7%9A%84%E5%90%8D%E7%A7%B0%E5%B9%B6%E6%8C%87%E5%87%BA%E5%AF%B9%E5%BA%94%E7%9A%84%E7%A0%94%E5%8F%91%E5%8D%95%E4%BD%8D%E3%80%82"><span class="toc-number">1.2.4.</span> <span class="toc-text">4.请列出五种国产CPU品牌的名称并指出对应的研发单位。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E4%BB%80%E4%B9%88%E5%8F%AB%E5%A4%9A%E6%A0%B8%E5%A4%84%E7%90%86%E5%99%A8%EF%BC%9F"><span class="toc-number">1.2.5.</span> <span class="toc-text">5.什么叫多核处理器？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E5%BC%97%E6%9E%97%E5%88%86%E7%B1%BB%E6%B3%95%E7%9A%84%E4%BE%9D%E6%8D%AE%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E4%BB%96%E6%8A%8A%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%BB%93%E6%9E%84%E5%88%86%E6%88%90%E5%93%AA%E5%9B%9B%E7%B1%BB%EF%BC%9F-PPT%E7%AC%AC%E4%BA%8C%E7%AB%A0"><span class="toc-number">1.2.6.</span> <span class="toc-text">6.弗林分类法的依据是什么？他把计算机系统的结构分成哪四类？(PPT第二章)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%95%E6%8C%87%E4%BB%A4%E6%B5%81%E5%8D%95%E6%95%B0%E6%8D%AE%E6%B5%81-SISD-%EF%BC%8CSingle-Instruction-stream-Single-Data-stream"><span class="toc-number">1.2.6.1.</span> <span class="toc-text">单指令流单数据流 (SISD ，Single Instruction stream Single Data stream)</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-riscv-plic/" title="【操作系统】RISC-V PLIC总结">【操作系统】RISC-V PLIC总结</a><time datetime="2026-01-18T15:25:18.000Z" title="发表于 2026-01-18 15:25:18">2026-01-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/hello-world/" title="欢迎来到潘业成的博客">欢迎来到潘业成的博客</a><time datetime="2026-01-12T00:00:00.000Z" title="发表于 2026-01-12 00:00:00">2026-01-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-what-happens-after-pressing-enter-in-xv6-operating-system/" title="【操作系统】xv6操作系统中按下键盘回车后发生的事情">【操作系统】xv6操作系统中按下键盘回车后发生的事情</a><time datetime="2026-01-10T11:58:18.000Z" title="发表于 2026-01-10 11:58:18">2026-01-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-hand-write-xv6-operating-system-types-h-param-h-memlayout-h-riscv-h-defs-h-header-file-analysis/" title="【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析">【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析</a><time datetime="2026-01-06T23:02:58.000Z" title="发表于 2026-01-06 23:02:58">2026-01-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/Q4/operating-system-hand-write-xv6-operating-system-entry-s-and-start-c-analysis/" title="【操作系统】手撸xv6操作系统——entry.S和start.c解析">【操作系统】手撸xv6操作系统——entry.S和start.c解析</a><time datetime="2025-12-30T15:57:42.000Z" title="发表于 2025-12-30 15:57:42">2025-12-30</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By TDppy</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4-b1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4-b1"></script><script src="/js/main.js?v=5.5.4-b1"></script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

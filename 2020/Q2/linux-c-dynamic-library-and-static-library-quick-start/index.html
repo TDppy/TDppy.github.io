@@ -1,0 +1,186 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【linux下C】动态库与静态库快速入门 | 潘业成的博客</title><meta name="author" content="TDppy"><meta name="copyright" content="TDppy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="为什么要用库：我们在写代码时常用的一些功能，为了避免重复造轮子（每次都从头写），我们会把它编译好放到库中，以供写程序时直接调用，提高开发效率。 静态库快速入门：1.新建一个sort.c文件，在其中可以编写一个函数，例如int outmax(int a,int b)，比较a和b哪个大，并返回较大者的值。2.编译函数，并将编译后的文件加入静态库中 1gcc -c outmax.c   #编译max.c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【linux下C】动态库与静态库快速入门">
+<meta property="og:url" content="https://www.whyc.fun/2020/Q2/linux-c-dynamic-library-and-static-library-quick-start/index.html">
+<meta property="og:site_name" content="潘业成的博客">
+<meta property="og:description" content="为什么要用库：我们在写代码时常用的一些功能，为了避免重复造轮子（每次都从头写），我们会把它编译好放到库中，以供写程序时直接调用，提高开发效率。 静态库快速入门：1.新建一个sort.c文件，在其中可以编写一个函数，例如int outmax(int a,int b)，比较a和b哪个大，并返回较大者的值。2.编译函数，并将编译后的文件加入静态库中 1gcc -c outmax.c   #编译max.c">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.whyc.fun/img/butterfly-icon.png">
+<meta property="article:published_time" content="2020-04-20T10:26:48.000Z">
+<meta property="article:modified_time" content="2026-01-18T08:18:02.702Z">
+<meta property="article:author" content="TDppy">
+<meta property="article:tag" content="C语言">
+<meta property="article:tag" content="动态库">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.whyc.fun/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "【linux下C】动态库与静态库快速入门",
+  "url": "https://www.whyc.fun/2020/Q2/linux-c-dynamic-library-and-static-library-quick-start/",
+  "image": "https://www.whyc.fun/img/butterfly-icon.png",
+  "datePublished": "2020-04-20T10:26:48.000Z",
+  "dateModified": "2026-01-18T08:18:02.702Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "TDppy",
+      "url": "https://www.whyc.fun"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://www.whyc.fun/2020/Q2/linux-c-dynamic-library-and-static-library-quick-start/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4-b1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【linux下C】动态库与静态库快速入门',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(https://oss.012700.xyz/butterfly/2024/10/index.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">130</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://oss.012700.xyz/butterfly/2024/10/index.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">潘业成的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">【linux下C】动态库与静态库快速入门</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">【linux下C】动态库与静态库快速入门</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-04-20T10:26:48.000Z" title="发表于 2020-04-20 10:26:48">2020-04-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-01-18T08:18:02.702Z" title="更新于 2026-01-18 08:18:02">2026-01-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%BC%96%E7%A8%8B%E4%B8%8E%E7%AE%97%E6%B3%95/">编程与算法</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p><strong>为什么要用库：</strong><br>我们在写代码时常用的一些功能，为了避免重复造轮子（每次都从头写），我们会把它编译好放到库中，以供写程序时直接调用，提高开发效率。</p>
+<p><strong>静态库快速入门：</strong><br>1.新建一个sort.c文件，在其中可以编写一个函数，<br>例如int outmax(int a,int b)，比较a和b哪个大，并返回较大者的值。<br>2.编译函数，并将编译后的文件加入静态库中</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -c outmax.c </span><br></pre></td></tr></table></figure>
+
+<p>#编译max.c，生成了outmax.o</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ar -r libmath.a outmax.o </span><br></pre></td></tr></table></figure>
+
+<p>#将上一条命令生成的max.o 文件加入到库中，一般库以lib开头，扩展名为.a<br>3.编写主程序main.c，在主程序中可以直接使用之前写的max函数，如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">outmax</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b)</span></span>;  <span class="comment">//注意这里声明必须加上</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;outmax=%d\n&quot;</span>,<span class="built_in">outmax</span>(<span class="number">3</span>,<span class="number">8</span>));</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>4.编译主程序时带上静态库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc main.c libmath.a</span><br></pre></td></tr></table></figure>
+
+<p>5.此时应生成了一个a.out，</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./a.out <span class="comment">#执行a.out</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>静态库的好处：</strong><br>可以使用一些自己编写的函数,编译的时候带上静态库就可以。</p>
+<p><strong>静态库的坏处：</strong><br>编译生成的文件会比较大，因为把整个静态库加进去了。</p>
+<p><strong>动态库：</strong><br>1.写好你的库函数，如sort.c<br>2.编译<br><code>gcc -c -fpic sort.c</code><br>3.将你的函数加入到动态库中<br><code>gcc -shared sort.o -o libmath.so</code><br>4.编译主程序 <code>gcc main.c -lmath -L ./</code><br>5.将.so文件移动到&#x2F;lib目录中(原因是动态库系统自动在&#x2F;lib下查找) </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mv</span> libmath.so /lib</span><br></pre></td></tr></table></figure>
+
+<p>6.<code>cat /etc/ld.so.conf</code>（6 7步先照做吧）<br>7.<code>ldconfig</code><br>8.执行程序。<br><code>./a.out</code></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://www.whyc.fun">TDppy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://www.whyc.fun/2020/Q2/linux-c-dynamic-library-and-static-library-quick-start/">https://www.whyc.fun/2020/Q2/linux-c-dynamic-library-and-static-library-quick-start/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://www.whyc.fun" target="_blank">潘业成的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/C%E8%AF%AD%E8%A8%80/">C语言</a><a class="post-meta__tags" href="/tags/%E5%8A%A8%E6%80%81%E5%BA%93/">动态库</a><a class="post-meta__tags" href="/tags/Linux/">Linux</a></div><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2020/Q2/javaweb-understanding-some-details-of-request-getparameter/" title="【JavaWeb】理解request.getParameter()的一些细节"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">【JavaWeb】理解request.getParameter()的一些细节</div></div><div class="info-2"><div class="info-item-1"> 先捋一下图中这个登录的逻辑：表单中的登录按钮的action属性绑定了一个servlet的路径，当点击登录时，可以看到网页的地址栏会跳转到一个servlet，后台程序执行了这个servlet的代码。这个servlet中，我们可以用request.getParameter()；来获取表单中填写的用户名、密码、验证码，然后再进行查询数据库中是否有这个用户，如果有则登录成功，否则登录失败。 然后是我们要谈的request.getParameter()1.当没有填写用户名时，我用request.getParameter(“username”);获取到了什么？答案：是null吗？输出获取到的东西，发现什么也没有输出，实际上这是一个空字符串“”。2.假设我们没有写表单，却用了request.getParameter()，获取到的是什么？答案：输出一下，发现是null，当然，图中只有用户名密码和验证码，如果你写request.getParameter(“age”);获取年龄，自然也是null 然后是我们要谈的张三（狗头）：张三去强奸，由于妹子过于暴力，未遂，客观上没成功，主观上有意愿，你不能说...</div></div></div></a><a class="pagination-related" href="/2020/Q2/installation-configuration-install-and-configure-jdk-on-linux-shell-script-organized/" title="【安装配置】linux下安装配置jdk（已整理好shell脚本）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">【安装配置】linux下安装配置jdk（已整理好shell脚本）</div></div><div class="info-2"><div class="info-item-1">本文介绍linux下安装配置java运行环境，主要涉及三个步骤，5分钟之内即可完成： 清除残存的jdk并上传我提供的jdk压缩包 配置环境变量 重新加载并测试  jdk压缩包百度网盘链接 123链接：https://pan.baidu.com/s/1hFrj97cQaj9IkgkhSNIYig 提取码：n2vv 复制这段内容后打开百度网盘手机App，操作更方便哦。 懒得看过程的可以直接复制粘贴shell脚本，👉链接戳这👈  此外，如果您对linux下安装mysql数据库等感兴趣，可查阅博主的其他文章，如果您对文章中有所疑问，可加博主QQ2287015934交流。  1.清除残存的jdk并上传我们的jdkrpm -qa | grep java 将找到的卸载掉。（卸载命令 rpm -e --nodeps 替换为找到的文件名）  12cd /usr/localmkdir jdk  将的jdk-7u75-linux-x64.tar.gz上传到jdk目录下，可用sftp实现，不再详解。tar -zxvf jdk-7u75-linux-x64.tar.gz 解压上传好的jdk压缩包出现一...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2021/Q1/linux-c-socket-based-network-notepad-software-source-c-s-architecture/" title="【Linux下C】基于socket的网络记事本软件源码（C_S架构）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-14</div><div class="info-item-2">【Linux下C】基于socket的网络记事本软件源码（C_S架构）</div></div><div class="info-2"><div class="info-item-1"> 代码于大三上学期2020&#x2F;12&#x2F;102020&#x2F;12&#x2F;18 期间完成。由于时间紧张和学识有限，代码定有不足之处，大佬勿笑😀如果需要帮助或有任何建议，加我qq：2287015934  如果有相同课题的同学搜到这篇博客，可以先看下面的演示动图及课题要求，来确认是不是你需要的。如果有 课题核心要求:①用户注册②用户登录③编辑记事本④上传记事本到服务端⑤从服务端下载记事本⑥查看服务端记事本列表 演示动图(建议[右键-&gt;新标签页]食用)  涉及的技术：1.socket通信2.Linux对文件和目录处理的系统调用3.C语言和部分C++函数（如getline函数）4.make 软件架构：C&#x2F;S架构，一个客户端，一个服务端，总计约400行代码。将常用的文件包含命令和函数声明放入了_public.h中，并简单的使用了make进行工程管理(其实就写了几行QAQ)。 代码实现：客户端：123456789101112131415161718192021222324252627282930313233343536373839404142434445...</div></div></div></a><a class="pagination-related" href="/2021/Q1/linux-c-multi-process-alternating-write-file/" title="【Linux下C】Linux下多进程轮流写文件"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-14</div><div class="info-item-2">【Linux下C】Linux下多进程轮流写文件</div></div><div class="info-2"><div class="info-item-1"> 由于时间紧张和学识有限，代码定有不足之处(后面会抽时间优化)大佬勿笑~😀如果需要帮助或有任何建议，加我qq：2287015934  需求程序中包括两个进程，P1和P2。它们分别向一个文件，轮流写入字符串。例如：P1写入字符串“XXXXXX”，P2写入字符串“YYYYYY”。关键词功能是轮流写入，P1写完后必须P2写，P2写完后必须P1写。 实现思路我们利用fork函数可以创建一个子进程，假设我们先让子进程写文件，此时父进程不得写文件，怎么实现呢？linux中的wait(函数)可以实现父进程等待子进程的死亡再执行。根据这个思路可以写出伪代码： 12345678910while(true)&#123;       创建子进程;	if(子进程)&#123;	   写&quot;I am child.&quot;到文件	&#125;	if(父进程)&#123;	   wait()	   写文件	&#125;&#125;  循环开始时父进程陷入等待，子进程写完以后父进程才能写文件，然后下一次循环子进程再次写文件。 演示动图  源码1234567891011121314151617181...</div></div></div></a><a class="pagination-related" href="/2020/Q4/installation-configuration-wsl-installation-and-linux-helloworld-tutorial-just-hands/" title="【安装配置】WSL安装及linux下helloworld教程（有手就行）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-18</div><div class="info-item-2">【安装配置】WSL安装及linux下helloworld教程（有手就行）</div></div><div class="info-2"><div class="info-item-1">先上微软商店下一个wsl  windwos subsystem linux（windows下的linux子系统），选择ubuntu，安装。有的电脑下载好后启动ubuntu可能出现这个报错 12345Installing, this may take a few minutes...WslRegisterDistribution failed with error: 0x8007019eThe Windows Subsystem for Linux optional component is not enabled. Please enable it and try again.See https://aka.ms/wslinstall for details.Press any key to continue.. 解决方案：使用Win键+x 打开Powershell(管理员) 粘贴这一段命令解决上面的报错，然后输入y回车，注意这里回车会自动重启 1Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Window...</div></div></div></a><a class="pagination-related" href="/2020/Q3/how-is-helloworld-compiled-step-by-step-into-an-executable-file/" title="helloworld是怎样被一步步编译为可执行文件的？"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-06</div><div class="info-item-2">helloworld是怎样被一步步编译为可执行文件的？</div></div><div class="info-2"><div class="info-item-1">12345#include&lt;stdio.h&gt;int main()&#123;printf(&quot;helloworld&quot;);return 0;&#125; 概述在windows中，C语言代码的编译过程由IDE（如vc6、vs等软件）一键生成了可执行文件，但是我们知道编译过程有以下步骤：预处理、编译、汇编、链接，于是我们可以在linux下用命令来分别执行这些步骤，从而可以查看某步后的内容。 1）预处理阶段1命令：gcc -E hello.c -o hello.i  预处理阶段主要做的有三件事：1.文件包含 2.条件编译 3.宏定义展开1.文件包含即将stdio.h中的内容复制下来替换#include &lt;stdio.h&gt;2.条件编译例如#if #ifdef这些语句，实现其功能，这里不再赘述。3.宏定义展开即如果有#define a 3 那么将会把程序中的a替换为3。 2）编译阶段1命令：gcc -S hello.i -o hello.s  以下是编译的结果：      .file   &quot;hello.c&quot;     .sectio...</div></div></div></a><a class="pagination-related" href="/2020/Q3/c-language-negation-operator-what-is-2-what-is-5/" title="【C语言取反运算符】~2是多少？~-5是多少？"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-29</div><div class="info-item-2">【C语言取反运算符】~2是多少？~-5是多少？</div></div><div class="info-2"><div class="info-item-1">标题的答案：~2&#x3D;-3~-3&#x3D;2原理是什么？我们先来看这个程序及输出的结果：  容易总结出这样一个结论：i&#x3D;-i-1为什么呢?**一言以蔽之，运算符是对i的补码（含符号位）进行取反。**2的原码是0000 0010 正数补码是其本身0000 0010取反（含符号位）后补码变成1111 1101 此时补码为负数，换成原码要符号位不变，减去1，再取反，即原码成了1000 0011 即为-3 -5的原码是1000 0101 负数的补码是原码符号位不变、取反并+1，因此补码是1111 1011 ,对补码取反（含符号位） 此时补码为0000 0100 补码此时符号位是正，因此原码也是0000 0100 即为4 因此，~i&#x3D;-i-1。  如果想要更充分的理解这个结论，来考虑一下，对任意一个二进制数取反的含义是什么？1010取反是01010100取反是1011，容易看出取反的本质就是找一个数和原来的相加得到每一位均为1的数，因此要找的数就是2^M-1-a,M是位数（例如1010有四位，15-10&#x3D;5,5就是0101）  </div></div></div></a><a class="pagination-related" href="/2020/Q4/linux-learning-soft-link-and-hard-link/" title="【linux学习】软链接与硬链接"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-16</div><div class="info-item-2">【linux学习】软链接与硬链接</div></div><div class="info-2"><div class="info-item-1"> 下面内容是个人理解，仅供参考！  类比于windowslinux是一个操作系统，其学习可类比于我们熟悉的windows：软链接是符号链接，类似于windows中的快捷方式，像这样：  –&gt;硬链接类似于建立一个文件副本，像这样：  –&gt; 实现：硬链接使用ln 源文件名 链接名创建，比如已有文件hello.c，链接为haha，即：ln hello.c haha 软链接使用ln -s 源文件名 链接名创建，比如已有文件world.c，链接为wawa，即：ln -s world.c wawa 下面看实验中我们输的命令：  –&gt; 执行结果：  –&gt;  PS:上面这个图里ls -il展示的第一个属性是inode节点号，不小心多加了个3    -->  ln命令 参考链接 </div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">TDppy</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">130</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/TDppy"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/TDppy" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2287015934@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">如何呢，又能怎。</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-riscv-plic/" title="【操作系统】RISC-V PLIC总结">【操作系统】RISC-V PLIC总结</a><time datetime="2026-01-18T15:25:18.000Z" title="发表于 2026-01-18 15:25:18">2026-01-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/hello-world/" title="欢迎来到潘业成的博客">欢迎来到潘业成的博客</a><time datetime="2026-01-12T00:00:00.000Z" title="发表于 2026-01-12 00:00:00">2026-01-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-what-happens-after-pressing-enter-in-xv6-operating-system/" title="【操作系统】xv6操作系统中按下键盘回车后发生的事情">【操作系统】xv6操作系统中按下键盘回车后发生的事情</a><time datetime="2026-01-10T11:58:18.000Z" title="发表于 2026-01-10 11:58:18">2026-01-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-hand-write-xv6-operating-system-types-h-param-h-memlayout-h-riscv-h-defs-h-header-file-analysis/" title="【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析">【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析</a><time datetime="2026-01-06T23:02:58.000Z" title="发表于 2026-01-06 23:02:58">2026-01-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/Q4/operating-system-hand-write-xv6-operating-system-entry-s-and-start-c-analysis/" title="【操作系统】手撸xv6操作系统——entry.S和start.c解析">【操作系统】手撸xv6操作系统——entry.S和start.c解析</a><time datetime="2025-12-30T15:57:42.000Z" title="发表于 2025-12-30 15:57:42">2025-12-30</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By TDppy</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4-b1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4-b1"></script><script src="/js/main.js?v=5.5.4-b1"></script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

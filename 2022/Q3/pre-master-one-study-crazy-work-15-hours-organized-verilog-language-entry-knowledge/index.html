@@ -1,0 +1,367 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【准研一学习】狂肝15小时整理的Verilog语言入门知识 | 潘业成的博客</title><meta name="author" content="TDppy"><meta name="copyright" content="TDppy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="闲言稍叙Verilog和VHDL就是目前使用最多的两个硬件描述语言(HDL)，如果阅读本文的你也是Verilog新手，这部分闲言或许对你有所启发。 作者本科是计算机科学与技术专业，现在是准研一，方向和硬件相关。由于学艺不精，只会点C、Java，电路、信号、单片机等硬件课程都只懂皮毛。由于课题组研究需要，学习了Verilog语言并总结为本文。 C语言是软件描述语言，编码的核心目的在于经过编译、链接后">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【准研一学习】狂肝15小时整理的Verilog语言入门知识">
+<meta property="og:url" content="https://www.whyc.fun/2022/Q3/pre-master-one-study-crazy-work-15-hours-organized-verilog-language-entry-knowledge/index.html">
+<meta property="og:site_name" content="潘业成的博客">
+<meta property="og:description" content="闲言稍叙Verilog和VHDL就是目前使用最多的两个硬件描述语言(HDL)，如果阅读本文的你也是Verilog新手，这部分闲言或许对你有所启发。 作者本科是计算机科学与技术专业，现在是准研一，方向和硬件相关。由于学艺不精，只会点C、Java，电路、信号、单片机等硬件课程都只懂皮毛。由于课题组研究需要，学习了Verilog语言并总结为本文。 C语言是软件描述语言，编码的核心目的在于经过编译、链接后">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.whyc.fun/img/butterfly-icon.png">
+<meta property="article:published_time" content="2022-08-19T05:46:24.000Z">
+<meta property="article:modified_time" content="2026-01-18T08:18:02.846Z">
+<meta property="article:author" content="TDppy">
+<meta property="article:tag" content="FPGA">
+<meta property="article:tag" content="Verilog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.whyc.fun/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "【准研一学习】狂肝15小时整理的Verilog语言入门知识",
+  "url": "https://www.whyc.fun/2022/Q3/pre-master-one-study-crazy-work-15-hours-organized-verilog-language-entry-knowledge/",
+  "image": "https://www.whyc.fun/img/butterfly-icon.png",
+  "datePublished": "2022-08-19T05:46:24.000Z",
+  "dateModified": "2026-01-18T08:18:02.846Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "TDppy",
+      "url": "https://www.whyc.fun"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://www.whyc.fun/2022/Q3/pre-master-one-study-crazy-work-15-hours-organized-verilog-language-entry-knowledge/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4-b1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【准研一学习】狂肝15小时整理的Verilog语言入门知识',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(https://oss.012700.xyz/butterfly/2024/10/index.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">130</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://oss.012700.xyz/butterfly/2024/10/index.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">潘业成的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">【准研一学习】狂肝15小时整理的Verilog语言入门知识</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">【准研一学习】狂肝15小时整理的Verilog语言入门知识</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-08-19T05:46:24.000Z" title="发表于 2022-08-19 05:46:24">2022-08-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-01-18T08:18:02.846Z" title="更新于 2026-01-18 08:18:02">2026-01-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%BC%96%E7%A8%8B%E4%B8%8E%E7%AE%97%E6%B3%95/">编程与算法</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="闲言稍叙"><a href="#闲言稍叙" class="headerlink" title="闲言稍叙"></a>闲言稍叙</h2><p>Verilog和VHDL就是目前使用最多的两个硬件描述语言(HDL)，如果阅读本文的你也是Verilog新手，这部分闲言或许对你有所启发。</p>
+<p>作者本科是计算机科学与技术专业，现在是准研一，方向和硬件相关。<br>由于学艺不精，只会点C、Java，电路、信号、单片机等硬件课程都只懂皮毛。由于课题组研究需要，学习了Verilog语言并总结为本文。</p>
+<p>C语言是软件描述语言，编码的核心目的在于经过<strong>编译、链接</strong>后能够产生机器能够识别的指令序列，进而完成代码功能。而Verilog是硬件描述语言，编码的核心目的在于描述门与门之间的连接，通过<strong>综合、实现</strong>所写的代码，产生可以转化为芯片的图纸，交由厂商通过光刻来生产所设计的电路，最终经过<strong>封装、测试</strong>，即通常所称的芯片。</p>
+<p>要学习Verilog首先需要一个<strong>编程平台</strong>，有Vivado、Modelsim等，其中Vivado是用的最多的，但是运行比较慢，Modelsim运行的快，但是界面丑，这个看个人喜好安装就好。</p>
+<p>有编程平台后，通过在网站上刷题和看书，逐渐就可以上手了。那么下面列举出我学习Verilog所使用过的网站、书籍：</p>
+<p><strong>网站</strong>：<br>1.HDLBits<br><a target="_blank" rel="noopener" href="https://hdlbits.01xz.net/wiki/Main_Page">网站地址</a><br>该网站是全英文的，里面有100多道练习题，题解可以在Github上找到。</p>
+<p>2.VLab Verilog OJ<br><a target="_blank" rel="noopener" href="https://verilogoj.ustc.edu.cn/oj/problempage/1">网站地址</a><br>这是由中科大团队开发的Verilog在线评测系统，类似于软件编程的洛谷等网站。<br>其中每个题都会给出比较充分的知识点叙述，然后再让你动手编码，目的在于帮助大家学习Verilog。<br>有挺多的简单题，适合我这样的零基础菜鸟，但这个网站没有题解，网上只能查到前27题的题解。</p>
+<p>其他网站：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/verilog-tutorial.html">菜鸟教程</a>(有Verilog的内容，但没有OJ)</li>
+<li><a target="_blank" rel="noopener" href="https://www.edaplayground.com/">EDA Playground</a>(英文网站，可以在线运行代码，很流畅)</li>
+</ul>
+<p><strong>书籍</strong></p>
+<ul>
+<li><p><strong>《EDA技术与Verilog HDL》</strong> 王金明编著 清华大学出版社<br>这本书是基于Vivado平台的，讲了Vivado的基本操作、Verilog语法和一些实例，硬件用EGO1实验板。</p>
+</li>
+<li><p><strong>《自己动手写CPU》</strong> 雷思磊 电子工业出版社<br> 这本书是基于Modelsim平台的，主要是使用Verilog设计能运行mips32指令的处理器。</p>
+</li>
+<li><p><strong>《Vivado入门与FPGA设计实例》</strong> 廉玉欣 侯博雅编著 电子工业出版社<br> 这本书也是基于Vivado和EGO1的，介绍了不少组合逻辑和时序逻辑的基本器件设计，如加法器设计。</p>
+</li>
+</ul>
+<h2 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h2><p>  Verilog HDL(Hardware Description Language)是IC设计者常用的两种HDL之一，另一种是VHDL，通过比较Verilog和C语言的区别可以更好地理解它。<br>  <strong>Verilog和C语言的区别：</strong></p>
+<ol>
+<li>描述对象不同：<br>Verilog语法和C接近，但C描述的是算法逻辑，依赖于硬件对其进行实现。而Verilog是硬件描述语言，描述的是硬件本身。</li>
+<li>处理方式不同：<br>C需要经过<strong>编译、汇编、链接</strong>来将代码转化为可由计算机执行的二进制代码，而Verilog则需要经过<strong>综合</strong>来生成描述门与门之间互联关系的网表文件。</li>
+<li>执行方式不同：<br>Verilog的部分描述语句可以并行执行，而C只能串行执行。</li>
+</ol>
+<h2 id="二、模块"><a href="#二、模块" class="headerlink" title="二、模块"></a>二、模块</h2><h3 id="2-1-模块是Verilog的设计实体"><a href="#2-1-模块是Verilog的设计实体" class="headerlink" title="2.1 模块是Verilog的设计实体"></a>2.1 模块是Verilog的设计实体</h3><p>Verilog的基本设计思想是自顶向下（top-down），设计实体是模块，所有Verilog代码都将在模块内书写。<br>如下图所示，先定义顶层模块，分析顶层模块中所需的各个子模块，然后进一步对各个子模块进行分解和设计，最终可以将一个大的系统分解为多个子系统。<br> 在Verilog中，成熟的、封装好的模块称为IP(intelligent property)，调用已有IP的本质就是模块实例化。</p>
+<!--  <img src="/2022/Q3/pre-master-one-study-crazy-work-15-hours-organized-verilog-language-entry-knowledge/1.png" class="" title="在这里插入图片描述"> 
+<h3 id="2-2-模块声明"><a href="#2-2-模块声明" class="headerlink" title="2.2 模块声明"></a>2.2 模块声明</h3><p>  模块是Verilog的基本设计实体，模块声明的第一行指定了模块名称和端口列表，下面若干行指定了每个端口的方向、位宽、数据类型。<br>  例如定义一个32位加法器模块：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">module <span class="title function_ invoke__">add32</span>(in1,in2,out);</span><br><span class="line">  input wire[<span class="number">31</span>:<span class="number">0</span>] in1,in2;</span><br><span class="line">  output wire[<span class="number">31</span>:<span class="number">0</span>] out;</span><br><span class="line">  assign out=in1+in2;</span><br><span class="line">endmodule</span><br></pre></td></tr></table></figure>
+
+<p>  其中in1，in2，out是该模块的三个端口，采用上述代码较为简洁，也可以采用如下定义：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">module <span class="title function_ invoke__">add32</span>(</span><br><span class="line">  input wire[<span class="number">31</span>:<span class="number">0</span>] in1,</span><br><span class="line">  input wire[<span class="number">31</span>:<span class="number">0</span>] in2,</span><br><span class="line">  output wire[<span class="number">31</span>:<span class="number">0</span>] out</span><br><span class="line">);</span><br><span class="line">  assign out=in1+in2;</span><br><span class="line">endmodule</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3-模块的实例化"><a href="#2-3-模块的实例化" class="headerlink" title="2.3 模块的实例化"></a>2.3 模块的实例化</h3><p>模块实例化有两种方式，<br>  一是按照名称：<br>.模板中端口名称  (要连接到端口的线名)，<br>  二是按照位置<br>和定义时一一对应<br>下面我们将在top_module顶层模块中实例化mod_a，如图所示：<br> <img src="/2022/Q3/pre-master-one-study-crazy-work-15-hours-organized-verilog-language-entry-knowledge/2.png" class=""><br>其中mod_a实现的功能是将输入的a、b、c、d四个信号相与、相或，赋给out1和out2，mod_a的声明如下：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">module <span class="title function_ invoke__">mod_a</span>(</span><br><span class="line">    output out1, out2,</span><br><span class="line">    input in1,in2,in3,in4</span><br><span class="line">);</span><br><span class="line">    assign out1 = in1 &amp; in2 &amp; in3 &amp; in4;</span><br><span class="line">    assign out2 = in1 | in2 | in3 | in4;   </span><br><span class="line">endmodule</span><br></pre></td></tr></table></figure>
+<p>在top_module中两种实例化mod_a模块的代码如下：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">module <span class="title function_ invoke__">top_module</span>( </span><br><span class="line">    input a, </span><br><span class="line">    input b, </span><br><span class="line">    input c,</span><br><span class="line">    input d,</span><br><span class="line">    output out1,</span><br><span class="line">    output out2</span><br><span class="line">);</span><br><span class="line">    <span class="comment">//基于端口位置的实例化如下</span></span><br><span class="line">    mod_a  <span class="title function_ invoke__">inst_1</span>(</span><br><span class="line">        out1,out2,a,b,c,d</span><br><span class="line">    );</span><br><span class="line">    <span class="comment">//基于端口名称的实例化如下</span></span><br><span class="line">    mod_a <span class="title function_ invoke__">inst_2</span>(</span><br><span class="line">              .<span class="title function_ invoke__">out1</span>(out1),</span><br><span class="line">              .<span class="title function_ invoke__">out2</span>(out2),</span><br><span class="line">              .<span class="title function_ invoke__">in1</span>(a),</span><br><span class="line">              .<span class="title function_ invoke__">in2</span>(b),</span><br><span class="line">              .<span class="title function_ invoke__">in3</span>(c),</span><br><span class="line">              .<span class="title function_ invoke__">in4</span>(d)</span><br><span class="line">    );</span><br><span class="line">endmodule</span><br></pre></td></tr></table></figure>
+<h2 id="三、Verilog基本要素"><a href="#三、Verilog基本要素" class="headerlink" title="三、Verilog基本要素"></a>三、Verilog基本要素</h2><h3 id="3-1-数字"><a href="#3-1-数字" class="headerlink" title="3.1 数字"></a>3.1 数字</h3><p>在Verilog HDL中,整型常量即整常数有以下四种进制表示形式:</p>
+<ol>
+<li>二进制整数(b或B)</li>
+<li>十进制整数(d或D)</li>
+<li>十六进制整数(h或H)</li>
+<li>八进制整数(o或O)</li>
+</ol>
+<p>数字表达方式有以下三种:</p>
+<ol>
+<li><p>&lt;位宽&gt;&lt;进制&gt;&lt;数字&gt;这是一种全面的描述方式。</p>
+</li>
+<li><p>&lt;进制&gt;&lt;数字&gt;在这种描述方式中,数字的位宽采用缺省位宽(这由具体的机器系统决定,但至少32位)。</p>
+</li>
+<li><p>&lt;数字&gt;在这种描述方式中,采用缺省进制十进制。</p>
+</li>
+</ol>
+<p><strong>举例：</strong><br>8’b11000101    相当于十进制的197<br>8’h8a          相当于十进制138<br>12             即十进制的12</p>
+<h3 id="3-2-变量"><a href="#3-2-变量" class="headerlink" title="3.2 变量"></a>3.2 变量</h3><p>声明格式如下：<br>&lt;数据类型&gt;&lt;符号&gt;&lt;位宽&gt;&lt;变量名&gt;    &lt;元素数&gt;<br>其中数据类型和变量名是必要的，其余均可省略。<br>数据类型可以是net型、variable型，</p>
+<ol>
+<li>net型变量<br>相当于硬件电路中的物理连接，特点是输出的值随着输入值的变化而变化。</li>
+</ol>
+ <img src="/2022/Q3/pre-master-one-study-crazy-work-15-hours-organized-verilog-language-entry-knowledge/3.png" class=""> 
+<ol start="2">
+<li>variable型变量<br>该变量是有存储功能的数据类型</li>
+</ol>
+ <img src="/2022/Q3/pre-master-one-study-crazy-work-15-hours-organized-verilog-language-entry-knowledge/4.png" class=""> 
+<p>  当变量声明中的位宽大于1时，对应的变量是向量。<br>  例：<code>wire [3:0] bus;</code><br>  该语句声明了4位的wire型向量bus，其中冒号前面的是最高有效位(MSB,Most Significant Bit)，冒号后面的是最低有效位(LSB,Least Significant Bit)。</p>
+<h3 id="3-3-运算符"><a href="#3-3-运算符" class="headerlink" title="3.3 运算符"></a>3.3 运算符</h3><p>1.算术运算符</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">+,－,×，/,％</span><br></pre></td></tr></table></figure>
+
+<p>其中&#x2F;和%不可综合</p>
+<p>2.赋值运算符</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=,&lt;=</span><br></pre></td></tr></table></figure>
+
+<p>3.关系运算符</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;=,&gt;=,&gt;,&lt;</span><br></pre></td></tr></table></figure>
+
+<p>4.逻辑运算符</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&amp;&amp;,||,!</span><br></pre></td></tr></table></figure>
+
+<p>5.条件运算符</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?:</span><br></pre></td></tr></table></figure>
+
+<p>6.位运算符</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~,|,^,&amp;,^~或者~^</span><br></pre></td></tr></table></figure>
+
+<p>7.移位运算符</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;&lt;,&gt;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>8.位拼接运算符</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; &#125;</span><br></pre></td></tr></table></figure>
+
+<p>9.等式运算符</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">== , != , !==,===</span><br></pre></td></tr></table></figure>
+
+<p>其中&#x3D;&#x3D;&#x3D;和!&#x3D;&#x3D;不可综合</p>
+<p>10.缩位运算符</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&amp;，~&amp;， |， ~|，^，~^,^~)</span><br></pre></td></tr></table></figure>
+<p>在这些运算符中，多数都很好理解。<br>因此，后面只对位运算符，位拼接运算符，等式运算符，缩位运算符进行说明。<br><strong>对运算符的说明</strong></p>
+<ol>
+<li>位运算符</li>
+</ol>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">~ ：按位取反   	 	a=<span class="number">1001</span>   ~a=<span class="number">0110</span></span><br><span class="line">&amp; ：按位与   	 	a=<span class="number">1001</span>   b=<span class="number">0001</span>   a&amp;b=<span class="number">0001</span></span><br><span class="line">| ：按位或      	 	a=<span class="number">1001</span>   b=<span class="number">0001</span>   a|b=<span class="number">1001</span></span><br><span class="line">^ ：按位异或	     	a=<span class="number">1001</span>   b=<span class="number">0001</span>   a^b=<span class="number">1000</span></span><br><span class="line">^~ ：按位同或(异或非) a=<span class="number">1001</span>   b=<span class="number">0001</span>  a^~b=<span class="number">0111</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>等式运算符中&#x3D;&#x3D; 和&#x3D;&#x3D;&#x3D;的区别</li>
+</ol>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">==运算中，如果某些位是x或z，则比较结果是x</span><br><span class="line">===运算中，对于某些位是x或z的，也进行比较，两个操作数必须完全一致，结果才为<span class="number">1</span></span><br><span class="line">如:</span><br><span class="line">reg [<span class="number">4</span>:<span class="number">0</span>] a=<span class="number">5</span><span class="symbol">&#x27;b11x01</span>;</span><br><span class="line">reg [<span class="number">4</span>:<span class="number">0</span>] b=<span class="number">5</span><span class="symbol">&#x27;b11x01</span>;</span><br><span class="line">针对上面的a和b，a==b返回x，而a===b返回<span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>位拼接运算符</li>
+</ol>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">用来将两个或多个信号的某些位拼接起来。例如，在进行加法运算时，可以将和与进位输出拼接在一起使用：</span><br><span class="line">input [<span class="number">3</span>:<span class="number">0</span>] ina,inb;</span><br><span class="line">output [<span class="number">3</span>:<span class="number">0</span>] sum;</span><br><span class="line">output cout;</span><br><span class="line">assign &#123;cout,sum&#125;=ina+inb;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>缩位运算符</li>
+</ol>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">缩位运算符是对单个操作数的递推运算，它放在操作数的前面，能将一个矢量缩减为一个标量。</span><br><span class="line">如：reg [<span class="number">3</span>:<span class="number">0</span>] a;</span><br><span class="line">b=&amp;a; </span><br><span class="line">该代码等效于b=((a[<span class="number">0</span>]&amp;a[<span class="number">1</span>])&amp;a[<span class="number">2</span>])&amp;a[<span class="number">3</span>]</span><br></pre></td></tr></table></figure>
+<h2 id="四、Verilog行为语句"><a href="#四、Verilog行为语句" class="headerlink" title="四、Verilog行为语句"></a>四、Verilog行为语句</h2><h3 id="4-1-过程语句"><a href="#4-1-过程语句" class="headerlink" title="4.1 过程语句"></a>4.1 过程语句</h3><p><strong>always过程语句</strong><br>always过程语句是重复执行的，可综合的。<br>格式：<br>always@(&lt;敏感信号表达式&gt;)<br>begin<br>  &#x2F;&#x2F;语句序列<br>end<br>always过程语句是有触发条件的，触发条件写在敏感信号表达式中。</p>
+<p>敏感信号表达式的格式：</p>
+<ol>
+<li>电平敏感型</li>
+</ol>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">always@(in1 or in2)</span><br><span class="line">always@(in1,in2)</span><br><span class="line">用or和逗号都表示任一信号可触发事件</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>边沿敏感性</li>
+</ol>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">posedge表示上升沿，negedge表示下降沿。</span><br><span class="line">为<span class="number">32</span>位加法器添加一个时钟同步信号clk</span><br><span class="line">always@(posedge clk)</span><br><span class="line">begin</span><br><span class="line">  out=in1+in2;</span><br><span class="line">end</span><br><span class="line">在时钟信号的上升沿才会进行加法运算。</span><br></pre></td></tr></table></figure>
+<p><strong>initial过程语句</strong><br>initial过程语句不带出发条件且仅执行一次。<br>initial语句通常用于仿真模块中对激励向量的描述，或者用于给寄存器变量赋初值。<br>它是面向模拟仿真的过程语句，通常不能被逻辑综合工具支持。</p>
+<h3 id="4-2-块语句"><a href="#4-2-块语句" class="headerlink" title="4.2 块语句"></a>4.2 块语句</h3><p>块语句是由块标识符begin-end或者fork-join界定的一组语句，当块语句只包含一条语句时，块标识符可以缺省。<br>下面分别介绍串行块begin-end和并行块fork-join<br><strong>串行块begin-end</strong><br>串行块中的语句按串行方式顺序执行</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">module wave1</span><br><span class="line">parameter cycle=<span class="number">10</span>;</span><br><span class="line">reg wave;</span><br><span class="line">initial</span><br><span class="line">  begin</span><br><span class="line">  #(CYCLE/<span class="number">2</span>) wave=<span class="number">0</span>;</span><br><span class="line">  #(CYCLE/<span class="number">2</span>) wave=<span class="number">1</span>;</span><br><span class="line">  #(CYCLE/<span class="number">2</span>) wave=<span class="number">0</span>;</span><br><span class="line">  #(CYCLE/<span class="number">2</span>) wave=<span class="number">1</span>;</span><br><span class="line">  end</span><br><span class="line">initial $<span class="title function_ invoke__">monitor</span>($time,,,”wave=%b”,wave);</span><br><span class="line">endmodule</span><br></pre></td></tr></table></figure>
+<p><strong>并行块fork-join</strong><br>并行块fork-join中的所有语句是并发执行的。例如：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fork</span><br><span class="line">  regb=rega;</span><br><span class="line">  regc=regb;</span><br><span class="line">join</span><br></pre></td></tr></table></figure>
+
+<p>用fork-join并行块产生信号波形</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">module wave2;</span><br><span class="line">parameter CYCLE=<span class="number">5</span>;</span><br><span class="line">reg wave;</span><br><span class="line">initial</span><br><span class="line">  fork wave=<span class="number">0</span>;</span><br><span class="line">  #(CYCLE) wave=<span class="number">1</span>;</span><br><span class="line">  #(<span class="number">2</span>*CYCLE) wave=<span class="number">0</span>;</span><br><span class="line">  #(<span class="number">3</span>*CYCLE) wave=<span class="number">1</span>;</span><br><span class="line">  #(<span class="number">4</span>*CYCLE) wave=<span class="number">0</span>;</span><br><span class="line">  #(<span class="number">5</span>*CYCLE) wave=<span class="number">1</span>;</span><br><span class="line">  #(<span class="number">6</span>*CYCLE)  $stop;</span><br><span class="line">  join</span><br><span class="line">initial $<span class="title function_ invoke__">monitor</span>($time,,,”wave=%b”,wave);</span><br><span class="line">endmodule</span><br></pre></td></tr></table></figure>
+<h3 id="4-3-赋值语句"><a href="#4-3-赋值语句" class="headerlink" title="4.3 赋值语句"></a>4.3 赋值语句</h3><p><strong>1.连续赋值(Continuous Assignment)语句</strong><br>用assign对wire型变量进行赋值的语句。<br>等式右边的任何变化都将随时反映到左边去。</p>
+<p><strong>2.过程赋值(Procedural Assignment)语句</strong><br>1）非阻塞赋值（Non-Blocking）<br>赋值符号为”&lt;&#x3D;”，是并行执行的<br>非阻塞赋值在整个过程块结束时才完成赋值操作</p>
+<p>2）阻塞赋值(Blocking)<br>赋值符号为”&#x3D; “，是串行执行的<br> <img src="/2022/Q3/pre-master-one-study-crazy-work-15-hours-organized-verilog-language-entry-knowledge/5.png" class=""> </p>
+<h3 id="4-4-条件语句"><a href="#4-4-条件语句" class="headerlink" title="4.4 条件语句"></a>4.4 条件语句</h3><h4 id="4-4-1-if-else语句"><a href="#4-4-1-if-else语句" class="headerlink" title="4.4.1 if-else语句"></a>4.4.1 if-else语句</h4><p>格式有三种：<br> <img src="/2022/Q3/pre-master-one-study-crazy-work-15-hours-organized-verilog-language-entry-knowledge/6.png" class=""><br>其中语句序列可以是单句，可以是多句，多句时要用begin…end块语句括起来。</p>
+<h4 id="4-4-2-case语句"><a href="#4-4-2-case语句" class="headerlink" title="4.4.2 case语句"></a>4.4.2 case语句</h4><p>格式如下：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">case</span>(敏感表达式)</span><br><span class="line"> 值<span class="number">1</span>:语句序列<span class="number">1</span>;</span><br><span class="line"> 值<span class="number">2</span>:语句序列<span class="number">2</span>;</span><br><span class="line"> ...</span><br><span class="line"> 值n:语句序列n;</span><br><span class="line"> default:语句序列n+<span class="number">1</span>;</span><br><span class="line">endcase</span><br></pre></td></tr></table></figure>
+
+<p>根据敏感表达式的值，来选择对应的语句序列进行执行。</p>
+<p>&#x3D;&#x3D;casez&#x3D;&#x3D;语句中，对于值为高阻z的位无需比较。<br>&#x3D;&#x3D;casex&#x3D;&#x3D;语句中，对于值为z或者x的位无需比较。<br>此外，在casez和casex中还可以使用？来表示无需比较的位</p>
+<h3 id="4-5-循环语句"><a href="#4-5-循环语句" class="headerlink" title="4.5 循环语句"></a>4.5 循环语句</h3><ol>
+<li>for语句<br>for(循环变量初始化;循环条件;修改循环变量)<br> 执行语句序列;</li>
+<li>forever语句<br>forever begin<br>  执行语句序列；<br>end</li>
+<li>repeat语句<br>repeat(循环次数表达式) begin<br> 执行语句序列<br>end</li>
+<li>while语句<br>while(循环条件) begin<br>  语句序列<br>end</li>
+</ol>
+<h3 id="4-6-编译指示语句"><a href="#4-6-编译指示语句" class="headerlink" title="4.6 编译指示语句"></a>4.6 编译指示语句</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> 宏替换 `define</span><br><span class="line">格式：`define 宏名 变量或名字</span><br><span class="line">`define可以用简单的宏名替代复杂的表达式</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> `include语句</span><br><span class="line">`include是文件包含语句，它可将一个文件全部包含到另一个文件中，格式如下：</span><br><span class="line">`include “文件名”</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span> 条件编译语句`ifdef   `<span class="keyword">else</span>  `endif</span><br><span class="line">通过条件编译语句可以指定内容进行编译。</span><br><span class="line">`ifdef 宏名</span><br><span class="line">  语句序列</span><br><span class="line">`endif</span><br><span class="line">`ifdef 宏名</span><br><span class="line">  语句序列<span class="number">1</span></span><br><span class="line">`<span class="keyword">else</span></span><br><span class="line">  语句序列<span class="number">2</span></span><br><span class="line">`endif</span><br></pre></td></tr></table></figure>
+
+<h2 id="五、Testbench"><a href="#五、Testbench" class="headerlink" title="五、Testbench"></a>五、Testbench</h2><h3 id="5-1-为什么需要Testbench"><a href="#5-1-为什么需要Testbench" class="headerlink" title="5.1 为什么需要Testbench"></a>5.1 为什么需要Testbench</h3><p>Verilog是用来设计电路的，并且模块是Verilog的设计实体，那么设计好的模块需要验证其功能和性能是否符合预期目标，Testbench正是为了满足这一需要产生的。下图展示了Testbench的功能。<br><strong>概念：</strong><br>Testbench的本质仍是Verilog模块，但它是用于产生激励信号，对所设计的电路进行测试的特殊Verilog模块。<br> <img src="/2022/Q3/pre-master-one-study-crazy-work-15-hours-organized-verilog-language-entry-knowledge/7.png" class=""> </p>
+<h3 id="5-2-Testbench的目的和结构"><a href="#5-2-Testbench的目的和结构" class="headerlink" title="5.2 Testbench的目的和结构"></a>5.2 Testbench的目的和结构</h3><p><strong>编写Testbench的目的</strong><br>编写Testbench的主要目的是对使用 HDL设计的电路进行仿真验证，测试设计电路的功能、性能是否与预期的目标相符。<br>编写Testbench进行测试的过程如下：<br>1）产生激励（就是给被测试模块输入向量）<br>2）将产生的激励加入到被测试模块并观察其输出响应<br>3）将输出响应与期望值进行比较</p>
+<p><strong>Testbench的基本结构</strong><br>module &lt;Testbench名&gt;;<br>               &lt;变量定义声明&gt;<br>               &lt;使用initial或者always语句产生激励波形&gt;<br>               &lt;待测试模块例化&gt;<br>               &lt;监控和比较输出响应&gt;<br>endmodule</p>
+<h3 id="5-3-激励产生的方式"><a href="#5-3-激励产生的方式" class="headerlink" title="5.3 激励产生的方式"></a>5.3 激励产生的方式</h3><p>Testbench的激励有几种产生方式，</p>
+<ol>
+<li><p>HDL描述方式<br>Verilog作为硬件描述语言，既可以用于设计硬件电路，也可以用于产生仿真激励。</p>
+</li>
+<li><p>文本输入方式<br>使用HDL来产生复杂数据结构的激励较为麻烦，Verilog提供了读入文本文件的系统函数$readmemb和$readmemh，分别用于从文本文件读入二进制和十六进制数据，存放到Verilog自定义的memory中，Verilog再从memory中取出数据将激励施加到被测模块。</p>
+</li>
+<li><p>编程语言接口(PLI)方式<br>仿真工具提供了PLI，PLI指将C程序嵌入到HDL设计中，用户可以用C写扩展的系统任务和函数，扩充了HDL语言的功能。</p>
+</li>
+</ol>
+<h4 id="5-3-1-产生时钟的方式"><a href="#5-3-1-产生时钟的方式" class="headerlink" title="5.3.1 产生时钟的方式"></a>5.3.1 产生时钟的方式</h4><p> 1.使用initial方式产生占空比为50%的时钟</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">inial</span><br><span class="line">begin</span><br><span class="line">	clk_1=<span class="number">0</span>;</span><br><span class="line">	forever</span><br><span class="line">		#<span class="number">50</span> clk_1=~clk_1;</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+<p>注意:要给时钟赋初值，时钟缺省值为z，取反仍为z，如果没有赋初值，时钟就会一直处于高阻z状态</p>
+<ol start="2">
+<li>使用always方式</li>
+</ol>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">initial </span><br><span class="line">	clk_2=<span class="number">0</span>;</span><br><span class="line">always</span><br><span class="line">	#<span class="number">50</span> clk_2=~clk_2;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>使用repeat产生确定数量的时钟</li>
+</ol>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">initial</span><br><span class="line">begin</span><br><span class="line">	clk_3=<span class="number">0</span>;</span><br><span class="line">	<span class="title function_ invoke__">repeat</span>(<span class="number">6</span>)</span><br><span class="line">		#<span class="number">50</span>	clk_3=~clk_3;</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>产生占空比非50%的时钟</li>
+</ol>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">initial</span><br><span class="line">	clk_4=<span class="number">0</span>;</span><br><span class="line">always</span><br><span class="line">beign</span><br><span class="line">	#<span class="number">30</span> clk_4=~clk_4;</span><br><span class="line">	#<span class="number">20</span> clk_4=~clk_4;</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p>下图展示了采用上面3种方式生成的时钟，<br>图中clk_1使用forever产生10MHz时钟，<br>clk_2使用always产生10MHz时钟，<br>clk_3使用repeat指定循环6次，产生3个周期的时钟，<br>clk_4通过设定不同的延时(延时30ns后置1，延时10ns后置0)产生占空比非50%的时钟。<br> <img src="/2022/Q3/pre-master-one-study-crazy-work-15-hours-organized-verilog-language-entry-knowledge/8.png" class=""> </p>
+<h4 id="5-3-2-产生复位信号的方式"><a href="#5-3-2-产生复位信号的方式" class="headerlink" title="5.3.2 产生复位信号的方式"></a>5.3.2 产生复位信号的方式</h4><p><strong>同步复位和异步复位的概念</strong></p>
+<blockquote>
+<p>同步复位指复位信号是否生效依赖于时钟上升沿的到来，<br>异步复位则无需等待时钟上升沿，只要复位信号有效就能对系统进行复位。</p>
+</blockquote>
+<p>在使用Verilog产生复位信号的激励有如下几种方式：<br>1)异步复位</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">initial</span><br><span class="line">begin</span><br><span class="line">	rst=<span class="number">1</span>;</span><br><span class="line">	#<span class="number">100</span>;</span><br><span class="line">	rst=<span class="number">0</span>;</span><br><span class="line">	#<span class="number">500</span>;</span><br><span class="line">	rst=<span class="number">1</span>;</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+<p>2)同步复位</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">initial</span><br><span class="line">begin</span><br><span class="line">	rst=<span class="number">1</span>;</span><br><span class="line">	@(negedge clk);</span><br><span class="line">	rst=<span class="number">0</span>;</span><br><span class="line">	#<span class="number">30</span>;</span><br><span class="line">	@(negedge clk);</span><br><span class="line">	rst=<span class="number">1</span>;</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-4-仿真结果分析的方式"><a href="#5-4-仿真结果分析的方式" class="headerlink" title="5.4 仿真结果分析的方式"></a>5.4 仿真结果分析的方式</h3><p>运行仿真后，可以通过查看波形、显示信息和LOG文件的方式来分析仿真结果。</p>
+<p><strong>查看波形</strong>是最基本的方式，指的是根据时钟和激励来查看对应时刻的信号的值是否正确。在信号较多时这种方式比较繁琐低效，因此查看波形的分析方式通常在小模块的仿真分析时使用。</p>
+<p><strong>显示信息和LOG文件</strong>的方式是指在设计Testbench时添加一些自检测的程序，将程序运行的状态信息显示到屏幕或LOG文件中，以便后续分析。</p>
+<h3 id="5-5-Testbench实例"><a href="#5-5-Testbench实例" class="headerlink" title="5.5 Testbench实例"></a>5.5 Testbench实例</h3><h4 id="5-5-1-2-4解码器"><a href="#5-5-1-2-4解码器" class="headerlink" title="5.5.1 2-4解码器"></a>5.5.1 2-4解码器</h4><p>实现2-4解码器<br>     根据输入A,B的变化，来改变输出Z的值<br>源码如下：<br> <img src="/2022/Q3/pre-master-one-study-crazy-work-15-hours-organized-verilog-language-entry-knowledge/9.png" class=""><br>tb核心代码如下(省略例化和信号声明)：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">initial begin</span><br><span class="line">en=<span class="number">0</span>;</span><br><span class="line">a=<span class="number">0</span>;</span><br><span class="line">b=<span class="number">0</span>;</span><br><span class="line">#<span class="number">10</span> en=<span class="number">1</span>;</span><br><span class="line">#<span class="number">10</span> b=<span class="number">1</span>;</span><br><span class="line">#<span class="number">10</span> a=<span class="number">1</span>;</span><br><span class="line">#<span class="number">10</span> b=<span class="number">0</span>;</span><br><span class="line">#<span class="number">10</span> a=<span class="number">0</span>;</span><br><span class="line">#<span class="number">10</span> $stop;</span><br><span class="line">end</span><br><span class="line">always @(en or a or b or z) begin</span><br><span class="line">$<span class="title function_ invoke__">display</span>(<span class="string">&quot;At time%t,input is %b%b%b,output is %b&quot;</span>,$time,a,b,en,z);</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p>通过系统任务$display将程序执行相关信息输出到控制台<br><strong>仿真结果分析</strong><br> <img src="/2022/Q3/pre-master-one-study-crazy-work-15-hours-organized-verilog-language-entry-knowledge/10.png" class=""><br> <img src="/2022/Q3/pre-master-one-study-crazy-work-15-hours-organized-verilog-language-entry-knowledge/11.png" class=""><br>通过查看波形可以发现，z随着{a,b}产生对应的编码，因此2-4编码器满足设计要求</p>
+<h4 id="5-5-2-时序检测器"><a href="#5-5-2-时序检测器" class="headerlink" title="5.5.2 时序检测器"></a>5.5.2 时序检测器</h4><p>下面是一个时序检测器的原码，用于检测数据线上连续3个1的序列，在时钟的每个上升沿检查数据。<br>源代码如下图所示。<br> <img src="/2022/Q3/pre-master-one-study-crazy-work-15-hours-organized-verilog-language-entry-knowledge/12.png" class=""> </p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">`timescale <span class="number">1</span>ns / <span class="number">1</span>ps</span><br><span class="line">截取核心Testbench如下</span><br><span class="line">    initial</span><br><span class="line">    begin</span><br><span class="line">        Data=<span class="number">0</span>;</span><br><span class="line">        #<span class="number">5</span> Data=<span class="number">1</span>;</span><br><span class="line">        #<span class="number">40</span> Data=<span class="number">0</span>;</span><br><span class="line">        #<span class="number">10</span> Data=<span class="number">1</span>;</span><br><span class="line">        #<span class="number">40</span> Data=<span class="number">0</span>;</span><br><span class="line">        #<span class="number">20</span> $stop;</span><br><span class="line">    end</span><br><span class="line"></span><br><span class="line">    initial </span><br><span class="line">        Out_File=$<span class="title function_ invoke__">fopen</span>(<span class="string">&quot;results.txt&quot;</span>);</span><br><span class="line">    always @(posedge Clock)</span><br><span class="line">    begin</span><br><span class="line">        <span class="keyword">if</span>(Detect==<span class="number">1</span><span class="symbol">&#x27;b1</span>)</span><br><span class="line">            $<span class="title function_ invoke__">fwrite</span>(Out_File,<span class="string">&quot;At time %t,Detect out is 1\n&quot;</span>,$time);</span><br><span class="line">            </span><br><span class="line">    end</span><br></pre></td></tr></table></figure>
+<p>在第一个initial语句中，设置激励<br>在第二个initial中，将程序执行的相关信息通过文件IO的系统任务$fopen和fwrite写入日志<br><strong>仿真结果分析</strong><br> <img src="/2022/Q3/pre-master-one-study-crazy-work-15-hours-organized-verilog-language-entry-knowledge/13.png" class=""><br>时钟Clock一个周期为10ns，在Data连续三次上升沿为1后，Detect置为1。时序检测器满足设计要求。</p>
+<h3 id="5-6-常用的系统函数"><a href="#5-6-常用的系统函数" class="headerlink" title="5.6 常用的系统函数"></a>5.6 常用的系统函数</h3><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>.$display与$write</span><br><span class="line">$display和$write功能相同，都用于将仿真结果输出控制台，区别是$display输出后自动换行，$write不能。</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>.$finish与$stop</span><br><span class="line">$finish和$stop用于控制仿真过程，$finish表示结束仿真，$stop表示中断仿真。</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>.$time与$realtime</span><br><span class="line">$time和$realtime用于显示已仿真时间，$time返回整数，$realtime返回浮点数。</span><br><span class="line"></span><br><span class="line"><span class="number">4</span>.$monitor与$strobe</span><br><span class="line">$monitor和$strobe也属于输出型函数，$monitor用于实时监控变量并输出，$strobe用于在仿真事件发生后输出。</span><br><span class="line"></span><br><span class="line"><span class="number">5</span>.$readmemb和$readmemh</span><br><span class="line">用于从外部文件读取数据并放入存储器中</span><br><span class="line"></span><br><span class="line"><span class="number">6</span>.$random</span><br><span class="line">产生随机数的系统任务，返回<span class="number">32</span>位随机整数</span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://www.whyc.fun">TDppy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://www.whyc.fun/2022/Q3/pre-master-one-study-crazy-work-15-hours-organized-verilog-language-entry-knowledge/">https://www.whyc.fun/2022/Q3/pre-master-one-study-crazy-work-15-hours-organized-verilog-language-entry-knowledge/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://www.whyc.fun" target="_blank">潘业成的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/FPGA/">FPGA</a><a class="post-meta__tags" href="/tags/Verilog/">Verilog</a></div><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2023/Q2/ic-design-verilog-based-8-layer-matrix-multiplication-design/" title="【IC设计】基于Verilog的8层矩阵乘法设计"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">【IC设计】基于Verilog的8层矩阵乘法设计</div></div><div class="info-2"><div class="info-item-1">项目要求基本要求输入有9个矩阵，权重矩阵有8个，分别是Weight I0I7，Input矩阵I ~-1。8个矩阵都是都是16行*16列的，且矩阵中的每个元素是16位补码形式的有符号定点数（1位符号位，6位整数位，9位小数位）  要求将Weight I0依次乘以Input I-1 ，Weight I1 ，Weight I2 ，Weight I3 ，Weight I4，  Weight I5，  Weight I6 ， Weight I7，依次得到Input I0 ，Input I1 ，Input I2 ，Input I3 ，Input I4 ，Input I5 ，Input I6 ，Input I7最终输出Input I7 截断要求对于矩阵AB&#x3D;C，C矩阵的第i行第j列元素是A的第i行和B的第j列进行乘加运算得到的，由于矩阵的元素是16位，两个16位元素相乘结果需要用216-1&#x3D;31位表示，再考虑相加，因此需要31+4&#x3D;35位来表示。在这个项目中不考虑相加后会超过31位的情况，只用31位表示。对于Weight I0 * Input I-1&#x3D;I...</div></div></div></a><a class="pagination-related" href="/2022/Q3/installation-configuration-dual-system-win10-ubuntu-installation-method/" title="【安装配置】双系统(Win10+Ubuntu)安装方法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">【安装配置】双系统(Win10+Ubuntu)安装方法</div></div><div class="info-2"><div class="info-item-1">(双系统安装方法)  在阅读ubuntu官网的教程并实践后，我成功将自己的win10主机加上了Ubuntu操作系统，实现了开机自由选择win或linux系统。本教程较为简略，详情请参照参考文献中的官方文档！！  为了实现该目标，我们需要的软硬件包括：硬件：1.win10电脑一台(或Mac)，具有30G以上空闲磁盘空间。2.U盘一个，具有8G以上空闲空间(可能5G也行 建议8G)软件：1.ubuntu的镜像文件2.利用ubuntu镜像制作U盘引导软件(bootable usb stick)的转换软件  第一步，我们需要下载ubuntu的iso镜像文件到本地，ubuntu-22.04-desktop-amd64.iso下载地址    第二步，下载镜像-U盘引导的转换软件balenaEtcher-Portable-1.7.9.exebalenaEtcher-Portable-1.7.9.exe 下载地址 第三步，插入U盘，利用Balena转换软件，将iso镜像文件一键flash到U盘中这里务必注意备份U盘中已有的内容，因为该过程会将U盘清空，最终只剩下ubuntu的系统引导文件！！！ ...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2024/Q1/ic-design-vivado-single-port-ram-usage-and-timing-analysis/" title="【IC设计】Vivado单口RAM的使用和时序分析"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-01-25</div><div class="info-item-2">【IC设计】Vivado单口RAM的使用和时序分析</div></div><div class="info-2"><div class="info-item-1">创建单口RAM IPIP Catalog中选择单口RAM IP  Basic Port A Options Other Options  仿真找到IP例化原语IP Sources-Instantiation Template-veo文件中找到IP例化原语  编写Testbench创建single_port_ram_test.v，代码如下： 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697`timescale 1ns / 1ps//功能：测试单口ram//ena means port a clock enable://enables read,write and reset operations through port A.Optional in all conf...</div></div></div></a><a class="pagination-related" href="/2023/Q3/ic-design-zc706-board-lighting-entry-verilog-code-xdc-constraint-experiment-screenshot/" title="【IC设计】ZC706板卡点灯入门（含Verilog代码，xdc约束，实验截图）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-19</div><div class="info-item-2">【IC设计】ZC706板卡点灯入门（含Verilog代码，xdc约束，实验截图）</div></div><div class="info-2"><div class="info-item-1"> 这篇博客将针对AMD Zynq 7000 SoC ZC706 Evaluation Kit板卡(对应Vivado创建工程时FPGA型号：XC7Z045ffg900-2)实现基本的点灯程序。  假定已知的前置知识本文对以下内容不再介绍，  使用Vivado进行综合、实现、生成比特流并烧录FPGA FPGA的概念、Verilog的基础语法   需求：板卡时钟为200MHz，让板子上的一个LED灯保持0.5秒亮，0.5秒灭。 注意点：①板卡使用JTAG接口烧录时，必须将SW4拨为01，如图所示：  ②ZC706的时钟都是差分时钟，必须使用Verilog原语将其转换为单端时钟才可以直接使用：  IBUFGDS IBUFGDS_inst(     .O(single_clock),    //Clock buffer Output     .I(clk_p),  //Diff_p clock buffer input (connect directly to top-level port)     .IB(clk_n)  //Diff_n clock buffer input(conne...</div></div></div></a><a class="pagination-related" href="/2024/Q2/ic-design-odd-frequency-division-and-even-frequency-division-circuit-design-with-explanation-rtl-code-testbench-code/" title="【IC设计】奇数分频与偶数分频 电路设计（含讲解、RTL代码、Testbench代码）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-04-24</div><div class="info-item-2">【IC设计】奇数分频与偶数分频 电路设计（含讲解、RTL代码、Testbench代码）</div></div><div class="info-2"><div class="info-item-1">原理分析分频电路是将给定clk时钟信号频率降低为div_clk的电路，假设原时钟的频率为M Hz，分频后的时钟为N Hz，那么就称该分频电路为M&#x2F;N分频。 如果M&#x2F;N是奇数，实现该功能的电路就是奇数分频电路；如果M&#x2F;N是偶数，实现该功能的电路就是偶数分频电路。 频率和周期的对应关系：由于频率f&#x3D;1&#x2F;T，因此二分频电路即M&#x2F;N&#x3D;（1&#x2F;T1）&#x2F;(1&#x2F;T2) &#x3D; T2&#x2F;T1 &#x3D; 2 ，即一个二分频后的时钟周期是原时钟周期的两倍。同理，一个N分频后的时钟周期是原时钟的M&#x2F;N倍。 偶数分频举例：以两分频电路为例，由于周期为原先的两倍，那么只需要在clk每个上升沿到来时，div_clk翻转，就可以了。以四分频电路为例，由于周期为原先的四倍，那么需要在clk每两个周期div_clk翻转一次。需要使用计数器来数clk过了几个周期。同理，一个K分频电路，K为偶数，那么由于周期为原先的K倍，那么需要在clk每K&#x2F;2个周期div_clk翻转一次。 奇数分...</div></div></div></a><a class="pagination-related" href="/2024/Q2/ic-design-edge-detection-circuit-rising-edge-falling-edge-both-edges-with-source-code-and-simulation-waveform/" title="【IC设计】边沿检测电路（上升沿、下降沿、双沿，附带源代码和仿真波形）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-04-25</div><div class="info-item-2">【IC设计】边沿检测电路（上升沿、下降沿、双沿，附带源代码和仿真波形）</div></div><div class="info-2"><div class="info-item-1">边沿检测电路的概念边沿检测指的是检测一个信号的上升沿或者下降沿，如果发现了信号的上升沿或下降沿，则给出一个信号指示出来。边沿检测电路根据检测边沿的类型一般分为上升沿检测电路、下降沿检测电路和双沿检测电路。 上升沿检测电路  如图所示，我们的目标是当检测到a从0变成1时，令a_posedge为高电平，其余情况a_posedge均为低电平。要检测a从0变成1，也就是说a的上升沿前是低电平，上升沿后是高电平，那么只需要令边沿前取反，再和边沿后相与，如果结果为1，说明必然是边沿前为0，边沿后为1，确认是上升沿。实际操作中是让a打一拍并取反，再和a相与，得到a_posedge。 下降沿检测电路 下降沿同理，边沿后取反再和边沿前相与，得到1，说明是下降沿。  边沿前电平可以通过a打一拍得到。 双边沿检测电路  方法一：前面会了上升沿和下降沿检测，双边沿检测也就是上升沿和下降沿都拉高，只需要将前面两者的结果进行或运算即可。 方法二：更为简便的办法是，上升沿和下降沿都是0和1之间的跳变，使用异或运算符，可以直接得到结果。  代码和仿真RTL代码12345678910111213141516171...</div></div></div></a><a class="pagination-related" href="/2024/Q1/ic-design-verilog-linear-sequence-machine-lighting-case-two-xiaomei-brother-course/" title="【IC设计】Verilog线性序列机点灯案例(二)（小梅哥课程）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-15</div><div class="info-item-2">【IC设计】Verilog线性序列机点灯案例(二)（小梅哥课程）</div></div><div class="info-2"><div class="info-item-1"> 案例和代码来自小梅哥课程，本人仅对知识点做做笔记，如有学习需要请支持官方正版。  该系列目录：Verilog线性序列机点灯案例（一）Verilog线性序列机点灯案例（二）Verilog线性序列机点灯案例（三）Verilog线性序列机点灯案例（四） 设计目标我们的FPGA的时钟频率为50MHz，即每个周期20ns。因此，在该时钟下时间和周期数的对应关系为：    持续时间 对应周期数    0.25s 12,500,000 cycles   0.5s 25,000,000 cycles   0.75s 37,500,000 cycles   1s 50,000,000 cycles   我们的目标是让LED以**【亮0.25秒-&gt;灭0.5秒-&gt;亮0.75秒-&gt;灭1秒】**的规律，持续循环闪烁。 设计思路 为了完成这样的规律性闪烁，需要一个计数器，计数满2.5秒归零，即：当上升沿采样到125,000,000-1时，计数器归零。然后，led灯根据当前计数器的数值，设置led的亮灭，图中已经标注了led跳变时的counter数值。下面直接上代码 RTL 及 Testb...</div></div></div></a><a class="pagination-related" href="/2024/Q2/ic-design-synchronous-fifo-design-verilog-source-parameterized-design-interview-essential/" title="【IC设计】同步FIFO设计（Verilog源码、参数化设计、面试必备）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-05-19</div><div class="info-item-2">【IC设计】同步FIFO设计（Verilog源码、参数化设计、面试必备）</div></div><div class="info-2"><div class="info-item-1">设计思想FIFO也就是先进先出的队列，是一种特殊的RAM，特殊在读写地址默认是自增1，所以FIFO内部管理读写地址，不需要暴露读写地址端口。同步FIFO指读写使用同一个时钟，异步FIFO则读写使用不同的时钟，同步FIFO相对简单一些，异步FIFO还涉及到亚稳态、格雷码和二进制的转化等问题。 FIFO的难点在于空满的判断，这里同步FIFO的空满判断有两种方式，一是使用计数器，这个很简单，fifo_cnt等于0就为空，等于深度就满，二是使用读写指针进行判断，这里我使用第一种方式。 下面给出了经典同步fifo设计的源码，用来面试手撕，采用了参数化、$clog2函数，代码很规范也很好记。总结一下博客，重点强调下记忆的方法，方便面试手撕代码，如有错误的地方恳请指正！ 端口分三方面记忆，时钟复位+读+写。注意读写不光有数据，还有使能和空满信号。 代码块一共可以分为六个代码块：  读数据部分有读指针always块、读操作always块； 写数据部分有写指针always块、写操作always块； 空满判断部分有fifo元素数量always块、空满判断assign块；  寄存器包括：  fifo_...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">TDppy</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">130</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/TDppy"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/TDppy" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2287015934@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">如何呢，又能怎。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%B2%E8%A8%80%E7%A8%8D%E5%8F%99"><span class="toc-number">1.</span> <span class="toc-text">闲言稍叙</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%AE%80%E4%BB%8B"><span class="toc-number">2.</span> <span class="toc-text">一、简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%A8%A1%E5%9D%97"><span class="toc-number">3.</span> <span class="toc-text">二、模块</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E6%A8%A1%E5%9D%97%E6%98%AFVerilog%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%AE%9E%E4%BD%93"><span class="toc-number">3.1.</span> <span class="toc-text">2.1 模块是Verilog的设计实体</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-riscv-plic/" title="【操作系统】RISC-V PLIC总结">【操作系统】RISC-V PLIC总结</a><time datetime="2026-01-18T15:25:18.000Z" title="发表于 2026-01-18 15:25:18">2026-01-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/hello-world/" title="欢迎来到潘业成的博客">欢迎来到潘业成的博客</a><time datetime="2026-01-12T00:00:00.000Z" title="发表于 2026-01-12 00:00:00">2026-01-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-what-happens-after-pressing-enter-in-xv6-operating-system/" title="【操作系统】xv6操作系统中按下键盘回车后发生的事情">【操作系统】xv6操作系统中按下键盘回车后发生的事情</a><time datetime="2026-01-10T11:58:18.000Z" title="发表于 2026-01-10 11:58:18">2026-01-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-hand-write-xv6-operating-system-types-h-param-h-memlayout-h-riscv-h-defs-h-header-file-analysis/" title="【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析">【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析</a><time datetime="2026-01-06T23:02:58.000Z" title="发表于 2026-01-06 23:02:58">2026-01-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/Q4/operating-system-hand-write-xv6-operating-system-entry-s-and-start-c-analysis/" title="【操作系统】手撸xv6操作系统——entry.S和start.c解析">【操作系统】手撸xv6操作系统——entry.S和start.c解析</a><time datetime="2025-12-30T15:57:42.000Z" title="发表于 2025-12-30 15:57:42">2025-12-30</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By TDppy</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4-b1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4-b1"></script><script src="/js/main.js?v=5.5.4-b1"></script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

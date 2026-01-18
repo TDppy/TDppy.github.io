@@ -1,0 +1,369 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【操作系统】xv6操作系统中按下键盘回车后发生的事情 | 潘业成的博客</title><meta name="author" content="TDppy"><meta name="copyright" content="TDppy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="xv6概述与学习价值xv6是麻省理工学院为MIT 6.S081操作系统课程设计的教学操作系统。总代码量约1万行，主要使用C语言编写，辅以少量汇编代码。它涵盖操作系统核心机制：进程调度、文件系统、中断处理、设备驱动等。 xv6基于Unix V6系统改进设计，”x”表示可扩展(eXtensible)。相比简单嵌入式OS如uC&#x2F;OS，xv6更接近现代操作系统架构。早期版本基于x86架构，202">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【操作系统】xv6操作系统中按下键盘回车后发生的事情">
+<meta property="og:url" content="https://www.whyc.fun/2026/Q1/operating-system-what-happens-after-pressing-enter-in-xv6-operating-system/index.html">
+<meta property="og:site_name" content="潘业成的博客">
+<meta property="og:description" content="xv6概述与学习价值xv6是麻省理工学院为MIT 6.S081操作系统课程设计的教学操作系统。总代码量约1万行，主要使用C语言编写，辅以少量汇编代码。它涵盖操作系统核心机制：进程调度、文件系统、中断处理、设备驱动等。 xv6基于Unix V6系统改进设计，”x”表示可扩展(eXtensible)。相比简单嵌入式OS如uC&#x2F;OS，xv6更接近现代操作系统架构。早期版本基于x86架构，202">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.whyc.fun/img/butterfly-icon.png">
+<meta property="article:published_time" content="2026-01-10T11:58:18.000Z">
+<meta property="article:modified_time" content="2026-01-18T08:18:03.202Z">
+<meta property="article:author" content="TDppy">
+<meta property="article:tag" content="教学操作系统">
+<meta property="article:tag" content="xv6">
+<meta property="article:tag" content="操作系统">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.whyc.fun/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "【操作系统】xv6操作系统中按下键盘回车后发生的事情",
+  "url": "https://www.whyc.fun/2026/Q1/operating-system-what-happens-after-pressing-enter-in-xv6-operating-system/",
+  "image": "https://www.whyc.fun/img/butterfly-icon.png",
+  "datePublished": "2026-01-10T11:58:18.000Z",
+  "dateModified": "2026-01-18T08:18:03.202Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "TDppy",
+      "url": "https://www.whyc.fun"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://www.whyc.fun/2026/Q1/operating-system-what-happens-after-pressing-enter-in-xv6-operating-system/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4-b1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【操作系统】xv6操作系统中按下键盘回车后发生的事情',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(https://oss.012700.xyz/butterfly/2024/10/index.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">130</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://oss.012700.xyz/butterfly/2024/10/index.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">潘业成的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">【操作系统】xv6操作系统中按下键盘回车后发生的事情</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">【操作系统】xv6操作系统中按下键盘回车后发生的事情</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-01-10T11:58:18.000Z" title="发表于 2026-01-10 11:58:18">2026-01-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-01-18T08:18:03.202Z" title="更新于 2026-01-18 08:18:03">2026-01-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="xv6概述与学习价值"><a href="#xv6概述与学习价值" class="headerlink" title="xv6概述与学习价值"></a>xv6概述与学习价值</h1><p>xv6是麻省理工学院为MIT 6.S081操作系统课程设计的教学操作系统。总代码量约1万行，主要使用C语言编写，辅以少量汇编代码。它涵盖操作系统核心机制：进程调度、文件系统、中断处理、设备驱动等。</p>
+<p>xv6基于Unix V6系统改进设计，”x”表示可扩展(eXtensible)。相比简单嵌入式OS如uC&#x2F;OS，xv6更接近现代操作系统架构。早期版本基于x86架构，2020年后推出RISC-V版本，本文分析该版本。</p>
+<p>学习xv6的价值体现在多个方面：</p>
+<ol>
+<li><p><strong>深入理解系统实现</strong>：通过阅读和修改代码，掌握操作系统核心原理，包括：</p>
+<ul>
+<li>I&#x2F;O机制：printf如何输出到屏幕</li>
+<li>输入处理：键盘按键如何被捕获和处理</li>
+<li>进程管理：操作系统如何调度和管理进程</li>
+<li>软硬件接口：软件与硬件的交互方式</li>
+</ul>
+</li>
+<li><p><strong>应聘技能提升</strong>：操作系统知识是嵌入式开发、固件开发、芯片运行时等岗位的核心要求，可以作为简历上的项目备战招聘。</p>
+</li>
+<li><p><strong>系统设计思维培养</strong>：操作系统是典型的系统设计课程，我们需要了解其中的系统设计思想，为解决复杂问题提供思路。</p>
+</li>
+</ol>
+<p>本文通过分析按下键盘回车键后的完整执行流程，展示xv6的中断处理机制。</p>
+<h1 id="场景假设与整体流程"><a href="#场景假设与整体流程" class="headerlink" title="场景假设与整体流程"></a>场景假设与整体流程</h1><p>本文分析的场景：启动xv6操作系统后，用户在shell提示符下直接按下回车键（不输入任何命令）。</p>
+<p>这个简单动作会触发操作系统中断处理的全流程，涉及硬件、CPU、内核、用户程序多个层次。</p>
+<p><strong>整体流程图：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">键盘按键</span><br><span class="line">    ↓</span><br><span class="line">UART接收中断信号</span><br><span class="line">    ↓</span><br><span class="line">PLIC仲裁并转发给CPU</span><br><span class="line">    ↓</span><br><span class="line">CPU执行中断向量(uservec)</span><br><span class="line">    ↓</span><br><span class="line">内核陷阱处理(usertrap → devintr)</span><br><span class="line">    ↓</span><br><span class="line">UART中断处理(uartintr → consoleintr)</span><br><span class="line">    ↓</span><br><span class="line">唤醒shell进程(wakeup)</span><br><span class="line">    ↓</span><br><span class="line">shell读取输入并退出</span><br></pre></td></tr></table></figure>
+
+<p>接下来按时间顺序详细分析每个步骤。</p>
+<h1 id="详细执行流程"><a href="#详细执行流程" class="headerlink" title="详细执行流程"></a>详细执行流程</h1><h2 id="硬件中断：键盘信号到UART"><a href="#硬件中断：键盘信号到UART" class="headerlink" title="硬件中断：键盘信号到UART"></a>硬件中断：键盘信号到UART</h2><p>键盘按键首先被键盘控制器捕获，转换为扫描码，然后通过串口(UART)传输到计算机。</p>
+<p>UART(Universal Asynchronous Receiver&#x2F;Transmitter)是串口通信的核心硬件。它有多个引脚：</p>
+<ul>
+<li>TXD&#x2F;RXD：数据发送&#x2F;接收</li>
+<li>GND：地线</li>
+<li>INTR：中断信号线</li>
+</ul>
+<p>当UART接收到数据时，INTR引脚从低电平(0V)变为高电平(3.3V或5V)，向CPU的PLIC发出”有数据需要处理”的信号。</p>
+<h2 id="中断控制器：PLIC仲裁"><a href="#中断控制器：PLIC仲裁" class="headerlink" title="中断控制器：PLIC仲裁"></a>中断控制器：PLIC仲裁</h2><p>PLIC 是 RISC-V 平台的中断控制器，负责：</p>
+<ol>
+<li>收集所有外部设备的中断信号</li>
+<li>仲裁多个同时发生的中断的优先级</li>
+<li>分发最高优先级的中断给 CPU</li>
+</ol>
+<p>在操作系统初始化时会将PLIC初始化，配置PLIC相关寄存器。PLIC初始化会调用plicinit函数和plicinithart函数，在系统启动时main函数中调用一次，plicinit设置中断请求的优先级，plicinithart则启用中断并设置中断优先级阈值。<br>如果你不清楚RISC-V中的PLIC，请阅读这篇：<a href="/2026/Q1/operating-system-riscv-plic">【操作系统】RISC-V PLIC总结</a></p>
+<h3 id="plicinit函数"><a href="#plicinit函数" class="headerlink" title="plicinit函数"></a>plicinit函数</h3><p>每个中断源都有一个优先级值 (0-7 或更高，取决于实现)</p>
+<ul>
+<li>优先级 &#x3D; 0: 中断被禁用</li>
+<li>优先级 &gt; 0: 中断启用，数值越大优先级越高</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">plicinit</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">// 将可能产生的中断请求(Interrupt ReQuest, IRQ)设为非 0</span></span><br><span class="line">  *(uint32*)(PLIC + UART0_IRQ*<span class="number">4</span>) = <span class="number">1</span>;</span><br><span class="line">  *(uint32*)(PLIC + VIRTIO0_IRQ*<span class="number">4</span>) = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="plicinithart函数"><a href="#plicinithart函数" class="headerlink" title="plicinithart函数"></a>plicinithart函数</h3><p>plicinithart 为每个 CPU 核心初始化 PLIC（中断控制器）的设置。每个 CPU 核心都需要独立配置，因为中断可以被分配到不同的核心处理。</p>
+<ol>
+<li>首先启用中断<br>PLIC_SENABLE(hart) &#x3D; PLIC + 0x2080 + (hart)*0x100 作用是控制哪些中断可以发送到这个 CPU 核心的 S-mode（supervisor mode），设置为(1 &lt;&lt; UART0_IRQ) | (1 &lt;&lt; VIRTIO0_IRQ)意味着：</li>
+</ol>
+<ul>
+<li>UART 中断 (IRQ 10) 被启用</li>
+<li>VirtIO 磁盘中断 (IRQ 1) 被启用</li>
+<li>其他中断被禁用</li>
+</ul>
+<ol start="2">
+<li>然后设置优先级阈值<br>PLIC_SPRIORITY(hart) &#x3D; PLIC + 0x201000 + (hart)*0x2000 作用是设置中断优先级阈值，只有优先级高于此值的才会被发送到 CPU，阈值设置为 0 表示接受所有优先级 &gt; 0 的中断。由于 plicinit() 中设置 UART 和 VirtIO 的优先级为 1，所以这些中断会被接受。如果阈值设为 1，则只有优先级 &gt; 1 的中断才会被处理。</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">plicinithart</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">  <span class="type">int</span> hart = cpuid();</span><br><span class="line">  *(uint32*)PLIC_SENABLE(hart)= (<span class="number">1</span> &lt;&lt; UART0_IRQ) | (<span class="number">1</span> &lt;&lt; VIRTIO0_IRQ);</span><br><span class="line">  *(uint32*)PLIC_SPRIORITY(hart) = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>为什么需要每个 CPU 独立配置：</p>
+<ol>
+<li>多核支持: 不同的中断可以路由到不同的 CPU 核心</li>
+<li>负载均衡: 可以将中断处理分散到多个核心</li>
+<li>隔离性: 每个核心可以独立控制接收哪些中断</li>
+</ol>
+<p>优先级阈值的意义</p>
+<ul>
+<li>阈值 &#x3D; 0: 接受所有非零优先级中断</li>
+<li>阈值 &#x3D; 1: 只接受优先级 &gt; 1 的中断</li>
+<li>阈值 &#x3D; 最大值: 屏蔽所有中断</li>
+</ul>
+<p>S-mode vs M-mode</p>
+<ul>
+<li>PLIC_SENABLE: 控制 S-mode（supervisor mode）中断</li>
+<li>PLIC_MENABLE: 控制 M-mode（machine mode）中断</li>
+<li>xv6 运行在 S-mode，所以使用 S-mode 设置</li>
+</ul>
+<h2 id="CPU中断响应"><a href="#CPU中断响应" class="headerlink" title="CPU中断响应"></a>CPU中断响应</h2><p>一旦 PLIC 决定发送中断，它就会向 CPU 的<strong>外部中断引脚</strong>发送信号。CPU 检测到这个信号后，会暂停当前执行的指令，保存当前的执行状态，然后跳转到一个预先设置好的地址去执行中断处理代码。在 RISC-V 架构中，这个地址叫做 <strong>Supervisor Trap Vector Base Address Register, 简称 stvec</strong>，如果当前 CPU 运行在用户模式，这个地址会指向一个叫做 <strong>uservec</strong> 的函数。</p>
+<blockquote>
+<p>为了保证原汁原味，我直接把stvec寄存器的RISC-V官方手册解释贴上。</p>
+</blockquote>
+<hr>
+ <img src="/2026/Q1/operating-system-what-happens-after-pressing-enter-in-xv6-operating-system/stvec.png" class="" title="stvec寄存器解释">
+
+<p>首先，我们需要了解 CPU 的<strong>外部中断引脚</strong>。在 RISC-V 架构中，有一个专门的引脚叫做 SEI，也就是 Supervisor External Interrupt。当 PLIC 决定发送中断时，它会通过这个引脚向 CPU 发送一个电信号。这个引脚是 CPU 芯片上的物理引脚，平时保持低电平，当有外部中断时会被拉高。</p>
+<p>当 CPU 检测到 SEI 引脚的信号变高时，它会立即中断当前的指令执行。这个过程是完全由硬件控制的，不需要软件干预。CPU 会自动做以下几件事：</p>
+<ul>
+<li><strong>保存pc</strong>:首先，它会保存当前的程序计数器（PC）到 sepc 寄存器。这个寄存器专门用来存储发生异常或中断时的指令地址，这样软件就可以知道中断发生的确切位置。<blockquote>
+<p>为了保证原汁原味，我直接把sepc寄存器的RISC-V官方手册解释贴上。</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+ <img src="/2026/Q1/operating-system-what-happens-after-pressing-enter-in-xv6-operating-system/sepc.png" class="" title="sepc寄存器解释">
+
+<ul>
+<li><strong>保存sstatus</strong>:然后，CPU 会保存当前的状态信息到 sstatus 寄存器。这个寄存器包含了很多重要的状态位，比如当前是否在用户模式、是否启用了中断等。<blockquote>
+<p>为了保证原汁原味，我直接把sstatus寄存器的RISC-V官方手册解释贴上。</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+ <img src="/2026/Q1/operating-system-what-happens-after-pressing-enter-in-xv6-operating-system/sstatus1.png" class="" title="sstatus解释">
+ <img src="/2026/Q1/operating-system-what-happens-after-pressing-enter-in-xv6-operating-system/sstatus2.png" class="" title="sstatus官方手册解释">
+
+<ul>
+<li><strong>保存scause</strong>:同时，CPU 还会将中断的原因编码保存到 scause 寄存器。对于外部中断，scause 的值会是 0x8000000000000009，其中最高位设置为 1 表示这是中断而不是异常，后面的值 9 表示外部中断。<blockquote>
+<p>为了保证原汁原味，我直接把scause寄存器的RISC-V官方手册解释贴上。</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+ <img src="/2026/Q1/operating-system-what-happens-after-pressing-enter-in-xv6-operating-system/scause.png" class="" title="scause解释">
+
+<ul>
+<li><strong>跳转到uservec</strong>:做完这些保存工作后，CPU 就会跳转到 stvec 寄存器指向的地址执行。这个跳转是由硬件直接完成的，没有任何条件判断。在 xv6 中，如果 CPU 当前运行在用户态（也叫用户模式&#x2F;用户空间），stvec 会指向 <strong>trampoline.S</strong> 中的 <strong>uservec 函数</strong>的地址；如果 CPU 当前运行在内核态，则 stvec 会指向 <strong>kernelvec.S</strong> 中的 <strong>kernelvec 函数</strong>的地址。<span style="color:red;">本文以中断前运行在用户态为例来讲解。</span></li>
+</ul>
+<hr>
+<p>uservec 函数首先保存所有寄存器到 trapframe（trapframe可以理解为一片用于保存现场的专用内存空间），然后从用户页表切换到内核页表，最后调用 usertrap() 函数。<br>下面，让我们详细看看 uservec 函数的具体实现。</p>
+<h3 id="保存所有寄存器到-trapframe"><a href="#保存所有寄存器到-trapframe" class="headerlink" title="保存所有寄存器到 trapframe"></a>保存所有寄存器到 trapframe</h3><p>首先是函数的入口和初始设置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">uservec:    </span><br><span class="line">    # swap a0 and sscratch</span><br><span class="line">    # so that a0 is TRAPFRAME</span><br><span class="line">    csrrw a0, sscratch, a0</span><br></pre></td></tr></table></figure>
+
+<p>这一开始的注释说明了这个函数的作用：处理来自用户空间的陷阱（traps），包括中断和异常。函数开始时，<strong>sscratch</strong> 寄存器被设置为指向当前进程的 trapframe 结构。<code>csrrw</code> 指令交换 a0 和 sscratch 的值，这样 a0 就指向了 trapframe，而原来的 a0 值被保存到 sscratch 中。</p>
+<blockquote>
+<p>为了保证原汁原味，我直接把sscratch寄存器的RISC-V官方手册解释贴上。</p>
+</blockquote>
+<hr>
+ <img src="/2026/Q1/operating-system-what-happens-after-pressing-enter-in-xv6-operating-system/sscratch.png" class="" title="sscratch解释">
+
+
+<p>接下来是保存用户寄存器到 trapframe：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># save the user registers in TRAPFRAME</span><br><span class="line">sd ra, 40(a0)</span><br><span class="line">sd sp, 48(a0)</span><br><span class="line">sd gp, 56(a0)</span><br><span class="line">sd tp, 64(a0)</span><br><span class="line">sd t0, 72(a0)</span><br><span class="line"># ... 继续保存其他寄存器</span><br></pre></td></tr></table></figure>
+
+<p>这里使用 <code>sd</code> 指令（store double word）将所有用户空间的寄存器保存到 trapframe 结构中。每个寄存器都有固定的偏移量，比如 ra 保存到距离 trapframe 基地址 40 字节的位置，sp 保存到 48 字节的位置。这些偏移量是预定义的，对应 <code>proc.h</code> 中 <code>struct trapframe</code> 的字段定义。</p>
+<blockquote>
+<p><strong>trapframe是什么？</strong><br>trapframe是一个数据结构（在proc.h中定义），专门用来保存和恢复进程在用户态和内核态切换时的寄存器状态。<br>它就像一个“快照”，记录了用户程序运行时的CPU寄存器值。当发生中断、异常或系统调用时，系统需要保存现场，处理完后再恢复，让程序继续运行。<br>每个进程都有自己的trapframe，存储在用户页表的一个独立页面中（位于trampoline页下方）。这个页面在内核页表中没有特殊映射，所以内核直接用虚拟地址访问不了它，而是通过<strong>sscratch寄存器</strong>指向它。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 用于 trampoline.S 中 trap 处理代码的每个进程数据。</span></span><br><span class="line"><span class="comment">// 位于用户页表中 trampoline 页下方的一个独立页面中。在内核页表中未特殊映射。</span></span><br><span class="line"><span class="comment">// sscratch 寄存器指向此处。</span></span><br><span class="line"><span class="comment">// trampoline.S 中的 uservec 将用户寄存器保存到 trapframe 中，</span></span><br><span class="line"><span class="comment">// 然后从 trapframe 的 kernel_sp、kernel_hartid、kernel_satp 初始化寄存器，并跳转到 kernel_trap。</span></span><br><span class="line"><span class="comment">// usertrapret() 和 userret 在 trampoline.S 中设置 trapframe 的 kernel_*，</span></span><br><span class="line"><span class="comment">// 从 trapframe 恢复用户寄存器，切换到用户页表，并进入用户空间。</span></span><br><span class="line"><span class="comment">// trapframe 包括被调用者保存的用户寄存器，如 s0-s11，因为通过 usertrapret() 返回用户的路径不会通过整个内核调用栈。</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">trapframe</span> &#123;</span></span><br><span class="line">  <span class="comment">/*   0 */</span> uint64 kernel_satp;   <span class="comment">// kernel page table</span></span><br><span class="line">  <span class="comment">/*   8 */</span> uint64 kernel_sp;     <span class="comment">// top of process&#x27;s kernel stack</span></span><br><span class="line">  <span class="comment">/*  16 */</span> uint64 kernel_trap;   <span class="comment">// usertrap()</span></span><br><span class="line">  <span class="comment">/*  24 */</span> uint64 epc;           <span class="comment">// saved user program counter</span></span><br><span class="line">  <span class="comment">/*  32 */</span> uint64 kernel_hartid; <span class="comment">// saved kernel tp</span></span><br><span class="line">  <span class="comment">/*  40 */</span> uint64 ra;</span><br><span class="line">  <span class="comment">/*  48 */</span> uint64 sp;</span><br><span class="line">  <span class="comment">/*  56 */</span> uint64 gp;</span><br><span class="line">  <span class="comment">/*  64 */</span> uint64 tp;</span><br><span class="line">  <span class="comment">/*  72 */</span> uint64 t0;</span><br><span class="line">  <span class="comment">/*  80 */</span> uint64 t1;</span><br><span class="line">  <span class="comment">/*  88 */</span> uint64 t2;</span><br><span class="line">  <span class="comment">/*  96 */</span> uint64 s0;</span><br><span class="line">  <span class="comment">/* 104 */</span> uint64 s1;</span><br><span class="line">  <span class="comment">/* 112 */</span> uint64 a0;</span><br><span class="line">  <span class="comment">/* 120 */</span> uint64 a1;</span><br><span class="line">  <span class="comment">/* 128 */</span> uint64 a2;</span><br><span class="line">  <span class="comment">/* 136 */</span> uint64 a3;</span><br><span class="line">  <span class="comment">/* 144 */</span> uint64 a4;</span><br><span class="line">  <span class="comment">/* 152 */</span> uint64 a5;</span><br><span class="line">  <span class="comment">/* 160 */</span> uint64 a6;</span><br><span class="line">  <span class="comment">/* 168 */</span> uint64 a7;</span><br><span class="line">  <span class="comment">/* 176 */</span> uint64 s2;</span><br><span class="line">  <span class="comment">/* 184 */</span> uint64 s3;</span><br><span class="line">  <span class="comment">/* 192 */</span> uint64 s4;</span><br><span class="line">  <span class="comment">/* 200 */</span> uint64 s5;</span><br><span class="line">  <span class="comment">/* 208 */</span> uint64 s6;</span><br><span class="line">  <span class="comment">/* 216 */</span> uint64 s7;</span><br><span class="line">  <span class="comment">/* 224 */</span> uint64 s8;</span><br><span class="line">  <span class="comment">/* 232 */</span> uint64 s9;</span><br><span class="line">  <span class="comment">/* 240 */</span> uint64 s10;</span><br><span class="line">  <span class="comment">/* 248 */</span> uint64 s11;</span><br><span class="line">  <span class="comment">/* 256 */</span> uint64 t3;</span><br><span class="line">  <span class="comment">/* 264 */</span> uint64 t4;</span><br><span class="line">  <span class="comment">/* 272 */</span> uint64 t5;</span><br><span class="line">  <span class="comment">/* 280 */</span> uint64 t6;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>特别需要注意的是 a0 的处理：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># save the user a0 in p-&gt;trapframe-&gt;a0</span><br><span class="line">csrr t0, sscratch</span><br><span class="line">sd t0, 112(a0)</span><br></pre></td></tr></table></figure>
+
+<p>由于 a0 在一开始就被交换了，这里需要从 sscratch 中读取原始的 a0 值，然后保存到 trapframe 的 112 字节偏移位置。</p>
+<h3 id="从用户态切换到内核态"><a href="#从用户态切换到内核态" class="headerlink" title="从用户态切换到内核态"></a>从用户态切换到内核态</h3><p>保存完用户状态后，开始恢复内核环境：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 从 p-&gt;trapframe-&gt;kernel_sp 读到内核栈指针，赋值给sp</span><br><span class="line">ld sp, 8(a0)</span><br><span class="line"></span><br><span class="line"># 从 p-&gt;trapframe-&gt;kernel_hartid 读到硬件线程id，赋值给tp</span><br><span class="line">ld tp, 32(a0)</span><br></pre></td></tr></table></figure>
+
+<p><code>ld</code> 指令（load double word）从 trapframe 中读取内核栈指针和 hart ID。sp 设置为内核栈指针，这样后续的函数调用就会使用内核栈。tp 设置为当前 CPU 核心的 ID，这在多核系统中很重要。</p>
+<h3 id="用户页表切换到内核页表"><a href="#用户页表切换到内核页表" class="headerlink" title="用户页表切换到内核页表"></a>用户页表切换到内核页表</h3><p>接下来是关键的页表切换：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 从 p-&gt;trapframe-&gt;kernel_satp 中读到stap，切换页表到内核态</span><br><span class="line">ld t1, 0(a0)</span><br><span class="line">csrw satp, t1</span><br><span class="line">sfence.vma zero, zero</span><br></pre></td></tr></table></figure>
+
+<p>这里从 trapframe 中读取内核页表的地址，写入 satp 寄存器，然后执行 <code>sfence.vma</code> 指令刷新 TLB。这个操作将页表从用户页表切换到内核页表，确保后续代码使用正确的地址映射。</p>
+<h3 id="跳转到-usertrap-函数"><a href="#跳转到-usertrap-函数" class="headerlink" title="跳转到 usertrap 函数"></a>跳转到 usertrap 函数</h3><p>最后是跳转到 C 函数：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># load the address of usertrap(), p-&gt;trapframe-&gt;kernel_trap</span><br><span class="line">ld t0, 16(a0)</span><br><span class="line"></span><br><span class="line"># jump to usertrap(), which does not return</span><br><span class="line">jr t0</span><br></pre></td></tr></table></figure>
+
+<p>从 trapframe 中读取 usertrap 函数的地址，然后无条件跳转。这个跳转将控制权转移给 C 语言编写的 usertrap 函数，继续处理具体的陷阱类型。</p>
+<p>整个 uservec 函数展示了从硬件中断到软件处理的无缝衔接。它精确地保存了用户状态，恢复了内核环境，然后将控制权交给更高层次的处理函数。这种设计既保证了性能，又确保了安全性。每个指令都有其特定的作用，共同构成了操作系统中断处理的基础设施。</p>
+<p>通过这个函数，xv6 能够在发生中断时安全地从用户模式切换到内核模式，处理各种异步事件，然后在适当的时候恢复用户程序的执行。这种机制是现代操作系统能够可靠运行的关键。</p>
+<hr>
+<h2 id="内核中断处理"><a href="#内核中断处理" class="headerlink" title="内核中断处理"></a>内核中断处理</h2><p>下面简要说明usertrap函数、devintr函数、UART和控制台处理的流程，然后再具体讲解他们的工作细节。</p>
+<h3 id="usertrap函数：陷阱分类"><a href="#usertrap函数：陷阱分类" class="headerlink" title="usertrap函数：陷阱分类"></a>usertrap函数：陷阱分类</h3><p>uservec跳转到usertrap函数(位于kernel&#x2F;trap.c)，该函数分析中断类型。</p>
+<p>首先验证是从用户模式进入，然后切换stvec指向kernelvec。</p>
+<p>保存程序计数器后，通过scause判断：</p>
+<ul>
+<li>scause &#x3D;&#x3D; 8：系统调用</li>
+<li>其他：调用devintr()处理设备中断</li>
+</ul>
+<h3 id="devintr函数：设备中断识别"><a href="#devintr函数：设备中断识别" class="headerlink" title="devintr函数：设备中断识别"></a>devintr函数：设备中断识别</h3><p>devintr函数识别外部中断(scause最高位为1，低8位为9)。</p>
+<p>调用plic_claim()获取中断号：</p>
+<ul>
+<li>UART0_IRQ(10)：调用uartintr()</li>
+<li>VIRTIO0_IRQ(1)：磁盘中断处理</li>
+</ul>
+<p>处理完成后调用plic_complete()通知PLIC。</p>
+<h3 id="UART和控制台数据处理"><a href="#UART和控制台数据处理" class="headerlink" title="UART和控制台数据处理"></a>UART和控制台数据处理</h3><p>uartintr()循环读取UART数据，调用consoleintr()处理每个字符。</p>
+<p>consoleintr()将字符存储到控制台缓冲区，当遇到换行符时：</p>
+<ul>
+<li>更新写指针cons.w</li>
+<li>调用wakeup(&amp;cons.r)唤醒等待输入的进程</li>
+</ul>
+<h3 id="工作细节"><a href="#工作细节" class="headerlink" title="工作细节"></a>工作细节</h3><p>usertrap 函数首先会验证当前确实是从用户模式进入的中断。如果不是，它会直接 panic，因为这说明系统状态出现了异常。然后它会立即切换 stvec 寄存器，将其指向 kernelvec（位于 <code>kernel/kernelvec.S</code>)。函数接下来会获取当前进程的指针，并保存发生中断时的程序计数器。这个计数器指向用户程序中被中断的指令位置，对于系统调用来说，这个位置需要调整，因为 ecall 指令执行完后，程序计数器应该指向下一条指令。</p>
+<p>现在到了关键的判断部分。usertrap 通过检查 scause 寄存器来确定中断或异常的类型。如果 scause 等于 8，就表示这是一个系统调用。如果是其他值，就需要进一步检查是否是设备中断。</p>
+<p>在我们的按回车键的例子中，这是一个外部中断，所以程序会进入 <code>devintr()</code> 函数。这个函数也位于 <code>kernel/trap.c</code> 文件中，它专门处理设备中断。devintr 函数通过位运算来识别中断类型。对于外部中断，scause 的最高位是 1，低 8 位是 9。这个模式表明中断来自 PLIC 管理的外部设备。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// usertrap 由 trampoline.S调用,</span></span><br><span class="line"><span class="comment">// 负责处理来自用户态的中断、异常或系统调用</span></span><br><span class="line"><span class="type">void</span></span><br><span class="line"><span class="title function_">usertrap</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">int</span> which_dev = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>((r_sstatus() &amp; SSTATUS_SPP) != <span class="number">0</span>)</span><br><span class="line">    panic(<span class="string">&quot;usertrap: not from user mode&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 修改stvec，使其指向trap.c中的kerneltrap函数，当再次发生中断时由kerneltrap处理</span></span><br><span class="line">  w_stvec((uint64)kernelvec);</span><br><span class="line"></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">proc</span> *<span class="title">p</span> =</span> myproc();</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 保存sepc到trapframe中</span></span><br><span class="line">  p-&gt;trapframe-&gt;epc = r_sepc();</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 判断引发陷入的原因</span></span><br><span class="line">  <span class="comment">// 如果是系统调用，则sepc此时指向ecall指令，但我们希望返回的时候到下一条指令</span></span><br><span class="line">  <span class="comment">// 所以p-&gt;trapframe-&gt;epc += 4</span></span><br><span class="line">  <span class="keyword">if</span>(r_scause() == <span class="number">8</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(p-&gt;killed)</span><br><span class="line">      <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line"></span><br><span class="line">    p-&gt;trapframe-&gt;epc += <span class="number">4</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 中断会改变sstatus和c寄存器，所以不能使能中断</span></span><br><span class="line">    intr_on();</span><br><span class="line">    <span class="comment">// 进入系统调用</span></span><br><span class="line">    syscall();</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span>((which_dev = devintr()) != <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="comment">// ok</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;usertrap(): unexpected scause %p pid=%d\n&quot;</span>, r_scause(), p-&gt;pid);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;            sepc=%p stval=%p\n&quot;</span>, r_sepc(), r_stval());</span><br><span class="line">    p-&gt;killed = <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(p-&gt;killed)</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 如果是定时器中断，则放弃CPU占用</span></span><br><span class="line">  <span class="keyword">if</span>(which_dev == <span class="number">2</span>)</span><br><span class="line">    yield();</span><br><span class="line"></span><br><span class="line">  usertrapret();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>一旦确认是外部中断，函数就会调用 <code>plic_claim()</code>（位于 <code>kernel/plic.c</code>）来询问 PLIC 当前应该处理哪个中断。在我们的场景中，这个函数会返回 10，也就是 UART0_IRQ。有了中断号之后，devintr 就会根据不同的设备类型调用相应的处理函数。对于 UART 中断，它会调用 <code>uartintr()</code>（位于 <code>kernel/uart.c</code>）。uartintr 函数会检查 UART 的接收缓冲区，看看有没有新的数据可以读取。在我们的按回车键的例子中，这里应该有字符数据（换行符）。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// kernel/uart.c - uartintr 函数</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">uartintr</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">  <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">    <span class="type">int</span> c = uartgetc();</span><br><span class="line">    <span class="keyword">if</span>(c == <span class="number">-1</span>)</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    consoleintr(c);  <span class="comment">// 位于 kernel/console.c</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>从 UART 读取到的每个字符都会被传递给 <code>consoleintr()</code> 函数（位于 <code>kernel/console.c</code>）。这个函数不仅负责将字符回显到屏幕，还会将其存储到控制台的输入缓冲区。</p>
+<p>当 consoleintr 处理到换行符时，它就会更新输入缓冲区的写指针，并唤醒任何正在等待输入的进程。在我们的例子中，被唤醒的就是 shell 进程。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// kernel/console.c - consoleintr 函数片段</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">consoleintr</span><span class="params">(<span class="type">int</span> c)</span> &#123;</span><br><span class="line">  <span class="comment">// ... 处理字符 ...</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span>(c == <span class="string">&#x27;\n&#x27;</span> || c == C(<span class="string">&#x27;D&#x27;</span>) || cons.e == cons.r + INPUT_BUF)&#123;</span><br><span class="line">    cons.w = cons.e;</span><br><span class="line">    wakeup(&amp;cons.r);  <span class="comment">// 唤醒等待输入的进程</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>处理完中断后，usertrap 函数会检查是否需要进行进程调度。在外部中断的情况下，通常不需要立即切换进程，除非这是定时器中断。最后，usertrap 会调用 <code>usertrapret()</code> 函数来准备返回用户空间。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// kernel/trap.c - usertrap 函数结尾</span></span><br><span class="line"><span class="keyword">if</span>(which_dev == <span class="number">2</span>)</span><br><span class="line">  yield();  <span class="comment">// only for timer interrupts</span></span><br><span class="line"></span><br><span class="line">usertrapret();  <span class="comment">// 准备返回用户空间</span></span><br></pre></td></tr></table></figure>
+
+<p>整个中断处理过程就这样完成了。从按下回车键的物理动作开始，经过层层硬件和软件的处理，最终唤醒了 shell 进程，让它能够读取到用户的输入。</p>
+<h2 id="用户空间响应：Shell进程"><a href="#用户空间响应：Shell进程" class="headerlink" title="用户空间响应：Shell进程"></a>用户空间响应：Shell进程</h2><h3 id="系统调用与数据读取"><a href="#系统调用与数据读取" class="headerlink" title="系统调用与数据读取"></a>系统调用与数据读取</h3><p>shell进程被wakeup()唤醒后，继续执行getcmd()中的gets()调用。</p>
+<p>gets()通过read()系统调用读取控制台：</p>
+<ul>
+<li>用户空间read() → 内核consoleread()</li>
+<li>consoleread()等待缓冲区有数据，读取并返回</li>
+</ul>
+<h3 id="输入处理与进程退出"><a href="#输入处理与进程退出" class="headerlink" title="输入处理与进程退出"></a>输入处理与进程退出</h3><p>consoleread读取换行符后返回，gets()添加\0并返回。</p>
+<p>getcmd()移除\n，发现缓冲区为空，返回-1(EOF)。</p>
+<p>shell主循环退出，调用exit(0)终止。</p>
+<p>这就是按下回车键导致shell退出的完整流程。如果输入命令，shell会解析并执行fork&#x2F;exec。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://www.whyc.fun">TDppy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://www.whyc.fun/2026/Q1/operating-system-what-happens-after-pressing-enter-in-xv6-operating-system/">https://www.whyc.fun/2026/Q1/operating-system-what-happens-after-pressing-enter-in-xv6-operating-system/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://www.whyc.fun" target="_blank">潘业成的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%95%99%E5%AD%A6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">教学操作系统</a><a class="post-meta__tags" href="/tags/xv6/">xv6</a><a class="post-meta__tags" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></div><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/Q1/hello-world/" title="欢迎来到潘业成的博客"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">欢迎来到潘业成的博客</div></div><div class="info-2"><div class="info-item-1">欢迎来到我的博客！我是潘业成，一名热爱计算机软硬件技术的程序员，致力于既会做网站与应用，也懂芯片与板卡。如果你也对计算机系统原理和实践感兴趣，请关注我！ 关于我 高中时期我是江苏的一名普通文科生，那时江苏高考满分480分，18年高考我考了304分，在全省排名中下游，去了一个普通的三本，南京邮电大学通达学院。填报志愿时，我突然发现自己想学一点炫酷的东西，于是在一众金融、师范、管理专业中勉强找到了一个和信息挂点勾的专业————信息管理与信息系统。  大一上学期有一门C语言程序设计的课程，我发现用这个可以做点有趣的事情，比如写个让别人电脑关机的程序、或者控制键盘和鼠标让他不断给QQ好友轰炸信息。一学期结束，我惊奇的发现，我的绩点竟然是专业第4，而我只是按时上课，作业也常常是临时赶的或者抄的。大二开学，辅导员在群里发转专业的通知，其中规定，绩点前5%可以无条件转入我校的任意专业。我还记得那时我们寝室是8415还是8409来着，室友问我“你要转吗？”。  那时是2018年，周围朋友都说，南邮的王牌专业是通信工程，而我觉得计算机专业好像听起来更酷一些，我有点兴趣的编程知识似乎也是在计算机专业...</div></div></div></a><a class="pagination-related" href="/2026/Q1/operating-system-hand-write-xv6-operating-system-types-h-param-h-memlayout-h-riscv-h-defs-h-header-file-analysis/" title="【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析</div></div><div class="info-2"><div class="info-item-1">概要main.c中引入了types.h&#x2F;param.h&#x2F;memlayout.h&#x2F;riscv.h&#x2F;defs.h头文件，各文件主要功能如下： 123456789101112131415161718192021// 数据类型重命名:// uint/ushort/uchar/uint8/uint16/uint32/uint64/pde_t 的定义#include &quot;types.h&quot;// 参数定义:// params.h 通过一系列宏定义，统一指定了操作系统内核中进程、CPU、文件、设备、文件系统等核心模块的最大值，// 为内核各功能模块的运行提供统一的参数配置依据#include &quot;param.h&quot;// 内存布局:// 定义QEMU virt平台下RISC-V架构的物理内存（硬件设备、内核RAM）与虚拟内存（内核栈、用户空间、trampoline/trapframe）布局，// 以及中断控制器等硬件地址常量，为内核内存管理和硬件交互提供地址映射依据#include &quot;memlayout.h&quot...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2026/Q1/operating-system-hand-write-xv6-operating-system-types-h-param-h-memlayout-h-riscv-h-defs-h-header-file-analysis/" title="【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-01-06</div><div class="info-item-2">【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析</div></div><div class="info-2"><div class="info-item-1">概要main.c中引入了types.h&#x2F;param.h&#x2F;memlayout.h&#x2F;riscv.h&#x2F;defs.h头文件，各文件主要功能如下： 123456789101112131415161718192021// 数据类型重命名:// uint/ushort/uchar/uint8/uint16/uint32/uint64/pde_t 的定义#include &quot;types.h&quot;// 参数定义:// params.h 通过一系列宏定义，统一指定了操作系统内核中进程、CPU、文件、设备、文件系统等核心模块的最大值，// 为内核各功能模块的运行提供统一的参数配置依据#include &quot;param.h&quot;// 内存布局:// 定义QEMU virt平台下RISC-V架构的物理内存（硬件设备、内核RAM）与虚拟内存（内核栈、用户空间、trampoline/trapframe）布局，// 以及中断控制器等硬件地址常量，为内核内存管理和硬件交互提供地址映射依据#include &quot;memlayout.h&quot...</div></div></div></a><a class="pagination-related" href="/2025/Q4/operating-system-hand-write-xv6-operating-system-entry-s-and-start-c-analysis/" title="【操作系统】手撸xv6操作系统——entry.S和start.c解析"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-30</div><div class="info-item-2">【操作系统】手撸xv6操作系统——entry.S和start.c解析</div></div><div class="info-2"><div class="info-item-1">entry.S解析和调试代码分析entry.S是xv6上电后执行的第一段代码，用于设置每个CPU的栈指针并跳转到start函数，每个CPU拥有4KB的栈空间。 123456789101112.section .text_entry:        la sp, stack0        li a0, 1024*4			 csrr a1, mhartid        addi a1, a1, 1        mul a0, a0, a1        add sp, sp, a0	# jump to start() in start.c        call startspin:        j spin 整段代码的作用是令sp &#x3D; stack0的地址 + 4096 × (当前运行的CPU核心编号 + 1)。la sp,stack0，la是load address，将stack0的地址赋值到sp寄存器，在RISC-V架构中sp是栈指针寄存器。li a0,1024*4，li是load immediate，加载立即数4096到a0。csrr a1,mhartid，是...</div></div></div></a><a class="pagination-related" href="/2026/Q1/operating-system-riscv-plic/" title="【操作系统】RISC-V PLIC总结"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-01-18</div><div class="info-item-2">【操作系统】RISC-V PLIC总结</div></div><div class="info-2"><div class="info-item-1">本文是对【操作系统】xv6操作系统中按下键盘回车后发生的事情一文的补充阅读。如果你对PLIC（Platform-Level Interrupt Controller，平台级中断控制器）感到困惑，不妨先阅读这篇文章，了解PLIC的基本概念和工作原理。 什么是PLIC？在现代计算机系统中，CPU需要与各种外部设备（如键盘、鼠标、硬盘、网络卡等）进行通信。这些设备往往需要主动向CPU报告某些事件，比如键盘被按下、数据传输完成等。为了实现这种主动通知，设备会发出中断信号。 然而，在一个复杂的系统中，可能有数十甚至数百个设备同时发出中断请求。如果所有中断信号都直接涌向CPU，会导致混乱。因此，需要一个专门的硬件来管理和协调这些中断请求。这个硬件就是PLIC（Platform-Level Interrupt Controller，平台级中断控制器）。 通俗地理解，PLIC就像公司的秘书，中断目标就像公司的老板，而外部中断请求就像要拜访老板的访客。由于访客众多，如果没有处理就让他们全挤在老板办公室，会非常嘈杂。于是，老板聘请了一个秘书，规定所有访客都要在秘书那里登记。秘书会根据访客的重要性排序...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">TDppy</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">130</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/TDppy"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/TDppy" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2287015934@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">如何呢，又能怎。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#xv6%E6%A6%82%E8%BF%B0%E4%B8%8E%E5%AD%A6%E4%B9%A0%E4%BB%B7%E5%80%BC"><span class="toc-number">1.</span> <span class="toc-text">xv6概述与学习价值</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9C%BA%E6%99%AF%E5%81%87%E8%AE%BE%E4%B8%8E%E6%95%B4%E4%BD%93%E6%B5%81%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">场景假设与整体流程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AF%A6%E7%BB%86%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B"><span class="toc-number">3.</span> <span class="toc-text">详细执行流程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A1%AC%E4%BB%B6%E4%B8%AD%E6%96%AD%EF%BC%9A%E9%94%AE%E7%9B%98%E4%BF%A1%E5%8F%B7%E5%88%B0UART"><span class="toc-number">3.1.</span> <span class="toc-text">硬件中断：键盘信号到UART</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%AD%E6%96%AD%E6%8E%A7%E5%88%B6%E5%99%A8%EF%BC%9APLIC%E4%BB%B2%E8%A3%81"><span class="toc-number">3.2.</span> <span class="toc-text">中断控制器：PLIC仲裁</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#plicinit%E5%87%BD%E6%95%B0"><span class="toc-number">3.2.1.</span> <span class="toc-text">plicinit函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#plicinithart%E5%87%BD%E6%95%B0"><span class="toc-number">3.2.2.</span> <span class="toc-text">plicinithart函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CPU%E4%B8%AD%E6%96%AD%E5%93%8D%E5%BA%94"><span class="toc-number">3.3.</span> <span class="toc-text">CPU中断响应</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%9D%E5%AD%98%E6%89%80%E6%9C%89%E5%AF%84%E5%AD%98%E5%99%A8%E5%88%B0-trapframe"><span class="toc-number">3.3.1.</span> <span class="toc-text">保存所有寄存器到 trapframe</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8E%E7%94%A8%E6%88%B7%E6%80%81%E5%88%87%E6%8D%A2%E5%88%B0%E5%86%85%E6%A0%B8%E6%80%81"><span class="toc-number">3.3.2.</span> <span class="toc-text">从用户态切换到内核态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E9%A1%B5%E8%A1%A8%E5%88%87%E6%8D%A2%E5%88%B0%E5%86%85%E6%A0%B8%E9%A1%B5%E8%A1%A8"><span class="toc-number">3.3.3.</span> <span class="toc-text">用户页表切换到内核页表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%B3%E8%BD%AC%E5%88%B0-usertrap-%E5%87%BD%E6%95%B0"><span class="toc-number">3.3.4.</span> <span class="toc-text">跳转到 usertrap 函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E6%A0%B8%E4%B8%AD%E6%96%AD%E5%A4%84%E7%90%86"><span class="toc-number">3.4.</span> <span class="toc-text">内核中断处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#usertrap%E5%87%BD%E6%95%B0%EF%BC%9A%E9%99%B7%E9%98%B1%E5%88%86%E7%B1%BB"><span class="toc-number">3.4.1.</span> <span class="toc-text">usertrap函数：陷阱分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#devintr%E5%87%BD%E6%95%B0%EF%BC%9A%E8%AE%BE%E5%A4%87%E4%B8%AD%E6%96%AD%E8%AF%86%E5%88%AB"><span class="toc-number">3.4.2.</span> <span class="toc-text">devintr函数：设备中断识别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UART%E5%92%8C%E6%8E%A7%E5%88%B6%E5%8F%B0%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86"><span class="toc-number">3.4.3.</span> <span class="toc-text">UART和控制台数据处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E7%BB%86%E8%8A%82"><span class="toc-number">3.4.4.</span> <span class="toc-text">工作细节</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E7%A9%BA%E9%97%B4%E5%93%8D%E5%BA%94%EF%BC%9AShell%E8%BF%9B%E7%A8%8B"><span class="toc-number">3.5.</span> <span class="toc-text">用户空间响应：Shell进程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E4%B8%8E%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%8F%96"><span class="toc-number">3.5.1.</span> <span class="toc-text">系统调用与数据读取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E5%A4%84%E7%90%86%E4%B8%8E%E8%BF%9B%E7%A8%8B%E9%80%80%E5%87%BA"><span class="toc-number">3.5.2.</span> <span class="toc-text">输入处理与进程退出</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-riscv-plic/" title="【操作系统】RISC-V PLIC总结">【操作系统】RISC-V PLIC总结</a><time datetime="2026-01-18T15:25:18.000Z" title="发表于 2026-01-18 15:25:18">2026-01-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/hello-world/" title="欢迎来到潘业成的博客">欢迎来到潘业成的博客</a><time datetime="2026-01-12T00:00:00.000Z" title="发表于 2026-01-12 00:00:00">2026-01-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-what-happens-after-pressing-enter-in-xv6-operating-system/" title="【操作系统】xv6操作系统中按下键盘回车后发生的事情">【操作系统】xv6操作系统中按下键盘回车后发生的事情</a><time datetime="2026-01-10T11:58:18.000Z" title="发表于 2026-01-10 11:58:18">2026-01-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-hand-write-xv6-operating-system-types-h-param-h-memlayout-h-riscv-h-defs-h-header-file-analysis/" title="【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析">【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析</a><time datetime="2026-01-06T23:02:58.000Z" title="发表于 2026-01-06 23:02:58">2026-01-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/Q4/operating-system-hand-write-xv6-operating-system-entry-s-and-start-c-analysis/" title="【操作系统】手撸xv6操作系统——entry.S和start.c解析">【操作系统】手撸xv6操作系统——entry.S和start.c解析</a><time datetime="2025-12-30T15:57:42.000Z" title="发表于 2025-12-30 15:57:42">2025-12-30</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By TDppy</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4-b1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4-b1"></script><script src="/js/main.js?v=5.5.4-b1"></script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

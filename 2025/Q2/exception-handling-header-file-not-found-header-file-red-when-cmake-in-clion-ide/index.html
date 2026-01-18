@@ -1,0 +1,168 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【异常处理】Clion IDE中cmake时头文件找不到 头文件飘红 | 潘业成的博客</title><meta name="author" content="TDppy"><meta name="copyright" content="TDppy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="如图所示是我的clion项目目录 我自定义的data_structure.h和func_declaration.h在unit_test.c中无法检索到 cmakelists.txt配置文件如下所示： 123456789101112131415161718192021222324252627282930cmake_minimum_required(VERSION 3.30)project(noc C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【异常处理】Clion IDE中cmake时头文件找不到 头文件飘红">
+<meta property="og:url" content="https://www.whyc.fun/2025/Q2/exception-handling-header-file-not-found-header-file-red-when-cmake-in-clion-ide/index.html">
+<meta property="og:site_name" content="潘业成的博客">
+<meta property="og:description" content="如图所示是我的clion项目目录 我自定义的data_structure.h和func_declaration.h在unit_test.c中无法检索到 cmakelists.txt配置文件如下所示： 123456789101112131415161718192021222324252627282930cmake_minimum_required(VERSION 3.30)project(noc C">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.whyc.fun/img/butterfly-icon.png">
+<meta property="article:published_time" content="2025-04-12T21:26:13.000Z">
+<meta property="article:modified_time" content="2026-01-18T08:18:03.194Z">
+<meta property="article:author" content="TDppy">
+<meta property="article:tag" content="错误解决">
+<meta property="article:tag" content="调试">
+<meta property="article:tag" content="CMake">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.whyc.fun/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "【异常处理】Clion IDE中cmake时头文件找不到 头文件飘红",
+  "url": "https://www.whyc.fun/2025/Q2/exception-handling-header-file-not-found-header-file-red-when-cmake-in-clion-ide/",
+  "image": "https://www.whyc.fun/img/butterfly-icon.png",
+  "datePublished": "2025-04-12T21:26:13.000Z",
+  "dateModified": "2026-01-18T08:18:03.194Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "TDppy",
+      "url": "https://www.whyc.fun"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://www.whyc.fun/2025/Q2/exception-handling-header-file-not-found-header-file-red-when-cmake-in-clion-ide/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4-b1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【异常处理】Clion IDE中cmake时头文件找不到 头文件飘红',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(https://oss.012700.xyz/butterfly/2024/10/index.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">130</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://oss.012700.xyz/butterfly/2024/10/index.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">潘业成的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">【异常处理】Clion IDE中cmake时头文件找不到 头文件飘红</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">【异常处理】Clion IDE中cmake时头文件找不到 头文件飘红</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-04-12T21:26:13.000Z" title="发表于 2025-04-12 21:26:13">2025-04-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-01-18T08:18:03.194Z" title="更新于 2026-01-18 08:18:03">2026-01-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/">异常处理</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>如图所示是我的clion项目目录<br> <img src="/2025/Q2/exception-handling-header-file-not-found-header-file-red-when-cmake-in-clion-ide/1.png" class=""><br>我自定义的data_structure.h和func_declaration.h在unit_test.c中无法检索到<br> <img src="/2025/Q2/exception-handling-header-file-not-found-header-file-red-when-cmake-in-clion-ide/2.png" class=""><br>cmakelists.txt配置文件如下所示：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">cmake_minimum_required</span>(VERSION <span class="number">3.30</span>)</span><br><span class="line"><span class="title function_ invoke__">project</span>(noc C)</span><br><span class="line">#设置头文件的目录</span><br><span class="line"><span class="title function_ invoke__">include_directories</span>($&#123;CMAKE_SOURCE_DIR&#125;/header)</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">set</span>(CMAKE_C_STANDARD <span class="number">11</span>)</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">add_executable</span>(noc</span><br><span class="line">        header/func_declaration.h</span><br><span class="line">        header/data_structure.h</span><br><span class="line">        src/design/router.c</span><br><span class="line">        src/design/main.c</span><br><span class="line">        src/design/memory_oper.c</span><br><span class="line">        src/design/io_utils.c</span><br><span class="line">        src/design/traffic_oper.c</span><br><span class="line">        src/design/initial_utils.c</span><br><span class="line">        src/design/simulate.c</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">add_executable</span>(unit_test</span><br><span class="line">        header/func_declaration.h</span><br><span class="line">        header/data_structure.h</span><br><span class="line">        src/design/router.c</span><br><span class="line">        src/design/memory_oper.c</span><br><span class="line">        src/design/io_utils.c</span><br><span class="line">        src/design/traffic_oper.c</span><br><span class="line">        src/design/initial_utils.c</span><br><span class="line">        src/design/simulate.c</span><br><span class="line">        src/test/unit_test.c</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>解决办法：<br>如图所示，当前处于unit_test.c状态，无法检索到头文件，点unit_test后就可以检索到了<br> <img src="/2025/Q2/exception-handling-header-file-not-found-header-file-red-when-cmake-in-clion-ide/3.png" class=""><br> <img src="/2025/Q2/exception-handling-header-file-not-found-header-file-red-when-cmake-in-clion-ide/4.png" class=""> </p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://www.whyc.fun">TDppy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://www.whyc.fun/2025/Q2/exception-handling-header-file-not-found-header-file-red-when-cmake-in-clion-ide/">https://www.whyc.fun/2025/Q2/exception-handling-header-file-not-found-header-file-red-when-cmake-in-clion-ide/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://www.whyc.fun" target="_blank">潘业成的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3/">错误解决</a><a class="post-meta__tags" href="/tags/%E8%B0%83%E8%AF%95/">调试</a><a class="post-meta__tags" href="/tags/CMake/">CMake</a></div><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/Q3/pytorch-deep-learning-common-functions-summary/" title="PyTorch 深度学习常用函数总结"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">PyTorch 深度学习常用函数总结</div></div><div class="info-2"><div class="info-item-1"> 近期要做AI编译器相关工作，需要把PyTorch入门下，在Google的Colab云平台上跑了LeNet&#x2F;ResNet&#x2F;GoogleNet&#x2F;MobileNet，通过豆包整理了下所涉及到的函数，形成本文。  PyTorch 深度学习常用函数总结一、PyTorch 核心操作（基础张量与自动求导）1. 张量创建与操作   函数 &#x2F; 方法 功能描述 参数说明 返回值 示例    torch.tensor(data) 从数据（列表、数组等）创建张量 data：输入数据；dtype：数据类型（如torch.float32，默认自动推断）；device：设备（CPU&#x2F;GPU） 多维张量（torch.Tensor） torch.tensor([[1,2],[3,4]]) → 形状为(2,2)的张量   torch.zeros(shape) 创建全零张量 shape：张量形状（如(2,3)）；dtype：数据类型 形状为shape的全零张量 torch.zeros((2,3)) → tensor([[0.,0.,0.],[0.,0.,0.]]) ...</div></div></div></a><a class="pagination-related" href="/2024/Q4/ic-design-chisel-build-tool-mill-installation-what-if-mill-script-runs-slow/" title="【IC设计】Chisel构建工具Mill的安装（mill脚本执行过慢怎么办？）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">【IC设计】Chisel构建工具Mill的安装（mill脚本执行过慢怎么办？）</div></div><div class="info-2"><div class="info-item-1">背景Chisel传统的项目构建工具是sbt，但是最近我需要学习Rocket Chip SoC Generator中的BOOM处理器核，而Rocket Chip的项目所使用的项目构建工具是Mill，所以我需要安装下mill工具。 安装过程sbt和mill的区别是，sbt工具在项目目录中的配置文件是build.sbt，mill工具在项目目录中的配置文件是build.sc在mill官方文档中给出了一行命令来安装这个工具，链接点我 1sh -c &quot;curl -L https://github.com/com-lihaoyi/mill/releases/download/0.11.12/0.11.12 &gt; ~/.local/bin/mill &amp;&amp; chmod +x ~/.local/bin/mill&quot; 这行命令本质上是去github上下载了mill安装的一个shell脚本，存放在~&#x2F;.local&#x2F;bin&#x2F;mill下，然后按理说我们需要执行这个脚本，但不推荐这么做！！ 实际上该脚本核心是去maven下载mill的可执行j...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2021/Q2/exception-handling-org-apache-ibatis-binding-bindingexception-invalid-bound-statement-not-found/" title="【异常处理】org.apache.ibatis.binding.BindingException Invalid bound statement (not found)"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-14</div><div class="info-item-2">【异常处理】org.apache.ibatis.binding.BindingException Invalid bound statement (not found)</div></div><div class="info-2"><div class="info-item-1">   加载表格数据时报了异常，报错：org.apache.ibatis.binding.BindingException: Invalid bound statement (not found)debug了一下，跟到了 其实问题很简单，mapper忘记写到mybatis-config.xml了。有时候编程的问题debug会跟到很深，让你一脸懵逼，但是很多时候只是低级错误。 </div></div></div></a><a class="pagination-related" href="/2024/Q1/exception-handling-cannot-run-program-z3-createprocess-error-2-system-cannot-find-the-specified-file-when-testing-risc-mini-project/" title="【异常处理】测试risc-mini项目出现 Cannot run program “z3“ CreateProcess error&#x3D;2, 系统找不到指定的文件。"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-08</div><div class="info-item-2">【异常处理】测试risc-mini项目出现 Cannot run program “z3“ CreateProcess error&#x3D;2, 系统找不到指定的文件。</div></div><div class="info-2"><div class="info-item-1"> riscv-mini是UC Berkeley用Chisel编写的三级流水线RISC-V处理器，它实现了RV32I的用户级2.0版本ISA和机器级1.7版本ISA，是Berkeley著名的Rocket-chip项目的简化版  报错场景下载risc-mini项目，sbt构建完成后，运行ALUTest.scala下的ALUArea测试，结果出现报错： 报错信息是说在项目目录下无法运行z3，系统找不到指定的文件。 报错分析z3是微软的一个数学求解的工具，这里报错提示在这个目录下没有z3这个程序，所以无法运行是合理的，我们需要做的是安装z3并将其路径加入到系统变量中，然后重启电脑，再次运行测试即可通过！ 解决步骤如果是ubuntu系统，使用apt install z3即可，如果是windows，继续往下看：  下载z3  在这里下载z3，我的环境是windows64位系统，所以下载了z3-4.12.6-x64-win.zip，如图所示：  如果你的系统是这里需要注意，windows 64位系统要下载的是z3-4.12.6-x64-win.zip，而不是z3-4.12.6-x86-win....</div></div></div></a><a class="pagination-related" href="/2024/Q1/exception-handling-verilator-error-verilator-requires-a-c-14-or-newer-compiler/" title="【异常处理】Verilator报错Verilator requires a C++14 or newer compiler"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-08</div><div class="info-item-2">【异常处理】Verilator报错Verilator requires a C++14 or newer compiler</div></div><div class="info-2"><div class="info-item-1"> riscv-mini是UC Berkeley用Chisel编写的三级流水线RISC-V处理器，它实现了RV32I的用户级2.0版本ISA和机器级1.7版本ISA，是Berkeley著名的Rocket-chip项目的简化版  环境版本： Verilator 5.022Ubuntu 22.04.3gcc version 11.4.0  报错信息在对risc-mini项目使用make verilator命令时出现  Verilator requires a C++14 or newer compiler  解决办法解决办法是将项目目录下Makefile中的 CXXFLAG后面的 -std&#x3D;c++11改成-std&#x3D;c++14即可   </div></div></div></a><a class="pagination-related" href="/2021/Q2/exception-handling-tomcat-not-found-in-idea-plus-sign/" title="【异常处理】IDEA 加号中找不到Tomcat"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-05-21</div><div class="info-item-2">【异常处理】IDEA 加号中找不到Tomcat</div></div><div class="info-2"><div class="info-item-1">今天金主爸爸的Tomcat突然不能用了，估计他也没有乱操作，我分析原因应该是快过期了，IDEA自动把你的Web插件给停了。 </div></div></div></a><a class="pagination-related" href="/2024/Q1/exception-handling-exception-occurs-during-verilator-installation-make-makefile-195-verilator-gantt-1-error-13/" title="【异常处理】verilator安装时出现异常 make_ ___ [Makefile_195_ verilator_gantt.1] Error 13"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-07</div><div class="info-item-2">【异常处理】verilator安装时出现异常 make_ ___ [Makefile_195_ verilator_gantt.1] Error 13</div></div><div class="info-2"><div class="info-item-1">在ubuntu中安装verilator工具时执行make出现该报错。当我出现这个报错的时候我一脸懵逼，因为网上找不到相关解决办法。后来想到我的verilator是从github上下载zip，然后解压后传到ubuntu上的，windows上解压我记得会把-替换成_，这可能导致了该问题的出现。所以直接在ubuntu上用git下载项目，避免windows上传源代码到ubuntu上。附上verilator的安装教程 </div></div></div></a><a class="pagination-related" href="/2020/Q4/exception-handling-onenote-open-error-application-cannot-start-normally-0xc0000142/" title="【异常处理】onenote打开时报错：应用程序无法正常启动(Oxc0000142)"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-08</div><div class="info-item-2">【异常处理】onenote打开时报错：应用程序无法正常启动(Oxc0000142)</div></div><div class="info-2"><div class="info-item-1">  --> 解决方案：Ctrl+Alt+Esc打开任务管理器 找到OfficeClickToRun.exe 结束这个进程然后就好了。方案来自知乎 </div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">TDppy</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">130</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/TDppy"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/TDppy" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2287015934@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">如何呢，又能怎。</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-riscv-plic/" title="【操作系统】RISC-V PLIC总结">【操作系统】RISC-V PLIC总结</a><time datetime="2026-01-18T15:25:18.000Z" title="发表于 2026-01-18 15:25:18">2026-01-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/hello-world/" title="欢迎来到潘业成的博客">欢迎来到潘业成的博客</a><time datetime="2026-01-12T00:00:00.000Z" title="发表于 2026-01-12 00:00:00">2026-01-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-what-happens-after-pressing-enter-in-xv6-operating-system/" title="【操作系统】xv6操作系统中按下键盘回车后发生的事情">【操作系统】xv6操作系统中按下键盘回车后发生的事情</a><time datetime="2026-01-10T11:58:18.000Z" title="发表于 2026-01-10 11:58:18">2026-01-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-hand-write-xv6-operating-system-types-h-param-h-memlayout-h-riscv-h-defs-h-header-file-analysis/" title="【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析">【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析</a><time datetime="2026-01-06T23:02:58.000Z" title="发表于 2026-01-06 23:02:58">2026-01-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/Q4/operating-system-hand-write-xv6-operating-system-entry-s-and-start-c-analysis/" title="【操作系统】手撸xv6操作系统——entry.S和start.c解析">【操作系统】手撸xv6操作系统——entry.S和start.c解析</a><time datetime="2025-12-30T15:57:42.000Z" title="发表于 2025-12-30 15:57:42">2025-12-30</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By TDppy</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4-b1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4-b1"></script><script src="/js/main.js?v=5.5.4-b1"></script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

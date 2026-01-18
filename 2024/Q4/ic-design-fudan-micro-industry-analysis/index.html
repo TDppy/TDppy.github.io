@@ -1,0 +1,185 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【IC设计】复旦微行业分析 | 潘业成的博客</title><meta name="author" content="TDppy"><meta name="copyright" content="TDppy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="参加复旦微电子杯·FPGA赛道期间，由于后续可能拿奖会发offer，阅读了相关行研报告，初步了解下这个公司。  概述复旦微电子公司，前身是复旦大学在1993年成立的复旦高技术公司，1998年7月复旦微电子成立于复旦大学逸夫楼，于2000年8月成功在香港创业板上市，和复旦大学有良好的合作关系。截止2023年4月，复旦微没有能控股的股东，其中上海国资委占股13%（国有控股），复旦大学占股13%，大股">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【IC设计】复旦微行业分析">
+<meta property="og:url" content="https://www.whyc.fun/2024/Q4/ic-design-fudan-micro-industry-analysis/index.html">
+<meta property="og:site_name" content="潘业成的博客">
+<meta property="og:description" content="参加复旦微电子杯·FPGA赛道期间，由于后续可能拿奖会发offer，阅读了相关行研报告，初步了解下这个公司。  概述复旦微电子公司，前身是复旦大学在1993年成立的复旦高技术公司，1998年7月复旦微电子成立于复旦大学逸夫楼，于2000年8月成功在香港创业板上市，和复旦大学有良好的合作关系。截止2023年4月，复旦微没有能控股的股东，其中上海国资委占股13%（国有控股），复旦大学占股13%，大股">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.whyc.fun/img/butterfly-icon.png">
+<meta property="article:published_time" content="2024-10-17T21:14:05.000Z">
+<meta property="article:modified_time" content="2026-01-18T08:18:03.189Z">
+<meta property="article:author" content="TDppy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.whyc.fun/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "【IC设计】复旦微行业分析",
+  "url": "https://www.whyc.fun/2024/Q4/ic-design-fudan-micro-industry-analysis/",
+  "image": "https://www.whyc.fun/img/butterfly-icon.png",
+  "datePublished": "2024-10-17T21:14:05.000Z",
+  "dateModified": "2026-01-18T08:18:03.189Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "TDppy",
+      "url": "https://www.whyc.fun"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://www.whyc.fun/2024/Q4/ic-design-fudan-micro-industry-analysis/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4-b1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【IC设计】复旦微行业分析',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(https://oss.012700.xyz/butterfly/2024/10/index.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">130</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://oss.012700.xyz/butterfly/2024/10/index.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">潘业成的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">【IC设计】复旦微行业分析</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">【IC设计】复旦微行业分析</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-10-17T21:14:05.000Z" title="发表于 2024-10-17 21:14:05">2024-10-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-01-18T08:18:03.189Z" title="更新于 2026-01-18 08:18:03">2026-01-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%B0%E5%AD%97IC%E8%AE%BE%E8%AE%A1/">数字IC设计</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><blockquote>
+<p>参加复旦微电子杯·FPGA赛道期间，由于后续可能拿奖会发offer，阅读了相关行研报告，初步了解下这个公司。</p>
+</blockquote>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>复旦微电子公司，前身是复旦大学在1993年成立的复旦高技术公司，1998年7月复旦微电子成立于复旦大学逸夫楼，于2000年8月成功在香港创业板上市，和复旦大学有良好的合作关系。<br>截止2023年4月，复旦微没有能控股的股东，其中上海国资委占股13%（国有控股），复旦大学占股13%，大股东是香港中央结算有限公司。</p>
+<p>管理人员多数毕业于复旦，技术背景和管理经验丰富。</p>
+<p>公司产品线齐全，包括安全与识别芯片（业务占比27.58%）、非挥发存储器（业务占比26.57%）、智能电表芯片（业务占比16.8%）、FPGA（22.07%）四大类产品线，并通过控股子公司为客户提供芯片测试服务（业务占6.18%）。</p>
+<h1 id="各产品线"><a href="#各产品线" class="headerlink" title="各产品线"></a>各产品线</h1><h2 id="安全与识别芯片："><a href="#安全与识别芯片：" class="headerlink" title="安全与识别芯片："></a>安全与识别芯片：</h2><p> 复旦微电安全与识别产品线依托自主研发的射频、存储器和安全防攻击技术，已形成了 RFID 与传感芯片、智能卡与安全芯片、智能识别设备芯片等多个产 品系列。产品覆盖存储卡、高频&#x2F; 超高频标签、NFC TAG、接触式&#x2F;非接触式&#x2F;双界面智能 卡、安全 SE 芯片、安全 MCU 芯片、非接触读写器机具以及移动支付等数十款产品，是国内安全与识别芯片产品门类较为齐全的供应商之一。</p>
+<h2 id="非挥发存储器："><a href="#非挥发存储器：" class="headerlink" title="非挥发存储器："></a>非挥发存储器：</h2><p>复旦微电的存储芯片产品线可提供多种接口、各型封装、全面容量、 高性价比的非挥发存储器产品，目前主要产品为 EEPROM 存储器、NOR Flash 存储器和 SLC NAND Flash 存储器，具有多种容量、接口和封装形式，整体市场份额居国内前列。</p>
+<h2 id="智能电表-MCU-："><a href="#智能电表-MCU-：" class="headerlink" title="智能电表 MCU ："></a>智能电表 MCU ：</h2><p>MCU 是电子式电能表智能电表的核心元器件，可实现工业和家庭用 电户的用电信息计量、自动抄读、信息传输等功能；低功耗通用 MCU 产品可应用于智能 电表、智能水气热表、智能家居、物联网等众多领域。<br>FPGA 芯片：FPGA 名为现场可编程门阵列，是一种硬件可重构的集成电路芯片。 FPGA 拥有软件的可编程性和灵活性，在 5G 通信、人工智能等具有较频繁的迭代升级周 期、较大的技术不确定性的领域，FPGA 是较为理想的解决方案。公司是国内 FPGA 领域 技术较为领先的公司之一。</p>
+<h2 id="集成电路测试服务："><a href="#集成电路测试服务：" class="headerlink" title="集成电路测试服务："></a>集成电路测试服务：</h2><p>公司通过控股子公司华岭股份为客户提供从芯片验证分析、晶圆 测试到成品测试的集成电路测试服务整体解决方案，集成电路测试的具体内容包括晶圆测 试及成品测试。测试能力广泛覆盖移动智能终端、信息安全、数字通信、FPGA、CIS、金 融 IC 卡、汽车电子、物联网 IoT 器件、MEMS 器件、三维高密度器件以及新材料、新结 构等众多产品领域。</p>
+<p>营收和净利润持续高速增长。2017-2022 年，公司营业收入从 14.50 亿元增至 35.39 亿 元，5 年 CAGR 为 19.54%；归母净利润从 2.29 亿元增至 11.17 亿元，5 年 CAGR 为 37.26%。2019 年因下游市场需求下滑，存货跌价准备增加叠加研发费用增加，公司曾出现 亏损，2020 年~2021 年，受益于全球半导体行业景气周期，公司扭亏为盈，业绩高速增 长。2022 年以来，全球芯片转为结构性紧缺。消费电子芯片价格下行明显，公司在工业级 产品、消费、高可靠等应用场景积极开拓市场，实现营业收入同比增长 37.31%，归母净利 润同比增长 109.31%。<br>综合毛利率和净资产收益率持续增长，四大产品线毛利率进一步提升。2022 年公司综 合毛利率达到 64.67%，净资产收益率达到 28.48%，两项均创历史新高。FPGA 芯片业务高 毛利率几乎不变，安全与识别芯片、非挥发性存储器及智能电表芯片产品线毛利率同比均 不同幅度增长。</p>
+<h1 id="前景"><a href="#前景" class="headerlink" title="前景"></a>前景</h1><h2 id="公司是FPGA领军企业，在国产替代背景下深度受益"><a href="#公司是FPGA领军企业，在国产替代背景下深度受益" class="headerlink" title="公司是FPGA领军企业，在国产替代背景下深度受益"></a>公司是FPGA领军企业，在国产替代背景下深度受益</h2><img src="/2024/Q4/ic-design-fudan-micro-industry-analysis/1.png" class="" title="在这里插入图片描述">
+<p>2022年全球FPGA时常规模为79.4亿美元，2025年将达到125亿美元，通信和工业是国内FPGA的主要应用领域。<br>国内FPGA市场以28nm-90nm制程和100K以下逻辑单元容量为主。该工艺制程性价比和良率较高，根据Frost&amp;Sullivan数据，2019年中国FPGA市场主要以28nm-90nm制程为主，占比为63%。中国FPGA市场小于100K占比38%，100-500K占比31%。<br>目前中国乃至全球的FPGA市场近乎被国外厂商垄断，国产替代需求迫切。三大巨头Xilinx（AMD），Altera（Intel），Lattice垄断了FPGA市场，根据中商产业研究院的数据，2021年CR3在全球超过90%，根据F&amp;S数据，三大厂商在中国市场份额大约占比96%。<br>目前国内的 FPGA 厂商主要有复旦微电、紫光同创、安路科技等厂商，相比之下中国市场的FPGA国产厂商份额较小，国产替代需求紧迫。</p>
+<img src="/2024/Q4/ic-design-fudan-micro-industry-analysis/2.png" class="" title="在这里插入图片描述">
+<p>国内 FPGA 主要玩家以复旦微电、安路科技和紫光同创为主，最高产品制程均达 28nm 及以上，主力销售产品集中在更低制程。<br>公司 FPGA 及 其他产品业务的销售收入从 2018 年的 1.55 亿元增长至 2022 年的 7.81 亿元，2021 年、 2022 年增速分别为 109.31%、82.90%，占主营业务比例从 10.96%提升至 22.25%。公司 FPGA 及其他产品业务的均价从 2018 年的 2.43 元&#x2F;颗增长至 2022 年的 17.05 元&#x2F;颗，增长超 7 倍以上，2021 年、2022 年增速分别为 140.00%、151.79%。公司 FPGA 及其他产品业务的 毛利率始终维持在高位，2022 年为 84.70%，远高于公司其他业务。</p>
+<img src="/2024/Q4/ic-design-fudan-micro-industry-analysis/3.png" class="" title="在这里插入图片描述">
+<h3 id="优势-1：公司最早推出亿门级-FPGA-产品，提前卡位-28nm-赛道"><a href="#优势-1：公司最早推出亿门级-FPGA-产品，提前卡位-28nm-赛道" class="headerlink" title="优势 1：公司最早推出亿门级 FPGA 产品，提前卡位 28nm 赛道"></a>优势 1：公司最早推出亿门级 FPGA 产品，提前卡位 28nm 赛道</h3><p>领先 FPGA 芯片设计厂商，最早在国内推出亿门级 FPGA 产品。公司拥有千万门级 FPGA、亿门级 FPGA 及 嵌入式可编程器件芯片 PSoC 共三大系列数十款产品，具备全流 程自主知识产权 FPGA 配套 EDA 工具 ProciseTM。公司自 2004 年开始进行 FPGA 的研 发，于 2016 年发布了采用 65nm 工艺制程的千万门级 FPGA 产品，于 2018 年二季度率先 发布国内最早研制成功的 28nm 工艺制程的亿门级 FPGA 产品（SerDes 传输速率达到最高 13.1Gbps），于 2022 年开展十亿门级 FPGA 研发工作。同时，公司的拥有国内首款推向市 场的 28nm 工艺制程的嵌入式可编程 PSoC 产品，是国内领先的可编程器件芯片供应商。</p>
+<h3 id="优势-2：FPGA-芯片性能处于国产厂商领先水平"><a href="#优势-2：FPGA-芯片性能处于国产厂商领先水平" class="headerlink" title="优势 2：FPGA 芯片性能处于国产厂商领先水平"></a>优势 2：FPGA 芯片性能处于国产厂商领先水平</h3><p>公司 FPGA 芯片性能处于国产厂商领先水平。工艺制程、门级规模及 SerDes 速率是 评价 FPGA 产品性能的重要指标。公司 FPGA 芯片主要制程为 65nm 及 28nm 制程，并已开 启 14&#x2F;16nm 工艺制程的 10 亿门级 FPGA 产品的研发；65nm 制程产品门级规模为千万门 级，28nm 制程产品门级规模为亿门级；28nm 制程产品最高支持 13.1Gbps X 80 通道。在 国产厂商中处于领先水平。</p>
+<p>国内 MCU 市场由外资厂商垄断，缺芯带来国产替代机会。根据 IHS 数据，2021 年中 国 MCU 行业市场规模初步测算为 365 亿元。国内 MCU 龙头企业兆易创新、中颖电子、乐 鑫科技、国民技术和复旦微电的国内市场份额分别为 4.4%、4.1%、1.5%、1.8%和 0.8%， 一共仅占 12.6%，其余 87.4%基本全为外资厂商。</p>
+<img src="/2024/Q4/ic-design-fudan-micro-industry-analysis/4.png" class="" title="在这里插入图片描述">
+
+<p>根据 Gartner 的预测，中国的芯片测试服务市场预计继续蓬 勃发展，到 2025 年，预期全球测试服务市场达到 1094 亿元，其中，中国测试服务市场达 到 550 亿元，占比 50.3%，5 年内有望存在超过 200 亿元的增长空间。</p>
+<img src="/2024/Q4/ic-design-fudan-micro-industry-analysis/5.png" class="" title="在这里插入图片描述">
+<h2 id="盈利预测"><a href="#盈利预测" class="headerlink" title="盈利预测"></a>盈利预测</h2><p>FPGA 及其他芯片业务：2023Q1 公司 FPGA 业务营收同比增长 33.62%，随着公司在 高可靠性领域持续拓展，亿门级 FPGA 产品有望持续放量。同时，公司的十亿门级 FPGA 产品研发有望落地推动此业务营收快速增长。预计公司 FPGA 业务 2023-2025 年营收增长 分别为 43.99%&#x2F;28.98%&#x2F;25.96%。FPGA 行业在竞争中发展，公司在高可靠领域保持领先态 势，预计未来三年公司毛利率保持相对稳定，公司 FPGA 业务未来三年毛利率分别为 84.00%&#x2F;83.50%&#x2F;83.00%。<br>安全与识别芯片业务： RFID 芯片方面，物联网拉动 RFID 芯片需求，公司的高频 RFID 产品在多个重要领域市场份额领先；在 NFC 系列芯片领域已完成多家知名智能电器 厂商的导入工作，随着经济形势逐步好转，消费市场复苏，该类芯片有望实现持续增长。 智能卡方面，智能卡与安全芯片市场相对成熟、竞争格局稳定，预计未来三年公司将持续 巩固此领域的领先地位。综合来看，预计公司 2023-2025 年安全与识别芯片业务营收增速 分别为 15.00%&#x2F;12.00%&#x2F;10.00%；由于 RFID 和智能卡芯片领域较为成熟，市场格局较为稳 定，预计未来三年公司毛利率分别为 55.00%&#x2F;55.50%&#x2F;55.50%。<br>非挥发存储器业务： EEPROM 业务方面，公司产品已达最先进制程，宁德时代、联想 等头部客户已导入。根据赛迪顾问统计数据，公司在国产厂商中排名第三，未来有望持续 提升份额。NOR Flash 业务方面，随着两大供应商美光科技、赛普拉斯退出市场，预计公 司将持续提升此业务市场份额。SLA NAND Flash 业务方面，MLC 芯片逐渐成为 NAND Flash 产业主流，并在价格下滑后导入多领域应用范围，对公司主要产品 SLA 产生冲击。 综合来看，预计 2023-2025 年该业务营收增长分别为 9.08%&#x2F;9.73%&#x2F;13.00%。随着 EEPROM 和 NOR Flash 市占率持续提升以及营收规模持续扩大，公司毛利率有望持续提升，未来三 年毛利率分别为 65.50%&#x2F;66.00%&#x2F;66.50%。<br>智能电表芯片业务：公司在智能电表 MCU 市场地位领先，下游客户资源丰富，随着国 网智能电表更换周期开启和招标数量回升，公司智能电表业务有望持续增长。同时，公司近 两年积极拓展汽车、智能家电、工业控制等重点行业的市场份额，车规 MCU 产品单价更 高，通用 MCU 营收有望高增。预计 2023-2025 年公司该业务营收增长分别为 21.03%&#x2F;23.27%&#x2F;21.31%。公司在智能电表 MCU 市场地位领先，在车规级 MCU 等领域竞争中 发展，预计公司未来三年毛利率保持相对稳定，分别为 61.00%&#x2F;60.00%&#x2F;59.00%。<br>集成电路测试业务：伴随集成电路设计和国内晶圆代工产能的不断扩张，中国集成电 路测试市场空间将持续增长。根据 Gartner 的预测，中国测试服务市场 5 年内存在超 200 亿 元的增量空间。随着第三方专业测试产业逐步成熟替代境外测试厂商，公司的集成电路测 试业务有望持续增长。预计公司集成电路测试业务在 2023-2025 年的营收增速保持在 5.00%，该业务市场格局较为稳定，预计未来三年毛利率维持在 36.00%。<br>综上，公司整体营业收入 2023-2025 年增速为 19.30%&#x2F;17.51%&#x2F;17.13%，毛利率分别为 65.27%&#x2F;65.93%&#x2F;66.35%，综合考虑其他费用，2023-2025 年归母净利润分别为 14.03&#x2F;17.02&#x2F;19.48 亿元，同比增速分别为 30.27%&#x2F;21.34%&#x2F;14.46%。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://www.whyc.fun">TDppy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://www.whyc.fun/2024/Q4/ic-design-fudan-micro-industry-analysis/">https://www.whyc.fun/2024/Q4/ic-design-fudan-micro-industry-analysis/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://www.whyc.fun" target="_blank">潘业成的博客</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2024/Q4/ic-design-chisel-build-tool-mill-installation-what-if-mill-script-runs-slow/" title="【IC设计】Chisel构建工具Mill的安装（mill脚本执行过慢怎么办？）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">【IC设计】Chisel构建工具Mill的安装（mill脚本执行过慢怎么办？）</div></div><div class="info-2"><div class="info-item-1">背景Chisel传统的项目构建工具是sbt，但是最近我需要学习Rocket Chip SoC Generator中的BOOM处理器核，而Rocket Chip的项目所使用的项目构建工具是Mill，所以我需要安装下mill工具。 安装过程sbt和mill的区别是，sbt工具在项目目录中的配置文件是build.sbt，mill工具在项目目录中的配置文件是build.sc在mill官方文档中给出了一行命令来安装这个工具，链接点我 1sh -c &quot;curl -L https://github.com/com-lihaoyi/mill/releases/download/0.11.12/0.11.12 &gt; ~/.local/bin/mill &amp;&amp; chmod +x ~/.local/bin/mill&quot; 这行命令本质上是去github上下载了mill安装的一个shell脚本，存放在~&#x2F;.local&#x2F;bin&#x2F;mill下，然后按理说我们需要执行这个脚本，但不推荐这么做！！ 实际上该脚本核心是去maven下载mill的可执行j...</div></div></div></a><a class="pagination-related" href="/2024/Q3/ic-design-cache-basics-address-mapping-hit-miss-replacement-policy-consistency/" title="【IC设计】Cache基础入门（地址映射方式、hit_miss的判断、替换策略、一致性问题）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">【IC设计】Cache基础入门（地址映射方式、hit_miss的判断、替换策略、一致性问题）</div></div><div class="info-2"><div class="info-item-1">Cache基础 为什么要学习Cache？本人是研究NoC总线的，NoC主要应用于大量CPU core的互联，NoC的本质在于利用存储资源构建路由拓扑，将主从机挂在路由器下，实现将计算和通信解耦合。单个路由节点的设计并不复杂，本质就是路由计算+交叉开关，总线的关键难度在于验证，要支持缓存一致性，并且在拓扑复杂、异构负载的情况下保证高可靠性。因此，学习Cache是精通NoC总线的前置知识，这里补充一下相关基础。时间有限，没有绘制精美的图片，有兴趣深入的可以读本文的【参考文献】  CPU所计算的数据要从内存中取，计算的结果要写入到内存。内存价格低，容量大，读写速度慢cache价格高，容量小，读写速度快。因此，CPU和内存间往往会加Cache，来加速存取数据的速度。  Cache line：Cache和Memory之间数据传输的最小单位，因为从memory中取数据到cache不会一个byte一个byte取，效率太低。通常一个Cache line是32byte或64byte，在CHI-E中一个Cache line是64 byte  内存地址A的数据存在Cache的什么位置？——Cache和...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">TDppy</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">130</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/TDppy"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/TDppy" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2287015934@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">如何呢，又能怎。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%84%E4%BA%A7%E5%93%81%E7%BA%BF"><span class="toc-number">2.</span> <span class="toc-text">各产品线</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E4%B8%8E%E8%AF%86%E5%88%AB%E8%8A%AF%E7%89%87%EF%BC%9A"><span class="toc-number">2.1.</span> <span class="toc-text">安全与识别芯片：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%9E%E6%8C%A5%E5%8F%91%E5%AD%98%E5%82%A8%E5%99%A8%EF%BC%9A"><span class="toc-number">2.2.</span> <span class="toc-text">非挥发存储器：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%99%BA%E8%83%BD%E7%94%B5%E8%A1%A8-MCU-%EF%BC%9A"><span class="toc-number">2.3.</span> <span class="toc-text">智能电表 MCU ：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9B%86%E6%88%90%E7%94%B5%E8%B7%AF%E6%B5%8B%E8%AF%95%E6%9C%8D%E5%8A%A1%EF%BC%9A"><span class="toc-number">2.4.</span> <span class="toc-text">集成电路测试服务：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E6%99%AF"><span class="toc-number">3.</span> <span class="toc-text">前景</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AC%E5%8F%B8%E6%98%AFFPGA%E9%A2%86%E5%86%9B%E4%BC%81%E4%B8%9A%EF%BC%8C%E5%9C%A8%E5%9B%BD%E4%BA%A7%E6%9B%BF%E4%BB%A3%E8%83%8C%E6%99%AF%E4%B8%8B%E6%B7%B1%E5%BA%A6%E5%8F%97%E7%9B%8A"><span class="toc-number">3.1.</span> <span class="toc-text">公司是FPGA领军企业，在国产替代背景下深度受益</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8A%BF-1%EF%BC%9A%E5%85%AC%E5%8F%B8%E6%9C%80%E6%97%A9%E6%8E%A8%E5%87%BA%E4%BA%BF%E9%97%A8%E7%BA%A7-FPGA-%E4%BA%A7%E5%93%81%EF%BC%8C%E6%8F%90%E5%89%8D%E5%8D%A1%E4%BD%8D-28nm-%E8%B5%9B%E9%81%93"><span class="toc-number">3.1.1.</span> <span class="toc-text">优势 1：公司最早推出亿门级 FPGA 产品，提前卡位 28nm 赛道</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8A%BF-2%EF%BC%9AFPGA-%E8%8A%AF%E7%89%87%E6%80%A7%E8%83%BD%E5%A4%84%E4%BA%8E%E5%9B%BD%E4%BA%A7%E5%8E%82%E5%95%86%E9%A2%86%E5%85%88%E6%B0%B4%E5%B9%B3"><span class="toc-number">3.1.2.</span> <span class="toc-text">优势 2：FPGA 芯片性能处于国产厂商领先水平</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%88%E5%88%A9%E9%A2%84%E6%B5%8B"><span class="toc-number">3.2.</span> <span class="toc-text">盈利预测</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-riscv-plic/" title="【操作系统】RISC-V PLIC总结">【操作系统】RISC-V PLIC总结</a><time datetime="2026-01-18T15:25:18.000Z" title="发表于 2026-01-18 15:25:18">2026-01-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/hello-world/" title="欢迎来到潘业成的博客">欢迎来到潘业成的博客</a><time datetime="2026-01-12T00:00:00.000Z" title="发表于 2026-01-12 00:00:00">2026-01-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-what-happens-after-pressing-enter-in-xv6-operating-system/" title="【操作系统】xv6操作系统中按下键盘回车后发生的事情">【操作系统】xv6操作系统中按下键盘回车后发生的事情</a><time datetime="2026-01-10T11:58:18.000Z" title="发表于 2026-01-10 11:58:18">2026-01-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-hand-write-xv6-operating-system-types-h-param-h-memlayout-h-riscv-h-defs-h-header-file-analysis/" title="【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析">【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析</a><time datetime="2026-01-06T23:02:58.000Z" title="发表于 2026-01-06 23:02:58">2026-01-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/Q4/operating-system-hand-write-xv6-operating-system-entry-s-and-start-c-analysis/" title="【操作系统】手撸xv6操作系统——entry.S和start.c解析">【操作系统】手撸xv6操作系统——entry.S和start.c解析</a><time datetime="2025-12-30T15:57:42.000Z" title="发表于 2025-12-30 15:57:42">2025-12-30</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By TDppy</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4-b1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4-b1"></script><script src="/js/main.js?v=5.5.4-b1"></script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

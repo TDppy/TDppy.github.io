@@ -1,0 +1,281 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>潘业成的博客 - 欢迎来到我的个人博客，在这里我将分享我的技术经验、项目心得以及生活点滴。希望我的文章能为你带来帮助和启发！微信:fancymvc,QQ:2287015934</title><meta name="author" content="TDppy"><meta name="copyright" content="TDppy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="潘业成的博客">
+<meta property="og:url" content="https://www.whyc.fun/page/7/index.html">
+<meta property="og:site_name" content="潘业成的博客">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.whyc.fun/img/butterfly-icon.png">
+<meta property="article:author" content="TDppy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.whyc.fun/img/butterfly-icon.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://www.whyc.fun/page/7/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4-b1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '潘业成的博客',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(https://oss.012700.xyz/butterfly/2024/10/index.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">130</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(https://oss.012700.xyz/butterfly/2024/10/index.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">潘业成的博客</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">潘业成的博客</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/TDppy" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2287015934@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2020/Q4/linux-learning-soft-link-and-hard-link/" title="【linux学习】软链接与硬链接">【linux学习】软链接与硬链接</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-10-16T05:18:32.000Z" title="发表于 2020-10-16 05:18:32">2020-10-16</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%BC%96%E7%A8%8B%E4%B8%8E%E7%AE%97%E6%B3%95/">编程与算法</a></span></div><div class="content"> 下面内容是个人理解，仅供参考！  类比于windowslinux是一个操作系统，其学习可类比于我们熟悉的windows：软链接是符号链接，类似于windows中的快捷方式，像这样：  –&gt;硬链接类似于建立一个文件副本，像这样：  –&gt; 实现：硬链接使用ln 源文件名 链接名创建，比如已有文件hello.c，链接为haha，即：ln hello.c haha 软链接使用ln -s 源文件名 链接名创建，比如已有文件world.c，链接为wawa，即：ln -s world.c wawa 下面看实验中我们输的命令：  –&gt; 执行结果：  –&gt;  PS:上面这个图里ls -il展示的第一个属性是inode节点号，不小心多加了个3    -->  ln命令 参考链接 </div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2020/Q4/lanqiao-cup-preparation-11th-lanqiao-cup-d-question-repeat-program/" title="【蓝桥杯备战】第十一届蓝桥杯D题REPEAT程序">【蓝桥杯备战】第十一届蓝桥杯D题REPEAT程序</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-10-12T09:55:36.000Z" title="发表于 2020-10-12 09:55:36">2020-10-12</time></span></div><div class="content">原题不再贴了，下面是我的思路，主要是分析思路，具体实现见：代码链接  –&gt; </div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2020/Q4/installation-configuration-how-to-set-default-code-template-in-dev-cpp/" title="【安装配置】在DEV c++ 中如何设置默认的代码模板">【安装配置】在DEV c++ 中如何设置默认的代码模板</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-10-11T15:45:18.000Z" title="发表于 2020-10-11 15:45:18">2020-10-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">环境配置</a></span></div><div class="content">工具&#x3D;&gt;编辑器选项（弹出对话框）&#x3D;&gt;代码（属性页）&#x3D;&gt;缺省源（属性页），写入一些代码确定即可（勾选“向项目初始源文件插入代码”）。写好点确定后，Ctrl+N时创建新文件会自动写好你预设的模板。  –&gt; 转载于:https://www.cnblogs.com/littlehb/p/10997235.html </div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2020/Q4/exception-handling-source-file-not-compiled-when-compiling-devcpp/" title="【异常处理】devcpp编译时 “源文件未编译”">【异常处理】devcpp编译时 “源文件未编译”</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-10-09T16:13:06.000Z" title="发表于 2020-10-09 16:13:06">2020-10-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/">异常处理</a></span></div><div class="content">  --> 处理方案：  –&gt; </div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2020/Q4/exception-handling-onenote-open-error-application-cannot-start-normally-0xc0000142/" title="【异常处理】onenote打开时报错：应用程序无法正常启动(Oxc0000142)">【异常处理】onenote打开时报错：应用程序无法正常启动(Oxc0000142)</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-10-08T09:58:27.000Z" title="发表于 2020-10-08 09:58:27">2020-10-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/">异常处理</a></span></div><div class="content">  --> 解决方案：Ctrl+Alt+Esc打开任务管理器 找到OfficeClickToRun.exe 结束这个进程然后就好了。方案来自知乎 </div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2020/Q4/exception-handling-navicat-display-table-data-garbled-problem/" title="【异常处理】navicat展示表中数据的乱码问题">【异常处理】navicat展示表中数据的乱码问题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-10-08T09:36:35.000Z" title="发表于 2020-10-08 09:36:35">2020-10-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/">异常处理</a></span></div><div class="content">网上有两个方案，我是两个方案都用了就可以了。由于网上方案截图演示的不多，我截图演示一下发一篇博客，方便需要的人查看。方案一：  –&gt;    -->    -->   -->   -->   --> 确定后重启一下电脑。 </div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2020/Q3/c-language-negation-operator-what-is-2-what-is-5/" title="【C语言取反运算符】~2是多少？~-5是多少？">【C语言取反运算符】~2是多少？~-5是多少？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-09-29T13:38:17.000Z" title="发表于 2020-09-29 13:38:17">2020-09-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%BC%96%E7%A8%8B%E4%B8%8E%E7%AE%97%E6%B3%95/">编程与算法</a></span></div><div class="content">标题的答案：~2&#x3D;-3~-3&#x3D;2原理是什么？我们先来看这个程序及输出的结果：  容易总结出这样一个结论：i&#x3D;-i-1为什么呢?**一言以蔽之，运算符是对i的补码（含符号位）进行取反。**2的原码是0000 0010 正数补码是其本身0000 0010取反（含符号位）后补码变成1111 1101 此时补码为负数，换成原码要符号位不变，减去1，再取反，即原码成了1000 0011 即为-3 -5的原码是1000 0101 负数的补码是原码符号位不变、取反并+1，因此补码是1111 1011 ,对补码取反（含符号位） 此时补码为0000 0100 补码此时符号位是正，因此原码也是0000 0100 即为4 因此，~i&#x3D;-i-1。  如果想要更充分的理解这个结论，来考虑一下，对任意一个二进制数取反的含义是什么？1010取反是01010100取反是1011，容易看出取反的本质就是找一个数和原来的相加得到每一位均为1的数，因此要找的数就是2^M-1-a,M是位数（例如1010有四位，15-10&#x3D;5,5就是0101）  </div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2020/Q3/eoj-monthly-2020-1-palindrome-time-solution/" title="EOJ Monthly 2020.1回文时间 题解">EOJ Monthly 2020.1回文时间 题解</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-09-26T19:30:42.000Z" title="发表于 2020-09-26 19:30:42">2020-09-26</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%BC%96%E7%A8%8B%E4%B8%8E%E7%AE%97%E6%B3%95/">编程与算法</a></span></div><div class="content">  </div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2020/Q3/lanqiao-cup-preparation-dead-knock-search-technology-full-permutation-problem-from-zero/" title="【蓝桥杯备战】从零开始死磕搜索技术之全排列问题">【蓝桥杯备战】从零开始死磕搜索技术之全排列问题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-07-31T09:50:36.000Z" title="发表于 2020-07-31 09:50:36">2020-07-31</time></span></div><div class="content">这篇主要写一下DFS解全排列问题。   --> 这题有两种做法，一是DFS，二是利用STL的next_permutation函数，第二种比较简单，分析一下第一种做法。以N&#x3D;3为例，结果为：1 2 31 3 22 1 32 3 13 1 23 2 1先上一下搜索结果示意图： 从图中我们可以看到，如果要用深度优先搜索来解决这个问题，当遇到相同的元素时应当避开（题目要求所产生的任一数字序列中不允许出现重复数字。）   因此，我们需要用一个chosen[i]来表示i这个值是否已经被选过。chosen[i]&#x3D;1时已经被选过，chosen[i]&#x3D;0时未选过。此外，对于每一层选中的元素，需要一个order[k]来表示第k层选中元素的值。下面上代码，读者可以看看代码中的注释并以N&#x3D;3为例来模拟一下这个过程。 123456789101112131415161718192021222324252627282930313233343536373839#include &lt;iostream&gt;using namespace std;//order[K]表示...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2020/Q3/java-comment-knowledge-you-may-not-know-from-to-file-template-export-comment/" title="【你未必了解的Java注释知识】从__到文件模板、导出注释">【你未必了解的Java注释知识】从__到文件模板、导出注释</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-07-26T12:06:50.000Z" title="发表于 2020-07-26 12:06:50">2020-07-26</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%BC%96%E7%A8%8B%E4%B8%8E%E7%AE%97%E6%B3%95/">编程与算法</a></span></div><div class="content">注释为了使代码便于理解，我们会在程序中加一些注释，java中的注释主要有三种：单行注释、多行注释、文档注释 单行注释单行注释以&#x2F;&#x2F;开头，一行中&#x2F;&#x2F;后面的部分是注释部分，不会被编译，&#x2F;&#x2F;前面的部分正常编译。如下代码实现了输入一个整数，将其加1后输出。其中a&#x3D;0被注释了，因此不会起作用。 123456789public class Example01 &#123;    public static void main(String[] args) &#123;        int a;        Scanner in = new Scanner(System.in);        a=in.nextInt();        a=a+1;//a=0;        System.out.println(a);    &#125;&#125; 多行注释多行注释以/*开头，*/结尾示例如下,代码实现输入整数a，输出整数a，其中注释掉了定义String类型的m并输入的两行代码，试想一下，这样的注释方法好吗？这个问...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2020/Q3/lanqiao-cup-preparation-greedy-stack/" title="【蓝桥杯备战】贪心、栈">【蓝桥杯备战】贪心、栈</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-07-23T22:42:45.000Z" title="发表于 2020-07-23 22:42:45">2020-07-23</time></span></div><div class="content"> 为备战蓝桥杯，我每天把刷题经验总结成博客，鞭策自己学习，争取暑假输出三十篇以上。      战况报告：水题：A题 a+bB题 循环遍历一遍贪心：C题 贪心 没做出来 POJ 3614D题 二分答案+贪心  洛谷P1182栈E题 只存在(和）的括号匹配 如果是(放入栈中 如果是)要看栈中是否为空 再进行判断F题 单调栈POJ 2559G题 洛谷1981 下面写一下F题单调栈POJ 2559  和G题 洛谷1981的题解，CD两题有一定难度，掌握的还不是很好，题解后面再写！POJ2559题解  AC代码点击查看 洛谷1981我的题解： AC代码点击查看 </div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2020/Q3/lanqiao-cup-preparation-pit-in-sort-of-stl/" title="【蓝桥杯备战】STL中sort的坑">【蓝桥杯备战】STL中sort的坑</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-07-23T09:00:15.000Z" title="发表于 2020-07-23 09:00:15">2020-07-23</time></span></div><div class="content"> 为备战蓝桥杯，我每天把刷题经验总结成博客，鞭策自己学习，争取暑假输出三十篇以上。  12vector&lt;pair&lt;int ,string&gt;&gt; vec;sort(vec.begin(),vec.end(),greater&lt;pair&lt;int,string&gt;&gt;()); 如上所示，vector中的元素是一个pair，sort利用greater进行排序，这里的排序规则是什么呢？我们知道greater是大的在前小的在后，这里实际上是首先对int进行排序，在int相同的情况下，还会对string进行降序排序例题：计蒜客T1152这一题要求是根据成绩进行降序排序，输出学生的名字和成绩，由于成绩是降序排序，当我们用greater的时候成绩的确是降序排序，但是在成绩相同的情况下string也降序排序了，而一般默认名字我们应该按照升序排序——即字典序排序。因此这题就要自定义cmp方法，不能轻易使用greater。 </div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2020/Q3/lanqiao-cup-preparation-wenwen-and-brick-dynamic-programming/" title="【蓝桥杯备战】闻闻与砖（动态规划）">【蓝桥杯备战】闻闻与砖（动态规划）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-07-22T10:24:57.000Z" title="发表于 2020-07-22 10:24:57">2020-07-22</time></span></div><div class="content"> 为备战蓝桥杯，我每天把刷题经验总结成博客，鞭策自己学习，争取暑假输出三十篇以上。  本篇是一题动态规划的题目及题解。 题目链接题目链接     题解   实现代码：1234567891011121314151617#include &lt;bits/stdc++.h&gt;using namespace std;int res[1000005];int temp[1000005];int main()&#123;	int n;	cin&gt;&gt;n;	res[1]=1;	res[2]=2;	temp[2]=1;	for(int i=3;i&lt;=n;i++)&#123;		res[i]=(res[i-1]+res[i-2]+2*temp[i-1])%10000;		temp[i]=(res[i-2]+temp[i-1])%10000;	&#125;	cout&lt;&lt;res[n];	return 0;&#125;   </div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2020/Q3/lanqiao-cup-preparation-individual-competition-summary-involving-stl-dictionary-order-io-acceleration/" title="【蓝桥杯备战】个人赛总结（涉及：STL,字典序，io加速）">【蓝桥杯备战】个人赛总结（涉及：STL,字典序，io加速）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-07-19T19:30:19.000Z" title="发表于 2020-07-19 19:30:19">2020-07-19</time></span></div><div class="content"> 为备战蓝桥杯，我将每天的学习总结为博客，鞭策自己学习，争取暑期输出三十篇以上博客。  战况总结</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2020/Q3/installation-configuration-how-to-change-bracket-highlight-color-in-devcpp/" title="【安装配置】devc++怎么改变括号高亮颜色？">【安装配置】devc++怎么改变括号高亮颜色？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-07-19T15:41:09.000Z" title="发表于 2020-07-19 15:41:09">2020-07-19</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">环境配置</a></span></div><div class="content">工具–编辑器选项–点第三栏“语法”–拖拽左边的条目，找到symbol，设置前景颜色并确定。   </div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/6/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/#content-inner">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/#content-inner">8</a><a class="page-number" href="/page/9/#content-inner">9</a><a class="extend next" rel="next" href="/page/8/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">TDppy</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">130</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/TDppy"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/TDppy" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2287015934@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">如何呢，又能怎。</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-riscv-plic/" title="【操作系统】RISC-V PLIC总结">【操作系统】RISC-V PLIC总结</a><time datetime="2026-01-18T15:25:18.000Z" title="发表于 2026-01-18 15:25:18">2026-01-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/hello-world/" title="欢迎来到潘业成的博客">欢迎来到潘业成的博客</a><time datetime="2026-01-12T00:00:00.000Z" title="发表于 2026-01-12 00:00:00">2026-01-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-what-happens-after-pressing-enter-in-xv6-operating-system/" title="【操作系统】xv6操作系统中按下键盘回车后发生的事情">【操作系统】xv6操作系统中按下键盘回车后发生的事情</a><time datetime="2026-01-10T11:58:18.000Z" title="发表于 2026-01-10 11:58:18">2026-01-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-hand-write-xv6-operating-system-types-h-param-h-memlayout-h-riscv-h-defs-h-header-file-analysis/" title="【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析">【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析</a><time datetime="2026-01-06T23:02:58.000Z" title="发表于 2026-01-06 23:02:58">2026-01-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/Q4/operating-system-hand-write-xv6-operating-system-entry-s-and-start-c-analysis/" title="【操作系统】手撸xv6操作系统——entry.S和start.c解析">【操作系统】手撸xv6操作系统——entry.S和start.c解析</a><time datetime="2025-12-30T15:57:42.000Z" title="发表于 2025-12-30 15:57:42">2025-12-30</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+      <i class="fas fa-angle-right"></i></a>
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/"><span class="card-category-list-name">异常处理</span><span class="card-category-list-count">15</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><span class="card-category-list-name">操作系统</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%B0%E5%AD%97IC%E8%AE%BE%E8%AE%A1/"><span class="card-category-list-name">数字IC设计</span><span class="card-category-list-count">38</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%89%87%E4%B8%8A%E7%BD%91%E7%BB%9C/"><span class="card-category-list-name">片上网络</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"><span class="card-category-list-name">环境配置</span><span class="card-category-list-count">14</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%A8%8B%E5%BA%8F%E4%BA%BA%E7%94%9F/"><span class="card-category-list-name">程序人生</span><span class="card-category-list-count">7</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%BC%96%E7%A8%8B%E4%B8%8E%E7%AE%97%E6%B3%95/"><span class="card-category-list-name">编程与算法</span><span class="card-category-list-count">17</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"><span class="card-category-list-name">网络安全</span><span class="card-category-list-count">1</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/%E8%B0%83%E8%AF%95/" style="font-size: 1.5em; color: #99a9bf">调试</a> <a href="/tags/%E4%BA%A4%E6%8D%A2%E6%9C%BA/" style="font-size: 1.21em; color: #999ea4">交换机</a> <a href="/tags/%E8%BF%90%E7%AE%97%E7%AC%A6/" style="font-size: 1.1em; color: #999">运算符</a> <a href="/tags/%E5%9B%BE%E6%A0%87%E5%BA%93/" style="font-size: 1.1em; color: #999">图标库</a> <a href="/tags/%E5%A4%9A%E8%BF%9B%E7%A8%8B/" style="font-size: 1.16em; color: #999b9e">多进程</a> <a href="/tags/IDEA/" style="font-size: 1.1em; color: #999">IDEA</a> <a href="/tags/Verilog/" style="font-size: 1.44em; color: #99a7ba">Verilog</a> <a href="/tags/EDA%E5%B7%A5%E5%85%B7/" style="font-size: 1.39em; color: #99a4b4">EDA工具</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 1.16em; color: #999b9e">转载</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 1.27em; color: #99a0a9">C语言</a> <a href="/tags/%E7%89%87%E4%B8%8A%E7%BD%91%E7%BB%9C/" style="font-size: 1.1em; color: #999">片上网络</a> <a href="/tags/SSL%E8%AF%81%E4%B9%A6/" style="font-size: 1.1em; color: #999">SSL证书</a> <a href="/tags/Dev-C/" style="font-size: 1.1em; color: #999">Dev-C++</a> <a href="/tags/Office/" style="font-size: 1.1em; color: #999">Office</a> <a href="/tags/DFT/" style="font-size: 1.1em; color: #999">DFT</a> <a href="/tags/%E4%B8%AD%E6%96%AD/" style="font-size: 1.1em; color: #999">中断</a> <a href="/tags/Web%E5%BC%80%E5%8F%91/" style="font-size: 1.1em; color: #999">Web开发</a> <a href="/tags/%E6%80%BB%E7%BA%BF/" style="font-size: 1.1em; color: #999">总线</a> <a href="/tags/z3/" style="font-size: 1.1em; color: #999">z3</a> <a href="/tags/CMake/" style="font-size: 1.1em; color: #999">CMake</a> <a href="/tags/%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90/" style="font-size: 1.16em; color: #999b9e">时序分析</a> <a href="/tags/Git/" style="font-size: 1.16em; color: #999b9e">Git</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 1.1em; color: #999">前端</a> <a href="/tags/OFDM/" style="font-size: 1.1em; color: #999">OFDM</a> <a href="/tags/PyTorch/" style="font-size: 1.1em; color: #999">PyTorch</a> <a href="/tags/Java/" style="font-size: 1.33em; color: #99a2af">Java</a> <a href="/tags/CCNA/" style="font-size: 1.27em; color: #99a0a9">CCNA</a> <a href="/tags/AXI/" style="font-size: 1.1em; color: #999">AXI</a> <a href="/tags/%E7%9F%AD%E4%BF%A1/" style="font-size: 1.1em; color: #999">短信</a> <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" style="font-size: 1.1em; color: #999">读书笔记</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E4%BB%8B%E7%BB%8D/" style="font-size: 1.1em; color: #999">博客介绍</a> <a href="/tags/%E5%8F%8C%E7%B3%BB%E7%BB%9F/" style="font-size: 1.1em; color: #999">双系统</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" style="font-size: 1.1em; color: #999">网络安全</a> <a href="/tags/Tomcat/" style="font-size: 1.1em; color: #999">Tomcat</a> <a href="/tags/GitHub/" style="font-size: 1.1em; color: #999">GitHub</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 1.1em; color: #999">算法</a> <a href="/tags/Mill/" style="font-size: 1.1em; color: #999">Mill</a> <a href="/tags/%E6%95%99%E5%AD%A6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 1.21em; color: #999ea4">教学操作系统</a> <a href="/tags/%E9%93%BE%E6%8E%A5/" style="font-size: 1.1em; color: #999">链接</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB/" style="font-size: 1.1em; color: #999">中间人攻击</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      <a class="card-more-btn" href="/archives/"
+            title="查看更多">
+            <i class="fas fa-angle-right"></i>
+          </a>
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/01/">
+            <span class="card-archive-list-date">
+              一月 2026
+            </span>
+            <span class="card-archive-list-count">4</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/12/">
+            <span class="card-archive-list-date">
+              十二月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/10/">
+            <span class="card-archive-list-date">
+              十月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/08/">
+            <span class="card-archive-list-date">
+              八月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/04/">
+            <span class="card-archive-list-date">
+              四月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/10/">
+            <span class="card-archive-list-date">
+              十月 2024
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/09/">
+            <span class="card-archive-list-date">
+              九月 2024
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/08/">
+            <span class="card-archive-list-date">
+              八月 2024
+            </span>
+            <span class="card-archive-list-count">4</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">130</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-01-18T08:18:23.548Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By TDppy</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4-b1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4-b1"></script><script src="/js/main.js?v=5.5.4-b1"></script><div class="js-pjax"><script>window.typedJSFn = {
+  init: str => {
+    window.typed = new Typed('#subtitle', Object.assign({
+      strings: str,
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50,
+    }, null))
+  },
+  run: subtitleType => {
+    if (true) {
+      if (typeof Typed === 'function') {
+        subtitleType()
+      } else {
+        btf.getScript('https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.min.js').then(subtitleType)
+      }
+    } else {
+      subtitleType()
+    }
+  },
+  processSubtitle: (content, extraContents = []) => {
+    if (true) {
+      const sub = ["灵魂的渴望是命运的先知","Soul driven is the desire of the prophet","斯人若彩虹，遇上方知有","Every once in a while,you find someone who is iridescent."].slice()
+
+      if (extraContents.length > 0) {
+        sub.unshift(...extraContents)
+      }
+
+      if (typeof content === 'string') {
+        sub.unshift(content)
+      } else if (Array.isArray(content)) {
+        sub.unshift(...content)
+      }
+
+      sub.length > 0 && typedJSFn.init(sub)
+    } else {
+      document.getElementById('subtitle').textContent = typeof content === 'string' ? content :
+        (Array.isArray(content) && content.length > 0 ? content[0] : '')
+    }
+  }
+}
+btf.addGlobalFn('pjaxSendOnce', () => { typed.destroy() }, 'typedDestroy')
+</script><script>function subtitleType () {
+  typedJSFn.processSubtitle(["灵魂的渴望是命运的先知","Soul driven is the desire of the prophet","斯人若彩虹，遇上方知有","Every once in a while,you find someone who is iridescent."])
+}
+typedJSFn.run(subtitleType)</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

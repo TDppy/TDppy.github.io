@@ -1,0 +1,235 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>2024 | 潘业成的博客</title><meta name="author" content="TDppy"><meta name="copyright" content="TDppy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="2024">
+<meta property="og:url" content="https://www.whyc.fun/archives/2024/index.html">
+<meta property="og:site_name" content="潘业成的博客">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.whyc.fun/img/butterfly-icon.png">
+<meta property="article:author" content="TDppy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.whyc.fun/img/butterfly-icon.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://www.whyc.fun/archives/2024/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4-b1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '2024',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'archive'
+}</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(https://oss.012700.xyz/butterfly/2024/10/index.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">130</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header" style="background-image: url(https://oss.012700.xyz/butterfly/2024/10/index.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">潘业成的博客</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="page-site-info"><h1 id="site-title">2024</h1></div></header><main class="layout" id="content-inner"><div id="archive"><div class="article-sort-title">全部文章 - 32</div><div class="article-sort"><div class="article-sort-item year">2024</div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-10-23T19:21:27.000Z" title="发表于 2024-10-23 19:21:27">2024-10-23</time></div><a class="article-sort-item-title" href="/2024/Q4/ic-design-chisel-build-tool-mill-installation-what-if-mill-script-runs-slow/" title="【IC设计】Chisel构建工具Mill的安装（mill脚本执行过慢怎么办？）">【IC设计】Chisel构建工具Mill的安装（mill脚本执行过慢怎么办？）</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-10-17T21:14:05.000Z" title="发表于 2024-10-17 21:14:05">2024-10-17</time></div><a class="article-sort-item-title" href="/2024/Q4/ic-design-fudan-micro-industry-analysis/" title="【IC设计】复旦微行业分析">【IC设计】复旦微行业分析</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-09-12T19:40:36.000Z" title="发表于 2024-09-12 19:40:36">2024-09-12</time></div><a class="article-sort-item-title" href="/2024/Q3/ic-design-cache-basics-address-mapping-hit-miss-replacement-policy-consistency/" title="【IC设计】Cache基础入门（地址映射方式、hit_miss的判断、替换策略、一致性问题）">【IC设计】Cache基础入门（地址映射方式、hit_miss的判断、替换策略、一致性问题）</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-08-27T12:48:43.000Z" title="发表于 2024-08-27 12:48:43">2024-08-27</time></div><a class="article-sort-item-title" href="/2024/Q3/ic-design-cross-clock-asynchronous-processing-series-single-bit-cross-clock/" title="【IC设计】跨时钟异步处理系列——单比特跨时钟">【IC设计】跨时钟异步处理系列——单比特跨时钟</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-08-15T15:38:58.000Z" title="发表于 2024-08-15 15:38:58">2024-08-15</time></div><a class="article-sort-item-title" href="/2024/Q3/ic-design-chisel-api-arbiter-and-rrarbiter-usage/" title="【IC设计】Chisel API之Arbiter和RRArbiter的使用">【IC设计】Chisel API之Arbiter和RRArbiter的使用</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-08-10T19:46:27.000Z" title="发表于 2024-08-10 19:46:27">2024-08-10</time></div><a class="article-sort-item-title" href="/2024/Q3/ic-design-ascend-910-architecture-learning/" title="【IC设计】昇腾910架构学习">【IC设计】昇腾910架构学习</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-08-07T23:44:51.000Z" title="发表于 2024-08-07 23:44:51">2024-08-07</time></div><a class="article-sort-item-title" href="/2024/Q3/ic-design-timing-analysis-interview-questions-summary-metastability-setup-hold-margin-calculation-max-clock-frequency-timing-violation-solutions/" title="【IC设计】时序分析面试题总结（亚稳态、建立_保持裕量计算、最高时钟频率计算、时序违例解决办法）">【IC设计】时序分析面试题总结（亚稳态、建立_保持裕量计算、最高时钟频率计算、时序违例解决办法）</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-05-20T13:43:46.000Z" title="发表于 2024-05-20 13:43:46">2024-05-20</time></div><a class="article-sort-item-title" href="/2024/Q2/installation-configuration-wsl-vm-export-import-image-involving-docker-not-working-in-wsl-issue/" title="【安装配置】WSL虚拟机导出、导入镜像（涉及到docker无法在wsl下使用的问题）">【安装配置】WSL虚拟机导出、导入镜像（涉及到docker无法在wsl下使用的问题）</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-05-19T21:27:09.000Z" title="发表于 2024-05-19 21:27:09">2024-05-19</time></div><a class="article-sort-item-title" href="/2024/Q2/ic-design-niuke-net-sequence-detection-exercises-summary/" title="【IC设计】牛客网-序列检测习题总结">【IC设计】牛客网-序列检测习题总结</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-05-19T20:45:20.000Z" title="发表于 2024-05-19 20:45:20">2024-05-19</time></div><a class="article-sort-item-title" href="/2024/Q2/ic-design-synchronous-fifo-design-verilog-source-parameterized-design-interview-essential/" title="【IC设计】同步FIFO设计（Verilog源码、参数化设计、面试必备）">【IC设计】同步FIFO设计（Verilog源码、参数化设计、面试必备）</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-05-19T18:55:37.000Z" title="发表于 2024-05-19 18:55:37">2024-05-19</time></div><a class="article-sort-item-title" href="/2024/Q2/ic-design-digital-ic-fpga-autumn-recruitment-hand-tear-code-summary/" title="【IC设计】数字IC_FPGA秋招手撕代码总结">【IC设计】数字IC_FPGA秋招手撕代码总结</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-05-19T12:13:31.000Z" title="发表于 2024-05-19 12:13:31">2024-05-19</time></div><a class="article-sort-item-title" href="/2024/Q2/ic-design-50-duty-cycle-odd-even-frequency-division-verilog/" title="【IC设计】任意倍数占空比为50%的奇数分频和偶数分频（Verilog源码、仿真波形、讲解）">【IC设计】任意倍数占空比为50%的奇数分频和偶数分频（Verilog源码、仿真波形、讲解）</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-05-06T11:39:54.000Z" title="发表于 2024-05-06 11:39:54">2024-05-06</time></div><a class="article-sort-item-title" href="/2024/Q2/ic-design-xilinx-different-series-zynq-board-introduction-zynq-7000-ultrascale-mpsoc-rfsoc-acap/" title="【IC设计】Xilinx不同系列的Zynq板卡介绍(Zynq-7000，UltraScale MPSoC_RFSoC，ACAP）">【IC设计】Xilinx不同系列的Zynq板卡介绍(Zynq-7000，UltraScale MPSoC_RFSoC，ACAP）</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-04-27T12:47:58.000Z" title="发表于 2024-04-27 12:47:58">2024-04-27</time></div><a class="article-sort-item-title" href="/2024/Q2/ic-design-brief-introduction-to-latch-principles-and-verilog-practice/" title="【IC设计】简要介绍锁存器原理与Verilog实践">【IC设计】简要介绍锁存器原理与Verilog实践</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-04-25T13:42:04.000Z" title="发表于 2024-04-25 13:42:04">2024-04-25</time></div><a class="article-sort-item-title" href="/2024/Q2/ic-design-edge-detection-circuit-rising-edge-falling-edge-both-edges-with-source-code-and-simulation-waveform/" title="【IC设计】边沿检测电路（上升沿、下降沿、双沿，附带源代码和仿真波形）">【IC设计】边沿检测电路（上升沿、下降沿、双沿，附带源代码和仿真波形）</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-04-24T18:19:14.000Z" title="发表于 2024-04-24 18:19:14">2024-04-24</time></div><a class="article-sort-item-title" href="/2024/Q2/ic-design-odd-frequency-division-and-even-frequency-division-circuit-design-with-explanation-rtl-code-testbench-code/" title="【IC设计】奇数分频与偶数分频 电路设计（含讲解、RTL代码、Testbench代码）">【IC设计】奇数分频与偶数分频 电路设计（含讲解、RTL代码、Testbench代码）</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-04-21T15:31:42.000Z" title="发表于 2024-04-21 15:31:42">2024-04-21</time></div><a class="article-sort-item-title" href="/2024/Q2/ic-design-axi-entry-blog-that-even-paramecium-can-understand-massive-illustrations-hand-teaching-waveform-simulation/" title="【IC设计】草履虫都能看懂的AXI入门博客（大量图文来袭，手把手教学，波形仿真）">【IC设计】草履虫都能看懂的AXI入门博客（大量图文来袭，手把手教学，波形仿真）</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-04-19T10:42:49.000Z" title="发表于 2024-04-19 10:42:49">2024-04-19</time></div><a class="article-sort-item-title" href="/2024/Q2/program-life-master-two-second-semester-almost-over-just-write-casually/" title="【程序人生】研二下学期快结束了~~~~随便写写">【程序人生】研二下学期快结束了~~~~随便写写</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-03-18T09:48:18.000Z" title="发表于 2024-03-18 09:48:18">2024-03-18</time></div><a class="article-sort-item-title" href="/2024/Q1/ic-design-verilog-linear-sequence-machine-lighting-case-four-xiaomei-brother-course/" title="【IC设计】Verilog线性序列机点灯案例(四)（小梅哥课程）">【IC设计】Verilog线性序列机点灯案例(四)（小梅哥课程）</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-03-15T16:13:53.000Z" title="发表于 2024-03-15 16:13:53">2024-03-15</time></div><a class="article-sort-item-title" href="/2024/Q1/ic-design-verilog-linear-sequence-machine-lighting-case-two-xiaomei-brother-course/" title="【IC设计】Verilog线性序列机点灯案例(二)（小梅哥课程）">【IC设计】Verilog线性序列机点灯案例(二)（小梅哥课程）</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-03-15T15:02:31.000Z" title="发表于 2024-03-15 15:02:31">2024-03-15</time></div><a class="article-sort-item-title" href="/2024/Q1/ic-design-verilog-linear-sequence-machine-lighting-case-one-xiaomei-brother-course/" title="【IC设计】Verilog线性序列机点灯案例(一)（小梅哥课程）">【IC设计】Verilog线性序列机点灯案例(一)（小梅哥课程）</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-03-08T15:19:20.000Z" title="发表于 2024-03-08 15:19:20">2024-03-08</time></div><a class="article-sort-item-title" href="/2024/Q1/exception-handling-verilator-error-verilator-requires-a-c-14-or-newer-compiler/" title="【异常处理】Verilator报错Verilator requires a C++14 or newer compiler">【异常处理】Verilator报错Verilator requires a C++14 or newer compiler</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-03-08T11:37:31.000Z" title="发表于 2024-03-08 11:37:31">2024-03-08</time></div><a class="article-sort-item-title" href="/2024/Q1/exception-handling-cannot-run-program-z3-createprocess-error-2-system-cannot-find-the-specified-file-when-testing-risc-mini-project/" title="【异常处理】测试risc-mini项目出现 Cannot run program “z3“ CreateProcess error=2, 系统找不到指定的文件。">【异常处理】测试risc-mini项目出现 Cannot run program “z3“ CreateProcess error=2, 系统找不到指定的文件。</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-03-07T19:32:18.000Z" title="发表于 2024-03-07 19:32:18">2024-03-07</time></div><a class="article-sort-item-title" href="/2024/Q1/exception-handling-exception-occurs-during-verilator-installation-make-makefile-195-verilator-gantt-1-error-13/" title="【异常处理】verilator安装时出现异常 make_ ___ [Makefile_195_ verilator_gantt.1] Error 13">【异常处理】verilator安装时出现异常 make_ ___ [Makefile_195_ verilator_gantt.1] Error 13</a></div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/archives/2024/page/2/">2</a><a class="extend next" rel="next" href="/archives/2024/page/2/"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">TDppy</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">130</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/TDppy"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/TDppy" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2287015934@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">如何呢，又能怎。</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-riscv-plic/" title="【操作系统】RISC-V PLIC总结">【操作系统】RISC-V PLIC总结</a><time datetime="2026-01-18T15:25:18.000Z" title="发表于 2026-01-18 15:25:18">2026-01-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/hello-world/" title="欢迎来到潘业成的博客">欢迎来到潘业成的博客</a><time datetime="2026-01-12T00:00:00.000Z" title="发表于 2026-01-12 00:00:00">2026-01-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-what-happens-after-pressing-enter-in-xv6-operating-system/" title="【操作系统】xv6操作系统中按下键盘回车后发生的事情">【操作系统】xv6操作系统中按下键盘回车后发生的事情</a><time datetime="2026-01-10T11:58:18.000Z" title="发表于 2026-01-10 11:58:18">2026-01-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-hand-write-xv6-operating-system-types-h-param-h-memlayout-h-riscv-h-defs-h-header-file-analysis/" title="【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析">【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析</a><time datetime="2026-01-06T23:02:58.000Z" title="发表于 2026-01-06 23:02:58">2026-01-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/Q4/operating-system-hand-write-xv6-operating-system-entry-s-and-start-c-analysis/" title="【操作系统】手撸xv6操作系统——entry.S和start.c解析">【操作系统】手撸xv6操作系统——entry.S和start.c解析</a><time datetime="2025-12-30T15:57:42.000Z" title="发表于 2025-12-30 15:57:42">2025-12-30</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+      <i class="fas fa-angle-right"></i></a>
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/"><span class="card-category-list-name">异常处理</span><span class="card-category-list-count">15</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><span class="card-category-list-name">操作系统</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%B0%E5%AD%97IC%E8%AE%BE%E8%AE%A1/"><span class="card-category-list-name">数字IC设计</span><span class="card-category-list-count">38</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%89%87%E4%B8%8A%E7%BD%91%E7%BB%9C/"><span class="card-category-list-name">片上网络</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"><span class="card-category-list-name">环境配置</span><span class="card-category-list-count">14</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%A8%8B%E5%BA%8F%E4%BA%BA%E7%94%9F/"><span class="card-category-list-name">程序人生</span><span class="card-category-list-count">7</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%BC%96%E7%A8%8B%E4%B8%8E%E7%AE%97%E6%B3%95/"><span class="card-category-list-name">编程与算法</span><span class="card-category-list-count">17</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"><span class="card-category-list-name">网络安全</span><span class="card-category-list-count">1</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/%E8%B0%83%E8%AF%95/" style="font-size: 1.5em; color: #99a9bf">调试</a> <a href="/tags/%E4%BA%A4%E6%8D%A2%E6%9C%BA/" style="font-size: 1.21em; color: #999ea4">交换机</a> <a href="/tags/%E8%BF%90%E7%AE%97%E7%AC%A6/" style="font-size: 1.1em; color: #999">运算符</a> <a href="/tags/%E5%9B%BE%E6%A0%87%E5%BA%93/" style="font-size: 1.1em; color: #999">图标库</a> <a href="/tags/%E5%A4%9A%E8%BF%9B%E7%A8%8B/" style="font-size: 1.16em; color: #999b9e">多进程</a> <a href="/tags/IDEA/" style="font-size: 1.1em; color: #999">IDEA</a> <a href="/tags/Verilog/" style="font-size: 1.44em; color: #99a7ba">Verilog</a> <a href="/tags/EDA%E5%B7%A5%E5%85%B7/" style="font-size: 1.39em; color: #99a4b4">EDA工具</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 1.16em; color: #999b9e">转载</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 1.27em; color: #99a0a9">C语言</a> <a href="/tags/%E7%89%87%E4%B8%8A%E7%BD%91%E7%BB%9C/" style="font-size: 1.1em; color: #999">片上网络</a> <a href="/tags/SSL%E8%AF%81%E4%B9%A6/" style="font-size: 1.1em; color: #999">SSL证书</a> <a href="/tags/Dev-C/" style="font-size: 1.1em; color: #999">Dev-C++</a> <a href="/tags/Office/" style="font-size: 1.1em; color: #999">Office</a> <a href="/tags/DFT/" style="font-size: 1.1em; color: #999">DFT</a> <a href="/tags/%E4%B8%AD%E6%96%AD/" style="font-size: 1.1em; color: #999">中断</a> <a href="/tags/Web%E5%BC%80%E5%8F%91/" style="font-size: 1.1em; color: #999">Web开发</a> <a href="/tags/%E6%80%BB%E7%BA%BF/" style="font-size: 1.1em; color: #999">总线</a> <a href="/tags/z3/" style="font-size: 1.1em; color: #999">z3</a> <a href="/tags/CMake/" style="font-size: 1.1em; color: #999">CMake</a> <a href="/tags/%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90/" style="font-size: 1.16em; color: #999b9e">时序分析</a> <a href="/tags/Git/" style="font-size: 1.16em; color: #999b9e">Git</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 1.1em; color: #999">前端</a> <a href="/tags/OFDM/" style="font-size: 1.1em; color: #999">OFDM</a> <a href="/tags/PyTorch/" style="font-size: 1.1em; color: #999">PyTorch</a> <a href="/tags/Java/" style="font-size: 1.33em; color: #99a2af">Java</a> <a href="/tags/CCNA/" style="font-size: 1.27em; color: #99a0a9">CCNA</a> <a href="/tags/AXI/" style="font-size: 1.1em; color: #999">AXI</a> <a href="/tags/%E7%9F%AD%E4%BF%A1/" style="font-size: 1.1em; color: #999">短信</a> <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" style="font-size: 1.1em; color: #999">读书笔记</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E4%BB%8B%E7%BB%8D/" style="font-size: 1.1em; color: #999">博客介绍</a> <a href="/tags/%E5%8F%8C%E7%B3%BB%E7%BB%9F/" style="font-size: 1.1em; color: #999">双系统</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" style="font-size: 1.1em; color: #999">网络安全</a> <a href="/tags/Tomcat/" style="font-size: 1.1em; color: #999">Tomcat</a> <a href="/tags/GitHub/" style="font-size: 1.1em; color: #999">GitHub</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 1.1em; color: #999">算法</a> <a href="/tags/Mill/" style="font-size: 1.1em; color: #999">Mill</a> <a href="/tags/%E6%95%99%E5%AD%A6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 1.21em; color: #999ea4">教学操作系统</a> <a href="/tags/%E9%93%BE%E6%8E%A5/" style="font-size: 1.1em; color: #999">链接</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB/" style="font-size: 1.1em; color: #999">中间人攻击</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      <a class="card-more-btn" href="/archives/"
+            title="查看更多">
+            <i class="fas fa-angle-right"></i>
+          </a>
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/01/">
+            <span class="card-archive-list-date">
+              一月 2026
+            </span>
+            <span class="card-archive-list-count">4</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/12/">
+            <span class="card-archive-list-date">
+              十二月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/10/">
+            <span class="card-archive-list-date">
+              十月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/08/">
+            <span class="card-archive-list-date">
+              八月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/04/">
+            <span class="card-archive-list-date">
+              四月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/10/">
+            <span class="card-archive-list-date">
+              十月 2024
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/09/">
+            <span class="card-archive-list-date">
+              九月 2024
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/08/">
+            <span class="card-archive-list-date">
+              八月 2024
+            </span>
+            <span class="card-archive-list-count">4</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">130</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-01-18T08:18:23.548Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By TDppy</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4-b1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4-b1"></script><script src="/js/main.js?v=5.5.4-b1"></script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

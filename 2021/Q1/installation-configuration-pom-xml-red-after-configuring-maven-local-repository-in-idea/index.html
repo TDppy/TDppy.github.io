@@ -1,0 +1,172 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【安装配置】IDEA中配置Maven本地仓库后pom.xml飘红 | 潘业成的博客</title><meta name="author" content="TDppy"><meta name="copyright" content="TDppy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="在IDEA中配置Maven后(如图)，pom.xml一片飘红，显然是依赖没了。此时IDEA右下角冒出小窗口报错：Unable to import maven project: See logs for details叫我们看日志，那我们就看一下日志。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【安装配置】IDEA中配置Maven本地仓库后pom.xml飘红">
+<meta property="og:url" content="https://www.whyc.fun/2021/Q1/installation-configuration-pom-xml-red-after-configuring-maven-local-repository-in-idea/index.html">
+<meta property="og:site_name" content="潘业成的博客">
+<meta property="og:description" content="在IDEA中配置Maven后(如图)，pom.xml一片飘红，显然是依赖没了。此时IDEA右下角冒出小窗口报错：Unable to import maven project: See logs for details叫我们看日志，那我们就看一下日志。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.whyc.fun/img/butterfly-icon.png">
+<meta property="article:published_time" content="2021-03-06T21:02:36.000Z">
+<meta property="article:modified_time" content="2026-01-18T08:18:02.766Z">
+<meta property="article:author" content="TDppy">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="IDEA">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.whyc.fun/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "【安装配置】IDEA中配置Maven本地仓库后pom.xml飘红",
+  "url": "https://www.whyc.fun/2021/Q1/installation-configuration-pom-xml-red-after-configuring-maven-local-repository-in-idea/",
+  "image": "https://www.whyc.fun/img/butterfly-icon.png",
+  "datePublished": "2021-03-06T21:02:36.000Z",
+  "dateModified": "2026-01-18T08:18:02.766Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "TDppy",
+      "url": "https://www.whyc.fun"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://www.whyc.fun/2021/Q1/installation-configuration-pom-xml-red-after-configuring-maven-local-repository-in-idea/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4-b1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【安装配置】IDEA中配置Maven本地仓库后pom.xml飘红',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(https://oss.012700.xyz/butterfly/2024/10/index.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">130</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://oss.012700.xyz/butterfly/2024/10/index.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">潘业成的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">【安装配置】IDEA中配置Maven本地仓库后pom.xml飘红</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">【安装配置】IDEA中配置Maven本地仓库后pom.xml飘红</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-03-06T21:02:36.000Z" title="发表于 2021-03-06 21:02:36">2021-03-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-01-18T08:18:02.766Z" title="更新于 2026-01-18 08:18:02">2026-01-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">环境配置</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"> <img src="/2021/Q1/installation-configuration-pom-xml-red-after-configuring-maven-local-repository-in-idea/1.png" class=""> 
+<p>在IDEA中配置Maven后(如图)，pom.xml一片飘红，显然是依赖没了。<br>此时IDEA右下角冒出小窗口报错：<br><code>Unable to import maven project: See logs for details</code><br>叫我们看日志，那我们就看一下日志。</p>
+<!-- 点击help->Show log in Explorer<img src="/2021/Q1/installation-configuration-pom-xml-red-after-configuring-maven-local-repository-in-idea/2.png" class="" title="在这里插入图片描述"> 
+<p>点了以后就会打开你的log所在的目录，然后我们点开<code>idea.log</code><br> <img src="/2021/Q1/installation-configuration-pom-xml-red-after-configuring-maven-local-repository-in-idea/3.png" class=""> </p>
+<p>总之可以看出来本地仓库里没这个依赖了。这时候我在想为什么没有这个依赖，Maven不会自动下载呢？<br> <img src="/2021/Q1/installation-configuration-pom-xml-red-after-configuring-maven-local-repository-in-idea/4.png" class=""><br>这时候又看到这个拒绝访问，我就联想到是权限的问题。<br>于是把maven整个目录的权限都扩大了。<br> <img src="/2021/Q1/installation-configuration-pom-xml-red-after-configuring-maven-local-repository-in-idea/5.png" class=""><br>点应用 、确定。</p>
+<p>结果就是不飘红了，能运行了。<br><strong>至于原理，我感觉就是Maven下载依赖肯定要有写入权限才能放到本地仓库，所以必须要把Maven目录给Users这个权限。</strong></p>
+<blockquote>
+<p>如果你仍然不能运行，可以联系我QQ来帮你看看：<br>QQ:2287015934</p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://www.whyc.fun">TDppy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://www.whyc.fun/2021/Q1/installation-configuration-pom-xml-red-after-configuring-maven-local-repository-in-idea/">https://www.whyc.fun/2021/Q1/installation-configuration-pom-xml-red-after-configuring-maven-local-repository-in-idea/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://www.whyc.fun" target="_blank">潘业成的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Java/">Java</a><a class="post-meta__tags" href="/tags/IDEA/">IDEA</a></div><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2021/Q2/java-learning-equals-method-in-object/" title="【java学习】object中的equals方法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">【java学习】object中的equals方法</div></div><div class="info-2"><div class="info-item-1">在java.lang.Object类中可以看到对equals方法的说明    &#x2F;**     * Indicates whether some other object is “equal to” this one.     *      * The {@code equals} method implements an equivalence relation     * on non-null object references:     *      * It is reflexive: for any non-null reference value     *     {@code x}, {@code x.equals(x)} should return     *     {@code true}.     * It is symmetric: for any non-null reference values     *     {@code x} and {@code y}, {@code x.equals(y)}     *     should r...</div></div></div></a><a class="pagination-related" href="/2021/Q1/installation-configuration-solution-for-windows-delete-file-needs-permission/" title="【安装配置】windows删除文件需要权限的解决办法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">【安装配置】windows删除文件需要权限的解决办法</div></div><div class="info-2"><div class="info-item-1">Win+X打开Windows Powershell(管理员)，如果你要删除的东西不在C盘需要先切换盘符，如输入d:切换到d盘。 1cd 你要进入的目录名 然后del 文件名  就ok了，如果要删除整个目录和目录下的所有东西， 1del -r 目录名  </div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2020/Q2/javaweb-understanding-some-details-of-request-getparameter/" title="【JavaWeb】理解request.getParameter()的一些细节"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-04-27</div><div class="info-item-2">【JavaWeb】理解request.getParameter()的一些细节</div></div><div class="info-2"><div class="info-item-1"> 先捋一下图中这个登录的逻辑：表单中的登录按钮的action属性绑定了一个servlet的路径，当点击登录时，可以看到网页的地址栏会跳转到一个servlet，后台程序执行了这个servlet的代码。这个servlet中，我们可以用request.getParameter()；来获取表单中填写的用户名、密码、验证码，然后再进行查询数据库中是否有这个用户，如果有则登录成功，否则登录失败。 然后是我们要谈的request.getParameter()1.当没有填写用户名时，我用request.getParameter(“username”);获取到了什么？答案：是null吗？输出获取到的东西，发现什么也没有输出，实际上这是一个空字符串“”。2.假设我们没有写表单，却用了request.getParameter()，获取到的是什么？答案：输出一下，发现是null，当然，图中只有用户名密码和验证码，如果你写request.getParameter(“age”);获取年龄，自然也是null 然后是我们要谈的张三（狗头）：张三去强奸，由于妹子过于暴力，未遂，客观上没成功，主观上有意愿，你不能说...</div></div></div></a><a class="pagination-related" href="/2021/Q2/java-learning-equals-method-in-object/" title="【java学习】object中的equals方法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-02</div><div class="info-item-2">【java学习】object中的equals方法</div></div><div class="info-2"><div class="info-item-1">在java.lang.Object类中可以看到对equals方法的说明    &#x2F;**     * Indicates whether some other object is “equal to” this one.     *      * The {@code equals} method implements an equivalence relation     * on non-null object references:     *      * It is reflexive: for any non-null reference value     *     {@code x}, {@code x.equals(x)} should return     *     {@code true}.     * It is symmetric: for any non-null reference values     *     {@code x} and {@code y}, {@code x.equals(y)}     *     should r...</div></div></div></a><a class="pagination-related" href="/2020/Q2/java-learning-object-oriented-knowledge-points-summary/" title="【java学习】面向对象知识点简要总结"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-13</div><div class="info-item-2">【java学习】面向对象知识点简要总结</div></div><div class="info-2"><div class="info-item-1">摒弃繁杂、提纲挈领&#x3D;&#x3D;把握重点类与对象人是类，张三是对象。 构造方法：  概念：在实例化对象时执行的方法。 如何定义：1.不写返回值类型2.方法体中没有return语句3.方法名和类名相同 特性：1.若不写构造方法，JVM自动加个空参空方法体的构造方法。写了构造方法则不会自动添加。2.实例化时会调用相应参数的构造方法。  封装 12private int age;public void setAge(int age)&#123;this.age=age&#125;; 以private修饰属性，进而在类外只能通过setAge(3);这样的语句操作属性。 继承 1class Student extends People 使用extends关键字，这样Student就有了People类的属性和方法。 多态 1234Animal a=new Cat();a.sleep();//此时是猫睡觉a=new Dog();a.sleep();//同样是a.sleep() 变成了狗睡觉  四个关键字this 1234void setAge(int age)&#123;this.a...</div></div></div></a><a class="pagination-related" href="/2020/Q3/java-comment-knowledge-you-may-not-know-from-to-file-template-export-comment/" title="【你未必了解的Java注释知识】从__到文件模板、导出注释"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-26</div><div class="info-item-2">【你未必了解的Java注释知识】从__到文件模板、导出注释</div></div><div class="info-2"><div class="info-item-1">注释为了使代码便于理解，我们会在程序中加一些注释，java中的注释主要有三种：单行注释、多行注释、文档注释 单行注释单行注释以&#x2F;&#x2F;开头，一行中&#x2F;&#x2F;后面的部分是注释部分，不会被编译，&#x2F;&#x2F;前面的部分正常编译。如下代码实现了输入一个整数，将其加1后输出。其中a&#x3D;0被注释了，因此不会起作用。 123456789public class Example01 &#123;    public static void main(String[] args) &#123;        int a;        Scanner in = new Scanner(System.in);        a=in.nextInt();        a=a+1;//a=0;        System.out.println(a);    &#125;&#125; 多行注释多行注释以/*开头，*/结尾示例如下,代码实现输入整数a，输出整数a，其中注释掉了定义String类型的m并输入的两行代码，试想一下，这样的注释方法好吗？这个问...</div></div></div></a><a class="pagination-related" href="/2021/Q1/java-learning-how-to-send-sms-using-java/" title="【Java学习】如何使用Java发短信"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-04</div><div class="info-item-2">【Java学习】如何使用Java发短信</div></div><div class="info-2"><div class="info-item-1"> 【公司名】验证码:${code},尊敬的管理员，您正在登录×××系统…(验证码告知他人将导致账号被盗，请勿泄露。)  以这样一条验证码短信为例，由两部分组成，最前面的【】中的内容称为签名，起到标识作用，后面的具体短信内容称为模板。(其他的通知类、营销类短信也是如此) 想要用Java发短信基本步骤：1.在短信接口服务商注册个账号(如阿里云)注意，个人账号是不能发送营销短信的。2.将短信签名和模板都编辑并审核通过。      3.下载官方提供的Java语言Demo项目，将相关参数(如模板ID、手机号等)填入 4.运行程序测试   PS：短信接口服务商有很多，大的有阿里云这样的，小的也有专门做这一块业务的。一般都会有少量免费短信可以用来测试。实际业务中使用时肯定要购买，价格每个厂商不一样，大致在3-6分&#x2F;条。  如果还有什么疑问，可以加本人QQ2287015934私聊。  </div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">TDppy</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">130</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/TDppy"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/TDppy" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2287015934@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">如何呢，又能怎。</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-riscv-plic/" title="【操作系统】RISC-V PLIC总结">【操作系统】RISC-V PLIC总结</a><time datetime="2026-01-18T15:25:18.000Z" title="发表于 2026-01-18 15:25:18">2026-01-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/hello-world/" title="欢迎来到潘业成的博客">欢迎来到潘业成的博客</a><time datetime="2026-01-12T00:00:00.000Z" title="发表于 2026-01-12 00:00:00">2026-01-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-what-happens-after-pressing-enter-in-xv6-operating-system/" title="【操作系统】xv6操作系统中按下键盘回车后发生的事情">【操作系统】xv6操作系统中按下键盘回车后发生的事情</a><time datetime="2026-01-10T11:58:18.000Z" title="发表于 2026-01-10 11:58:18">2026-01-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-hand-write-xv6-operating-system-types-h-param-h-memlayout-h-riscv-h-defs-h-header-file-analysis/" title="【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析">【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析</a><time datetime="2026-01-06T23:02:58.000Z" title="发表于 2026-01-06 23:02:58">2026-01-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/Q4/operating-system-hand-write-xv6-operating-system-entry-s-and-start-c-analysis/" title="【操作系统】手撸xv6操作系统——entry.S和start.c解析">【操作系统】手撸xv6操作系统——entry.S和start.c解析</a><time datetime="2025-12-30T15:57:42.000Z" title="发表于 2025-12-30 15:57:42">2025-12-30</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By TDppy</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4-b1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4-b1"></script><script src="/js/main.js?v=5.5.4-b1"></script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

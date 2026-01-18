@@ -1,0 +1,281 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>潘业成的博客 - 欢迎来到我的个人博客，在这里我将分享我的技术经验、项目心得以及生活点滴。希望我的文章能为你带来帮助和启发！微信:fancymvc,QQ:2287015934</title><meta name="author" content="TDppy"><meta name="copyright" content="TDppy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="潘业成的博客">
+<meta property="og:url" content="https://www.whyc.fun/page/3/index.html">
+<meta property="og:site_name" content="潘业成的博客">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.whyc.fun/img/butterfly-icon.png">
+<meta property="article:author" content="TDppy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.whyc.fun/img/butterfly-icon.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://www.whyc.fun/page/3/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4-b1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '潘业成的博客',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(https://oss.012700.xyz/butterfly/2024/10/index.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">130</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(https://oss.012700.xyz/butterfly/2024/10/index.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">潘业成的博客</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">潘业成的博客</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/TDppy" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2287015934@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/Q1/exception-handling-cannot-run-program-z3-createprocess-error-2-system-cannot-find-the-specified-file-when-testing-risc-mini-project/" title="【异常处理】测试risc-mini项目出现 Cannot run program “z3“ CreateProcess error=2, 系统找不到指定的文件。">【异常处理】测试risc-mini项目出现 Cannot run program “z3“ CreateProcess error=2, 系统找不到指定的文件。</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-08T11:37:31.000Z" title="发表于 2024-03-08 11:37:31">2024-03-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/">异常处理</a></span></div><div class="content"> riscv-mini是UC Berkeley用Chisel编写的三级流水线RISC-V处理器，它实现了RV32I的用户级2.0版本ISA和机器级1.7版本ISA，是Berkeley著名的Rocket-chip项目的简化版  报错场景下载risc-mini项目，sbt构建完成后，运行ALUTest.scala下的ALUArea测试，结果出现报错： 报错信息是说在项目目录下无法运行z3，系统找不到指定的文件。 报错分析z3是微软的一个数学求解的工具，这里报错提示在这个目录下没有z3这个程序，所以无法运行是合理的，我们需要做的是安装z3并将其路径加入到系统变量中，然后重启电脑，再次运行测试即可通过！ 解决步骤如果是ubuntu系统，使用apt install z3即可，如果是windows，继续往下看：  下载z3  在这里下载z3，我的环境是windows64位系统，所以下载了z3-4.12.6-x64-win.zip，如图所示：  如果你的系统是这里需要注意，windows 64位系统要下载的是z3-4.12.6-x64-win.zip，而不是z3-4.12.6-x86-win....</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/Q1/exception-handling-exception-occurs-during-verilator-installation-make-makefile-195-verilator-gantt-1-error-13/" title="【异常处理】verilator安装时出现异常 make_ ___ [Makefile_195_ verilator_gantt.1] Error 13">【异常处理】verilator安装时出现异常 make_ ___ [Makefile_195_ verilator_gantt.1] Error 13</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-07T19:32:18.000Z" title="发表于 2024-03-07 19:32:18">2024-03-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/">异常处理</a></span></div><div class="content">在ubuntu中安装verilator工具时执行make出现该报错。当我出现这个报错的时候我一脸懵逼，因为网上找不到相关解决办法。后来想到我的verilator是从github上下载zip，然后解压后传到ubuntu上的，windows上解压我记得会把-替换成_，这可能导致了该问题的出现。所以直接在ubuntu上用git下载项目，避免windows上传源代码到ubuntu上。附上verilator的安装教程 </div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/Q1/ic-design-install-verilator-on-windows-and-ubuntu/" title="【IC设计】Windows和Ubuntu下安装Verilator">【IC设计】Windows和Ubuntu下安装Verilator</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-07T19:26:10.000Z" title="发表于 2024-03-07 19:26:10">2024-03-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%97IC%E8%AE%BE%E8%AE%A1/">数字IC设计</a></span></div><div class="content">Windows下安装verilatorwindows下安装比较麻烦，需要首先安装cygwin，cygwin是一个包管理工具，类似apt，然后通过cygwin安装verilator所需的各种依赖，然后再安装verilator。参考这篇文章，非常详细 Ubuntu下安装verilator安装前的准备1234567sudo apt-get install git help2man perl python3 make autoconf g++ flex bison ccachesudo apt-get install libgoogle-perftools-dev numactl perl-docsudo apt-get install libfl2  # 只有ubuntu需要这一步 如果报错就跳过 sudo apt-get install libfl-dev  # 只有ubuntu需要这一步 如果报错就跳过 sudo apt-get install zlibc zlib1g zlib1g-dev  # 只有ubuntu需要这一步 如果报错就跳过 git clone https://gi...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/Q1/ic-design-scala-chisel-chiseltest-version-compatibility-info-1/" title="【IC设计】Scala、Chisel、Chiseltest版本兼容信息 (1)">【IC设计】Scala、Chisel、Chiseltest版本兼容信息 (1)</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-06T16:07:50.000Z" title="发表于 2024-03-06 16:07:50">2024-03-06</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%97IC%E8%AE%BE%E8%AE%A1/">数字IC设计</a></span></div><div class="content">在maven仓库中精心整理的Scala、Chisel、Chiseltest的版本兼容信息，有了这个再也不怕sbt构建时找不到库文件了！目前百度上我搜不到这个资料，是我从maven官网上整理的，如果对你有用希望点点赞~  scala 2.11系列兼容的chisel版本为兼容的chisel版本3.0.0到3.4.4，chiseltest版本为0.2.0到0.3.4 scalascala 2.12系列兼容的chisel版本为兼容的chisel版本3.0.0到3.6.0，chiseltest版本为0.2.0到0.6.1 scalascala 2.13系列兼容的chisel版本为兼容的chisel版本3.5.0到3.6.0，chiseltest版本为0.5.0到0.6.2 5.0.0到5.0.2 以及6.0.0  整理的Scala-Chisel-Chiseltest版本信息对应表这里我整理出的对应表放入了网盘中，请自取：  链接：https://pan.baidu.com/s/1tk_mW7Z_RTwhFH_YLgUOsQ?pwd=z52s 提取码：z52s–来自百度网盘超级会员V5的分享...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/Q1/ic-design-scala-chisel-chiseltest-version-compatibility-info/" title="【IC设计】Scala、Chisel、Chiseltest版本兼容信息">【IC设计】Scala、Chisel、Chiseltest版本兼容信息</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-06T16:07:50.000Z" title="发表于 2024-03-06 16:07:50">2024-03-06</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%97IC%E8%AE%BE%E8%AE%A1/">数字IC设计</a></span></div><div class="content">在maven仓库中精心整理的Scala、Chisel、Chiseltest的版本兼容信息，有了这个再也不怕sbt构建时找不到库文件了！目前百度上我搜不到这个资料，是我从maven官网上整理的，如果对你有用希望点点赞~  scala 2.11系列兼容的chisel版本为兼容的chisel版本3.0.0到3.4.4，chiseltest版本为0.2.0到0.3.4 scalascala 2.12系列兼容的chisel版本为兼容的chisel版本3.0.0到3.6.0，chiseltest版本为0.2.0到0.6.1 scalascala 2.13系列兼容的chisel版本为兼容的chisel版本3.5.0到3.6.0，chiseltest版本为0.5.0到0.6.2 5.0.0到5.0.2 以及6.0.0  整理的Scala-Chisel-Chiseltest版本信息对应表这里我整理出的对应表放入了网盘中，请自取：  链接：https://pan.baidu.com/s/1tk_mW7Z_RTwhFH_YLgUOsQ?pwd=z52s 提取码：z52s–来自百度网盘超级会员V5的分享...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/Q1/exception-handling-solution-for-extracting-structure-failed-build-status-error-when-sbt-building-chisel-library/" title="【异常处理】sbt构建Chisel库时出现extracting structure failed_build status_error的解决办法">【异常处理】sbt构建Chisel库时出现extracting structure failed_build status_error的解决办法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-06T15:44:39.000Z" title="发表于 2024-03-06 15:44:39">2024-03-06</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/">异常处理</a></span></div><div class="content">报错背景：最近在写Chisel时，构建项目常常需要等待很久，然后报错extracting structure failed:build status:error这个报错实际上告诉我们，在build.sbt中指定的依赖没有下载到，导致依赖的结构无法实现。   解决思路：chisel库的资源是基于build.sbt配置文件给出的信息，使用sbt去maven网站上下载的，那么首先要确保sbt已经使用国内镜像源，以加快下载速度，其次根据报错信息，通过maven仓库网站查看缺少的文件，找到兼容的版本号，并修改build.sbt文件。 ①IDEA中配置本地的SBT进行下载打开IDEA的File-Settings，找到sbt，按照如图配置。默认情况下Launcher是Bundle，即IDEA内置的SBT，默认从maven官方下载，我们将其指定为本地的sbt下bin目录中的sbt-launch.jar，并将VM parameters写入，方便后面更改为国内maven镜像站。 1-Dsbt.override.build.repos=true     ②更改下载源为华为的镜像站1. 修改sbtcon...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/Q1/exception-handling-word-or-ppt-no-response-or-crash-after-opening-or-error-open-in-safe-mode/" title="【异常处理】word或ppt打开后没反应或闪退，或者报错由安全模式打开">【异常处理】word或ppt打开后没反应或闪退，或者报错由安全模式打开</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-01T23:36:14.000Z" title="发表于 2024-02-01 23:36:14">2024-02-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/">异常处理</a></span></div><div class="content">折腾了2个小时，可算解决了，办法是在【控制面板】中右击，选择【更改】 选择联机修复，然后耐心等待，最后再打开就没问题了。   </div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/Q1/ic-design-windows-based-idea-chisel-environment-installation-tutorial-illustrated/" title="【IC设计】Windows下基于IDEA的Chisel环境安装教程（图文并茂）">【IC设计】Windows下基于IDEA的Chisel环境安装教程（图文并茂）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-01T20:28:25.000Z" title="发表于 2024-02-01 20:28:25">2024-02-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%97IC%E8%AE%BE%E8%AE%A1/">数字IC设计</a></span></div><div class="content">(Chisel环境安装教程)  传统数字芯片的RTL设计采用Verilog语言为主，Chisel语言的全称是Constructing Harward in Scala Embeded Language，即在Scala语言中导入Chisel3库，即可使用Chisel语言。其特点是面向对象编程，可以方便地参数化定制硬件电路，加快设计流程。目前在RISC-V生态中应用较多，中科院计算所主持的培育下一代处理器设计人才的“一生一芯”项目也在极力推进该语言。  涉及到的所有安装包已经放入百度网盘，请全部下载，然后开始阅读这个教程。  链接：https://pan.baidu.com/s/1ZOkbCxoLxrpJQQqVQfa-3w?pwd=hduv提取码：hduv–来自百度网盘超级会员V5的分享   第一步 安装jdk，配置环境变量如果电脑里还没有java环境，请先下载网盘链接中的jdk压缩包并解压，然后参照我的这篇文章配置环境。 第二步 安装sbt，不用配置环境变量双击sbt-1.9.8.msi  下一步下一步安装就好了，环境变量会自动配置好，无需手动配置。 第三步 安装idea社区版开...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/Q1/ic-design-vivado-single-port-ram-usage-and-timing-analysis/" title="【IC设计】Vivado单口RAM的使用和时序分析">【IC设计】Vivado单口RAM的使用和时序分析</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-01-25T15:54:37.000Z" title="发表于 2024-01-25 15:54:37">2024-01-25</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%97IC%E8%AE%BE%E8%AE%A1/">数字IC设计</a></span></div><div class="content">创建单口RAM IPIP Catalog中选择单口RAM IP  Basic Port A Options Other Options  仿真找到IP例化原语IP Sources-Instantiation Template-veo文件中找到IP例化原语  编写Testbench创建single_port_ram_test.v，代码如下： 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697`timescale 1ns / 1ps//功能：测试单口ram//ena means port a clock enable://enables read,write and reset operations through port A.Optional in all conf...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/Q1/program-life-master-two-first-semester-almost-over-organize-recent-ideas/" title="【程序人生】研二上快结束了~整理最近的思路">【程序人生】研二上快结束了~整理最近的思路</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-01-18T15:51:03.000Z" title="发表于 2024-01-18 15:51:03">2024-01-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%A8%8B%E5%BA%8F%E4%BA%BA%E7%94%9F/">程序人生</a></span></div><div class="content">看一下自己的《每日科研进展》群聊，把最近做的事情和后面要做的事情整理一下思路。 1月1日到1月7日 在整理NoC Router执行流程和Chisel环境Setup流程：NoC Router执行流程   Chisel安装流程总结：  先安装jdk，配置环境变量 安装sbt，不用配置环境变量 安装idea社区版 离线安装scala的idea插件 配置sbt换源 利用template工程验证helloworld，注意：6.1 配置自己下载的sbt完成项目构建    6.2 setup scala sdk 选择自己的scala 而不是create  1月8日到1月17日 在学习无线通信，从作业、project、PPT、去年期末考试题、教材着手复习，学习了  各种衰落的发生的条件 AWGN&#x2F;瑞利衰落信道下错误率的推导 多普勒频移与相干时间 时延扩展与相干带宽 排队论（主要是M&#x2F;M&#x2F;1类型）   等无线通信的基础知识，在project环节对基于深度学习的信道估计进行了复习和整理，由于补充了无线通信的基础知识，对深度学习信道估计理解更深入了一些。 一开始我对瑞利衰...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/Q4/exception-handling-git-clone-error-solution-gnutls-recv-error-110-the-tls-connection-was-non-properly-terminated/" title="【异常处理】Git Clone错误解决：GnuTLS recv error (-110)_ The TLS connection was non-properly terminated.">【异常处理】Git Clone错误解决：GnuTLS recv error (-110)_ The TLS connection was non-properly terminated.</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-02T11:32:04.000Z" title="发表于 2023-11-02 11:32:04">2023-11-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/">异常处理</a></span></div><div class="content">下面一行命令解决 1sudo apt-get install git make autoconf g++ flex bison  </div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/Q4/program-life-master-two-been-in-beijing-100-days-record/" title="【程序人生】研二，来北京100天了，记录一下">【程序人生】研二，来北京100天了，记录一下</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-31T16:14:31.000Z" title="发表于 2023-10-31 16:14:31">2023-10-31</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%A8%8B%E5%BA%8F%E4%BA%BA%E7%94%9F/">程序人生</a></span></div><div class="content">   7月23日坐飞机从连云港来到北京大兴机场，辗转地铁到中关村，收拾一下分配的破烂宿舍，在暑假提前开始了我的研二生活。今天开题报告改不动了，干脆记录下最近的生活，权当放松一下。一看日期10月31日，刚好一百天。  </div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/Q4/ic-design-noc-routing-algorithm-organized-from-on-chip-communication-architectures/" title="【IC设计】NoC路由算法（整理自On-Chip Communication Architectures System on Chip Interconnect）">【IC设计】NoC路由算法（整理自On-Chip Communication Architectures System on Chip Interconnect）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-11T20:54:30.000Z" title="发表于 2023-10-11 20:54:30">2023-10-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%97IC%E8%AE%BE%E8%AE%A1/">数字IC设计</a></span></div><div class="content">路由算法（Routing Algorithm）路由算法负责正确和高效地从源到目的地路由数据包。一个路由算法的选择是若干个冲突指标的权衡，例如路由的功耗最小化，逻辑和路由表的面积最小化，通过减少延时和最大化网络的流量利用率提高性能，改善健壮性去更好地适应变化的流量需求。路由方案可以大致分为若干个类别，例如静态或者动态路由， i)静态和动态路由：在NoC路由器中的路由决策要么是静态的（也称为确定性的），要么是动态地（也称为适应性的）。 静态路由静态路由指的是在源和目的路由器之间的传输路径是固定的。这个路由方案不考虑网络的当前状态，并且在作出路由决策时对路由器和链路的负载情况是不考虑的。静态路由的优点是易于实现，因为它只需要非常少的路由逻辑。静态路由也允许数据包被分为多条路径进行传输，以一种预定义的方式。如果只有一条路径被选择，静态路由通常保证按照数据包的顺序传输。这消除了在NI处正确地辨认并重拍的需要。 静态路由算法的例子包括：dimension order routing (DOR) [10], XY [17], pseudo-adaptive XY [17], surroundi...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/Q3/ic-design-noc-network-on-chip-research/" title="【IC设计】NoC（Network on Chip）调研">【IC设计】NoC（Network on Chip）调研</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-09-21T16:43:33.000Z" title="发表于 2023-09-21 16:43:33">2023-09-21</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%97IC%E8%AE%BE%E8%AE%A1/">数字IC设计</a></span></div><div class="content">SoC（System on Chip）片上系统SoC的概念SOC（System on Chip，片上系统）指在单一芯片上实现的数字计算机系统，总线架构是该系统的主要特征。 在 ASIC 设计的早期，由于制造工艺和性能等的约束，大部分芯片都单纯地实现某个特定功能，如处理器内核、总线、内存控制器、蓝牙等都由各自独立的芯片分别实现。 随着制造工艺的提升，以及设计能力的增强，单颗 ASIC 的功能越来越全面和强大，在一颗芯片内完全可以实现诸如处理器内核、总线、内存控制器、蓝牙等所有的功能。同时，ASIC 规模增大导致设计愈来愈复杂，因此，以 IP 核互连为核心的设计方法学应运而生。 这样，就出现了在一颗芯片里集成了大量的处理器内核、总线、控制器等 IP，而处理器内核数量也由曾经的单核增大到多核、众核。在这种情况下，设计方法学完全不同于以往 ASIC 的设计方法学。因此，诞生了 SoC 的概念，以和 ASIC 进行区别。不严格地说，一颗 SoC 可以实现以前多颗 ASIC 构成的系统。 SoC总线架构存在的问题目前，SoC通讯架构的设计相对比较成熟。大部分芯片公司芯片制造都采用SoC架构。...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/Q3/reading-notes-principles-and-practices-of-interconnection-networks-chapter-1-notes/" title="【读书笔记】Principles and practices of interconnection networks 第一章笔记">【读书笔记】Principles and practices of interconnection networks 第一章笔记</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-09-20T15:18:25.000Z" title="发表于 2023-09-20 15:18:25">2023-09-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></span></div><div class="content">互联网络导论互联网络的三个问题数字系统的三个基本构件：数字系统由3个基本构件组成：逻辑（logic）、内存（memory）、通信（communication）。 本书关注点——通信这本书所关注的是数字系统的通信 ，因为随着技术的进步，处理器与存储器变得更小、更快，大部分时钟周期用于导线延迟。组件之间的通信频率远远落后于现代处理器的时钟频率。关注通信（communication），就是关注互联（interconnection）原本互联是采用总线的形式，但是目前的模式是直接把计算机网络中的路由相关的知识搬移到SoC上来用了，比如拓扑结构、路由等。 ①什么是互联网络？互联网络是终端之间传输数据的可编程系统。 这里网络的可编程指的是在不同的时间点可以建立不同的连接。 ②哪里有互联网络？从小尺度到大尺度，网络无处不在：根据互联网络的定义，我们发现，它不仅仅出现在台式电脑&#x2F;笔记本等终端之间的通信上，放在更小的尺度，在芯片上网络也遵循该定义。  在处理器内的存储器、寄存器、算术单元之间的通信; 处理器和内存等IP的通信; 局域网和广域网级别的系统级的通信;  从多点总线到互联网络：1...</div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/2/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#content-inner">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/#content-inner">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/#content-inner">9</a><a class="extend next" rel="next" href="/page/4/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">TDppy</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">130</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/TDppy"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/TDppy" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2287015934@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">如何呢，又能怎。</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-riscv-plic/" title="【操作系统】RISC-V PLIC总结">【操作系统】RISC-V PLIC总结</a><time datetime="2026-01-18T15:25:18.000Z" title="发表于 2026-01-18 15:25:18">2026-01-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/hello-world/" title="欢迎来到潘业成的博客">欢迎来到潘业成的博客</a><time datetime="2026-01-12T00:00:00.000Z" title="发表于 2026-01-12 00:00:00">2026-01-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-what-happens-after-pressing-enter-in-xv6-operating-system/" title="【操作系统】xv6操作系统中按下键盘回车后发生的事情">【操作系统】xv6操作系统中按下键盘回车后发生的事情</a><time datetime="2026-01-10T11:58:18.000Z" title="发表于 2026-01-10 11:58:18">2026-01-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-hand-write-xv6-operating-system-types-h-param-h-memlayout-h-riscv-h-defs-h-header-file-analysis/" title="【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析">【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析</a><time datetime="2026-01-06T23:02:58.000Z" title="发表于 2026-01-06 23:02:58">2026-01-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/Q4/operating-system-hand-write-xv6-operating-system-entry-s-and-start-c-analysis/" title="【操作系统】手撸xv6操作系统——entry.S和start.c解析">【操作系统】手撸xv6操作系统——entry.S和start.c解析</a><time datetime="2025-12-30T15:57:42.000Z" title="发表于 2025-12-30 15:57:42">2025-12-30</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+      <i class="fas fa-angle-right"></i></a>
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/"><span class="card-category-list-name">异常处理</span><span class="card-category-list-count">15</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><span class="card-category-list-name">操作系统</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%B0%E5%AD%97IC%E8%AE%BE%E8%AE%A1/"><span class="card-category-list-name">数字IC设计</span><span class="card-category-list-count">38</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%89%87%E4%B8%8A%E7%BD%91%E7%BB%9C/"><span class="card-category-list-name">片上网络</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"><span class="card-category-list-name">环境配置</span><span class="card-category-list-count">14</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%A8%8B%E5%BA%8F%E4%BA%BA%E7%94%9F/"><span class="card-category-list-name">程序人生</span><span class="card-category-list-count">7</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%BC%96%E7%A8%8B%E4%B8%8E%E7%AE%97%E6%B3%95/"><span class="card-category-list-name">编程与算法</span><span class="card-category-list-count">17</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"><span class="card-category-list-name">网络安全</span><span class="card-category-list-count">1</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/%E8%B0%83%E8%AF%95/" style="font-size: 1.5em; color: #99a9bf">调试</a> <a href="/tags/%E4%BA%A4%E6%8D%A2%E6%9C%BA/" style="font-size: 1.21em; color: #999ea4">交换机</a> <a href="/tags/%E8%BF%90%E7%AE%97%E7%AC%A6/" style="font-size: 1.1em; color: #999">运算符</a> <a href="/tags/%E5%9B%BE%E6%A0%87%E5%BA%93/" style="font-size: 1.1em; color: #999">图标库</a> <a href="/tags/%E5%A4%9A%E8%BF%9B%E7%A8%8B/" style="font-size: 1.16em; color: #999b9e">多进程</a> <a href="/tags/IDEA/" style="font-size: 1.1em; color: #999">IDEA</a> <a href="/tags/Verilog/" style="font-size: 1.44em; color: #99a7ba">Verilog</a> <a href="/tags/EDA%E5%B7%A5%E5%85%B7/" style="font-size: 1.39em; color: #99a4b4">EDA工具</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 1.16em; color: #999b9e">转载</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 1.27em; color: #99a0a9">C语言</a> <a href="/tags/%E7%89%87%E4%B8%8A%E7%BD%91%E7%BB%9C/" style="font-size: 1.1em; color: #999">片上网络</a> <a href="/tags/SSL%E8%AF%81%E4%B9%A6/" style="font-size: 1.1em; color: #999">SSL证书</a> <a href="/tags/Dev-C/" style="font-size: 1.1em; color: #999">Dev-C++</a> <a href="/tags/Office/" style="font-size: 1.1em; color: #999">Office</a> <a href="/tags/DFT/" style="font-size: 1.1em; color: #999">DFT</a> <a href="/tags/%E4%B8%AD%E6%96%AD/" style="font-size: 1.1em; color: #999">中断</a> <a href="/tags/Web%E5%BC%80%E5%8F%91/" style="font-size: 1.1em; color: #999">Web开发</a> <a href="/tags/%E6%80%BB%E7%BA%BF/" style="font-size: 1.1em; color: #999">总线</a> <a href="/tags/z3/" style="font-size: 1.1em; color: #999">z3</a> <a href="/tags/CMake/" style="font-size: 1.1em; color: #999">CMake</a> <a href="/tags/%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90/" style="font-size: 1.16em; color: #999b9e">时序分析</a> <a href="/tags/Git/" style="font-size: 1.16em; color: #999b9e">Git</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 1.1em; color: #999">前端</a> <a href="/tags/OFDM/" style="font-size: 1.1em; color: #999">OFDM</a> <a href="/tags/PyTorch/" style="font-size: 1.1em; color: #999">PyTorch</a> <a href="/tags/Java/" style="font-size: 1.33em; color: #99a2af">Java</a> <a href="/tags/CCNA/" style="font-size: 1.27em; color: #99a0a9">CCNA</a> <a href="/tags/AXI/" style="font-size: 1.1em; color: #999">AXI</a> <a href="/tags/%E7%9F%AD%E4%BF%A1/" style="font-size: 1.1em; color: #999">短信</a> <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" style="font-size: 1.1em; color: #999">读书笔记</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E4%BB%8B%E7%BB%8D/" style="font-size: 1.1em; color: #999">博客介绍</a> <a href="/tags/%E5%8F%8C%E7%B3%BB%E7%BB%9F/" style="font-size: 1.1em; color: #999">双系统</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" style="font-size: 1.1em; color: #999">网络安全</a> <a href="/tags/Tomcat/" style="font-size: 1.1em; color: #999">Tomcat</a> <a href="/tags/GitHub/" style="font-size: 1.1em; color: #999">GitHub</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 1.1em; color: #999">算法</a> <a href="/tags/Mill/" style="font-size: 1.1em; color: #999">Mill</a> <a href="/tags/%E6%95%99%E5%AD%A6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 1.21em; color: #999ea4">教学操作系统</a> <a href="/tags/%E9%93%BE%E6%8E%A5/" style="font-size: 1.1em; color: #999">链接</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB/" style="font-size: 1.1em; color: #999">中间人攻击</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      <a class="card-more-btn" href="/archives/"
+            title="查看更多">
+            <i class="fas fa-angle-right"></i>
+          </a>
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/01/">
+            <span class="card-archive-list-date">
+              一月 2026
+            </span>
+            <span class="card-archive-list-count">4</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/12/">
+            <span class="card-archive-list-date">
+              十二月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/10/">
+            <span class="card-archive-list-date">
+              十月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/08/">
+            <span class="card-archive-list-date">
+              八月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/04/">
+            <span class="card-archive-list-date">
+              四月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/10/">
+            <span class="card-archive-list-date">
+              十月 2024
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/09/">
+            <span class="card-archive-list-date">
+              九月 2024
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/08/">
+            <span class="card-archive-list-date">
+              八月 2024
+            </span>
+            <span class="card-archive-list-count">4</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">130</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-01-18T08:18:23.548Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By TDppy</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4-b1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4-b1"></script><script src="/js/main.js?v=5.5.4-b1"></script><div class="js-pjax"><script>window.typedJSFn = {
+  init: str => {
+    window.typed = new Typed('#subtitle', Object.assign({
+      strings: str,
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50,
+    }, null))
+  },
+  run: subtitleType => {
+    if (true) {
+      if (typeof Typed === 'function') {
+        subtitleType()
+      } else {
+        btf.getScript('https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.min.js').then(subtitleType)
+      }
+    } else {
+      subtitleType()
+    }
+  },
+  processSubtitle: (content, extraContents = []) => {
+    if (true) {
+      const sub = ["灵魂的渴望是命运的先知","Soul driven is the desire of the prophet","斯人若彩虹，遇上方知有","Every once in a while,you find someone who is iridescent."].slice()
+
+      if (extraContents.length > 0) {
+        sub.unshift(...extraContents)
+      }
+
+      if (typeof content === 'string') {
+        sub.unshift(content)
+      } else if (Array.isArray(content)) {
+        sub.unshift(...content)
+      }
+
+      sub.length > 0 && typedJSFn.init(sub)
+    } else {
+      document.getElementById('subtitle').textContent = typeof content === 'string' ? content :
+        (Array.isArray(content) && content.length > 0 ? content[0] : '')
+    }
+  }
+}
+btf.addGlobalFn('pjaxSendOnce', () => { typed.destroy() }, 'typedDestroy')
+</script><script>function subtitleType () {
+  typedJSFn.processSubtitle(["灵魂的渴望是命运的先知","Soul driven is the desire of the prophet","斯人若彩虹，遇上方知有","Every once in a while,you find someone who is iridescent."])
+}
+typedJSFn.run(subtitleType)</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

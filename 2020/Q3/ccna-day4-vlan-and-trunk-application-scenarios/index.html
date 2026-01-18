@@ -1,0 +1,176 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【CCNA第四天】vlan和trunk的应用场景 | 潘业成的博客</title><meta name="author" content="TDppy"><meta name="copyright" content="TDppy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="为什么要用vlan如果让公司的技术部和销售部能够自由通信，可能会出现几个核心成员一串通就开了一家新的公司。从这个简单的例子出发我们就知道，部门之间的网络应当相互隔离，划分为几个局域网——这就是为什么要用vlan  如图所示，上面的两台PC和一台服务器属于技术部的，下面的两台PC和一台服务器属于销售部的，我们想要让各部门内可以相互通信，部门与部门之间禁止通信。相关命令： 12345678910111">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【CCNA第四天】vlan和trunk的应用场景">
+<meta property="og:url" content="https://www.whyc.fun/2020/Q3/ccna-day4-vlan-and-trunk-application-scenarios/index.html">
+<meta property="og:site_name" content="潘业成的博客">
+<meta property="og:description" content="为什么要用vlan如果让公司的技术部和销售部能够自由通信，可能会出现几个核心成员一串通就开了一家新的公司。从这个简单的例子出发我们就知道，部门之间的网络应当相互隔离，划分为几个局域网——这就是为什么要用vlan  如图所示，上面的两台PC和一台服务器属于技术部的，下面的两台PC和一台服务器属于销售部的，我们想要让各部门内可以相互通信，部门与部门之间禁止通信。相关命令： 12345678910111">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.whyc.fun/img/butterfly-icon.png">
+<meta property="article:published_time" content="2020-07-10T22:36:06.000Z">
+<meta property="article:modified_time" content="2026-01-18T08:18:02.726Z">
+<meta property="article:author" content="TDppy">
+<meta property="article:tag" content="路由器">
+<meta property="article:tag" content="思科">
+<meta property="article:tag" content="CCNA">
+<meta property="article:tag" content="交换机">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.whyc.fun/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "【CCNA第四天】vlan和trunk的应用场景",
+  "url": "https://www.whyc.fun/2020/Q3/ccna-day4-vlan-and-trunk-application-scenarios/",
+  "image": "https://www.whyc.fun/img/butterfly-icon.png",
+  "datePublished": "2020-07-10T22:36:06.000Z",
+  "dateModified": "2026-01-18T08:18:02.726Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "TDppy",
+      "url": "https://www.whyc.fun"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://www.whyc.fun/2020/Q3/ccna-day4-vlan-and-trunk-application-scenarios/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4-b1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【CCNA第四天】vlan和trunk的应用场景',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(https://oss.012700.xyz/butterfly/2024/10/index.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">130</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://oss.012700.xyz/butterfly/2024/10/index.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">潘业成的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">【CCNA第四天】vlan和trunk的应用场景</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">【CCNA第四天】vlan和trunk的应用场景</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-07-10T22:36:06.000Z" title="发表于 2020-07-10 22:36:06">2020-07-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-01-18T08:18:02.726Z" title="更新于 2026-01-18 08:18:02">2026-01-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="为什么要用vlan"><a href="#为什么要用vlan" class="headerlink" title="为什么要用vlan"></a>为什么要用vlan</h2><p>如果让公司的技术部和销售部能够自由通信，可能会出现几个核心成员一串通就开了一家新的公司。从这个简单的例子出发我们就知道，部门之间的网络应当相互隔离，划分为几个局域网——这就是为什么要用vlan</p>
+<img src="/2020/Q3/ccna-day4-vlan-and-trunk-application-scenarios/1.png" class="" title="在这里插入图片描述">
+<p>如图所示，上面的两台PC和一台服务器属于技术部的，下面的两台PC和一台服务器属于销售部的，我们想要让各部门内可以相互通信，部门与部门之间禁止通信。<br>相关命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">vlan  10  </span><br><span class="line">///创建vlan 10（以太网范围2-1001）</span><br><span class="line"> name  jishubu  </span><br><span class="line"> ///命名vlan</span><br><span class="line">vlan  20</span><br><span class="line"> name  xiaoshoubu </span><br><span class="line"> Int  ran  f0/1  -  2  ///同时进入f0/1-f0/2接口</span><br><span class="line"> sw  mode  access     ///接口设置为接入模式（用户）</span><br><span class="line"> sw  access  vlan  10  ///接入到vlan10这个局域网</span><br><span class="line">int  ran  f0/3  -  4</span><br><span class="line"> sw  mode  access </span><br><span class="line"> sw  access  vlan  20</span><br></pre></td></tr></table></figure>
+<p>这样的话是否能实现呢？<br>如果技术部的两台PC和服务器都连同一个交换机是可以实现的，但是很多时候服务器并不和员工的办公区域在同一个楼，有的大公司的服务器甚至在地下或海底。</p>
+<h2 id="为什么要用到Trunk"><a href="#为什么要用到Trunk" class="headerlink" title="为什么要用到Trunk"></a>为什么要用到Trunk</h2><p>因此服务器需要连接一台交换机，然后让办公区的交换机和服务器的交换机相连——这就产生了一个问题：技术部的服务器数据到了办公区的交换机，怎样识别这是技术部的而不是销售部的呢？这就需要trunk相关的命令，trunk好比给技术部的人打上技术部的标记，这样就可以识别了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">双边交换机都需要配置：</span><br><span class="line">Int  ran  f0/23  -  24  ///同时进入f0/23和f0/24接口</span><br><span class="line"> Sw  mode  trunk  ///接口设置为trunk模式，那么此接口不再属于任何一个vlan</span><br><span class="line">查看trunk接口：</span><br><span class="line">特权模式下：</span><br><span class="line">Show  int  trunk </span><br></pre></td></tr></table></figure>
+
+<h2 id="ftp服务器"><a href="#ftp服务器" class="headerlink" title="ftp服务器"></a>ftp服务器</h2><p>技术部的小张想要从公司的服务器上下载资料和上传周报，那么我们可以在服务器上开启ftp服务，分配他的账号和权限即可。</p>
+<img src="/2020/Q3/ccna-day4-vlan-and-trunk-application-scenarios/2.png" class="" title="在这里插入图片描述">
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://www.whyc.fun">TDppy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://www.whyc.fun/2020/Q3/ccna-day4-vlan-and-trunk-application-scenarios/">https://www.whyc.fun/2020/Q3/ccna-day4-vlan-and-trunk-application-scenarios/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://www.whyc.fun" target="_blank">潘业成的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%B7%AF%E7%94%B1%E5%99%A8/">路由器</a><a class="post-meta__tags" href="/tags/%E6%80%9D%E7%A7%91/">思科</a><a class="post-meta__tags" href="/tags/CCNA/">CCNA</a><a class="post-meta__tags" href="/tags/%E4%BA%A4%E6%8D%A2%E6%9C%BA/">交换机</a></div><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2020/Q3/installation-configuration-redis-notes-including-installation-package/" title="【安装配置】redis笔记（含安装包）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">【安装配置】redis笔记（含安装包）</div></div><div class="info-2"><div class="info-item-1"> redis安装包，解压即可使用。链接：https://pan.baidu.com/s/1vGH9xhk_IL-eRgFNbXVtSQ  提取码：7049  今日内容1. redis 	1. 概念 	2. 下载安装 	3. 命令操作 		1. 数据结构 	4. 持久化操作 	5. 使用Java客户端操作redis  Redis1. 概念： redis是一款高性能的NOSQL系列的非关系型数据库 	1.1.什么是NOSQL 		NoSQL(NoSQL = Not Only SQL)，意即“不仅仅是SQL”，是一项全新的数据库理念，泛指非关系型的数据库。 		随着互联网web2.0网站的兴起，传统的关系数据库在应付web2.0网站，特别是超大规模和高并发的SNS类型的web2.0纯动态网站已经显得力不从心，暴露了很多难以克服的问题，而非关系型的数据库则由于其本身的特点得到了非常迅速的发展。NoSQL数据库的产生就是为了解决大规模数据集合多重数据种类带来的挑战，尤其是大数据应用难题。  		1.1.1.	NOSQL和关系型数据库比较 			优点： 				1）成本：nosql数据库简单...</div></div></div></a><a class="pagination-related" href="/2020/Q3/ccna-day3-switch-mac-address-static-binding/" title="【CCNA第三天】交换机Mac地址的静态绑定"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">【CCNA第三天】交换机Mac地址的静态绑定</div></div><div class="info-2"><div class="info-item-1"> CCNA第三天主要讲了交换机mac地址的静态绑定，以及这个实验的一些前置知识。  OSI参考模型：  这一天我们主要学习前两层：物理层和数据链路层。 物理层：作用：定义线缆标准，例如：电压、线速、规格等。设备：modem调制解调器、集线器、中继器  数据链路层作用：定义的是线路物理标准，连接器标准，物理地址。协议：IEEE 802协议有线标准：IEEE 802.2、802.3、802.5、FDDI无线标准：IEEE 802.11(a、b、g、n、ac)，现网中常用的无线标准是IEEE 802.11acPS：以太网IEEE 802.3、令牌环网IEEE 802.5、FDDI这三种协议称为局域网大三协议。设备：交换机mac地址的学习：交换机的默认mac地址表为空，在接收到数据帧时，记录下接收的端口和数据源设备的Mac地址。 Mac地址表的静态绑定MAC地址表静态绑定应用场景：办公网络环境中，交换机决定了内网数据的转发，因此交换机的mac地址表稳定是非常重要的，为了安全起见，不至于让交换机即插即用，我们对交换机的mac地址表进行静态映射（绑定）static。然后再启用端口安全，使除了...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2020/Q3/ccna-day3-switch-mac-address-static-binding-1/" title="【CCNA第三天】交换机Mac地址的静态绑定 (1)"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-10</div><div class="info-item-2">【CCNA第三天】交换机Mac地址的静态绑定 (1)</div></div><div class="info-2"><div class="info-item-1"> CCNA第三天主要讲了交换机mac地址的静态绑定，以及这个实验的一些前置知识。  OSI参考模型： 这一天我们主要学习前两层：物理层和数据链路层。 物理层：作用：定义线缆标准，例如：电压、线速、规格等。设备：modem调制解调器、集线器、中继器  数据链路层作用：定义的是线路物理标准，连接器标准，物理地址。协议：IEEE 802协议有线标准：IEEE 802.2、802.3、802.5、FDDI无线标准：IEEE 802.11(a、b、g、n、ac)，现网中常用的无线标准是IEEE 802.11acPS：以太网IEEE 802.3、令牌环网IEEE 802.5、FDDI这三种协议称为局域网大三协议。设备：交换机mac地址的学习：交换机的默认mac地址表为空，在接收到数据帧时，记录下接收的端口和数据源设备的Mac地址。 Mac地址表的静态绑定MAC地址表静态绑定应用场景：办公网络环境中，交换机决定了内网数据的转发，因此交换机的mac地址表稳定是非常重要的，为了安全起见，不至于让交换机即插即用，我们对交换机的mac地址表进行静态映射（绑定）static。然后再启用端口安全，使除了绑...</div></div></div></a><a class="pagination-related" href="/2020/Q3/ccna-day3-switch-mac-address-static-binding/" title="【CCNA第三天】交换机Mac地址的静态绑定"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-10</div><div class="info-item-2">【CCNA第三天】交换机Mac地址的静态绑定</div></div><div class="info-2"><div class="info-item-1"> CCNA第三天主要讲了交换机mac地址的静态绑定，以及这个实验的一些前置知识。  OSI参考模型：  这一天我们主要学习前两层：物理层和数据链路层。 物理层：作用：定义线缆标准，例如：电压、线速、规格等。设备：modem调制解调器、集线器、中继器  数据链路层作用：定义的是线路物理标准，连接器标准，物理地址。协议：IEEE 802协议有线标准：IEEE 802.2、802.3、802.5、FDDI无线标准：IEEE 802.11(a、b、g、n、ac)，现网中常用的无线标准是IEEE 802.11acPS：以太网IEEE 802.3、令牌环网IEEE 802.5、FDDI这三种协议称为局域网大三协议。设备：交换机mac地址的学习：交换机的默认mac地址表为空，在接收到数据帧时，记录下接收的端口和数据源设备的Mac地址。 Mac地址表的静态绑定MAC地址表静态绑定应用场景：办公网络环境中，交换机决定了内网数据的转发，因此交换机的mac地址表稳定是非常重要的，为了安全起见，不至于让交换机即插即用，我们对交换机的mac地址表进行静态映射（绑定）static。然后再启用端口安全，使除了...</div></div></div></a><a class="pagination-related" href="/2020/Q3/ccna-day2-router-password-crack-and-recovery/" title="【CCNA第二天】路由器密码破解及恢复"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-07</div><div class="info-item-2">【CCNA第二天】路由器密码破解及恢复</div></div><div class="info-2"><div class="info-item-1">一、设备基本操作：设备模式1）用户模式以&gt;开头2）特权模式以#开头  在模式下可以进行复制操作，全局模式不行3）全局模式以(config)开头 在全局模式下进行接口的配置，如加ip不同模式权限不同，用户模式&lt;特权模式&lt;全局模式。 路由设备的基本命令en &#x2F;&#x2F;&#x2F;enable 从用户模式进入特权模式#conf  t  &#x2F;&#x2F;&#x2F;完整命令configure  terminal，进入全局int  f0&#x2F;0   &#x2F;&#x2F;&#x2F;进入接口no sh &#x2F;&#x2F;打开接口ip  add  192.168.1.1  255.255.255.0 &#x2F;&#x2F;&#x2F;配置ip地址 模式退出：exit  &#x2F;&#x2F;&#x2F;逐级退出，例如：全局——特权——用户end  &#x2F;&#x2F;&#x2F;直接退出，只能到特权，无法进入用户。 模式与命令不匹配，导致设备进入DNS解析，现象    PS：特权模式下无法使用“end”命令，因此设备认为用户在此输...</div></div></div></a><a class="pagination-related" href="/2020/Q3/ccna-day1-backup-and-update-router-ios/" title="【CCNA第一天】备份与更新路由器操作系统（IOS）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-06</div><div class="info-item-2">【CCNA第一天】备份与更新路由器操作系统（IOS）</div></div><div class="info-2"><div class="info-item-1">IOS是啥？这里的IOS指的是网络操作系统，对目前的我来说就是路由器，将路由器和电脑连线后，我们可以在电脑上利用Secure CRT来连接路由器，使用命令对其进行配置。 IOS的备份与更新：就像手中的苹果手机每隔一段时间会更新ios系统一样，路由器的系统也需要更新。为了防止更新中出现如断电等意外情况，我们需要先对老系统进行备份。 备份与更新前的准备工作材料：1.console线2.RS232转接线3.双绞线（交叉线一根、直连线一根）4.设备电源线（通用）软件：1.tftp服务器端2.Secure CRT（win xp系统是不需要的，XP系统自带一个“超级终端”）3.RS232转换线驱动程序 连线示意图：   第一步按照上述示意图将设备与电脑连接 第二步将RS232转换线接在电脑上，安装驱动，然后查看是否安装成功。  PS：“com3”是RS232转接线在电脑上的硬件接口，相当于外接设备（键盘、鼠标等） 第三步打开CRT，选择连接，选择protocol“serial”，端口“com3”（根据第二步查看到的端口），波特率“9600”（影响的是设备输出，波特率不正确，设备会输出乱码）。...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">TDppy</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">130</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/TDppy"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/TDppy" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2287015934@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">如何呢，又能怎。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8vlan"><span class="toc-number">1.</span> <span class="toc-text">为什么要用vlan</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8%E5%88%B0Trunk"><span class="toc-number">2.</span> <span class="toc-text">为什么要用到Trunk</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ftp%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">3.</span> <span class="toc-text">ftp服务器</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-riscv-plic/" title="【操作系统】RISC-V PLIC总结">【操作系统】RISC-V PLIC总结</a><time datetime="2026-01-18T15:25:18.000Z" title="发表于 2026-01-18 15:25:18">2026-01-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/hello-world/" title="欢迎来到潘业成的博客">欢迎来到潘业成的博客</a><time datetime="2026-01-12T00:00:00.000Z" title="发表于 2026-01-12 00:00:00">2026-01-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-what-happens-after-pressing-enter-in-xv6-operating-system/" title="【操作系统】xv6操作系统中按下键盘回车后发生的事情">【操作系统】xv6操作系统中按下键盘回车后发生的事情</a><time datetime="2026-01-10T11:58:18.000Z" title="发表于 2026-01-10 11:58:18">2026-01-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-hand-write-xv6-operating-system-types-h-param-h-memlayout-h-riscv-h-defs-h-header-file-analysis/" title="【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析">【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析</a><time datetime="2026-01-06T23:02:58.000Z" title="发表于 2026-01-06 23:02:58">2026-01-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/Q4/operating-system-hand-write-xv6-operating-system-entry-s-and-start-c-analysis/" title="【操作系统】手撸xv6操作系统——entry.S和start.c解析">【操作系统】手撸xv6操作系统——entry.S和start.c解析</a><time datetime="2025-12-30T15:57:42.000Z" title="发表于 2025-12-30 15:57:42">2025-12-30</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By TDppy</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4-b1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4-b1"></script><script src="/js/main.js?v=5.5.4-b1"></script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

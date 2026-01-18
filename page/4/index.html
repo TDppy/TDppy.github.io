@@ -1,0 +1,281 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>潘业成的博客 - 欢迎来到我的个人博客，在这里我将分享我的技术经验、项目心得以及生活点滴。希望我的文章能为你带来帮助和启发！微信:fancymvc,QQ:2287015934</title><meta name="author" content="TDppy"><meta name="copyright" content="TDppy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="潘业成的博客">
+<meta property="og:url" content="https://www.whyc.fun/page/4/index.html">
+<meta property="og:site_name" content="潘业成的博客">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.whyc.fun/img/butterfly-icon.png">
+<meta property="article:author" content="TDppy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.whyc.fun/img/butterfly-icon.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://www.whyc.fun/page/4/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4-b1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '潘业成的博客',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(https://oss.012700.xyz/butterfly/2024/10/index.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">130</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(https://oss.012700.xyz/butterfly/2024/10/index.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">潘业成的博客</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">潘业成的博客</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/TDppy" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2287015934@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/Q3/ic-design-zc706-board-lighting-entry-verilog-code-xdc-constraint-experiment-screenshot/" title="【IC设计】ZC706板卡点灯入门（含Verilog代码，xdc约束，实验截图）">【IC设计】ZC706板卡点灯入门（含Verilog代码，xdc约束，实验截图）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-09-19T13:16:05.000Z" title="发表于 2023-09-19 13:16:05">2023-09-19</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%97IC%E8%AE%BE%E8%AE%A1/">数字IC设计</a></span></div><div class="content"> 这篇博客将针对AMD Zynq 7000 SoC ZC706 Evaluation Kit板卡(对应Vivado创建工程时FPGA型号：XC7Z045ffg900-2)实现基本的点灯程序。  假定已知的前置知识本文对以下内容不再介绍，  使用Vivado进行综合、实现、生成比特流并烧录FPGA FPGA的概念、Verilog的基础语法   需求：板卡时钟为200MHz，让板子上的一个LED灯保持0.5秒亮，0.5秒灭。 注意点：①板卡使用JTAG接口烧录时，必须将SW4拨为01，如图所示：  ②ZC706的时钟都是差分时钟，必须使用Verilog原语将其转换为单端时钟才可以直接使用：  IBUFGDS IBUFGDS_inst(     .O(single_clock),    //Clock buffer Output     .I(clk_p),  //Diff_p clock buffer input (connect directly to top-level port)     .IB(clk_n)  //Diff_n clock buffer input(conne...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/Q3/environment-configuration-configure-chisel-bootcamp-environment-based-on-docker/" title="【环境配置】基于Docker配置Chisel-Bootcamp环境">【环境配置】基于Docker配置Chisel-Bootcamp环境</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-09-10T11:55:45.000Z" title="发表于 2023-09-10 11:55:45">2023-09-10</time></span></div><div class="content">Chisel是什么Chisel是Scala语言的一个库，可以由Scala语言通过import引入。Chisel编程可以生成Verilog代码或C++仿真代码，目前国内主要由中科院计算所的包云岗老师团队做香山处理器使用，它不仅是一门语言，也代表一个硬件敏捷开发的方向。 Chisel-Bootcamp是什么Chisel-Bootcamp是Github上的一个Chisel教程，包含了基于Jupytor的Chisel教学，这篇文章讲一下基于Docker来配置Bootcamp环境，主要参考资料是Bootcamp在github上的安装教程 基于Docker配置Chisel-Bootcamp官网下载Docker安装包首先需要下载Docker-Desktop程序，然后打开这个exe程序安装好，我的感受是Docker安装还是比较友好的。点进链接，根据操作系统版本下载我这里安装的是Windows版本的Chisel，安装好后打开Docker-Desktop Docker换源我参考的这篇文章的方法1 启动Bootcamp镜像使用命令安装Chisel-Bootcamp镜像 1docker run -it ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/Q3/ic-design-chisel-development-environment-setup/" title="【IC设计】Chisel开发环境搭建">【IC设计】Chisel开发环境搭建</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-09-06T17:12:32.000Z" title="发表于 2023-09-06 17:12:32">2023-09-06</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%97IC%E8%AE%BE%E8%AE%A1/">数字IC设计</a></span></div><div class="content">README 如果想快速搭建好环境，不关心具体的安装过程 直接复制文章后面的【脚本附录】，以root用户在任意目录下执行该脚本它会帮助你完成安装java11、ubuntu换源、sbt换源、下载sbt，执行完以后是这样的：    然后从安装步骤的【第9步】开始测试scala和chisel是否能正常使用即可  如果想从头逐步安装，从【安装步骤】第一步开始看即可  安装步骤 首先安装一个Ubuntu的虚拟机  然后给Ubuntu换个镜像，方便下载注意换源后使用apt-get update更新下  安装vim（可以不做）这里安装Vim是我感觉Ubuntu自带的vi编辑器似乎有问题，因为我按i进入【插入模式】并没有提示，所以安装vim进行替代。只关心Chisel安装的可以跳过这一步。   123456789101112apt install vimsudo vim /etc/vim/vimrc#在vimrc文件结尾处添加#显示行数set number#自动缩进set autoindent#光标高亮set cursorlineset ruler#Tab默认4格set tabstop=4   ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/Q3/ofdm-series-why-can-dft-seek-frequency-amplitude-spectrum-relationship-between-dft-xk-and-xn-underlying-mathematical-principles-of-dft-idft/" title="【OFDM系列】DFT为什么能求频率幅度谱？DFT后的X[k]与x(n)幅度的关系？DFT_IDFT底层数学原理？">【OFDM系列】DFT为什么能求频率幅度谱？DFT后的X[k]与x(n)幅度的关系？DFT_IDFT底层数学原理？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-16T10:20:33.000Z" title="发表于 2023-08-16 10:20:33">2023-08-16</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%80%9A%E4%BF%A1%E7%B3%BB%E7%BB%9F/">通信系统</a></span></div><div class="content">问题引入上面是DFT和IDFT的公式，IDFT先不谈。在实践中常使用FFT算法来快速算出DFT，获得时域采样信号x(n)的频率幅度谱。例如： 12N=1500;xn=0.5*sin(2*pi*75/N*n)+3*cos(2*pi*40/N*n)+0.7*sin(2*pi*350/N*n); 上面这个时域采样信号xn由三个频率叠加而成，我们知道频率的概念是1秒信号经过了多少个周期，那么我们假设采样率是fs=1000，共采样N=1500点，那么0.5*sin(2*pi*75/N*n)的频率即为75*fs/N=50，因此第一个信号频率为50。 通过Matlab进行FFT，可以画出这样一张频率幅度谱：这里就引申出我们的标题：DFT为什么能求频率幅度谱？DFT后的X[k]与x(n)幅度的关系？DFT&#x2F;IDFT底层数学原理？对于这个问题，我看了不少网上的博客、视频、书籍，总觉得讲的不清不楚，有人说X[k]的结果就是x(n)的幅度，有人说X[k]的结果除以N就是x(n)的幅度，有人说X[k]的结果除以N&#x2F;2就是x(n)的幅度，就没有一个比较清楚的证明到底X[k]的值和x(n...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/Q3/ic-design-icc-workshop-lab1-data-prep-basic-flow-script-summary-1/" title="【IC设计】ICC workshop Lab1 数据准备&amp;基本流程 【脚本总结】 (1)">【IC设计】ICC workshop Lab1 数据准备&amp;基本流程 【脚本总结】 (1)</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-04T16:15:27.000Z" title="发表于 2023-08-04 16:15:27">2023-08-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%97IC%E8%AE%BE%E8%AE%A1/">数字IC设计</a></span></div><div class="content">Task 1 Create a Milkyway library先进入lab1_data_setup目录，打开icc_shell，创建项目 1create_mw_lib -technology $tech_file -mw_reference_library &quot;$mw_path/sc $mw_path/io $mw_path/ram16x128&quot; -bus_naming_style &#123;[%d]&#125; -open $my_mw_lib  然后ls risc_chip.mw查看是否创建成功  Task 2 Load the Nestlist,TLU+,Constraints and Controls12345678910111213141516171819import_designs $verilog_file -format verilog -top $top_designset_tlu_plus_files -max_tluplus $tlup_max -min_tluplus $tlup_min -tech2itf_map $tlup_map...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/Q3/ic-design-icc-workshop-lab1-data-prep-basic-flow-script-summary/" title="【IC设计】ICC workshop Lab1 数据准备&amp;基本流程 【脚本总结】">【IC设计】ICC workshop Lab1 数据准备&amp;基本流程 【脚本总结】</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-04T16:15:27.000Z" title="发表于 2023-08-04 16:15:27">2023-08-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%97IC%E8%AE%BE%E8%AE%A1/">数字IC设计</a></span></div><div class="content">Task 1 Create a Milkyway library先进入lab1_data_setup目录，打开icc_shell，创建项目 1create_mw_lib -technology $tech_file -mw_reference_library &quot;$mw_path/sc $mw_path/io $mw_path/ram16x128&quot; -bus_naming_style &#123;[%d]&#125; -open $my_mw_lib  然后ls risc_chip.mw查看是否创建成功  Task 2 Load the Nestlist,TLU+,Constraints and Controls12345678910111213141516171819import_designs $verilog_file -format verilog -top $top_designset_tlu_plus_files -max_tluplus $tlup_max -min_tluplus $tlup_min -tech2itf_map $tlup_map...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/Q3/ic-design-synopsys-milkyway-database-design-library-dependency-library/" title="【IC设计】Synopsys的Milkyway数据库、设计库、依赖库">【IC设计】Synopsys的Milkyway数据库、设计库、依赖库</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-04T11:41:47.000Z" title="发表于 2023-08-04 11:41:47">2023-08-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%97IC%E8%AE%BE%E8%AE%A1/">数字IC设计</a></span></div><div class="content">Milkyway database for Synopsys Galaxy Design PlatformSynopsys Galaxy Design Platform（Synopsys银河设计平台）包括的系列工具有：DC、ICC、StarRC、IC Validator、PrimeRail、Milkyway Environment Milkyway（银河）数据库是为Synopsys银河设计平台服务的数据库，方便工具直接通过接口对数据库进行读写，而不是以ASCII文件中间文件的形式进行操作。 不同EDA软件和mw库的交互：** DC** write_milkyway或write_verilog或write_ddc  即DC的写出可以用mw格式 ICC从mw中读入physical design info和library cell info 写出也用mw格式mw环境可以将GDSII,IASIS和LEF&#x2F;DEF转换成为新的lib cell，从而成为mw格式 StarRC从mw库中读入物理设计信息来执行寄生RC参数提取，并写回到数据库中，方便ICC读取和使用时序信息。 mw的基本...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/Q3/ic-design-dc-tool-target-link-synthetic-symbol-libraries/" title="【IC设计】DC工具的target、link、synthetic、symbol库">【IC设计】DC工具的target、link、synthetic、symbol库</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-01T10:44:49.000Z" title="发表于 2023-08-01 10:44:49">2023-08-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%97IC%E8%AE%BE%E8%AE%A1/">数字IC设计</a></span></div><div class="content">Specifying Libraries You use dc_shell variables to specify the libraries used by Design  Compiler.Table 4-1 lists  the variables for each library type as well  as the typical file extension for the library.  你使用dc_shell变量去指定dc要使用的库。下表列出了每种库以及对应的常用扩展名    Library type Variable Default File extension    Target library target_library {“your_library.db”} .db   Link library link_library {“*”,”your_library.db”} .db   Symbol library symbol_library {“your_library.sdb”} .sdb   DesignWare library synthe...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/Q3/ic-design-icc1-workshop-lab-guide-notes-lab2-design-planning-task5-9/" title="【IC设计】ICC1 workshop lab guide 学习笔记——Lab 2 Design Planning Task5-9">【IC设计】ICC1 workshop lab guide 学习笔记——Lab 2 Design Planning Task5-9</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-08T10:51:29.000Z" title="发表于 2023-07-08 10:51:29">2023-07-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%97IC%E8%AE%BE%E8%AE%A1/">数字IC设计</a></span></div><div class="content">ICC1 workshop lab guide2.5 Create P&#x2F;G Rings Around Macro GroupsIn the task following this one you will use “Power Network Synthesis” (PNS) toautomate the creation of power&#x2F;ground core and individual macro rings, as well asvertical and horizontal straps. If you want to create rings around groups of macros,that is done prior to PNS, which is what this task will accomplish.在接下来的任务中，你将使用电源网络综合去自动地创建P&#x2F;G核心和单个宏环，以及垂直和水平绑带。如果你想在宏组周围创建环，则需要在PNS之前完成，这就是这次要完成的任务。  We have created a script...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/Q2/ic-design-icc1-workshop-lab-guide-notes-lab1-data-setup-basic-flow/" title="【IC设计】ICC1 workshop lab guide 学习笔记——Lab1 Data Setup&amp;Basic Flow">【IC设计】ICC1 workshop lab guide 学习笔记——Lab1 Data Setup&amp;Basic Flow</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-06-21T19:57:52.000Z" title="发表于 2023-06-21 19:57:52">2023-06-21</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%97IC%E8%AE%BE%E8%AE%A1/">数字IC设计</a></span></div><div class="content">Lab1 Data Setup&amp;Basic Flow1.1 Create a Milkyway librarylab1_data_setup目录下有.synopsys_dc.setupscriptsrisc_chip.mwdesign_data 其中.synopsys_dc.setup中设置了若干变量，设置了搜索路径、verilog设计、sdc、def、tech_file、tlu、db库等的路径，以方便在后面使用icc时能直接调用。 启动icc_shell后会自动调用.synopsys_dc.setup，可以通过printvar来验证变量是否已设置 了解了.synopsys_dc.setup后，下面就创建设计库（即Milkyway library)写入库的路径、库名、tf文件路径、添加reference libraries，这些都可以使用刚刚加载的变量名来替代。其中reference libraries需要添加ref&#x2F;mw_lib&#x2F;的sc、ram16x128、io三个库 这些库是Milkyway参考库：  信息是以被称为“views”的形式存储的，例如...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/Q2/ic-design-icc1-workshop-lab-guide-notes-lab2-design-planning-task1-4/" title="【IC设计】ICC1 workshop lab guide 学习笔记——Lab 2 Design Planning Task1-4">【IC设计】ICC1 workshop lab guide 学习笔记——Lab 2 Design Planning Task1-4</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-06-18T00:21:45.000Z" title="发表于 2023-06-18 00:21:45">2023-06-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%97IC%E8%AE%BE%E8%AE%A1/">数字IC设计</a></span></div><div class="content">Lab 2 Design Planning2.1 Load the Design 进入lab2_dp目录并打开icc_shell， 打开orca_lib.mw下的orca_setup cell Take a look at the LayoutWindow. 看看跳出的LayoutWindow  The large greenish-blue rectangles are the macro and IO pad cells, and the small purple rectangles in the lower left corner (zoom in if you want to see them more clearly), are the standard cells.大的蓝绿色矩形是宏单元格和IO单元格，左下角的紫色小矩形（如果想看得更清楚，可以放大）是标准单元格。 All of these cells are instantiated cells in the netlist.所有这些单元格都是网络列表中的实例化单元格。 They are all stacked o...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/Q2/ic-design-digital-ic-design-reading-notes/" title="【IC设计】数字IC设计读书笔记">【IC设计】数字IC设计读书笔记</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-06-17T01:35:51.000Z" title="发表于 2023-06-17 01:35:51">2023-06-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%97IC%E8%AE%BE%E8%AE%A1/">数字IC设计</a></span></div><div class="content"> 打算后面将IC设计流程方面的书籍笔记记在这里，近期每天持续更新（除非导师换方向 ）  《专用集成电路设计实用教程》集成电路系统的组成 数字电路模块：RISC_CORE 大部分数字电路使用同一个时钟源，经过时钟产生电路，协同各部分运行。即同步电路。 数字电路大致可以分为数据通路和控制通路。数据通路指进行加减乘除的运算器，控制通路是控制数据流通和信号开关等的逻辑电路。  模拟电路模块：A&#x2F;D模拟电路相关的有模数转换器ADC，数模转换器DAC，可编程增益放大器PGA，通过数字电路来控制模拟增益锁相环PLL，用于产生高频时钟和进行时钟信号的相位校正  IP核模块：MPEG4、DSP、CONDEC、USBIP核的出现是IC产业分工的结果，使得一些公司写IP，一些公司复用IP，从而IP用的放心，也开发的更快。USB是IP核，也是输入输出设备。  内存模块：RAM内存占据了大部分芯片面积，在低功耗设计中要注意内存功耗在芯片功耗中的比例。  输入输出PAD 这里的PAD就是端口的意思，USB接口就是一种I&#x2F;O PAD。 由于I&#x2F;O PAD是直接与外部世界相连接的特...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/Q2/ic-design-synopsys-digital-ic-design-flow/" title="【IC设计】Synopsys数字IC设计流程">【IC设计】Synopsys数字IC设计流程</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-06-11T21:27:02.000Z" title="发表于 2023-06-11 21:27:02">2023-06-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%97IC%E8%AE%BE%E8%AE%A1/">数字IC设计</a></span></div><div class="content">数字IC设计流程数字IC设计流程如下：需求-&gt;芯片定义specification-&gt;算法描述（一般用C++)-&gt;RTL级描述（Verilog）-&gt;HDL功能仿真-&gt;逻辑综合（DC）-&gt;门级仿真（仿真网表）-&gt;形式化验证&gt;物理设计（floor plan，place，cts，route等）-&gt;签核（chip finish，StarRC提取寄生RC，PT时序分析，DRC&amp;LVS等） 前端设计RTL编写和HDL仿真  用Verilog实现芯片各个模块的功能，如写一个四位乘法器multipleir.v和它的测试文件tb_multiplier.v并使用VCS编译并仿真，使用Verdi查看波形，通过RTL功能验证。 逻辑综合使用DC（Design Compiler）综合RTL代码，生成门级网表（Gate-Level Netlist）。   具体来说，DC实际上将RTL先翻译成 了内部可识别的GTECH形式的中间代码，然后再根据所提供的目标库和设计约束来映射和优化出最终的网表文件netlist.v。     在使用Synopsys D...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/Q2/ic-design-verilog-based-8-layer-matrix-multiplication-design/" title="【IC设计】基于Verilog的8层矩阵乘法设计">【IC设计】基于Verilog的8层矩阵乘法设计</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-06-04T21:01:36.000Z" title="发表于 2023-06-04 21:01:36">2023-06-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%97IC%E8%AE%BE%E8%AE%A1/">数字IC设计</a></span></div><div class="content">项目要求基本要求输入有9个矩阵，权重矩阵有8个，分别是Weight I0I7，Input矩阵I ~-1。8个矩阵都是都是16行*16列的，且矩阵中的每个元素是16位补码形式的有符号定点数（1位符号位，6位整数位，9位小数位）  要求将Weight I0依次乘以Input I-1 ，Weight I1 ，Weight I2 ，Weight I3 ，Weight I4，  Weight I5，  Weight I6 ， Weight I7，依次得到Input I0 ，Input I1 ，Input I2 ，Input I3 ，Input I4 ，Input I5 ，Input I6 ，Input I7最终输出Input I7 截断要求对于矩阵AB&#x3D;C，C矩阵的第i行第j列元素是A的第i行和B的第j列进行乘加运算得到的，由于矩阵的元素是16位，两个16位元素相乘结果需要用216-1&#x3D;31位表示，再考虑相加，因此需要31+4&#x3D;35位来表示。在这个项目中不考虑相加后会超过31位的情况，只用31位表示。对于Weight I0 * Input I-1&#x3D;I...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/Q3/pre-master-one-study-crazy-work-15-hours-organized-verilog-language-entry-knowledge/" title="【准研一学习】狂肝15小时整理的Verilog语言入门知识">【准研一学习】狂肝15小时整理的Verilog语言入门知识</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-08-19T05:46:24.000Z" title="发表于 2022-08-19 05:46:24">2022-08-19</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%BC%96%E7%A8%8B%E4%B8%8E%E7%AE%97%E6%B3%95/">编程与算法</a></span></div><div class="content">闲言稍叙Verilog和VHDL就是目前使用最多的两个硬件描述语言(HDL)，如果阅读本文的你也是Verilog新手，这部分闲言或许对你有所启发。 作者本科是计算机科学与技术专业，现在是准研一，方向和硬件相关。由于学艺不精，只会点C、Java，电路、信号、单片机等硬件课程都只懂皮毛。由于课题组研究需要，学习了Verilog语言并总结为本文。 C语言是软件描述语言，编码的核心目的在于经过编译、链接后能够产生机器能够识别的指令序列，进而完成代码功能。而Verilog是硬件描述语言，编码的核心目的在于描述门与门之间的连接，通过综合、实现所写的代码，产生可以转化为芯片的图纸，交由厂商通过光刻来生产所设计的电路，最终经过封装、测试，即通常所称的芯片。 要学习Verilog首先需要一个编程平台，有Vivado、Modelsim等，其中Vivado是用的最多的，但是运行比较慢，Modelsim运行的快，但是界面丑，这个看个人喜好安装就好。 有编程平台后，通过在网站上刷题和看书，逐渐就可以上手了。那么下面列举出我学习Verilog所使用过的网站、书籍： 网站：1.HDLBits网站地址该网站是全...</div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/3/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/#content-inner">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/#content-inner">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/#content-inner">9</a><a class="extend next" rel="next" href="/page/5/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">TDppy</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">130</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/TDppy"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/TDppy" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2287015934@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">如何呢，又能怎。</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-riscv-plic/" title="【操作系统】RISC-V PLIC总结">【操作系统】RISC-V PLIC总结</a><time datetime="2026-01-18T15:25:18.000Z" title="发表于 2026-01-18 15:25:18">2026-01-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/hello-world/" title="欢迎来到潘业成的博客">欢迎来到潘业成的博客</a><time datetime="2026-01-12T00:00:00.000Z" title="发表于 2026-01-12 00:00:00">2026-01-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-what-happens-after-pressing-enter-in-xv6-operating-system/" title="【操作系统】xv6操作系统中按下键盘回车后发生的事情">【操作系统】xv6操作系统中按下键盘回车后发生的事情</a><time datetime="2026-01-10T11:58:18.000Z" title="发表于 2026-01-10 11:58:18">2026-01-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-hand-write-xv6-operating-system-types-h-param-h-memlayout-h-riscv-h-defs-h-header-file-analysis/" title="【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析">【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析</a><time datetime="2026-01-06T23:02:58.000Z" title="发表于 2026-01-06 23:02:58">2026-01-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/Q4/operating-system-hand-write-xv6-operating-system-entry-s-and-start-c-analysis/" title="【操作系统】手撸xv6操作系统——entry.S和start.c解析">【操作系统】手撸xv6操作系统——entry.S和start.c解析</a><time datetime="2025-12-30T15:57:42.000Z" title="发表于 2025-12-30 15:57:42">2025-12-30</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+      <i class="fas fa-angle-right"></i></a>
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/"><span class="card-category-list-name">异常处理</span><span class="card-category-list-count">15</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><span class="card-category-list-name">操作系统</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%B0%E5%AD%97IC%E8%AE%BE%E8%AE%A1/"><span class="card-category-list-name">数字IC设计</span><span class="card-category-list-count">38</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%89%87%E4%B8%8A%E7%BD%91%E7%BB%9C/"><span class="card-category-list-name">片上网络</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"><span class="card-category-list-name">环境配置</span><span class="card-category-list-count">14</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%A8%8B%E5%BA%8F%E4%BA%BA%E7%94%9F/"><span class="card-category-list-name">程序人生</span><span class="card-category-list-count">7</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%BC%96%E7%A8%8B%E4%B8%8E%E7%AE%97%E6%B3%95/"><span class="card-category-list-name">编程与算法</span><span class="card-category-list-count">17</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"><span class="card-category-list-name">网络安全</span><span class="card-category-list-count">1</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/%E8%B0%83%E8%AF%95/" style="font-size: 1.5em; color: #99a9bf">调试</a> <a href="/tags/%E4%BA%A4%E6%8D%A2%E6%9C%BA/" style="font-size: 1.21em; color: #999ea4">交换机</a> <a href="/tags/%E8%BF%90%E7%AE%97%E7%AC%A6/" style="font-size: 1.1em; color: #999">运算符</a> <a href="/tags/%E5%9B%BE%E6%A0%87%E5%BA%93/" style="font-size: 1.1em; color: #999">图标库</a> <a href="/tags/%E5%A4%9A%E8%BF%9B%E7%A8%8B/" style="font-size: 1.16em; color: #999b9e">多进程</a> <a href="/tags/IDEA/" style="font-size: 1.1em; color: #999">IDEA</a> <a href="/tags/Verilog/" style="font-size: 1.44em; color: #99a7ba">Verilog</a> <a href="/tags/EDA%E5%B7%A5%E5%85%B7/" style="font-size: 1.39em; color: #99a4b4">EDA工具</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 1.16em; color: #999b9e">转载</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 1.27em; color: #99a0a9">C语言</a> <a href="/tags/%E7%89%87%E4%B8%8A%E7%BD%91%E7%BB%9C/" style="font-size: 1.1em; color: #999">片上网络</a> <a href="/tags/SSL%E8%AF%81%E4%B9%A6/" style="font-size: 1.1em; color: #999">SSL证书</a> <a href="/tags/Dev-C/" style="font-size: 1.1em; color: #999">Dev-C++</a> <a href="/tags/Office/" style="font-size: 1.1em; color: #999">Office</a> <a href="/tags/DFT/" style="font-size: 1.1em; color: #999">DFT</a> <a href="/tags/%E4%B8%AD%E6%96%AD/" style="font-size: 1.1em; color: #999">中断</a> <a href="/tags/Web%E5%BC%80%E5%8F%91/" style="font-size: 1.1em; color: #999">Web开发</a> <a href="/tags/%E6%80%BB%E7%BA%BF/" style="font-size: 1.1em; color: #999">总线</a> <a href="/tags/z3/" style="font-size: 1.1em; color: #999">z3</a> <a href="/tags/CMake/" style="font-size: 1.1em; color: #999">CMake</a> <a href="/tags/%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90/" style="font-size: 1.16em; color: #999b9e">时序分析</a> <a href="/tags/Git/" style="font-size: 1.16em; color: #999b9e">Git</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 1.1em; color: #999">前端</a> <a href="/tags/OFDM/" style="font-size: 1.1em; color: #999">OFDM</a> <a href="/tags/PyTorch/" style="font-size: 1.1em; color: #999">PyTorch</a> <a href="/tags/Java/" style="font-size: 1.33em; color: #99a2af">Java</a> <a href="/tags/CCNA/" style="font-size: 1.27em; color: #99a0a9">CCNA</a> <a href="/tags/AXI/" style="font-size: 1.1em; color: #999">AXI</a> <a href="/tags/%E7%9F%AD%E4%BF%A1/" style="font-size: 1.1em; color: #999">短信</a> <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" style="font-size: 1.1em; color: #999">读书笔记</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E4%BB%8B%E7%BB%8D/" style="font-size: 1.1em; color: #999">博客介绍</a> <a href="/tags/%E5%8F%8C%E7%B3%BB%E7%BB%9F/" style="font-size: 1.1em; color: #999">双系统</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" style="font-size: 1.1em; color: #999">网络安全</a> <a href="/tags/Tomcat/" style="font-size: 1.1em; color: #999">Tomcat</a> <a href="/tags/GitHub/" style="font-size: 1.1em; color: #999">GitHub</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 1.1em; color: #999">算法</a> <a href="/tags/Mill/" style="font-size: 1.1em; color: #999">Mill</a> <a href="/tags/%E6%95%99%E5%AD%A6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 1.21em; color: #999ea4">教学操作系统</a> <a href="/tags/%E9%93%BE%E6%8E%A5/" style="font-size: 1.1em; color: #999">链接</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB/" style="font-size: 1.1em; color: #999">中间人攻击</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      <a class="card-more-btn" href="/archives/"
+            title="查看更多">
+            <i class="fas fa-angle-right"></i>
+          </a>
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/01/">
+            <span class="card-archive-list-date">
+              一月 2026
+            </span>
+            <span class="card-archive-list-count">4</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/12/">
+            <span class="card-archive-list-date">
+              十二月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/10/">
+            <span class="card-archive-list-date">
+              十月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/08/">
+            <span class="card-archive-list-date">
+              八月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/04/">
+            <span class="card-archive-list-date">
+              四月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/10/">
+            <span class="card-archive-list-date">
+              十月 2024
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/09/">
+            <span class="card-archive-list-date">
+              九月 2024
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/08/">
+            <span class="card-archive-list-date">
+              八月 2024
+            </span>
+            <span class="card-archive-list-count">4</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">130</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-01-18T08:18:23.548Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By TDppy</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4-b1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4-b1"></script><script src="/js/main.js?v=5.5.4-b1"></script><div class="js-pjax"><script>window.typedJSFn = {
+  init: str => {
+    window.typed = new Typed('#subtitle', Object.assign({
+      strings: str,
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50,
+    }, null))
+  },
+  run: subtitleType => {
+    if (true) {
+      if (typeof Typed === 'function') {
+        subtitleType()
+      } else {
+        btf.getScript('https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.min.js').then(subtitleType)
+      }
+    } else {
+      subtitleType()
+    }
+  },
+  processSubtitle: (content, extraContents = []) => {
+    if (true) {
+      const sub = ["灵魂的渴望是命运的先知","Soul driven is the desire of the prophet","斯人若彩虹，遇上方知有","Every once in a while,you find someone who is iridescent."].slice()
+
+      if (extraContents.length > 0) {
+        sub.unshift(...extraContents)
+      }
+
+      if (typeof content === 'string') {
+        sub.unshift(content)
+      } else if (Array.isArray(content)) {
+        sub.unshift(...content)
+      }
+
+      sub.length > 0 && typedJSFn.init(sub)
+    } else {
+      document.getElementById('subtitle').textContent = typeof content === 'string' ? content :
+        (Array.isArray(content) && content.length > 0 ? content[0] : '')
+    }
+  }
+}
+btf.addGlobalFn('pjaxSendOnce', () => { typed.destroy() }, 'typedDestroy')
+</script><script>function subtitleType () {
+  typedJSFn.processSubtitle(["灵魂的渴望是命运的先知","Soul driven is the desire of the prophet","斯人若彩虹，遇上方知有","Every once in a while,you find someone who is iridescent."])
+}
+typedJSFn.run(subtitleType)</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -1,0 +1,664 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>PyTorch 深度学习常用函数总结 | 潘业成的博客</title><meta name="author" content="TDppy"><meta name="copyright" content="TDppy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="近期要做AI编译器相关工作，需要把PyTorch入门下，在Google的Colab云平台上跑了LeNet&#x2F;ResNet&#x2F;GoogleNet&#x2F;MobileNet，通过豆包整理了下所涉及到的函数，形成本文。  PyTorch 深度学习常用函数总结一、PyTorch 核心操作（基础张量与自动求导）1. 张量创建与操作   函数 &#x2F; 方法 功能描述 参数说明 返回">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PyTorch 深度学习常用函数总结">
+<meta property="og:url" content="https://www.whyc.fun/2025/Q3/pytorch-deep-learning-common-functions-summary/index.html">
+<meta property="og:site_name" content="潘业成的博客">
+<meta property="og:description" content="近期要做AI编译器相关工作，需要把PyTorch入门下，在Google的Colab云平台上跑了LeNet&#x2F;ResNet&#x2F;GoogleNet&#x2F;MobileNet，通过豆包整理了下所涉及到的函数，形成本文。  PyTorch 深度学习常用函数总结一、PyTorch 核心操作（基础张量与自动求导）1. 张量创建与操作   函数 &#x2F; 方法 功能描述 参数说明 返回">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.whyc.fun/img/butterfly-icon.png">
+<meta property="article:published_time" content="2025-08-20T13:43:47.000Z">
+<meta property="article:modified_time" content="2026-01-18T08:18:03.196Z">
+<meta property="article:author" content="TDppy">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="深度学习">
+<meta property="article:tag" content="PyTorch">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.whyc.fun/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "PyTorch 深度学习常用函数总结",
+  "url": "https://www.whyc.fun/2025/Q3/pytorch-deep-learning-common-functions-summary/",
+  "image": "https://www.whyc.fun/img/butterfly-icon.png",
+  "datePublished": "2025-08-20T13:43:47.000Z",
+  "dateModified": "2026-01-18T08:18:03.196Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "TDppy",
+      "url": "https://www.whyc.fun"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://www.whyc.fun/2025/Q3/pytorch-deep-learning-common-functions-summary/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4-b1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'PyTorch 深度学习常用函数总结',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(https://oss.012700.xyz/butterfly/2024/10/index.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">130</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://oss.012700.xyz/butterfly/2024/10/index.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">潘业成的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">PyTorch 深度学习常用函数总结</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">PyTorch 深度学习常用函数总结</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-08-20T13:43:47.000Z" title="发表于 2025-08-20 13:43:47">2025-08-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-01-18T08:18:03.196Z" title="更新于 2026-01-18 08:18:03">2026-01-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%BC%96%E7%A8%8B%E4%B8%8E%E7%AE%97%E6%B3%95/">编程与算法</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><blockquote>
+<p>近期要做AI编译器相关工作，需要把PyTorch入门下，在Google的Colab云平台上跑了LeNet&#x2F;ResNet&#x2F;GoogleNet&#x2F;MobileNet，通过豆包整理了下所涉及到的函数，形成本文。</p>
+</blockquote>
+<h1 id="PyTorch-深度学习常用函数总结"><a href="#PyTorch-深度学习常用函数总结" class="headerlink" title="PyTorch 深度学习常用函数总结"></a>PyTorch 深度学习常用函数总结</h1><h3 id="一、PyTorch-核心操作（基础张量与自动求导）"><a href="#一、PyTorch-核心操作（基础张量与自动求导）" class="headerlink" title="一、PyTorch 核心操作（基础张量与自动求导）"></a>一、PyTorch 核心操作（基础张量与自动求导）</h3><h4 id="1-张量创建与操作"><a href="#1-张量创建与操作" class="headerlink" title="1. 张量创建与操作"></a>1. 张量创建与操作</h4><table>
+<thead>
+<tr>
+<th>函数 &#x2F; 方法</th>
+<th>功能描述</th>
+<th>参数说明</th>
+<th>返回值</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>torch.tensor(data)</code></td>
+<td>从数据（列表、数组等）创建张量</td>
+<td><code>data</code>：输入数据；<code>dtype</code>：数据类型（如<code>torch.float32</code>，默认自动推断）；<code>device</code>：设备（CPU&#x2F;GPU）</td>
+<td>多维张量（<code>torch.Tensor</code>）</td>
+<td><code>torch.tensor([[1,2],[3,4]])</code> → 形状为<code>(2,2)</code>的张量</td>
+</tr>
+<tr>
+<td><code>torch.zeros(shape)</code></td>
+<td>创建全零张量</td>
+<td><code>shape</code>：张量形状（如<code>(2,3)</code>）；<code>dtype</code>：数据类型</td>
+<td>形状为<code>shape</code>的全零张量</td>
+<td><code>torch.zeros((2,3))</code> → <code>tensor([[0.,0.,0.],[0.,0.,0.]])</code></td>
+</tr>
+<tr>
+<td><code>torch.ones(shape)</code></td>
+<td>创建全一张量</td>
+<td>同<code>torch.zeros</code></td>
+<td>形状为<code>shape</code>的全一张量</td>
+<td><code>torch.ones((3,2))</code> → <code>tensor([[1.,1.],[1.,1.],[1.,1.]])</code></td>
+</tr>
+<tr>
+<td><code>torch.rand(shape)</code></td>
+<td>创建 [0,1) 均匀分布的随机张量</td>
+<td>同<code>torch.zeros</code></td>
+<td>形状为<code>shape</code>的随机张量</td>
+<td><code>torch.rand((2,2))</code> → 元素在 [0,1) 的 2x2 张量</td>
+</tr>
+<tr>
+<td><code>torch.randn(shape)</code></td>
+<td>创建均值为 0、方差为 1 的标准正态分布张量</td>
+<td>同<code>torch.zeros</code></td>
+<td>形状为<code>shape</code>的随机张量</td>
+<td><code>torch.randn((2,2))</code> → 符合标准正态分布的 2x2 张量</td>
+</tr>
+<tr>
+<td><code>tensor.shape</code></td>
+<td>获取张量形状</td>
+<td>无参数</td>
+<td>形状元组（<code>torch.Size</code>）</td>
+<td><code>x = torch.tensor([[1,2]])</code> → <code>x.shape</code> → <code>torch.Size([1,2])</code></td>
+</tr>
+<tr>
+<td><code>tensor.dtype</code></td>
+<td>获取张量数据类型</td>
+<td>无参数</td>
+<td>数据类型（如<code>torch.int64</code>、<code>torch.float32</code>）</td>
+<td><code>x = torch.tensor([1.0])</code> → <code>x.dtype</code> → <code>torch.float32</code></td>
+</tr>
+<tr>
+<td><code>tensor.view(new_shape)</code></td>
+<td>重塑张量形状（需保持元素总数不变）</td>
+<td><code>new_shape</code>：新形状（可用<code>-1</code>表示自动计算该维度）</td>
+<td>形状为<code>new_shape</code>的新张量（与原张量共享数据）</td>
+<td><code>x = torch.rand(2,2)</code> → <code>x.view(4,1)</code> → 形状为<code>(4,1)</code>的张量</td>
+</tr>
+</tbody></table>
+<h4 id="2-张量运算"><a href="#2-张量运算" class="headerlink" title="2. 张量运算"></a>2. 张量运算</h4><table>
+<thead>
+<tr>
+<th>函数 &#x2F; 运算符</th>
+<th>功能描述</th>
+<th>参数说明</th>
+<th>返回值</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>a + b</code> &#x2F; <code>a * b</code></td>
+<td>元素级加法 &#x2F; 乘法</td>
+<td><code>a</code>、<code>b</code>：形状相同的张量</td>
+<td>与<code>a</code>、<code>b</code>同形状的张量，元素为对应位置的和 &#x2F; 积</td>
+<td><code>a=torch.tensor([1,2])</code>，<code>b=torch.tensor([3,4])</code> → <code>a+b</code> → <code>[4,6]</code></td>
+</tr>
+<tr>
+<td><code>torch.matmul(a, b)</code></td>
+<td>矩阵乘法（支持高维张量批量运算）</td>
+<td><code>a</code>、<code>b</code>：符合矩阵乘法维度要求的张量（如<code>a.shape=(m,n)</code>，<code>b.shape=(n,p)</code>）</td>
+<td>形状为<code>(m,p)</code>的张量（矩阵乘积结果）</td>
+<td><code>a=torch.tensor([[1,2],[3,4]])</code> → <code>torch.matmul(a,a)</code> → <code>[[7,10],[15,22]]</code></td>
+</tr>
+</tbody></table>
+<h4 id="3-设备操作"><a href="#3-设备操作" class="headerlink" title="3. 设备操作"></a>3. 设备操作</h4><table>
+<thead>
+<tr>
+<th>函数 &#x2F; 方法</th>
+<th>功能描述</th>
+<th>参数说明</th>
+<th>返回值</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>torch.device(device)</code></td>
+<td>指定设备（CPU&#x2F;GPU）</td>
+<td><code>device</code>：字符串（如<code>&#39;cpu&#39;</code>、<code>&#39;cuda&#39;</code>）或设备索引</td>
+<td>设备对象（<code>torch.device</code>）</td>
+<td><code>device = torch.device(&#39;cuda&#39; if torch.cuda.is_available() else &#39;cpu&#39;)</code></td>
+</tr>
+<tr>
+<td><code>tensor.to(device)</code></td>
+<td>将张量迁移到指定设备</td>
+<td><code>device</code>：目标设备（<code>torch.device</code>对象）</td>
+<td>迁移到目标设备的新张量</td>
+<td><code>x = torch.tensor([1,2])</code> → <code>x.to(device)</code> → 张量移至 GPU（若可用）</td>
+</tr>
+</tbody></table>
+<h4 id="4-自动求导（Autograd）"><a href="#4-自动求导（Autograd）" class="headerlink" title="4. 自动求导（Autograd）"></a>4. 自动求导（Autograd）</h4><table>
+<thead>
+<tr>
+<th>函数 &#x2F; 方法</th>
+<th>功能描述</th>
+<th>参数说明</th>
+<th>返回值 &#x2F; 效果</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>torch.tensor(data, requires_grad=True)</code></td>
+<td>创建支持梯度计算的张量</td>
+<td><code>requires_grad</code>：是否需要求导（布尔值，默认<code>False</code>）</td>
+<td>可求导的张量（叶子节点）</td>
+<td><code>x = torch.tensor([2.0], requires_grad=True)</code></td>
+</tr>
+<tr>
+<td><code>tensor.backward()</code></td>
+<td>反向传播计算梯度</td>
+<td>可选<code>gradient</code>：梯度张量（用于非标量输出，默认<code>None</code>）</td>
+<td>无返回值，梯度存储在<code>tensor.grad</code>中</td>
+<td><code>z = x**2 + 3*y</code> → <code>z.backward()</code> → 计算<code>x.grad</code>和<code>y.grad</code></td>
+</tr>
+<tr>
+<td><code>tensor.grad</code></td>
+<td>获取张量的梯度</td>
+<td>无参数</td>
+<td>梯度张量（与原张量同形状，初始为<code>None</code>）</td>
+<td><code>x.grad</code> → <code>tensor([4.0])</code>（若<code>z = x**2</code>，则梯度为<code>2x</code>）</td>
+</tr>
+<tr>
+<td><code>with torch.no_grad():</code></td>
+<td>上下文管理器，禁止梯度计算</td>
+<td>无参数</td>
+<td>块内运算不构建计算图，不更新梯度</td>
+<td><code>with torch.no_grad(): e = a*b</code> → <code>e.requires_grad</code>为<code>False</code></td>
+</tr>
+</tbody></table>
+<h3 id="二、数据加载与预处理（torchvision-PyTorch）"><a href="#二、数据加载与预处理（torchvision-PyTorch）" class="headerlink" title="二、数据加载与预处理（torchvision + PyTorch）"></a>二、数据加载与预处理（torchvision + PyTorch）</h3><h4 id="1-数据集（torchvision-datasets）"><a href="#1-数据集（torchvision-datasets）" class="headerlink" title="1. 数据集（torchvision.datasets）"></a>1. 数据集（<code>torchvision.datasets</code>）</h4><table>
+<thead>
+<tr>
+<th>函数 &#x2F; 类</th>
+<th>功能描述</th>
+<th>参数说明</th>
+<th>返回值</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>datasets.MNIST(...)</code></td>
+<td>加载 MNIST 手写数字数据集</td>
+<td><code>root</code>：数据存储路径；<code>train</code>：<code>True</code>加载训练集（60k 样本），<code>False</code>加载测试集（10k 样本）；<code>download</code>：无数据时自动下载；<code>transform</code>：数据变换</td>
+<td>数据集对象（<code>Dataset</code>子类），支持索引访问（返回<code>(image, label)</code>）</td>
+<td><code>datasets.MNIST(root=&#39;./data&#39;, train=True, download=True, transform=transform)</code></td>
+</tr>
+<tr>
+<td><code>datasets.CIFAR10(...)</code></td>
+<td>加载 CIFAR-10 彩色图像数据集（10 类）</td>
+<td>同<code>MNIST</code>，但图像为 3 通道 32x32</td>
+<td>数据集对象，返回<code>(image, label)</code>（图像为 3 通道）</td>
+<td><code>datasets.CIFAR10(root=&#39;./data&#39;, train=False, transform=transform)</code></td>
+</tr>
+</tbody></table>
+<h4 id="2-数据变换（torchvision-transforms）"><a href="#2-数据变换（torchvision-transforms）" class="headerlink" title="2. 数据变换（torchvision.transforms）"></a>2. 数据变换（<code>torchvision.transforms</code>）</h4><table>
+<thead>
+<tr>
+<th>函数 &#x2F; 类</th>
+<th>功能描述</th>
+<th>参数说明</th>
+<th>返回值</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>transforms.Compose(transforms)</code></td>
+<td>组合多个变换为流水线</td>
+<td><code>transforms</code>：变换列表（按顺序执行）</td>
+<td>组合变换对象，调用时按顺序应用所有变换</td>
+<td><code>transforms.Compose([ToTensor(), Normalize(...)])</code></td>
+</tr>
+<tr>
+<td><code>transforms.ToTensor()</code></td>
+<td>将 PIL 图像转为 PyTorch 张量</td>
+<td>无参数</td>
+<td>变换函数，输入 PIL 图像（<code>(H,W,C)</code>，0-255），输出张量（<code>(C,H,W)</code>，0-1）</td>
+<td><code>img = Image.open(&#39;test.png&#39;)</code> → <code>ToTensor()(img)</code> → 张量</td>
+</tr>
+<tr>
+<td><code>transforms.Normalize(mean, std)</code></td>
+<td>标准化张量</td>
+<td><code>mean</code>：均值序列（如<code>(0.1307,)</code>对应单通道）；<code>std</code>：标准差序列</td>
+<td>变换函数，输出<code>(input - mean) / std</code></td>
+<td><code>Normalize((0.1307,), (0.3081,))</code>（MNIST 的均值和标准差）</td>
+</tr>
+<tr>
+<td><code>transforms.RandomCrop(size, padding)</code></td>
+<td>随机裁剪图像</td>
+<td><code>size</code>：裁剪后尺寸（如<code>32</code>）；<code>padding</code>：边缘填充像素（如<code>4</code>）</td>
+<td>变换函数，随机裁剪图像至<code>size x size</code></td>
+<td><code>RandomCrop(32, padding=4)</code>（CIFAR-10 数据增强）</td>
+</tr>
+<tr>
+<td><code>transforms.RandomHorizontalFlip()</code></td>
+<td>随机水平翻转图像</td>
+<td>无参数（默认翻转概率 50%）</td>
+<td>变换函数，50% 概率水平翻转图像</td>
+<td>用于数据增强，提升模型泛化能力</td>
+</tr>
+</tbody></table>
+<h4 id="3-数据加载器（torch-utils-data-DataLoader）"><a href="#3-数据加载器（torch-utils-data-DataLoader）" class="headerlink" title="3. 数据加载器（torch.utils.data.DataLoader）"></a>3. 数据加载器（<code>torch.utils.data.DataLoader</code>）</h4><table>
+<thead>
+<tr>
+<th>函数 &#x2F; 类</th>
+<th>功能描述</th>
+<th>参数说明</th>
+<th>返回值</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>DataLoader(dataset, ...)</code></td>
+<td>批量加载数据集</td>
+<td><code>dataset</code>：数据集对象；<code>batch_size</code>：批次大小（如 64）；<code>shuffle</code>：是否打乱数据（训练集用<code>True</code>）；<code>num_workers</code>：加载数据的进程数（加速，默认为 0）</td>
+<td>迭代器，每次返回<code>(batch_data, batch_labels)</code></td>
+<td><code>DataLoader(train_dataset, batch_size=64, shuffle=True)</code></td>
+</tr>
+</tbody></table>
+<h3 id="三、神经网络构建（torch-nn）"><a href="#三、神经网络构建（torch-nn）" class="headerlink" title="三、神经网络构建（torch.nn）"></a>三、神经网络构建（<code>torch.nn</code>）</h3><h4 id="1-基础组件"><a href="#1-基础组件" class="headerlink" title="1. 基础组件"></a>1. 基础组件</h4><table>
+<thead>
+<tr>
+<th>类 &#x2F; 方法</th>
+<th>功能描述</th>
+<th>参数说明</th>
+<th>输入 &#x2F; 输出形状</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>nn.Module</code></td>
+<td>神经网络基类，所有模型需继承该类</td>
+<td>需实现<code>__init__</code>（定义层）和<code>forward</code>（前向传播）</td>
+<td>无返回值，通过<code>forward</code>定义输入到输出的映射</td>
+<td><code>class CNN(nn.Module): def __init__(self): ... def forward(self, x): ...</code></td>
+</tr>
+<tr>
+<td><code>nn.Linear(in_features, out_features)</code></td>
+<td>全连接层</td>
+<td><code>in_features</code>：输入特征数；<code>out_features</code>：输出特征数</td>
+<td>输入<code>(batch_size, in_features)</code> → 输出<code>(batch_size, out_features)</code></td>
+<td><code>nn.Linear(64*7*7, 128)</code>（输入 3136 维，输出 128 维）</td>
+</tr>
+<tr>
+<td><code>nn.ReLU()</code></td>
+<td>ReLU 激活函数（<code>max(0, x)</code>）</td>
+<td>可选<code>inplace</code>：是否原地修改（节省内存，默认<code>False</code>）</td>
+<td>输入<code>(any_shape)</code> → 输出同形状（负数置 0）</td>
+<td><code>x = nn.ReLU()(x)</code></td>
+</tr>
+<tr>
+<td><code>nn.Dropout(p)</code></td>
+<td>Dropout 层（随机失活神经元，防止过拟合）</td>
+<td><code>p</code>：失活概率（如<code>0.5</code>）</td>
+<td>输入<code>(any_shape)</code> → 输出同形状（部分元素置 0）</td>
+<td><code>nn.Dropout(0.5)</code></td>
+</tr>
+<tr>
+<td><code>nn.BatchNorm2d(num_features)</code></td>
+<td>2D 批归一化（加速训练，稳定梯度）</td>
+<td><code>num_features</code>：输入通道数</td>
+<td>输入<code>(batch_size, num_features, H, W)</code> → 输出同形状</td>
+<td><code>nn.BatchNorm2d(64)</code>（用于 64 通道的特征图）</td>
+</tr>
+</tbody></table>
+<h4 id="2-CNN-组件"><a href="#2-CNN-组件" class="headerlink" title="2. CNN 组件"></a>2. CNN 组件</h4><table>
+<thead>
+<tr>
+<th>类 &#x2F; 方法</th>
+<th>功能描述</th>
+<th>参数说明</th>
+<th>输入 &#x2F; 输出形状</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>nn.Conv2d(in_channels, out_channels, kernel_size, stride=1, padding=0)</code></td>
+<td>2D 卷积层（提取空间特征）</td>
+<td><code>in_channels</code>：输入通道数；<code>out_channels</code>：输出通道数；<code>kernel_size</code>：卷积核大小（如<code>3</code>）；<code>stride</code>：步长；<code>padding</code>：边缘填充</td>
+<td>输入<code>(batch, in_channels, H, W)</code> → 输出<code>(batch, out_channels, H&#39;, W&#39;)</code>（<code>H&#39; = (H + 2*padding - kernel_size) // stride + 1</code>）</td>
+<td><code>nn.Conv2d(1, 32, kernel_size=3, padding=1)</code>（1→32 通道，保持尺寸）</td>
+</tr>
+<tr>
+<td><code>nn.MaxPool2d(kernel_size, stride=None)</code></td>
+<td>2D 最大池化（下采样）</td>
+<td><code>kernel_size</code>：池化核大小；<code>stride</code>：步长（默认等于<code>kernel_size</code>）</td>
+<td>输入<code>(batch, C, H, W)</code> → 输出<code>(batch, C, H//stride, W//stride)</code></td>
+<td><code>nn.MaxPool2d(2, 2)</code>（尺寸减半）</td>
+</tr>
+<tr>
+<td><code>nn.AvgPool2d(...)</code></td>
+<td>2D 平均池化</td>
+<td>同<code>MaxPool2d</code></td>
+<td>同<code>MaxPool2d</code>，但取区域平均值</td>
+<td><code>nn.AvgPool2d(2, 2)</code>（LeNet-5 中使用）</td>
+</tr>
+</tbody></table>
+<h3 id="四、模型训练与评估"><a href="#四、模型训练与评估" class="headerlink" title="四、模型训练与评估"></a>四、模型训练与评估</h3><h4 id="1-损失函数与优化器"><a href="#1-损失函数与优化器" class="headerlink" title="1. 损失函数与优化器"></a>1. 损失函数与优化器</h4><table>
+<thead>
+<tr>
+<th>类 &#x2F; 函数</th>
+<th>功能描述</th>
+<th>参数说明</th>
+<th>输入 &#x2F; 输出</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>nn.CrossEntropyLoss()</code></td>
+<td>交叉熵损失（分类任务，含 SoftMax）</td>
+<td>可选<code>weight</code>：类别权重；<code>reduction</code>：损失聚合方式（默认<code>&#39;mean&#39;</code>）</td>
+<td>输入<code>(batch_size, num_classes)</code>和标签<code>(batch_size,)</code> → 输出标量损失</td>
+<td><code>criterion = nn.CrossEntropyLoss()</code> → <code>loss = criterion(outputs, labels)</code></td>
+</tr>
+<tr>
+<td><code>nn.MSELoss()</code></td>
+<td>均方误差损失（回归任务）</td>
+<td>同<code>CrossEntropyLoss</code></td>
+<td>输入<code>(batch_size, ...)</code>和目标<code>(batch_size, ...)</code> → 输出标量损失</td>
+<td><code>criterion = nn.MSELoss()</code> → 用于线性回归</td>
+</tr>
+<tr>
+<td><code>optim.Adam(params, lr=0.001)</code></td>
+<td>Adam 优化器</td>
+<td><code>params</code>：模型参数（<code>model.parameters()</code>）；<code>lr</code>：学习率</td>
+<td>优化器对象，用于更新参数</td>
+<td><code>optimizer = optim.Adam(model.parameters(), lr=0.001)</code></td>
+</tr>
+<tr>
+<td><code>optim.SGD(params, lr=0.01, momentum=0)</code></td>
+<td>SGD 优化器</td>
+<td><code>momentum</code>：动量（如<code>0.9</code>，加速收敛）；<code>weight_decay</code>：权重衰减（正则化）</td>
+<td>优化器对象</td>
+<td><code>optim.SGD(model.parameters(), lr=0.1, momentum=0.9)</code></td>
+</tr>
+<tr>
+<td><code>optimizer.zero_grad()</code></td>
+<td>清空梯度（避免累积）</td>
+<td>无参数</td>
+<td>无返回值，梯度清零</td>
+<td>训练循环中，前向传播前调用</td>
+</tr>
+<tr>
+<td><code>optimizer.step()</code></td>
+<td>更新参数（基于梯度）</td>
+<td>无参数</td>
+<td>无返回值，按优化器规则更新参数</td>
+<td>反向传播（<code>loss.backward()</code>）后调用</td>
+</tr>
+</tbody></table>
+<h4 id="2-训练与评估流程"><a href="#2-训练与评估流程" class="headerlink" title="2. 训练与评估流程"></a>2. 训练与评估流程</h4><table>
+<thead>
+<tr>
+<th>方法 &#x2F; 函数</th>
+<th>功能描述</th>
+<th>参数说明</th>
+<th>效果</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>model.train()</code></td>
+<td>切换模型至训练模式（启用 Dropout、BatchNorm 更新）</td>
+<td>无参数</td>
+<td>模型进入训练状态</td>
+<td>训练循环开始时调用</td>
+</tr>
+<tr>
+<td><code>model.eval()</code></td>
+<td>切换模型至评估模式（关闭 Dropout、固定 BatchNorm）</td>
+<td>无参数</td>
+<td>模型进入推理状态</td>
+<td>测试前调用</td>
+</tr>
+<tr>
+<td><code>torch.max(input, dim)</code></td>
+<td>沿指定维度取最大值（用于获取预测结果）</td>
+<td><code>input</code>：张量；<code>dim</code>：维度（如<code>1</code>表示沿类别维度）</td>
+<td>返回<code>(最大值, 索引)</code>，索引为预测类别</td>
+<td><code>_, predicted = torch.max(outputs, 1)</code> → <code>predicted</code>为预测标签</td>
+</tr>
+</tbody></table>
+<h3 id="五、辅助工具与可视化"><a href="#五、辅助工具与可视化" class="headerlink" title="五、辅助工具与可视化"></a>五、辅助工具与可视化</h3><h4 id="1-模型分析与保存"><a href="#1-模型分析与保存" class="headerlink" title="1. 模型分析与保存"></a>1. 模型分析与保存</h4><table>
+<thead>
+<tr>
+<th>函数 &#x2F; 方法</th>
+<th>功能描述</th>
+<th>参数说明</th>
+<th>输出 &#x2F; 效果</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>torchsummary.summary(model, input_size)</code></td>
+<td>打印网络结构与参数量</td>
+<td><code>model</code>：模型；<code>input_size</code>：输入形状（如<code>(1,28,28)</code>）</td>
+<td>打印各层名称、输出形状、参数量</td>
+<td><code>summary(model, (1,28,28))</code>（MNIST 输入）</td>
+</tr>
+<tr>
+<td><code>torch.save(model.state_dict(), path)</code></td>
+<td>保存模型权重</td>
+<td><code>model.state_dict()</code>：模型参数字典；<code>path</code>：保存路径（如<code>&#39;model.pth&#39;</code>）</td>
+<td>无返回值，权重保存为文件</td>
+<td><code>torch.save(model.state_dict(), &#39;cnn.pth&#39;)</code></td>
+</tr>
+<tr>
+<td><code>model.load_state_dict(torch.load(path))</code></td>
+<td>加载模型权重</td>
+<td><code>torch.load(path)</code>：加载保存的参数字典</td>
+<td>无返回值，模型加载权重</td>
+<td><code>model.load_state_dict(torch.load(&#39;cnn.pth&#39;))</code></td>
+</tr>
+</tbody></table>
+<h4 id="2-Matplotlib-可视化"><a href="#2-Matplotlib-可视化" class="headerlink" title="2. Matplotlib 可视化"></a>2. Matplotlib 可视化</h4><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>功能描述</th>
+<th>参数说明</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>plt.plot(x, y, label)</code></td>
+<td>绘制折线图（如损失 &#x2F; 准确率曲线）</td>
+<td><code>x</code>：x 轴数据；<code>y</code>：y 轴数据；<code>label</code>：图例标签</td>
+<td><code>plt.plot(epochs, train_losses, label=&#39;训练损失&#39;)</code></td>
+</tr>
+<tr>
+<td><code>plt.imshow(img, cmap)</code></td>
+<td>显示图像（如 MNIST 样本）</td>
+<td><code>img</code>：图像数据（2D 数组）；<code>cmap</code>：颜色映射（如<code>&#39;gray&#39;</code>灰度图）</td>
+<td><code>plt.imshow(images[i].squeeze(), cmap=&#39;gray&#39;)</code></td>
+</tr>
+<tr>
+<td><code>plt.title(text)</code></td>
+<td>设置图表标题</td>
+<td><code>text</code>：标题文本</td>
+<td><code>plt.title(f&#39;预测: &#123;predicted[i]&#125;\n真实: &#123;labels[i]&#125;&#39;)</code></td>
+</tr>
+<tr>
+<td><code>plt.show()</code></td>
+<td>显示图表</td>
+<td>无参数</td>
+<td>弹出窗口显示绘制的图表</td>
+</tr>
+</tbody></table>
+<h3 id="六、核心工作流总结"><a href="#六、核心工作流总结" class="headerlink" title="六、核心工作流总结"></a>六、核心工作流总结</h3><ol>
+<li><p><strong>数据准备</strong>：用<code>torchvision.datasets</code>加载数据集，<code>transforms</code>定义预处理，<code>DataLoader</code>批量加载。</p>
+</li>
+<li><p><strong>模型构建</strong>：继承<code>nn.Module</code>，定义卷积层、全连接层等，实现<code>forward</code>前向传播。</p>
+</li>
+<li><p><strong>训练循环</strong>：</p>
+</li>
+</ol>
+<ul>
+<li><p>切换训练模式（<code>model.train()</code>）；</p>
+</li>
+<li><p>前向传播计算输出→计算损失→清零梯度→反向传播→更新参数；</p>
+</li>
+<li><p>记录损失和准确率。</p>
+</li>
+</ul>
+<ol>
+<li><p><strong>评估</strong>：切换评估模式（<code>model.eval()</code>），用<code>with torch.no_grad()</code>禁止梯度计算，计算测试准确率。</p>
+</li>
+<li><p><strong>可视化</strong>：用 Matplotlib 绘制训练曲线，展示预测结果；用<code>torchsummary</code>和<code>torch.profiler</code>分析模型。</p>
+</li>
+</ol>
+<p>通过以上工具的配合，可完成从数据处理到模型部署的完整深度学习任务。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://www.whyc.fun">TDppy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://www.whyc.fun/2025/Q3/pytorch-deep-learning-common-functions-summary/">https://www.whyc.fun/2025/Q3/pytorch-deep-learning-common-functions-summary/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://www.whyc.fun" target="_blank">潘业成的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Python/">Python</a><a class="post-meta__tags" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a><a class="post-meta__tags" href="/tags/PyTorch/">PyTorch</a></div><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/Q4/on-chip-network-special-discussion-one-development-history-of-on-chip-bus/" title="【片上网络专题讨论一】 片上总线的发展历程"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">【片上网络专题讨论一】 片上总线的发展历程</div></div><div class="info-2"><div class="info-item-1">闲言稍叙我在研二的2023年10月开始接触片上网络，中间也学习过一段时间超标量CPU设计，也算都是相关的课题。随着研究生毕业，也许以后不一定能再用到这块的知识，就想着趁着最近有时间，把这块的知识整理整理输出到社区，发挥一点余热也好过留在我的脑子里，在岁月的橱柜中逐渐吃灰。相比于写学位论文所要求的格式完美、结果丰满，我可能更喜欢写博客，因为可以更加充分和完整地表述在研究过程中经历的种种思考，而不是只是给出一个完美的答案。我希望用相对口语化的表述来讲清楚我理解的片上总线以及片上网络，并无偿分享所做的片上网络仿真器设计以及电路设计，因此这个系列会带有比较多的个人观点，可能有许多未必正确，有兴趣的朋友点个关注不迷路。 片上总线的发展随着芯片上晶体管数量的变多，对于连接片上各模块的总线要求也在提高。高带宽、高可靠、低延迟、可扩展、低功耗是片上总线关心的重点指标。 首先出现的总线应当是点到点互联，也就是将需要通信的模块直接连起来，比如CPU和内存之间用一个512bits的总线连接。从芯片后端物理实现的角度来说，总线的本质是金属，可以传导信号。但是点到点互联的问题是，在不进行数据传输的时候，显...</div></div></div></a><a class="pagination-related" href="/2025/Q2/exception-handling-header-file-not-found-header-file-red-when-cmake-in-clion-ide/" title="【异常处理】Clion IDE中cmake时头文件找不到 头文件飘红"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">【异常处理】Clion IDE中cmake时头文件找不到 头文件飘红</div></div><div class="info-2"><div class="info-item-1">如图所示是我的clion项目目录 我自定义的data_structure.h和func_declaration.h在unit_test.c中无法检索到 cmakelists.txt配置文件如下所示： 123456789101112131415161718192021222324252627282930cmake_minimum_required(VERSION 3.30)project(noc C)#设置头文件的目录include_directories($&#123;CMAKE_SOURCE_DIR&#125;/header)set(CMAKE_C_STANDARD 11)add_executable(noc        header/func_declaration.h        header/data_structure.h        src/design/router.c        src/design/main.c        src/design/memory_oper.c        src/design/io_utils.c        src...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">TDppy</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">130</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/TDppy"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/TDppy" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2287015934@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">如何呢，又能怎。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#PyTorch-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E6%80%BB%E7%BB%93"><span class="toc-number">1.</span> <span class="toc-text">PyTorch 深度学习常用函数总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81PyTorch-%E6%A0%B8%E5%BF%83%E6%93%8D%E4%BD%9C%EF%BC%88%E5%9F%BA%E7%A1%80%E5%BC%A0%E9%87%8F%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%B1%82%E5%AF%BC%EF%BC%89"><span class="toc-number">1.0.1.</span> <span class="toc-text">一、PyTorch 核心操作（基础张量与自动求导）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%BC%A0%E9%87%8F%E5%88%9B%E5%BB%BA%E4%B8%8E%E6%93%8D%E4%BD%9C"><span class="toc-number">1.0.1.1.</span> <span class="toc-text">1. 张量创建与操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%BC%A0%E9%87%8F%E8%BF%90%E7%AE%97"><span class="toc-number">1.0.1.2.</span> <span class="toc-text">2. 张量运算</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E8%AE%BE%E5%A4%87%E6%93%8D%E4%BD%9C"><span class="toc-number">1.0.1.3.</span> <span class="toc-text">3. 设备操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E8%87%AA%E5%8A%A8%E6%B1%82%E5%AF%BC%EF%BC%88Autograd%EF%BC%89"><span class="toc-number">1.0.1.4.</span> <span class="toc-text">4. 自动求导（Autograd）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%95%B0%E6%8D%AE%E5%8A%A0%E8%BD%BD%E4%B8%8E%E9%A2%84%E5%A4%84%E7%90%86%EF%BC%88torchvision-PyTorch%EF%BC%89"><span class="toc-number">1.0.2.</span> <span class="toc-text">二、数据加载与预处理（torchvision + PyTorch）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%95%B0%E6%8D%AE%E9%9B%86%EF%BC%88torchvision-datasets%EF%BC%89"><span class="toc-number">1.0.2.1.</span> <span class="toc-text">1. 数据集（torchvision.datasets）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%95%B0%E6%8D%AE%E5%8F%98%E6%8D%A2%EF%BC%88torchvision-transforms%EF%BC%89"><span class="toc-number">1.0.2.2.</span> <span class="toc-text">2. 数据变换（torchvision.transforms）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%95%B0%E6%8D%AE%E5%8A%A0%E8%BD%BD%E5%99%A8%EF%BC%88torch-utils-data-DataLoader%EF%BC%89"><span class="toc-number">1.0.2.3.</span> <span class="toc-text">3. 数据加载器（torch.utils.data.DataLoader）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%9E%84%E5%BB%BA%EF%BC%88torch-nn%EF%BC%89"><span class="toc-number">1.0.3.</span> <span class="toc-text">三、神经网络构建（torch.nn）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%9F%BA%E7%A1%80%E7%BB%84%E4%BB%B6"><span class="toc-number">1.0.3.1.</span> <span class="toc-text">1. 基础组件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-CNN-%E7%BB%84%E4%BB%B6"><span class="toc-number">1.0.3.2.</span> <span class="toc-text">2. CNN 组件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E4%B8%8E%E8%AF%84%E4%BC%B0"><span class="toc-number">1.0.4.</span> <span class="toc-text">四、模型训练与评估</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E4%B8%8E%E4%BC%98%E5%8C%96%E5%99%A8"><span class="toc-number">1.0.4.1.</span> <span class="toc-text">1. 损失函数与优化器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E8%AE%AD%E7%BB%83%E4%B8%8E%E8%AF%84%E4%BC%B0%E6%B5%81%E7%A8%8B"><span class="toc-number">1.0.4.2.</span> <span class="toc-text">2. 训练与评估流程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7%E4%B8%8E%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-number">1.0.5.</span> <span class="toc-text">五、辅助工具与可视化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%A8%A1%E5%9E%8B%E5%88%86%E6%9E%90%E4%B8%8E%E4%BF%9D%E5%AD%98"><span class="toc-number">1.0.5.1.</span> <span class="toc-text">1. 模型分析与保存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-Matplotlib-%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-number">1.0.5.2.</span> <span class="toc-text">2. Matplotlib 可视化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%A0%B8%E5%BF%83%E5%B7%A5%E4%BD%9C%E6%B5%81%E6%80%BB%E7%BB%93"><span class="toc-number">1.0.6.</span> <span class="toc-text">六、核心工作流总结</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-riscv-plic/" title="【操作系统】RISC-V PLIC总结">【操作系统】RISC-V PLIC总结</a><time datetime="2026-01-18T15:25:18.000Z" title="发表于 2026-01-18 15:25:18">2026-01-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/hello-world/" title="欢迎来到潘业成的博客">欢迎来到潘业成的博客</a><time datetime="2026-01-12T00:00:00.000Z" title="发表于 2026-01-12 00:00:00">2026-01-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-what-happens-after-pressing-enter-in-xv6-operating-system/" title="【操作系统】xv6操作系统中按下键盘回车后发生的事情">【操作系统】xv6操作系统中按下键盘回车后发生的事情</a><time datetime="2026-01-10T11:58:18.000Z" title="发表于 2026-01-10 11:58:18">2026-01-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-hand-write-xv6-operating-system-types-h-param-h-memlayout-h-riscv-h-defs-h-header-file-analysis/" title="【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析">【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析</a><time datetime="2026-01-06T23:02:58.000Z" title="发表于 2026-01-06 23:02:58">2026-01-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/Q4/operating-system-hand-write-xv6-operating-system-entry-s-and-start-c-analysis/" title="【操作系统】手撸xv6操作系统——entry.S和start.c解析">【操作系统】手撸xv6操作系统——entry.S和start.c解析</a><time datetime="2025-12-30T15:57:42.000Z" title="发表于 2025-12-30 15:57:42">2025-12-30</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By TDppy</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4-b1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4-b1"></script><script src="/js/main.js?v=5.5.4-b1"></script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

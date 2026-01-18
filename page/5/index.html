@@ -1,0 +1,281 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>潘业成的博客 - 欢迎来到我的个人博客，在这里我将分享我的技术经验、项目心得以及生活点滴。希望我的文章能为你带来帮助和启发！微信:fancymvc,QQ:2287015934</title><meta name="author" content="TDppy"><meta name="copyright" content="TDppy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="潘业成的博客">
+<meta property="og:url" content="https://www.whyc.fun/page/5/index.html">
+<meta property="og:site_name" content="潘业成的博客">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.whyc.fun/img/butterfly-icon.png">
+<meta property="article:author" content="TDppy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.whyc.fun/img/butterfly-icon.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://www.whyc.fun/page/5/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4-b1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '潘业成的博客',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(https://oss.012700.xyz/butterfly/2024/10/index.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">130</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(https://oss.012700.xyz/butterfly/2024/10/index.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">潘业成的博客</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">潘业成的博客</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/TDppy" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2287015934@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/Q3/installation-configuration-dual-system-win10-ubuntu-installation-method/" title="【安装配置】双系统(Win10+Ubuntu)安装方法">【安装配置】双系统(Win10+Ubuntu)安装方法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-07-29T00:06:01.000Z" title="发表于 2022-07-29 00:06:01">2022-07-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">环境配置</a></span></div><div class="content">(双系统安装方法)  在阅读ubuntu官网的教程并实践后，我成功将自己的win10主机加上了Ubuntu操作系统，实现了开机自由选择win或linux系统。本教程较为简略，详情请参照参考文献中的官方文档！！  为了实现该目标，我们需要的软硬件包括：硬件：1.win10电脑一台(或Mac)，具有30G以上空闲磁盘空间。2.U盘一个，具有8G以上空闲空间(可能5G也行 建议8G)软件：1.ubuntu的镜像文件2.利用ubuntu镜像制作U盘引导软件(bootable usb stick)的转换软件  第一步，我们需要下载ubuntu的iso镜像文件到本地，ubuntu-22.04-desktop-amd64.iso下载地址    第二步，下载镜像-U盘引导的转换软件balenaEtcher-Portable-1.7.9.exebalenaEtcher-Portable-1.7.9.exe 下载地址 第三步，插入U盘，利用Balena转换软件，将iso镜像文件一键flash到U盘中这里务必注意备份U盘中已有的内容，因为该过程会将U盘清空，最终只剩下ubuntu的系统引导文件！！！ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/Q2/exception-handling-word2016-appears-this-feature-seems-to-have-been-interrupted-and-needs-repair/" title="【异常处理】Word2016 出现“此功能看似已中断 并需要修复">【异常处理】Word2016 出现“此功能看似已中断 并需要修复</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-05-13T09:24:01.000Z" title="发表于 2022-05-13 09:24:01">2022-05-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/">异常处理</a></span></div><div class="content">刚刚安装并激活了office2016，每次打开Word文档都会提示  “很抱歉，此功能看似已中断，并需要修复，请使用Windows 控制面板中的“程序和功能”选项修复Microsoft Office”。  亲测使用控制面板的办法无效，下面是网络上查到的解决办法　　解决方法： 　　1. 按Windows 键+R键，输入“regedit”打开注册表。 　　2.找到以下键值：HKEY_CURRENT_USER\SOFTWARE\Microsoft\Office\16.0\Word\Options 　　在右侧新建DWORD值，取名为NoReReg，并输入数值为1 并确认，关闭注册表编辑器，重新打开Word 即可。 </div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/Q2/program-life-a-common-computer-student-undergraduate-library-borrowing-book-list/" title="【程序人生】一位普通计算机学生本科期间图书馆借阅书籍清单~">【程序人生】一位普通计算机学生本科期间图书馆借阅书籍清单~</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-04-10T20:54:41.000Z" title="发表于 2022-04-10 20:54:41">2022-04-10</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%A8%8B%E5%BA%8F%E4%BA%BA%E7%94%9F/">程序人生</a></span></div><div class="content">快毕业了，由于毕设和机器学习有关，而我对Python和相关算法都不熟悉，光在网上看视频和论文十分吃力，所以今天去图书馆借了几本书，顺便和前台查询了下我这几年借过的书（一共也没多少，单纯总结下）    书名 责任人 借书时间    大学计算机基础 王贺明，翟萍 2018-9-28   我的精神家园 王小波 2018-11-21   Python程序设计 董付国 2019-2-20   零点起飞学C++ 秦广军 2019-2-20   易经鉴用：古今易学谋略详解 陈元伦 2019-3-14   微机原理与接口技术 姚琳等 2019-2-20   创客入门：Arduino智能电路设计 石慧 2019-2-26   渗透测试入门实战 (美)Sean-Philip Oriyano 2019-4-4   黑客攻防从入门到精通 宗立波 2019-4-4   C语言程序设计实训 包锋，李锋 2019-4-8   C语言程序设计上机指导 夏涛 2019-4-8   华为技术认证HCNA网络技术实验指南 华为技术有限公司 2019-4-28   局域网组建 王登州，刘小龙 2019-4-12   征...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/Q1/postgraduate-exam-retest-linux-quick-review/" title="【考研复试】Linux快速过一遍">【考研复试】Linux快速过一遍</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-03-25T21:13:35.000Z" title="发表于 2022-03-25 21:13:35">2022-03-25</time></span></div><div class="content">1.Linux根目录下有什么？&#x2F;bin 所有用户的可执行文件&#x2F;sbin 系统管理员的可执行文件&#x2F;boot Linux内核以及引导加载系统的文件&#x2F;dev 所有设备文件&#x2F;etc 系统配置文件&#x2F;lib 共享库文件&#x2F;mnt 挂载点&#x2F;usr  2.文件的路径：①特别地， ~指的是&#x2F;home&#x2F;username  是用户的主目录② 绝对路径③ 相对路径 3.Shell命令：shell是什么？shell是运行在Linux内核之上的命令解释器，是用户与系统交互的接口，最常用的是bash 命令格式命令名 选项 参数列表命令分类：内部命令和外部命令，可以用type来判断是否是内部命令内部命令是shell实现的命令，外部命令是可执行二进制文件  基础命令：mkdir -p &#x2F;demo&#x2F;test-p表示创建一系列目录rmdir同理 ls-a表示所有文件，含以.开头的隐藏文件-l以详细方式展示文件属性-i显示文件的iNode号-R连同子目录内容一起列出 cp-u 若目标文件比源文件旧，则更...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2021/Q4/postgraduate-exam-review-introduction-to-algorithms-chapter-10-basic-data-structures-10-1-5-simple-implementation-of-deque/" title="【考研复习】《算法导论》第十章 基本数据结构 10.1-5 双端队列的简易实现">【考研复习】《算法导论》第十章 基本数据结构 10.1-5 双端队列的简易实现</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-12-14T13:53:22.000Z" title="发表于 2021-12-14 13:53:22">2021-12-14</time></span></div><div class="content">题目在《算法导论》机械工业出版社 中文版 第三版 P131 10.1-5题目描述题目描述：栈插入和删除元素只能在同一端进行，队列的插入和删除操作分别在两端进行，与它们不同的是有一种双端队列(deque)，其插入和删除都可以在两端进行。写出4个时间均为O（1）的过程，分别实现在双端队列的两端插入和删除元素的操作，该队列是用一个数组来实现的。 双端队列的概念： 双端队列是一个限定插入和删除操作的数据结构，具有队列和栈的性质。 双端队列中的元素可以从两端弹出，其限定插入和删除操作在表的两端进行。 双端队列是指允许两端都可以进行入队和出队操作的队列，其元素的逻辑结构仍是线性结构。将队列的两端分别称为前端和后端，两端都可以入队和出队。 如果限定双端队列从某个端点插入的元素只能从该端点删除，则该双端队列就蜕变为两个栈底相邻的栈了。  简易实现根据概念，我做了简单的实现： 如图，先只考虑左侧进出，右侧是对称的，可以类比。让head虚指，进而当插入时可以直接将元素x放入指向的位置，然后左移head即可。当出队时，让head先自增，再将指向的4出队即可。值得注意的是，当head-tail&#x3D...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2021/Q4/postgraduate-exam-review-understanding-the-term-probability-density/" title="【考研复习】“概率密度”一词的理解">【考研复习】“概率密度”一词的理解</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-10-16T15:13:46.000Z" title="发表于 2021-10-16 15:13:46">2021-10-16</time></span></div><div class="content">密度在没有接触概率论这门课之前，我的理解就是m&#x2F;v，描述了在单位大小的空间内物体的量有多少。但是在概率论中，概率密度和物理上的密度不是一回事，它的定义是这样的：   这段话看起来就像是说：“你对f(t)积个分，要是积出来和分布函数一样，这玩意就是概率密度了。”  我tm为啥要积分？你就直说概率密度是啥不行吗？  在经过一些题目和我自己的思考以后，我想用一个比较能令人接受的描述来说我的理解。首先假设有一个长为L米的磁铁杆，记左端为O，右端为M，中间任取一点为P，因为P是任取的，所以OP可记为变量x，如图所示： 当x不同时，OP段的质量也不同，可用函数F(x)来表示OM段的质量： 显然，在x&lt;2时，随着x的增加质量增加的很快，在x∈(2,L)时，随着x的增加质量增加的速度减缓。这是因为磁铁杆在不同点处的材质不可能完全相同，导致单位长度内的密度是不一样的，所以会出现这样的现象。可以对F(x)求导，进而描述磁铁杆的线密度。现在把一把铁沙从空中随机的位置撒下，假设质量越大的地方磁力越强，那么铁沙集中在左侧的概率也就比较大。上面的F(x)就可以看做是铁沙位置小于x的概率，即分...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2021/Q4/postgraduate-exam-review-indefinite-integral-formulas-summarized-a-memorable-method/" title="【考研复习】不定积分公式，总结了个好记的办法">【考研复习】不定积分公式，总结了个好记的办法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-10-14T13:17:41.000Z" title="发表于 2021-10-14 13:17:41">2021-10-14</time></span></div><div class="content"> 有一段时间没有做积分了，基本的公式遗忘比较严重，今天把《汤家凤高数讲义》上的不定积分公式又回顾了一下，总结了一个记忆的方法。  可以分为两类记忆，一类是三角函数和反三角函数的求导，这一类公式只要把 12sin cos tan csc sec cotarc sin arc cos arc tan  全部求导一遍就可以得到公式，求导会了也就会了积分；另一类是分式的积分，这一类中根据带根号和不带根号、相加还是相减可以再次进行分类。   此外，积分公式在形式上是有规律的，比如csc x和sec x的求导结果、tan x 和cot x的求导结果你可以观察一下。第二类中结果为反三角函数的公式其实也就是把a^2提取出来了。 </div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2021/Q3/program-life-dont-want-to-study-just-write-casually/" title="【程序人生】不想学习，随便写写">【程序人生】不想学习，随便写写</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-09-21T20:54:10.000Z" title="发表于 2021-09-21 20:54:10">2021-09-21</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%A8%8B%E5%BA%8F%E4%BA%BA%E7%94%9F/">程序人生</a></span></div><div class="content">这篇博客，随便写写，也懒得整理格式，看到的人随便看看~一个月没写博客了，不是因为没有东西可以写，而是大四了，随之而来的是扑面而来的焦虑感。大一大二幻想着出国，一开始家里也说不上同意说不上反对，后来随着时间的推移，平时上课没时间学习雅思、放假了又被迫考驾照，最重要的是，自己没有那份坚定不移的决心和习惯，总而言之是停留在嘴上了。到了大三下学期，也就是今年三月，我突然发现周围的人都在积极准备考研了，上课的时候也有同学在认真地背英语单词和做极限题。我知道我可能是要做一个选择了，还能怎么办呢，就没听说过六级没过的人去考雅思的。于是四月份报了校内的考研辅导班，效果或许在其次了，对我来说，有这样一个形式让自己开始复习考研是重点。7月，在竞赛的教室安心复习了一个月，8月，一会南京疫情了、一会郑州发大水了，被迫”涝疫”结合，实验室因为疫情防控关门了，我很依赖环境，在宿没有自控力，不想学习。期间又参加了ny的夏令营，听着学校邀请的大牛们分享的各种科研方向和进展，我一脸懵的过了十天。或许是为了寻求逃避考研吧，我反而认真地准备了夏令营的答辩，最终拿了优秀学员，聊以弥补这段尴尬的时光了。逝者如斯、白驹过隙...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2021/Q3/c-drive-exploded-using-partition-assistant-expand-c-drive/" title="【C盘炸了】利用分区助手扩充C盘">【C盘炸了】利用分区助手扩充C盘</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-08-13T16:44:19.000Z" title="发表于 2021-08-13 16:44:19">2021-08-13</time></span></div><div class="content">概要：C盘就剩一百多MB了，平时也没安装软件在C盘，不知道怎么会这样。不得不研究下怎么把其他盘的空闲空间移动到C盘。在网上下了分区助手，将E盘移了20多G过去，暂解燃眉之急。   分区助手下载链接移动步骤下载好以后解压，  点击PACNPro.exe，安装好了以后打开，下面操作很简单，看几个图就知道了。    确定以后点击左上角的提交  点击执行  点执行后，选择windows PE的重启。 注意：如果你不是选择【分配空闲空间】，而是【合并分区】，那至少两个分区都要预留5G，否则会报错。 </div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2021/Q3/happy-pat-1007-maximum-subsequence-sum-test-point-3-pit/" title="【快乐PAT】1007 最大子序列和 测试点3的坑">【快乐PAT】1007 最大子序列和 测试点3的坑</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-08-07T19:38:13.000Z" title="发表于 2021-08-07 19:38:13">2021-08-07</time></span></div><div class="content">我被第三个测试点卡了很久，搜到的应该都是被这个点坑的，我直接说重点。 考虑这样几个测试用例： 11 2 一个数字2，最大子序列和是2，首位数字也是2，故正确输出2 2 2（在我的程序中，错误地输出了2 0 0） 11 0 毫无疑问 0 0 0 11 -3 根据题意，如果序列中全是负的，把最大子序列和当做0，并输出首尾数字，故这里应该输出0 -3 -3 以上是关于测试点3的，下面再给几个比较坑的数据，你们自己看能不能把这些过了：  输入：3 2 2 0 输出：4  2 2       输入：3 0 1 2 输出：3 0 2  我的代码比较混乱，就不恶心大家了，以下是《算法笔记》一书中给出的代码。   </div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2021/Q3/happy-pat-pat1005-easy-problem/" title="【快乐PAT】PAT1005(简单题)">【快乐PAT】PAT1005(简单题)</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-07-06T14:47:40.000Z" title="发表于 2021-07-06 14:47:40">2021-07-06</time></span></div><div class="content">题目描述原题链接点我    题解与代码将输入的数字串每个数字求个累加和，然后将累加和的每个数字以英文单词的形式输出。涉及知识点：字符-48为数字 和 sprintf   这两个是我用到的主要知识点，也可能有别的做法不用sprintf。AC代码： 1234567891011121314151617181920212223242526272829303132333435363738394041424344#include &lt;iostream&gt;#include &lt;cstring&gt;using namespace std;int sum;int calcForSum(char *s)&#123;	int slen=strlen(s);	for(int i=0;i&lt;slen;i++)&#123;		sum+=*(s+i)-48;	&#125;	return sum; &#125;void output(char *arr)&#123;	int len=strlen(arr);	for(int i=0;i&lt;len;i++)&#123;		if(i&gt;0)...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2021/Q3/happy-pat-pat1002-summary/" title="【快乐PAT】PAT1002总结">【快乐PAT】PAT1002总结</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-07-05T15:45:43.000Z" title="发表于 2021-07-05 15:45:43">2021-07-05</time></span></div><div class="content">题目(链接点我)    代码和解析：详细解析在下面AC代码的注释中已给出，主要的坑在于判断系数是否为0 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849#include &lt;iostream&gt;using namespace std;//a[i][0]标记指数i是否使用过  a[i][1]是该指数对应的系数double a[1005][2];/** * PAT 1002 * 给出多项式A和B的每项系数和指数，求A+B的每项系数和指数。 * 输出时注意要和输入时一样，按照指数递减的顺序输出。 *  * WARN： * 这题的坑在于，如A式中有2*x^3 ,B式中有-2*x^3，则A+B时x^3项也就不存在了。 * 因此最后统计多少个不同项和输出时都要注意该项系数是否为0 * 此外，题目中&quot;Please be accurate to 1 decimal place&quot;的含义是保留1位小数，用.1f * */int main()&#...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2021/Q3/happy-pat-pat1001-summary/" title="【快乐PAT】PAT1001总结">【快乐PAT】PAT1001总结</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-07-05T11:43:47.000Z" title="发表于 2021-07-05 11:43:47">2021-07-05</time></span></div><div class="content">题目(点我)   代码与解析求a+b，难点在每三位用,分割 如1,001,500详细题解写在下面AC代码注释中了，核心知识点是利用%和&#x2F;分割数值和 %03d不满3位自动补0 1234567891011121314151617181920212223242526272829303132#include &lt;iostream&gt;#include &lt;cstring&gt;#include &lt;cstdlib&gt;#include &lt;cmath&gt;using namespace std;/** *  PAT 1001 *  a和b在+1,000,000和-1,000,000之间 *  这意味着二者之和在-2,000,000到+2,000,000之间 *  可以根据和的大小分段考虑： *  ·如果|sum|∈[0,1k)，无需逗号，直接输出 *  ·如果|sum|∈[1k,100w)，就加个逗号，利用%和/分割数值。 *  ·如果|sum|∈[100w,200w],加两个逗号，利用%和/分割数值。 * *  WARN：以1050为例，如果输出1050...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2021/Q2/final-exam-review-intel-multi-core-programming/" title="【期末复习】Intel多核程序设计">【期末复习】Intel多核程序设计</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-06-26T19:30:14.000Z" title="发表于 2021-06-26 19:30:14">2021-06-26</time></span></div><div class="content">Intel多核程序设计期末考试题型：1、简答题  6道×5分&#x3D;30分2、画图题  2道×10分&#x3D;20分3、程序题  5道×10分&#x3D;50分 一、简答题1.按照硬件工艺可以将计算机的发展分为哪五代？第一代（1946-1958）：电子管数字计算机;第二代（1958-1964）：晶体管数字计算机;第三代（1964-1971）：集成电路数字计算机，如：SSI&#x2F;MSI;第四代 (1971-1990）：大规模&#x2F;超大规模集成电路数字计算机，如：LSI&#x2F;VLSI;第五代 (1991-）：甚大规模集成电路数字计算机，如：ULSISSI &#x2F; MSI：Small&#x2F;Medium Scale IntegrationLSI &#x2F; VLSI: Large Scale Integration&#x2F;Very Large Scale IntegrationULSI: Ultra Large Scale Integration 2.可以从哪两个角度对微处理器进行分类？并分别列举出相应的类型。微处理器的分类： （1）按照CPU处...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2021/Q2/exception-handling-tomcat-not-found-in-idea-plus-sign/" title="【异常处理】IDEA 加号中找不到Tomcat">【异常处理】IDEA 加号中找不到Tomcat</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-05-21T19:54:58.000Z" title="发表于 2021-05-21 19:54:58">2021-05-21</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/">异常处理</a></span></div><div class="content">今天金主爸爸的Tomcat突然不能用了，估计他也没有乱操作，我分析原因应该是快过期了，IDEA自动把你的Web插件给停了。 </div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/4/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/#content-inner">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/#content-inner">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/#content-inner">9</a><a class="extend next" rel="next" href="/page/6/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">TDppy</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">130</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/TDppy"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/TDppy" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2287015934@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">如何呢，又能怎。</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-riscv-plic/" title="【操作系统】RISC-V PLIC总结">【操作系统】RISC-V PLIC总结</a><time datetime="2026-01-18T15:25:18.000Z" title="发表于 2026-01-18 15:25:18">2026-01-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/hello-world/" title="欢迎来到潘业成的博客">欢迎来到潘业成的博客</a><time datetime="2026-01-12T00:00:00.000Z" title="发表于 2026-01-12 00:00:00">2026-01-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-what-happens-after-pressing-enter-in-xv6-operating-system/" title="【操作系统】xv6操作系统中按下键盘回车后发生的事情">【操作系统】xv6操作系统中按下键盘回车后发生的事情</a><time datetime="2026-01-10T11:58:18.000Z" title="发表于 2026-01-10 11:58:18">2026-01-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-hand-write-xv6-operating-system-types-h-param-h-memlayout-h-riscv-h-defs-h-header-file-analysis/" title="【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析">【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析</a><time datetime="2026-01-06T23:02:58.000Z" title="发表于 2026-01-06 23:02:58">2026-01-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/Q4/operating-system-hand-write-xv6-operating-system-entry-s-and-start-c-analysis/" title="【操作系统】手撸xv6操作系统——entry.S和start.c解析">【操作系统】手撸xv6操作系统——entry.S和start.c解析</a><time datetime="2025-12-30T15:57:42.000Z" title="发表于 2025-12-30 15:57:42">2025-12-30</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+      <i class="fas fa-angle-right"></i></a>
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/"><span class="card-category-list-name">异常处理</span><span class="card-category-list-count">15</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><span class="card-category-list-name">操作系统</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%B0%E5%AD%97IC%E8%AE%BE%E8%AE%A1/"><span class="card-category-list-name">数字IC设计</span><span class="card-category-list-count">38</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%89%87%E4%B8%8A%E7%BD%91%E7%BB%9C/"><span class="card-category-list-name">片上网络</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"><span class="card-category-list-name">环境配置</span><span class="card-category-list-count">14</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%A8%8B%E5%BA%8F%E4%BA%BA%E7%94%9F/"><span class="card-category-list-name">程序人生</span><span class="card-category-list-count">7</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%BC%96%E7%A8%8B%E4%B8%8E%E7%AE%97%E6%B3%95/"><span class="card-category-list-name">编程与算法</span><span class="card-category-list-count">17</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"><span class="card-category-list-name">网络安全</span><span class="card-category-list-count">1</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/%E8%B0%83%E8%AF%95/" style="font-size: 1.5em; color: #99a9bf">调试</a> <a href="/tags/%E4%BA%A4%E6%8D%A2%E6%9C%BA/" style="font-size: 1.21em; color: #999ea4">交换机</a> <a href="/tags/%E8%BF%90%E7%AE%97%E7%AC%A6/" style="font-size: 1.1em; color: #999">运算符</a> <a href="/tags/%E5%9B%BE%E6%A0%87%E5%BA%93/" style="font-size: 1.1em; color: #999">图标库</a> <a href="/tags/%E5%A4%9A%E8%BF%9B%E7%A8%8B/" style="font-size: 1.16em; color: #999b9e">多进程</a> <a href="/tags/IDEA/" style="font-size: 1.1em; color: #999">IDEA</a> <a href="/tags/Verilog/" style="font-size: 1.44em; color: #99a7ba">Verilog</a> <a href="/tags/EDA%E5%B7%A5%E5%85%B7/" style="font-size: 1.39em; color: #99a4b4">EDA工具</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 1.16em; color: #999b9e">转载</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 1.27em; color: #99a0a9">C语言</a> <a href="/tags/%E7%89%87%E4%B8%8A%E7%BD%91%E7%BB%9C/" style="font-size: 1.1em; color: #999">片上网络</a> <a href="/tags/SSL%E8%AF%81%E4%B9%A6/" style="font-size: 1.1em; color: #999">SSL证书</a> <a href="/tags/Dev-C/" style="font-size: 1.1em; color: #999">Dev-C++</a> <a href="/tags/Office/" style="font-size: 1.1em; color: #999">Office</a> <a href="/tags/DFT/" style="font-size: 1.1em; color: #999">DFT</a> <a href="/tags/%E4%B8%AD%E6%96%AD/" style="font-size: 1.1em; color: #999">中断</a> <a href="/tags/Web%E5%BC%80%E5%8F%91/" style="font-size: 1.1em; color: #999">Web开发</a> <a href="/tags/%E6%80%BB%E7%BA%BF/" style="font-size: 1.1em; color: #999">总线</a> <a href="/tags/z3/" style="font-size: 1.1em; color: #999">z3</a> <a href="/tags/CMake/" style="font-size: 1.1em; color: #999">CMake</a> <a href="/tags/%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90/" style="font-size: 1.16em; color: #999b9e">时序分析</a> <a href="/tags/Git/" style="font-size: 1.16em; color: #999b9e">Git</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 1.1em; color: #999">前端</a> <a href="/tags/OFDM/" style="font-size: 1.1em; color: #999">OFDM</a> <a href="/tags/PyTorch/" style="font-size: 1.1em; color: #999">PyTorch</a> <a href="/tags/Java/" style="font-size: 1.33em; color: #99a2af">Java</a> <a href="/tags/CCNA/" style="font-size: 1.27em; color: #99a0a9">CCNA</a> <a href="/tags/AXI/" style="font-size: 1.1em; color: #999">AXI</a> <a href="/tags/%E7%9F%AD%E4%BF%A1/" style="font-size: 1.1em; color: #999">短信</a> <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" style="font-size: 1.1em; color: #999">读书笔记</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E4%BB%8B%E7%BB%8D/" style="font-size: 1.1em; color: #999">博客介绍</a> <a href="/tags/%E5%8F%8C%E7%B3%BB%E7%BB%9F/" style="font-size: 1.1em; color: #999">双系统</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" style="font-size: 1.1em; color: #999">网络安全</a> <a href="/tags/Tomcat/" style="font-size: 1.1em; color: #999">Tomcat</a> <a href="/tags/GitHub/" style="font-size: 1.1em; color: #999">GitHub</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 1.1em; color: #999">算法</a> <a href="/tags/Mill/" style="font-size: 1.1em; color: #999">Mill</a> <a href="/tags/%E6%95%99%E5%AD%A6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 1.21em; color: #999ea4">教学操作系统</a> <a href="/tags/%E9%93%BE%E6%8E%A5/" style="font-size: 1.1em; color: #999">链接</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB/" style="font-size: 1.1em; color: #999">中间人攻击</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      <a class="card-more-btn" href="/archives/"
+            title="查看更多">
+            <i class="fas fa-angle-right"></i>
+          </a>
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/01/">
+            <span class="card-archive-list-date">
+              一月 2026
+            </span>
+            <span class="card-archive-list-count">4</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/12/">
+            <span class="card-archive-list-date">
+              十二月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/10/">
+            <span class="card-archive-list-date">
+              十月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/08/">
+            <span class="card-archive-list-date">
+              八月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/04/">
+            <span class="card-archive-list-date">
+              四月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/10/">
+            <span class="card-archive-list-date">
+              十月 2024
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/09/">
+            <span class="card-archive-list-date">
+              九月 2024
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/08/">
+            <span class="card-archive-list-date">
+              八月 2024
+            </span>
+            <span class="card-archive-list-count">4</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">130</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-01-18T08:18:23.548Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By TDppy</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4-b1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4-b1"></script><script src="/js/main.js?v=5.5.4-b1"></script><div class="js-pjax"><script>window.typedJSFn = {
+  init: str => {
+    window.typed = new Typed('#subtitle', Object.assign({
+      strings: str,
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50,
+    }, null))
+  },
+  run: subtitleType => {
+    if (true) {
+      if (typeof Typed === 'function') {
+        subtitleType()
+      } else {
+        btf.getScript('https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.min.js').then(subtitleType)
+      }
+    } else {
+      subtitleType()
+    }
+  },
+  processSubtitle: (content, extraContents = []) => {
+    if (true) {
+      const sub = ["灵魂的渴望是命运的先知","Soul driven is the desire of the prophet","斯人若彩虹，遇上方知有","Every once in a while,you find someone who is iridescent."].slice()
+
+      if (extraContents.length > 0) {
+        sub.unshift(...extraContents)
+      }
+
+      if (typeof content === 'string') {
+        sub.unshift(content)
+      } else if (Array.isArray(content)) {
+        sub.unshift(...content)
+      }
+
+      sub.length > 0 && typedJSFn.init(sub)
+    } else {
+      document.getElementById('subtitle').textContent = typeof content === 'string' ? content :
+        (Array.isArray(content) && content.length > 0 ? content[0] : '')
+    }
+  }
+}
+btf.addGlobalFn('pjaxSendOnce', () => { typed.destroy() }, 'typedDestroy')
+</script><script>function subtitleType () {
+  typedJSFn.processSubtitle(["灵魂的渴望是命运的先知","Soul driven is the desire of the prophet","斯人若彩虹，遇上方知有","Every once in a while,you find someone who is iridescent."])
+}
+typedJSFn.run(subtitleType)</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

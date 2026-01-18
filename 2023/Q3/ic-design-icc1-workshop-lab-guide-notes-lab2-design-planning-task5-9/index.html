@@ -1,0 +1,219 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【IC设计】ICC1 workshop lab guide 学习笔记——Lab 2 Design Planning Task5-9 | 潘业成的博客</title><meta name="author" content="TDppy"><meta name="copyright" content="TDppy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="ICC1 workshop lab guide2.5 Create P&#x2F;G Rings Around Macro GroupsIn the task following this one you will use “Power Network Synthesis” (PNS) toautomate the creation of power&#x2F;ground core and in">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【IC设计】ICC1 workshop lab guide 学习笔记——Lab 2 Design Planning Task5-9">
+<meta property="og:url" content="https://www.whyc.fun/2023/Q3/ic-design-icc1-workshop-lab-guide-notes-lab2-design-planning-task5-9/index.html">
+<meta property="og:site_name" content="潘业成的博客">
+<meta property="og:description" content="ICC1 workshop lab guide2.5 Create P&#x2F;G Rings Around Macro GroupsIn the task following this one you will use “Power Network Synthesis” (PNS) toautomate the creation of power&#x2F;ground core and in">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.whyc.fun/img/butterfly-icon.png">
+<meta property="article:published_time" content="2023-07-08T10:51:29.000Z">
+<meta property="article:modified_time" content="2026-01-18T08:18:02.991Z">
+<meta property="article:author" content="TDppy">
+<meta property="article:tag" content="EDA工具">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.whyc.fun/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "【IC设计】ICC1 workshop lab guide 学习笔记——Lab 2 Design Planning Task5-9",
+  "url": "https://www.whyc.fun/2023/Q3/ic-design-icc1-workshop-lab-guide-notes-lab2-design-planning-task5-9/",
+  "image": "https://www.whyc.fun/img/butterfly-icon.png",
+  "datePublished": "2023-07-08T10:51:29.000Z",
+  "dateModified": "2026-01-18T08:18:02.991Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "TDppy",
+      "url": "https://www.whyc.fun"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://www.whyc.fun/2023/Q3/ic-design-icc1-workshop-lab-guide-notes-lab2-design-planning-task5-9/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4-b1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【IC设计】ICC1 workshop lab guide 学习笔记——Lab 2 Design Planning Task5-9',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(https://oss.012700.xyz/butterfly/2024/10/index.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">130</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://oss.012700.xyz/butterfly/2024/10/index.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">潘业成的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">【IC设计】ICC1 workshop lab guide 学习笔记——Lab 2 Design Planning Task5-9</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">【IC设计】ICC1 workshop lab guide 学习笔记——Lab 2 Design Planning Task5-9</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-07-08T10:51:29.000Z" title="发表于 2023-07-08 10:51:29">2023-07-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-01-18T08:18:02.991Z" title="更新于 2026-01-18 08:18:02">2026-01-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%B0%E5%AD%97IC%E8%AE%BE%E8%AE%A1/">数字IC设计</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="ICC1-workshop-lab-guide"><a href="#ICC1-workshop-lab-guide" class="headerlink" title="ICC1 workshop lab guide"></a>ICC1 workshop lab guide</h1><h2 id="2-5-Create-P-G-Rings-Around-Macro-Groups"><a href="#2-5-Create-P-G-Rings-Around-Macro-Groups" class="headerlink" title="2.5 Create P&#x2F;G Rings Around Macro Groups"></a>2.5 Create P&#x2F;G Rings Around Macro Groups</h2><p>In the task following this one you will use “Power Network Synthesis” (PNS) to<br>automate the creation of power&#x2F;ground core and individual macro rings, as well as<br>vertical and horizontal straps. If you want to create rings around groups of macros,<br>that is done prior to PNS, which is what this task will accomplish.<br>在接下来的任务中，你将使用电源网络综合去自动地创建P&#x2F;G核心和单个宏环，以及垂直和水平绑带。<br>如果你想在宏组周围创建环，则需要在PNS之前完成，这就是这次要完成的任务。</p>
+<ol>
+<li>We have created a script to create P&#x2F;G rings around six groups of macros. Take a look at the file located at .&#x2F;scripts&#x2F;macro_pg_rings.tcl. The P&#x2F;G rings are created by:<br>我们已经创建了一个脚本来在六组宏周围创建P&#x2F;G环。看<code>./scripts/macro_pg_rings.tcl</code>这个文件。这个P&#x2F;G环被创建为：</li>
+</ol>
+<ul>
+<li>Defining a rough “region” that encompasses a group of macros<br>定义围绕一组宏的粗糙区域</li>
+<li>Defining the block ring layers, widths and offsets<br>定义块环的层数、宽度和偏移量</li>
+<li>Creating (committing) the metal routes<br>创建金属绕线</li>
+</ul>
+<ol start="2">
+<li>Execute the script:</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> ./scripts/macro_pg_rings.tcl</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>Take a look at the rings that have been created.<br> Notice that the “PLL” macro in the upper-left corner is the only macro that<br>does not have a P&#x2F;G ring around it - this will be done by PNS.<br>Notice also that, in addition to the rings around the macro groups, there are<br>vertical&#x2F;horizontal straps in between the macros. This is nice feature of the<br>create_fp_group_block__ring command. It can be disabled with the<br>-skip_strap option, if preferred.<br>请注意，左上角的“PLL”宏是唯一一个没有P&#x2F;G环的宏——这将由PNS完成。<br>还要注意，除了宏组周围的环之外，宏之间还有垂直&#x2F;水平带。这是create_fp_group_block__ring命令的一个很好的特性。如果愿意，可以使用-skip_strap选项禁用它。</li>
+</ol>
+<h2 id="2-6-Power-Network-Synthesis"><a href="#2-6-Power-Network-Synthesis" class="headerlink" title="2.6 Power Network Synthesis"></a>2.6 Power Network Synthesis</h2><p><strong>实际上是做power plan</strong></p>
+<p>The power “grid” needs to be completed. You could create P&#x2F;G straps that feed the<br>center of the core, a core ring, as well as rings around individual macros “manually”<br>(similar to the way the macro group rings were created in the previous task), but to<br>do so would require you to guess the appropriate number and width of the straps, as<br>well as the width of the core ring to achieve acceptably low IR drop. Instead, you<br>will use IC Compiler’s Power Network Synthesis (PNS) capability to automatically<br>determine the number and width of straps, as well as the core ring width, based on a<br>target IR drop. You can experiment with different goals, and when acceptable<br>results are achieved you then “commit” or physically implement the power grid.</p>
+<p>电力“网格”需要被完成。您可以创建P&#x2F;G带，围绕core的中心、核心环以及单个宏周围的环提供“手动”(类似于在前面的任务中创建宏组环的方式)，但要这样做，您需要猜测带的适当数量和宽度，以及核心环的宽度，以实现可接受的低IR下降。</p>
+<p>相反，您将使用IC编译器的电源网络综合(PNS)功能来自动确定带的数量和宽度，以及核心环宽度，基于目标IR下降。您可以尝试不同的目标，当获得可接受的结果时，您就可以“提交”或实际实现电网。</p>
+<h2 id="2-7-Check-the-Timing"><a href="#2-7-Check-the-Timing" class="headerlink" title="2.7 Check the Timing"></a>2.7 Check the Timing</h2><p>Now that the power plan is done,you have to perform a few more steps to complete the placement and to verify max-delay(setup)timing.<br>现在电源规划已经做好了，你需要去执行一些步骤来完成布局并验证最大时延时序。<br>1.If you are not able to see the standard cells in the LayoutWindow,go to the “Visibility” panel in the left margin of the LayoutWindow,expand the “Cell” listing by selecting the “+” sign,and make sure that “Standard” is checked.<br>如果你在LayoutWindow中看不到标准单元，在LayoutWindow左侧边缘的”可视化“面板中，通过”+”号展开Cell，确保“Standard”被选中。</p>
+<p>2.PNS created many straps on METAL4 and METAL5,which were placed over the standard cells.It can be advantageous to prevent standard cell placement under the straps——this reduces the likelihood of congestion along the straps,and reduces crosstalk effects on the power nets.Apply a “complete” power net(pnet) blockage on the straps,then run the virtual flat placement again to take pnet setting into account:<br>PNS用METAL 4和5创建了许多放在标准单元上的电源条带。阻止标准单元布局在条带下是有利的——这减少了条带上阻塞的可能，并且减少了在电源网线上的串扰效应。应用”complete”电源网络障碍在条带上，然后再次运行vfp来讲pnet设置生效：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set_pnet_options -complete <span class="string">&quot;METAL4 METAL5&quot;</span></span><br><span class="line">create_fp_placement -timing_driven -no_hierarchy_gravity</span><br></pre></td></tr></table></figure>
+
+<p>Verify that there are no longer any standard cells under the straps<br>验证不再有标准单元在straps下面</p>
+<p>3.Since we are about to check timing,perform actual global routing by running the following command:<br>在我们要去做时序检测时，执行全局routing通过下面的命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">route_zrt_global</span><br></pre></td></tr></table></figure>
+<p>4.Bring up the global route congestion map(no need to “reload”).There should not be any congestion issues.Close the panel(click on small “x”).<br>打开全局布线阻塞图。应该不会有任何阻塞提醒。关闭面板（点击小x）</p>
+<p>5.Generate a maximum-delay(setup) timing report using the “view” procedure (it will take a few seconds to update the timing and generate the report):<br>使用view工具生成最大延时(setup)timing report</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">v report_timing</span><br></pre></td></tr></table></figure>
+
+<p>Use the search machanism to highlight or tag the word “slack”:<br>使用搜索机制去高亮或点击”slack“<br><strong>RE Search-&gt;</strong> type in “<strong>slack</strong>“ <strong>-&gt; Tag</strong>.</p>
+<p>Scroll up&#x2F;down.You should see the words <strong>slack(MET)</strong> followed by a positive number at the end of each of the 8 clock group paths.This design meets setup timing.Click on Close Search then Close Window.<br>上下滚动。你会在每8个时钟组路径后看到一个正数<strong>slack(MET)</strong>。<br>这个设计满足setup timing。点击关闭搜索窗口。</p>
+<p>6.To fix any timing violations(and design rule violations),if there were any,you would invoke the following command and repeat global route.Feel free to do so,if you have the time,otherwise skip to the “Save the cell” step:<br>为了修复可能存在的时序违例（和设计规则违例），你需要调用下面的命令并重复全局布线。如果有时间就做一下，没时间就跳过。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">optimize_fp_timing -fix_design_rule</span><br></pre></td></tr></table></figure>
+
+<p>7.Save the cell as <strong>floorplan_complete</strong><br>将cell保存为floorplan_complete</p>
+<h2 id="2-8-Write-Out-the-DEF-Floorplan-File"><a href="#2-8-Write-Out-the-DEF-Floorplan-File" class="headerlink" title="2.8 Write Out the DEF Floorplan File"></a>2.8 Write Out the DEF Floorplan File</h2><p>1.Remove all the placed standard cells then write out the floorplan file in DEF format.The DEF floorplan file will be used by Design Compiler Topographical to re-synthesize the design using the floorplan you just designed,and will again be used by IC Compiler to re-create the floorplan when reading in the re-synthesized netlist(next Task):<br>移除所有已布局的标准单元，然后将floorplan文件写出到DEF格式中。DEF格式的floorpaln文件会被DCT使用来用你刚刚的floorplan重新综合设计，并且将被ICC在读入重新综合的网表时再次创建floorplan：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">remove_placement -object_type standard_cell</span><br><span class="line">write_def -verison 5.6 -placed -all_vias -blockages -routed_nets -rows_tracks_gcells -specialnets -output design_data/ORCA.def</span><br></pre></td></tr></table></figure>
+
+<p>2.Verify that the DEF file has been created in the design_data directory.<br>验证DEF文件是否被创建在design_data目录中</p>
+<p>3.Close the design library without saving the design in momory.<br>不保存内存中的设计，关闭设计库。</p>
+<h2 id="2-9-Create-2nd-Pass-Design-Ready-for-Placement"><a href="#2-9-Create-2nd-Pass-Design-Ready-for-Placement" class="headerlink" title="2.9 Create 2nd Pass Design Ready for Placement"></a>2.9 Create 2nd Pass Design Ready for Placement</h2><p>We will now pretend that this design was re-synthesized from RTL code using Design Compiler Topographical mode,along with the floorplan description captured in the DEF file generated in the previous task.You have been given a 2nd pass netlist,ORCA_2.v,along with an updated constraints file ,ORCA_2.sdc.<br>我们现在要假设这个设计是由DCT工具由RTL代码重新综合出来的，带有先前任务中被DEF文件记录的floorplan信息。你被给出了第二版netlist，ORCA_2.v，以及一个更新的约束文件，ORCA_2.sdc</p>
+<p>1.Perform data setup using the new ORCA netlist and constraints:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> scripts/2nd_pass_setup.tcl</span><br></pre></td></tr></table></figure>
+
+<p>This script executes the following standard data setup steps:</p>
+<img src="/2023/Q3/ic-design-icc1-workshop-lab-guide-notes-lab2-design-planning-task5-9/1.png" class="">
+
+
+<p>2.Read the DEF file that was written out in the previous task:<br>读入刚刚写入的DEF文件<br>read_def design_data&#x2F;ORCA.def</p>
+<p>3.Re-apply the pnet options that you applied after Power Network Synthesis in Task 6,step 1.These settings are not captured in the DEF file:<br>重新应用以下命令，这个命令之前执行过，DEF没记录。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set_pnet_options -complete <span class="string">&quot;METAL4 METAL5&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>4.Save the cell as <strong>ready_for_placement</strong>.<br>保存这个cell为<strong>ready_for_placement</strong></p>
+<p>5.Exit IC Compiler.<br>退出ICC</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://www.whyc.fun">TDppy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://www.whyc.fun/2023/Q3/ic-design-icc1-workshop-lab-guide-notes-lab2-design-planning-task5-9/">https://www.whyc.fun/2023/Q3/ic-design-icc1-workshop-lab-guide-notes-lab2-design-planning-task5-9/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://www.whyc.fun" target="_blank">潘业成的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/EDA%E5%B7%A5%E5%85%B7/">EDA工具</a></div><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2023/Q3/ic-design-dc-tool-target-link-synthetic-symbol-libraries/" title="【IC设计】DC工具的target、link、synthetic、symbol库"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">【IC设计】DC工具的target、link、synthetic、symbol库</div></div><div class="info-2"><div class="info-item-1">Specifying Libraries You use dc_shell variables to specify the libraries used by Design  Compiler.Table 4-1 lists  the variables for each library type as well  as the typical file extension for the library.  你使用dc_shell变量去指定dc要使用的库。下表列出了每种库以及对应的常用扩展名    Library type Variable Default File extension    Target library target_library {“your_library.db”} .db   Link library link_library {“*”,”your_library.db”} .db   Symbol library symbol_library {“your_library.sdb”} .sdb   DesignWare library synthe...</div></div></div></a><a class="pagination-related" href="/2023/Q2/ic-design-icc1-workshop-lab-guide-notes-lab1-data-setup-basic-flow/" title="【IC设计】ICC1 workshop lab guide 学习笔记——Lab1 Data Setup&amp;Basic Flow"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">【IC设计】ICC1 workshop lab guide 学习笔记——Lab1 Data Setup&Basic Flow</div></div><div class="info-2"><div class="info-item-1">Lab1 Data Setup&amp;Basic Flow1.1 Create a Milkyway librarylab1_data_setup目录下有.synopsys_dc.setupscriptsrisc_chip.mwdesign_data 其中.synopsys_dc.setup中设置了若干变量，设置了搜索路径、verilog设计、sdc、def、tech_file、tlu、db库等的路径，以方便在后面使用icc时能直接调用。 启动icc_shell后会自动调用.synopsys_dc.setup，可以通过printvar来验证变量是否已设置 了解了.synopsys_dc.setup后，下面就创建设计库（即Milkyway library)写入库的路径、库名、tf文件路径、添加reference libraries，这些都可以使用刚刚加载的变量名来替代。其中reference libraries需要添加ref&#x2F;mw_lib&#x2F;的sc、ram16x128、io三个库 这些库是Milkyway参考库：  信息是以被称为“views”的形式存储的，例如...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2023/Q2/ic-design-synopsys-digital-ic-design-flow/" title="【IC设计】Synopsys数字IC设计流程"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-11</div><div class="info-item-2">【IC设计】Synopsys数字IC设计流程</div></div><div class="info-2"><div class="info-item-1">数字IC设计流程数字IC设计流程如下：需求-&gt;芯片定义specification-&gt;算法描述（一般用C++)-&gt;RTL级描述（Verilog）-&gt;HDL功能仿真-&gt;逻辑综合（DC）-&gt;门级仿真（仿真网表）-&gt;形式化验证&gt;物理设计（floor plan，place，cts，route等）-&gt;签核（chip finish，StarRC提取寄生RC，PT时序分析，DRC&amp;LVS等） 前端设计RTL编写和HDL仿真  用Verilog实现芯片各个模块的功能，如写一个四位乘法器multipleir.v和它的测试文件tb_multiplier.v并使用VCS编译并仿真，使用Verdi查看波形，通过RTL功能验证。 逻辑综合使用DC（Design Compiler）综合RTL代码，生成门级网表（Gate-Level Netlist）。   具体来说，DC实际上将RTL先翻译成 了内部可识别的GTECH形式的中间代码，然后再根据所提供的目标库和设计约束来映射和优化出最终的网表文件netlist.v。     在使用Synopsys D...</div></div></div></a><a class="pagination-related" href="/2023/Q3/ic-design-icc-workshop-lab1-data-prep-basic-flow-script-summary/" title="【IC设计】ICC workshop Lab1 数据准备&amp;基本流程 【脚本总结】"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-04</div><div class="info-item-2">【IC设计】ICC workshop Lab1 数据准备&amp;基本流程 【脚本总结】</div></div><div class="info-2"><div class="info-item-1">Task 1 Create a Milkyway library先进入lab1_data_setup目录，打开icc_shell，创建项目 1create_mw_lib -technology $tech_file -mw_reference_library &quot;$mw_path/sc $mw_path/io $mw_path/ram16x128&quot; -bus_naming_style &#123;[%d]&#125; -open $my_mw_lib  然后ls risc_chip.mw查看是否创建成功  Task 2 Load the Nestlist,TLU+,Constraints and Controls12345678910111213141516171819import_designs $verilog_file -format verilog -top $top_designset_tlu_plus_files -max_tluplus $tlup_max -min_tluplus $tlup_min -tech2itf_map $tlup_map...</div></div></div></a><a class="pagination-related" href="/2023/Q3/ic-design-synopsys-milkyway-database-design-library-dependency-library/" title="【IC设计】Synopsys的Milkyway数据库、设计库、依赖库"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-04</div><div class="info-item-2">【IC设计】Synopsys的Milkyway数据库、设计库、依赖库</div></div><div class="info-2"><div class="info-item-1">Milkyway database for Synopsys Galaxy Design PlatformSynopsys Galaxy Design Platform（Synopsys银河设计平台）包括的系列工具有：DC、ICC、StarRC、IC Validator、PrimeRail、Milkyway Environment Milkyway（银河）数据库是为Synopsys银河设计平台服务的数据库，方便工具直接通过接口对数据库进行读写，而不是以ASCII文件中间文件的形式进行操作。 不同EDA软件和mw库的交互：** DC** write_milkyway或write_verilog或write_ddc  即DC的写出可以用mw格式 ICC从mw中读入physical design info和library cell info 写出也用mw格式mw环境可以将GDSII,IASIS和LEF&#x2F;DEF转换成为新的lib cell，从而成为mw格式 StarRC从mw库中读入物理设计信息来执行寄生RC参数提取，并写回到数据库中，方便ICC读取和使用时序信息。 mw的基本...</div></div></div></a><a class="pagination-related" href="/2023/Q3/ic-design-icc-workshop-lab1-data-prep-basic-flow-script-summary-1/" title="【IC设计】ICC workshop Lab1 数据准备&amp;基本流程 【脚本总结】 (1)"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-04</div><div class="info-item-2">【IC设计】ICC workshop Lab1 数据准备&amp;基本流程 【脚本总结】 (1)</div></div><div class="info-2"><div class="info-item-1">Task 1 Create a Milkyway library先进入lab1_data_setup目录，打开icc_shell，创建项目 1create_mw_lib -technology $tech_file -mw_reference_library &quot;$mw_path/sc $mw_path/io $mw_path/ram16x128&quot; -bus_naming_style &#123;[%d]&#125; -open $my_mw_lib  然后ls risc_chip.mw查看是否创建成功  Task 2 Load the Nestlist,TLU+,Constraints and Controls12345678910111213141516171819import_designs $verilog_file -format verilog -top $top_designset_tlu_plus_files -max_tluplus $tlup_max -min_tluplus $tlup_min -tech2itf_map $tlup_map...</div></div></div></a><a class="pagination-related" href="/2023/Q2/ic-design-icc1-workshop-lab-guide-notes-lab1-data-setup-basic-flow/" title="【IC设计】ICC1 workshop lab guide 学习笔记——Lab1 Data Setup&amp;Basic Flow"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-21</div><div class="info-item-2">【IC设计】ICC1 workshop lab guide 学习笔记——Lab1 Data Setup&amp;Basic Flow</div></div><div class="info-2"><div class="info-item-1">Lab1 Data Setup&amp;Basic Flow1.1 Create a Milkyway librarylab1_data_setup目录下有.synopsys_dc.setupscriptsrisc_chip.mwdesign_data 其中.synopsys_dc.setup中设置了若干变量，设置了搜索路径、verilog设计、sdc、def、tech_file、tlu、db库等的路径，以方便在后面使用icc时能直接调用。 启动icc_shell后会自动调用.synopsys_dc.setup，可以通过printvar来验证变量是否已设置 了解了.synopsys_dc.setup后，下面就创建设计库（即Milkyway library)写入库的路径、库名、tf文件路径、添加reference libraries，这些都可以使用刚刚加载的变量名来替代。其中reference libraries需要添加ref&#x2F;mw_lib&#x2F;的sc、ram16x128、io三个库 这些库是Milkyway参考库：  信息是以被称为“views”的形式存储的，例如...</div></div></div></a><a class="pagination-related" href="/2023/Q3/ic-design-dc-tool-target-link-synthetic-symbol-libraries/" title="【IC设计】DC工具的target、link、synthetic、symbol库"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-01</div><div class="info-item-2">【IC设计】DC工具的target、link、synthetic、symbol库</div></div><div class="info-2"><div class="info-item-1">Specifying Libraries You use dc_shell variables to specify the libraries used by Design  Compiler.Table 4-1 lists  the variables for each library type as well  as the typical file extension for the library.  你使用dc_shell变量去指定dc要使用的库。下表列出了每种库以及对应的常用扩展名    Library type Variable Default File extension    Target library target_library {“your_library.db”} .db   Link library link_library {“*”,”your_library.db”} .db   Symbol library symbol_library {“your_library.sdb”} .sdb   DesignWare library synthe...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">TDppy</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">130</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/TDppy"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/TDppy" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2287015934@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">如何呢，又能怎。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ICC1-workshop-lab-guide"><span class="toc-number">1.</span> <span class="toc-text">ICC1 workshop lab guide</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5-Create-P-G-Rings-Around-Macro-Groups"><span class="toc-number">1.1.</span> <span class="toc-text">2.5 Create P&#x2F;G Rings Around Macro Groups</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-6-Power-Network-Synthesis"><span class="toc-number">1.2.</span> <span class="toc-text">2.6 Power Network Synthesis</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-7-Check-the-Timing"><span class="toc-number">1.3.</span> <span class="toc-text">2.7 Check the Timing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-8-Write-Out-the-DEF-Floorplan-File"><span class="toc-number">1.4.</span> <span class="toc-text">2.8 Write Out the DEF Floorplan File</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-9-Create-2nd-Pass-Design-Ready-for-Placement"><span class="toc-number">1.5.</span> <span class="toc-text">2.9 Create 2nd Pass Design Ready for Placement</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-riscv-plic/" title="【操作系统】RISC-V PLIC总结">【操作系统】RISC-V PLIC总结</a><time datetime="2026-01-18T15:25:18.000Z" title="发表于 2026-01-18 15:25:18">2026-01-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/hello-world/" title="欢迎来到潘业成的博客">欢迎来到潘业成的博客</a><time datetime="2026-01-12T00:00:00.000Z" title="发表于 2026-01-12 00:00:00">2026-01-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-what-happens-after-pressing-enter-in-xv6-operating-system/" title="【操作系统】xv6操作系统中按下键盘回车后发生的事情">【操作系统】xv6操作系统中按下键盘回车后发生的事情</a><time datetime="2026-01-10T11:58:18.000Z" title="发表于 2026-01-10 11:58:18">2026-01-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-hand-write-xv6-operating-system-types-h-param-h-memlayout-h-riscv-h-defs-h-header-file-analysis/" title="【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析">【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析</a><time datetime="2026-01-06T23:02:58.000Z" title="发表于 2026-01-06 23:02:58">2026-01-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/Q4/operating-system-hand-write-xv6-operating-system-entry-s-and-start-c-analysis/" title="【操作系统】手撸xv6操作系统——entry.S和start.c解析">【操作系统】手撸xv6操作系统——entry.S和start.c解析</a><time datetime="2025-12-30T15:57:42.000Z" title="发表于 2025-12-30 15:57:42">2025-12-30</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By TDppy</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4-b1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4-b1"></script><script src="/js/main.js?v=5.5.4-b1"></script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

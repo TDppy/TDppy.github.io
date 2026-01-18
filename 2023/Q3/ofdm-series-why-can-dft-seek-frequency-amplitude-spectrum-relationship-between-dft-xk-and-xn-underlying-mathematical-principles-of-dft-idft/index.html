@@ -1,0 +1,184 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【OFDM系列】DFT为什么能求频率幅度谱？DFT后的X[k]与x(n)幅度的关系？DFT_IDFT底层数学原理？ | 潘业成的博客</title><meta name="author" content="TDppy"><meta name="copyright" content="TDppy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="问题引入上面是DFT和IDFT的公式，IDFT先不谈。在实践中常使用FFT算法来快速算出DFT，获得时域采样信号x(n)的频率幅度谱。例如： 12N&#x3D;1500;xn&#x3D;0.5*sin(2*pi*75&#x2F;N*n)+3*cos(2*pi*40&#x2F;N*n)+0.7*sin(2*pi*350&#x2F;N*n); 上面这个时域采样信号xn由三个频率叠加而成，我们知道频率的概念是1秒信号经过了多少个周期，那么我们假设采样率">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【OFDM系列】DFT为什么能求频率幅度谱？DFT后的X[k]与x(n)幅度的关系？DFT_IDFT底层数学原理？">
+<meta property="og:url" content="https://www.whyc.fun/2023/Q3/ofdm-series-why-can-dft-seek-frequency-amplitude-spectrum-relationship-between-dft-xk-and-xn-underlying-mathematical-principles-of-dft-idft/index.html">
+<meta property="og:site_name" content="潘业成的博客">
+<meta property="og:description" content="问题引入上面是DFT和IDFT的公式，IDFT先不谈。在实践中常使用FFT算法来快速算出DFT，获得时域采样信号x(n)的频率幅度谱。例如： 12N&#x3D;1500;xn&#x3D;0.5*sin(2*pi*75&#x2F;N*n)+3*cos(2*pi*40&#x2F;N*n)+0.7*sin(2*pi*350&#x2F;N*n); 上面这个时域采样信号xn由三个频率叠加而成，我们知道频率的概念是1秒信号经过了多少个周期，那么我们假设采样率">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.whyc.fun/img/butterfly-icon.png">
+<meta property="article:published_time" content="2023-08-16T10:20:33.000Z">
+<meta property="article:modified_time" content="2026-01-18T08:18:03.050Z">
+<meta property="article:author" content="TDppy">
+<meta property="article:tag" content="DFT">
+<meta property="article:tag" content="OFDM">
+<meta property="article:tag" content="信号处理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.whyc.fun/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "【OFDM系列】DFT为什么能求频率幅度谱？DFT后的X[k]与x(n)幅度的关系？DFT_IDFT底层数学原理？",
+  "url": "https://www.whyc.fun/2023/Q3/ofdm-series-why-can-dft-seek-frequency-amplitude-spectrum-relationship-between-dft-xk-and-xn-underlying-mathematical-principles-of-dft-idft/",
+  "image": "https://www.whyc.fun/img/butterfly-icon.png",
+  "datePublished": "2023-08-16T10:20:33.000Z",
+  "dateModified": "2026-01-18T08:18:03.050Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "TDppy",
+      "url": "https://www.whyc.fun"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://www.whyc.fun/2023/Q3/ofdm-series-why-can-dft-seek-frequency-amplitude-spectrum-relationship-between-dft-xk-and-xn-underlying-mathematical-principles-of-dft-idft/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4-b1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【OFDM系列】DFT为什么能求频率幅度谱？DFT后的X[k]与x(n)幅度的关系？DFT_IDFT底层数学原理？',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(https://oss.012700.xyz/butterfly/2024/10/index.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">130</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://oss.012700.xyz/butterfly/2024/10/index.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">潘业成的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">【OFDM系列】DFT为什么能求频率幅度谱？DFT后的X[k]与x(n)幅度的关系？DFT_IDFT底层数学原理？</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">【OFDM系列】DFT为什么能求频率幅度谱？DFT后的X[k]与x(n)幅度的关系？DFT_IDFT底层数学原理？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-08-16T10:20:33.000Z" title="发表于 2023-08-16 10:20:33">2023-08-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-01-18T08:18:03.050Z" title="更新于 2026-01-18 08:18:03">2026-01-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%80%9A%E4%BF%A1%E7%B3%BB%E7%BB%9F/">通信系统</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="问题引入"><a href="#问题引入" class="headerlink" title="问题引入"></a>问题引入</h2><p><img src="/c4245f2374669972b1dfcc690cef7fb3.png" alt="在这里插入图片描述"><br>上面是DFT和IDFT的公式，IDFT先不谈。在实践中常使用FFT算法来快速算出DFT，获得时域采样信号x(n)的频率幅度谱。<br><strong>例如：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">N=<span class="number">1500</span>;</span><br><span class="line">xn=<span class="number">0.5</span>*<span class="built_in">sin</span>(<span class="number">2</span>*pi*<span class="number">75</span>/N*n)+<span class="number">3</span>*<span class="built_in">cos</span>(<span class="number">2</span>*pi*<span class="number">40</span>/N*n)+<span class="number">0.7</span>*<span class="built_in">sin</span>(<span class="number">2</span>*pi*<span class="number">350</span>/N*n);</span><br></pre></td></tr></table></figure>
+<p>上面这个时域采样信号xn由三个频率叠加而成，我们知道<strong>频率的概念</strong>是1秒信号经过了多少个周期，<br>那么我们假设采样率是<code>fs=1000</code>，共采样<code>N=1500</code>点，那么<code>0.5*sin(2*pi*75/N*n)</code>的频率即为<code>75*fs/N=50</code>，因此第一个信号频率为50。</p>
+<p>通过Matlab进行FFT，可以画出这样一张频率幅度谱：<br><img src="/f15297ec74d13b6a0d32ae1ac64e9474.png" alt="在这里插入图片描述"><br>这里就引申出我们的标题：<strong>DFT为什么能求频率幅度谱？DFT后的X[k]与x(n)幅度的关系？DFT&#x2F;IDFT底层数学原理？</strong><br>对于这个问题，我看了不少网上的博客、视频、书籍，总觉得讲的不清不楚，有人说X[k]的结果就是x(n)的幅度，有人说X[k]的结果除以N就是x(n)的幅度，有人说X[k]的结果除以N&#x2F;2就是x(n)的幅度，就没有一个比较清楚的证明到底X[k]的值和x(n)幅度的关系。<br><strong>如果你也对此有疑问，现在我证明给你看！</strong></p>
+<h2 id="铺垫一些小公式"><a href="#铺垫一些小公式" class="headerlink" title="铺垫一些小公式"></a>铺垫一些小公式</h2><p>要看懂我的证明，首先需要铺垫一些小公式，防止你不知道！<br><img src="/8e626dc6968c597f2ae8b9f944fe91bf.png" alt="在这里插入图片描述"></p>
+<h2 id="DFT公式证明"><a href="#DFT公式证明" class="headerlink" title="DFT公式证明"></a>DFT公式证明</h2><p>我将公式的证明整理成了PPT，下面我直接复制，在证明中使用到了上面铺垫的小公式，注意关联起来看就可以理解了！</p>
+<h3 id="DFT公式分解为4部分"><a href="#DFT公式分解为4部分" class="headerlink" title="DFT公式分解为4部分"></a>DFT公式分解为4部分</h3><p><img src="/bd70c807a23d281d759cc053cc3fd4a0.png" alt="在这里插入图片描述"></p>
+<h4 id="先考虑k1-0的情况"><a href="#先考虑k1-0的情况" class="headerlink" title="先考虑k1&#x3D;0的情况:"></a>先考虑k1&#x3D;0的情况:</h4><p><img src="/7ce8da81c906de1256e20ae46e743b79.png" alt="在这里插入图片描述"></p>
+<h4 id="再考虑k1≠0的情况"><a href="#再考虑k1≠0的情况" class="headerlink" title="再考虑k1≠0的情况:"></a>再考虑k1≠0的情况:</h4><p><img src="/14d7f5c35d28e2fa97b11a488cd5c70f.png" alt="在这里插入图片描述"><br><img src="/93bf801afbbd316d07d185d39781c540.png" alt="在这里插入图片描述"><br><img src="/fd6805795ecf0b576896897d2685555d.png" alt="在这里插入图片描述"><br><img src="/d7837eeb26648d6ffb6a1fdd0fca65f8.png" alt="在这里插入图片描述"><br><img src="/ab181746a8c84a4b39d885323267afc1.png" alt="在这里插入图片描述"></p>
+<h3 id="DFT计算后，X-k-与x-n-的关系："><a href="#DFT计算后，X-k-与x-n-的关系：" class="headerlink" title="DFT计算后，X(k)与x(n)的关系："></a>DFT计算后，X(k)与x(n)的关系：</h3><p><img src="/d4578828ffea0dc39b9264d62f723a9c.png" alt="在这里插入图片描述"><br>可以看到，DFT公式本质上可以完全拆成三角函数的计算，在此过程中利用<br><strong>高中的积化和差公式</strong>和<strong>三角函数在若干个周期的累加为0</strong>，<br>可以得到X[k]和原信号x(n)幅度的关系。</p>
+<h2 id="Matlab-FFT示例代码"><a href="#Matlab-FFT示例代码" class="headerlink" title="Matlab FFT示例代码"></a>Matlab FFT示例代码</h2><p>下面我们给出使用FFT对x(n)进行DFT计算后，绘制频率幅度谱的Matlab代码，看官可以发现，这上述公式的X(k)结果是<strong>完全对应</strong>的！</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">%功能说明：</span><br><span class="line">%生成时域采样信号<span class="number">0.5</span><span class="built_in">sin</span>(<span class="number">2</span>pi*k/N*n)</span><br><span class="line">%通过fft转化到频域，绘制频率幅度谱，横坐标是频率f=k*fs/N，纵坐标是实际幅度</span><br><span class="line">%再通过ifft转化回时域，绘制ifft结果信号，和原信号进行对比</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">%采样率<span class="number">1000</span></span><br><span class="line">fs=<span class="number">1000</span>;</span><br><span class="line"> </span><br><span class="line">%在N个采样点中，一共振动了k个周期</span><br><span class="line">k=<span class="number">75</span>;</span><br><span class="line"> </span><br><span class="line">%采样总点数</span><br><span class="line">N=<span class="number">1500</span>;</span><br><span class="line"> </span><br><span class="line">%n表示采样的第n个点</span><br><span class="line">n=<span class="number">0</span>:N<span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">%xn是采样得到的x(n)时域信号</span><br><span class="line">xn=<span class="number">0.5</span>*<span class="built_in">sin</span>(<span class="number">2</span>*pi*k/N*n)+<span class="number">3</span>*<span class="built_in">cos</span>(<span class="number">2</span>*pi*<span class="number">40</span>/N*n)+<span class="number">0.7</span>*<span class="built_in">sin</span>(<span class="number">2</span>*pi*<span class="number">350</span>/N*n);</span><br><span class="line"></span><br><span class="line">xk=fft(xn);</span><br><span class="line"></span><br><span class="line">%<span class="built_in">abs</span>是求模</span><br><span class="line">P2=<span class="built_in">abs</span>(xk/N);</span><br><span class="line">P1=P2(<span class="number">1</span>:N/<span class="number">2</span>+<span class="number">1</span>);</span><br><span class="line">P1(<span class="number">2</span>:end<span class="number">-1</span>)=<span class="number">2</span>*P1(<span class="number">2</span>:end<span class="number">-1</span>);</span><br><span class="line"> </span><br><span class="line">%半频谱 f=k*fs/N</span><br><span class="line">f=fs*(<span class="number">0</span>:(N/<span class="number">2</span>))/N;</span><br><span class="line">plot(f,P1) </span><br><span class="line">title(<span class="string">&quot;Single-Sided Amplitude Spectrum of X(t)&quot;</span>)</span><br><span class="line">xlabel(<span class="string">&quot;f (Hz)&quot;</span>)</span><br><span class="line">ylabel(<span class="string">&quot;|P1(f)|&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="IDFT公式证明"><a href="#IDFT公式证明" class="headerlink" title="IDFT公式证明"></a>IDFT公式证明</h2><p><img src="/dfbfd3c1ff7f6abfcecd14efa3ad09e0.png" alt="在这里插入图片描述"></p>
+<h2 id="Matlab调用FFT-IFFT并绘图"><a href="#Matlab调用FFT-IFFT并绘图" class="headerlink" title="Matlab调用FFT&#x2F;IFFT并绘图"></a>Matlab调用FFT&#x2F;IFFT并绘图</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">%功能说明：</span><br><span class="line">%生成时域采样信号<span class="number">0.5</span><span class="built_in">sin</span>(<span class="number">2</span>pi*k/N*n)</span><br><span class="line">%通过fft转化到频域，绘制频率幅度谱，横坐标是频率f=k*fs/N，纵坐标是实际幅度</span><br><span class="line">%再通过ifft转化回时域，绘制ifft结果信号，和原信号进行对比</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">%采样率<span class="number">1000</span></span><br><span class="line">fs=<span class="number">1000</span>;</span><br><span class="line"> </span><br><span class="line">%在N个采样点中，一共振动了k个周期</span><br><span class="line">k=<span class="number">75</span>;</span><br><span class="line"> </span><br><span class="line">%采样总点数</span><br><span class="line">N=<span class="number">1500</span>;</span><br><span class="line"> </span><br><span class="line">%n表示采样的第n个点</span><br><span class="line">n=<span class="number">0</span>:N<span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">%xn是采样得到的x(n)时域信号</span><br><span class="line">xn=<span class="number">0.5</span>*<span class="built_in">sin</span>(<span class="number">2</span>*pi*k/N*n)+<span class="number">3</span>*<span class="built_in">cos</span>(<span class="number">2</span>*pi*<span class="number">40</span>/N*n)+<span class="number">0.7</span>*<span class="built_in">sin</span>(<span class="number">2</span>*pi*<span class="number">350</span>/N*n);</span><br><span class="line"></span><br><span class="line">xk=fft(xn);</span><br><span class="line"></span><br><span class="line">%<span class="built_in">abs</span>是求模</span><br><span class="line">P2=<span class="built_in">abs</span>(xk/N);</span><br><span class="line">P1=P2(<span class="number">1</span>:N/<span class="number">2</span>+<span class="number">1</span>);</span><br><span class="line">P1(<span class="number">2</span>:end<span class="number">-1</span>)=<span class="number">2</span>*P1(<span class="number">2</span>:end<span class="number">-1</span>);</span><br><span class="line"> </span><br><span class="line">%半频谱 f=k*fs/N</span><br><span class="line">f=fs*(<span class="number">0</span>:(N/<span class="number">2</span>))/N;</span><br><span class="line">plot(f,P1) </span><br><span class="line">title(<span class="string">&quot;Single-Sided Amplitude Spectrum of X(t)&quot;</span>)</span><br><span class="line">xlabel(<span class="string">&quot;f (Hz)&quot;</span>)</span><br><span class="line">ylabel(<span class="string">&quot;|P1(f)|&quot;</span>)</span><br><span class="line"></span><br><span class="line">% 反傅里叶变换</span><br><span class="line">X = ifft(xk, <span class="string">&#x27;symmetric&#x27;</span>);</span><br><span class="line"></span><br><span class="line">% 绘制输入信号和还原信号的图像</span><br><span class="line">figure</span><br><span class="line"><span class="title function_">subplot</span><span class="params">(<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>)</span></span><br><span class="line"><span class="title function_">plot</span><span class="params">(n, xn)</span></span><br><span class="line"><span class="title function_">title</span><span class="params">(<span class="string">&#x27;Input Signal&#x27;</span>)</span></span><br><span class="line"><span class="title function_">xlabel</span><span class="params">(<span class="string">&#x27;Time (s)&#x27;</span>)</span></span><br><span class="line"><span class="title function_">ylabel</span><span class="params">(<span class="string">&#x27;Amplitude&#x27;</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="title function_">subplot</span><span class="params">(<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>)</span></span><br><span class="line"><span class="title function_">plot</span><span class="params">(n, X)</span></span><br><span class="line"><span class="title function_">title</span><span class="params">(<span class="string">&#x27;Signal after IFFT&#x27;</span>)</span></span><br><span class="line"><span class="title function_">xlabel</span><span class="params">(<span class="string">&#x27;Time (s)&#x27;</span>)</span></span><br><span class="line"><span class="title function_">ylabel</span><span class="params">(<span class="string">&#x27;Amplitude&#x27;</span>)</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://www.whyc.fun">TDppy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://www.whyc.fun/2023/Q3/ofdm-series-why-can-dft-seek-frequency-amplitude-spectrum-relationship-between-dft-xk-and-xn-underlying-mathematical-principles-of-dft-idft/">https://www.whyc.fun/2023/Q3/ofdm-series-why-can-dft-seek-frequency-amplitude-spectrum-relationship-between-dft-xk-and-xn-underlying-mathematical-principles-of-dft-idft/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://www.whyc.fun" target="_blank">潘业成的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/DFT/">DFT</a><a class="post-meta__tags" href="/tags/OFDM/">OFDM</a><a class="post-meta__tags" href="/tags/%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/">信号处理</a></div><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2023/Q3/ic-design-chisel-development-environment-setup/" title="【IC设计】Chisel开发环境搭建"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">【IC设计】Chisel开发环境搭建</div></div><div class="info-2"><div class="info-item-1">README 如果想快速搭建好环境，不关心具体的安装过程 直接复制文章后面的【脚本附录】，以root用户在任意目录下执行该脚本它会帮助你完成安装java11、ubuntu换源、sbt换源、下载sbt，执行完以后是这样的：    然后从安装步骤的【第9步】开始测试scala和chisel是否能正常使用即可  如果想从头逐步安装，从【安装步骤】第一步开始看即可  安装步骤 首先安装一个Ubuntu的虚拟机  然后给Ubuntu换个镜像，方便下载注意换源后使用apt-get update更新下  安装vim（可以不做）这里安装Vim是我感觉Ubuntu自带的vi编辑器似乎有问题，因为我按i进入【插入模式】并没有提示，所以安装vim进行替代。只关心Chisel安装的可以跳过这一步。   123456789101112apt install vimsudo vim /etc/vim/vimrc#在vimrc文件结尾处添加#显示行数set number#自动缩进set autoindent#光标高亮set cursorlineset ruler#Tab默认4格set tabstop=4   ...</div></div></div></a><a class="pagination-related" href="/2023/Q3/ic-design-icc-workshop-lab1-data-prep-basic-flow-script-summary/" title="【IC设计】ICC workshop Lab1 数据准备&amp;基本流程 【脚本总结】"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">【IC设计】ICC workshop Lab1 数据准备&基本流程 【脚本总结】</div></div><div class="info-2"><div class="info-item-1">Task 1 Create a Milkyway library先进入lab1_data_setup目录，打开icc_shell，创建项目 1create_mw_lib -technology $tech_file -mw_reference_library &quot;$mw_path/sc $mw_path/io $mw_path/ram16x128&quot; -bus_naming_style &#123;[%d]&#125; -open $my_mw_lib  然后ls risc_chip.mw查看是否创建成功  Task 2 Load the Nestlist,TLU+,Constraints and Controls12345678910111213141516171819import_designs $verilog_file -format verilog -top $top_designset_tlu_plus_files -max_tluplus $tlup_max -min_tluplus $tlup_min -tech2itf_map $tlup_map...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">TDppy</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">130</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/TDppy"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/TDppy" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2287015934@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">如何呢，又能怎。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E5%BC%95%E5%85%A5"><span class="toc-number">1.</span> <span class="toc-text">问题引入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%93%BA%E5%9E%AB%E4%B8%80%E4%BA%9B%E5%B0%8F%E5%85%AC%E5%BC%8F"><span class="toc-number">2.</span> <span class="toc-text">铺垫一些小公式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DFT%E5%85%AC%E5%BC%8F%E8%AF%81%E6%98%8E"><span class="toc-number">3.</span> <span class="toc-text">DFT公式证明</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DFT%E5%85%AC%E5%BC%8F%E5%88%86%E8%A7%A3%E4%B8%BA4%E9%83%A8%E5%88%86"><span class="toc-number">3.1.</span> <span class="toc-text">DFT公式分解为4部分</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%88%E8%80%83%E8%99%91k1-0%E7%9A%84%E6%83%85%E5%86%B5"><span class="toc-number">3.1.1.</span> <span class="toc-text">先考虑k1&#x3D;0的情况:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%8D%E8%80%83%E8%99%91k1%E2%89%A00%E7%9A%84%E6%83%85%E5%86%B5"><span class="toc-number">3.1.2.</span> <span class="toc-text">再考虑k1≠0的情况:</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DFT%E8%AE%A1%E7%AE%97%E5%90%8E%EF%BC%8CX-k-%E4%B8%8Ex-n-%E7%9A%84%E5%85%B3%E7%B3%BB%EF%BC%9A"><span class="toc-number">3.2.</span> <span class="toc-text">DFT计算后，X(k)与x(n)的关系：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Matlab-FFT%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81"><span class="toc-number">4.</span> <span class="toc-text">Matlab FFT示例代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IDFT%E5%85%AC%E5%BC%8F%E8%AF%81%E6%98%8E"><span class="toc-number">5.</span> <span class="toc-text">IDFT公式证明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Matlab%E8%B0%83%E7%94%A8FFT-IFFT%E5%B9%B6%E7%BB%98%E5%9B%BE"><span class="toc-number">6.</span> <span class="toc-text">Matlab调用FFT&#x2F;IFFT并绘图</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-riscv-plic/" title="【操作系统】RISC-V PLIC总结">【操作系统】RISC-V PLIC总结</a><time datetime="2026-01-18T15:25:18.000Z" title="发表于 2026-01-18 15:25:18">2026-01-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/hello-world/" title="欢迎来到潘业成的博客">欢迎来到潘业成的博客</a><time datetime="2026-01-12T00:00:00.000Z" title="发表于 2026-01-12 00:00:00">2026-01-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-what-happens-after-pressing-enter-in-xv6-operating-system/" title="【操作系统】xv6操作系统中按下键盘回车后发生的事情">【操作系统】xv6操作系统中按下键盘回车后发生的事情</a><time datetime="2026-01-10T11:58:18.000Z" title="发表于 2026-01-10 11:58:18">2026-01-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-hand-write-xv6-operating-system-types-h-param-h-memlayout-h-riscv-h-defs-h-header-file-analysis/" title="【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析">【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析</a><time datetime="2026-01-06T23:02:58.000Z" title="发表于 2026-01-06 23:02:58">2026-01-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/Q4/operating-system-hand-write-xv6-operating-system-entry-s-and-start-c-analysis/" title="【操作系统】手撸xv6操作系统——entry.S和start.c解析">【操作系统】手撸xv6操作系统——entry.S和start.c解析</a><time datetime="2025-12-30T15:57:42.000Z" title="发表于 2025-12-30 15:57:42">2025-12-30</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By TDppy</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4-b1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4-b1"></script><script src="/js/main.js?v=5.5.4-b1"></script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

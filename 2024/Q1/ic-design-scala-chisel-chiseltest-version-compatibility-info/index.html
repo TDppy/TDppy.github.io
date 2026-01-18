@@ -1,0 +1,172 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【IC设计】Scala、Chisel、Chiseltest版本兼容信息 | 潘业成的博客</title><meta name="author" content="TDppy"><meta name="copyright" content="TDppy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="在maven仓库中精心整理的Scala、Chisel、Chiseltest的版本兼容信息，有了这个再也不怕sbt构建时找不到库文件了！目前百度上我搜不到这个资料，是我从maven官网上整理的，如果对你有用希望点点赞~  scala 2.11系列兼容的chisel版本为兼容的chisel版本3.0.0到3.4.4，chiseltest版本为0.2.0到0.3.4 scalascala 2.12系列兼">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【IC设计】Scala、Chisel、Chiseltest版本兼容信息">
+<meta property="og:url" content="https://www.whyc.fun/2024/Q1/ic-design-scala-chisel-chiseltest-version-compatibility-info/index.html">
+<meta property="og:site_name" content="潘业成的博客">
+<meta property="og:description" content="在maven仓库中精心整理的Scala、Chisel、Chiseltest的版本兼容信息，有了这个再也不怕sbt构建时找不到库文件了！目前百度上我搜不到这个资料，是我从maven官网上整理的，如果对你有用希望点点赞~  scala 2.11系列兼容的chisel版本为兼容的chisel版本3.0.0到3.4.4，chiseltest版本为0.2.0到0.3.4 scalascala 2.12系列兼">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.whyc.fun/img/butterfly-icon.png">
+<meta property="article:published_time" content="2024-03-06T16:07:50.000Z">
+<meta property="article:modified_time" content="2026-01-18T08:18:03.069Z">
+<meta property="article:author" content="TDppy">
+<meta property="article:tag" content="Chisel">
+<meta property="article:tag" content="Scala">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.whyc.fun/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "【IC设计】Scala、Chisel、Chiseltest版本兼容信息",
+  "url": "https://www.whyc.fun/2024/Q1/ic-design-scala-chisel-chiseltest-version-compatibility-info/",
+  "image": "https://www.whyc.fun/img/butterfly-icon.png",
+  "datePublished": "2024-03-06T16:07:50.000Z",
+  "dateModified": "2026-01-18T08:18:03.069Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "TDppy",
+      "url": "https://www.whyc.fun"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://www.whyc.fun/2024/Q1/ic-design-scala-chisel-chiseltest-version-compatibility-info/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4-b1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【IC设计】Scala、Chisel、Chiseltest版本兼容信息',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(https://oss.012700.xyz/butterfly/2024/10/index.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">130</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://oss.012700.xyz/butterfly/2024/10/index.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">潘业成的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">【IC设计】Scala、Chisel、Chiseltest版本兼容信息</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">【IC设计】Scala、Chisel、Chiseltest版本兼容信息</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-03-06T16:07:50.000Z" title="发表于 2024-03-06 16:07:50">2024-03-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-01-18T08:18:03.069Z" title="更新于 2026-01-18 08:18:03">2026-01-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%B0%E5%AD%97IC%E8%AE%BE%E8%AE%A1/">数字IC设计</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>在maven仓库中精心整理的Scala、Chisel、Chiseltest的版本兼容信息，有了这个再也不怕sbt构建时找不到库文件了！<br>目前百度上我搜不到这个资料，是我从maven官网上整理的，如果对你有用希望点点赞~</p>
+<blockquote>
+<p>scala 2.11系列兼容的chisel版本为兼容的chisel版本3.0.0到3.4.4，chiseltest版本为0.2.0到0.3.4 scala<br>scala 2.12系列兼容的chisel版本为兼容的chisel版本3.0.0到3.6.0，chiseltest版本为0.2.0到0.6.1 scala<br>scala 2.13系列兼容的chisel版本为兼容的chisel版本3.5.0到3.6.0，chiseltest版本为0.5.0到0.6.2 5.0.0到5.0.2 以及6.0.0</p>
+</blockquote>
+<p>整理的Scala-Chisel-Chiseltest版本信息对应表<br>这里我整理出的对应表放入了网盘中，请自取：</p>
+<blockquote>
+<p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1tk_mW7Z_RTwhFH_YLgUOsQ?pwd=z52s">https://pan.baidu.com/s/1tk_mW7Z_RTwhFH_YLgUOsQ?pwd=z52s</a> 提取码：z52s<br>–来自百度网盘超级会员V5的分享</p>
+</blockquote>
+<p>想获取第一手资料的可以查看maven库自己看对应的版本信息，<br><a target="_blank" rel="noopener" href="https://repo.huaweicloud.com/repository/maven/org/scala-lang/scala-library/">scala的maven库链接</a><br><a target="_blank" rel="noopener" href="https://repo1.maven.org/maven2/edu/berkeley/cs/">chisel的maven库链接</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://www.whyc.fun">TDppy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://www.whyc.fun/2024/Q1/ic-design-scala-chisel-chiseltest-version-compatibility-info/">https://www.whyc.fun/2024/Q1/ic-design-scala-chisel-chiseltest-version-compatibility-info/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://www.whyc.fun" target="_blank">潘业成的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Chisel/">Chisel</a><a class="post-meta__tags" href="/tags/Scala/">Scala</a></div><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2024/Q1/ic-design-install-verilator-on-windows-and-ubuntu/" title="【IC设计】Windows和Ubuntu下安装Verilator"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">【IC设计】Windows和Ubuntu下安装Verilator</div></div><div class="info-2"><div class="info-item-1">Windows下安装verilatorwindows下安装比较麻烦，需要首先安装cygwin，cygwin是一个包管理工具，类似apt，然后通过cygwin安装verilator所需的各种依赖，然后再安装verilator。参考这篇文章，非常详细 Ubuntu下安装verilator安装前的准备1234567sudo apt-get install git help2man perl python3 make autoconf g++ flex bison ccachesudo apt-get install libgoogle-perftools-dev numactl perl-docsudo apt-get install libfl2  # 只有ubuntu需要这一步 如果报错就跳过 sudo apt-get install libfl-dev  # 只有ubuntu需要这一步 如果报错就跳过 sudo apt-get install zlibc zlib1g zlib1g-dev  # 只有ubuntu需要这一步 如果报错就跳过 git clone https://gi...</div></div></div></a><a class="pagination-related" href="/2024/Q1/ic-design-scala-chisel-chiseltest-version-compatibility-info-1/" title="【IC设计】Scala、Chisel、Chiseltest版本兼容信息 (1)"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">【IC设计】Scala、Chisel、Chiseltest版本兼容信息 (1)</div></div><div class="info-2"><div class="info-item-1">在maven仓库中精心整理的Scala、Chisel、Chiseltest的版本兼容信息，有了这个再也不怕sbt构建时找不到库文件了！目前百度上我搜不到这个资料，是我从maven官网上整理的，如果对你有用希望点点赞~  scala 2.11系列兼容的chisel版本为兼容的chisel版本3.0.0到3.4.4，chiseltest版本为0.2.0到0.3.4 scalascala 2.12系列兼容的chisel版本为兼容的chisel版本3.0.0到3.6.0，chiseltest版本为0.2.0到0.6.1 scalascala 2.13系列兼容的chisel版本为兼容的chisel版本3.5.0到3.6.0，chiseltest版本为0.5.0到0.6.2 5.0.0到5.0.2 以及6.0.0  整理的Scala-Chisel-Chiseltest版本信息对应表这里我整理出的对应表放入了网盘中，请自取：  链接：https://pan.baidu.com/s/1tk_mW7Z_RTwhFH_YLgUOsQ?pwd=z52s 提取码：z52s–来自百度网盘超级会员V5的分享...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2024/Q1/ic-design-scala-chisel-chiseltest-version-compatibility-info-1/" title="【IC设计】Scala、Chisel、Chiseltest版本兼容信息 (1)"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-06</div><div class="info-item-2">【IC设计】Scala、Chisel、Chiseltest版本兼容信息 (1)</div></div><div class="info-2"><div class="info-item-1">在maven仓库中精心整理的Scala、Chisel、Chiseltest的版本兼容信息，有了这个再也不怕sbt构建时找不到库文件了！目前百度上我搜不到这个资料，是我从maven官网上整理的，如果对你有用希望点点赞~  scala 2.11系列兼容的chisel版本为兼容的chisel版本3.0.0到3.4.4，chiseltest版本为0.2.0到0.3.4 scalascala 2.12系列兼容的chisel版本为兼容的chisel版本3.0.0到3.6.0，chiseltest版本为0.2.0到0.6.1 scalascala 2.13系列兼容的chisel版本为兼容的chisel版本3.5.0到3.6.0，chiseltest版本为0.5.0到0.6.2 5.0.0到5.0.2 以及6.0.0  整理的Scala-Chisel-Chiseltest版本信息对应表这里我整理出的对应表放入了网盘中，请自取：  链接：https://pan.baidu.com/s/1tk_mW7Z_RTwhFH_YLgUOsQ?pwd=z52s 提取码：z52s–来自百度网盘超级会员V5的分享...</div></div></div></a><a class="pagination-related" href="/2024/Q3/ic-design-chisel-api-arbiter-and-rrarbiter-usage/" title="【IC设计】Chisel API之Arbiter和RRArbiter的使用"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-15</div><div class="info-item-2">【IC设计】Chisel API之Arbiter和RRArbiter的使用</div></div><div class="info-2"><div class="info-item-1">介绍仲裁器在NoC路由器中是重要的组成部分，虚通道仲裁和交叉开关仲裁都需要使用仲裁器。Chisel提供了Arbiter和RRArbiter仲裁器Arbiter是基础的低位优先仲裁器，RRArbiter初始情况下也是低位优先仲裁（也可以配置成高位优先），但在某个通道仲裁胜出后，下一次仲裁会从获胜通道的下一个通道开始轮询，如果检测到有请求就授权。举例：假设有3个通道的请求，wire [2:0] req。第一轮仲裁，初始情况下0优先级最高，1其次，2最低。假设1和2同时请求资源，0没有请求，那么根据低位优先的原则，通道1获胜。第二轮仲裁，仲裁器会记住上次获胜的通道1，然后下一次0和2同时请求资源，我们需要从通道1的下一个通道进行轮询，那么通道0获胜。第三轮仲裁，仲裁器会记住上次获胜的通道0，然后从通道2开始轮询… Chisel的Valid和Ready流控Ready-Valid接口是一种简单的控制流接口，包含：  data：发送端向接收端发送的数据； valid：发送端到接收端的信号，用于指示发送端是否准备好发送数据； ready：接收端到发送端的信号，用于指示接收端是否准备好接收数据；...</div></div></div></a><a class="pagination-related" href="/2024/Q1/ic-design-windows-based-idea-chisel-environment-installation-tutorial-illustrated/" title="【IC设计】Windows下基于IDEA的Chisel环境安装教程（图文并茂）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-02-01</div><div class="info-item-2">【IC设计】Windows下基于IDEA的Chisel环境安装教程（图文并茂）</div></div><div class="info-2"><div class="info-item-1">(Chisel环境安装教程)  传统数字芯片的RTL设计采用Verilog语言为主，Chisel语言的全称是Constructing Harward in Scala Embeded Language，即在Scala语言中导入Chisel3库，即可使用Chisel语言。其特点是面向对象编程，可以方便地参数化定制硬件电路，加快设计流程。目前在RISC-V生态中应用较多，中科院计算所主持的培育下一代处理器设计人才的“一生一芯”项目也在极力推进该语言。  涉及到的所有安装包已经放入百度网盘，请全部下载，然后开始阅读这个教程。  链接：https://pan.baidu.com/s/1ZOkbCxoLxrpJQQqVQfa-3w?pwd=hduv提取码：hduv–来自百度网盘超级会员V5的分享   第一步 安装jdk，配置环境变量如果电脑里还没有java环境，请先下载网盘链接中的jdk压缩包并解压，然后参照我的这篇文章配置环境。 第二步 安装sbt，不用配置环境变量双击sbt-1.9.8.msi  下一步下一步安装就好了，环境变量会自动配置好，无需手动配置。 第三步 安装idea社区版开...</div></div></div></a><a class="pagination-related" href="/2023/Q3/ic-design-chisel-development-environment-setup/" title="【IC设计】Chisel开发环境搭建"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-06</div><div class="info-item-2">【IC设计】Chisel开发环境搭建</div></div><div class="info-2"><div class="info-item-1">README 如果想快速搭建好环境，不关心具体的安装过程 直接复制文章后面的【脚本附录】，以root用户在任意目录下执行该脚本它会帮助你完成安装java11、ubuntu换源、sbt换源、下载sbt，执行完以后是这样的：    然后从安装步骤的【第9步】开始测试scala和chisel是否能正常使用即可  如果想从头逐步安装，从【安装步骤】第一步开始看即可  安装步骤 首先安装一个Ubuntu的虚拟机  然后给Ubuntu换个镜像，方便下载注意换源后使用apt-get update更新下  安装vim（可以不做）这里安装Vim是我感觉Ubuntu自带的vi编辑器似乎有问题，因为我按i进入【插入模式】并没有提示，所以安装vim进行替代。只关心Chisel安装的可以跳过这一步。   123456789101112apt install vimsudo vim /etc/vim/vimrc#在vimrc文件结尾处添加#显示行数set number#自动缩进set autoindent#光标高亮set cursorlineset ruler#Tab默认4格set tabstop=4   ...</div></div></div></a><a class="pagination-related" href="/2024/Q1/exception-handling-solution-for-extracting-structure-failed-build-status-error-when-sbt-building-chisel-library/" title="【异常处理】sbt构建Chisel库时出现extracting structure failed_build status_error的解决办法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-06</div><div class="info-item-2">【异常处理】sbt构建Chisel库时出现extracting structure failed_build status_error的解决办法</div></div><div class="info-2"><div class="info-item-1">报错背景：最近在写Chisel时，构建项目常常需要等待很久，然后报错extracting structure failed:build status:error这个报错实际上告诉我们，在build.sbt中指定的依赖没有下载到，导致依赖的结构无法实现。   解决思路：chisel库的资源是基于build.sbt配置文件给出的信息，使用sbt去maven网站上下载的，那么首先要确保sbt已经使用国内镜像源，以加快下载速度，其次根据报错信息，通过maven仓库网站查看缺少的文件，找到兼容的版本号，并修改build.sbt文件。 ①IDEA中配置本地的SBT进行下载打开IDEA的File-Settings，找到sbt，按照如图配置。默认情况下Launcher是Bundle，即IDEA内置的SBT，默认从maven官方下载，我们将其指定为本地的sbt下bin目录中的sbt-launch.jar，并将VM parameters写入，方便后面更改为国内maven镜像站。 1-Dsbt.override.build.repos=true     ②更改下载源为华为的镜像站1. 修改sbtcon...</div></div></div></a><a class="pagination-related" href="/2024/Q4/ic-design-chisel-build-tool-mill-installation-what-if-mill-script-runs-slow/" title="【IC设计】Chisel构建工具Mill的安装（mill脚本执行过慢怎么办？）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-10-23</div><div class="info-item-2">【IC设计】Chisel构建工具Mill的安装（mill脚本执行过慢怎么办？）</div></div><div class="info-2"><div class="info-item-1">背景Chisel传统的项目构建工具是sbt，但是最近我需要学习Rocket Chip SoC Generator中的BOOM处理器核，而Rocket Chip的项目所使用的项目构建工具是Mill，所以我需要安装下mill工具。 安装过程sbt和mill的区别是，sbt工具在项目目录中的配置文件是build.sbt，mill工具在项目目录中的配置文件是build.sc在mill官方文档中给出了一行命令来安装这个工具，链接点我 1sh -c &quot;curl -L https://github.com/com-lihaoyi/mill/releases/download/0.11.12/0.11.12 &gt; ~/.local/bin/mill &amp;&amp; chmod +x ~/.local/bin/mill&quot; 这行命令本质上是去github上下载了mill安装的一个shell脚本，存放在~&#x2F;.local&#x2F;bin&#x2F;mill下，然后按理说我们需要执行这个脚本，但不推荐这么做！！ 实际上该脚本核心是去maven下载mill的可执行j...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">TDppy</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">130</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/TDppy"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/TDppy" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2287015934@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">如何呢，又能怎。</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-riscv-plic/" title="【操作系统】RISC-V PLIC总结">【操作系统】RISC-V PLIC总结</a><time datetime="2026-01-18T15:25:18.000Z" title="发表于 2026-01-18 15:25:18">2026-01-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/hello-world/" title="欢迎来到潘业成的博客">欢迎来到潘业成的博客</a><time datetime="2026-01-12T00:00:00.000Z" title="发表于 2026-01-12 00:00:00">2026-01-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-what-happens-after-pressing-enter-in-xv6-operating-system/" title="【操作系统】xv6操作系统中按下键盘回车后发生的事情">【操作系统】xv6操作系统中按下键盘回车后发生的事情</a><time datetime="2026-01-10T11:58:18.000Z" title="发表于 2026-01-10 11:58:18">2026-01-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-hand-write-xv6-operating-system-types-h-param-h-memlayout-h-riscv-h-defs-h-header-file-analysis/" title="【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析">【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析</a><time datetime="2026-01-06T23:02:58.000Z" title="发表于 2026-01-06 23:02:58">2026-01-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/Q4/operating-system-hand-write-xv6-operating-system-entry-s-and-start-c-analysis/" title="【操作系统】手撸xv6操作系统——entry.S和start.c解析">【操作系统】手撸xv6操作系统——entry.S和start.c解析</a><time datetime="2025-12-30T15:57:42.000Z" title="发表于 2025-12-30 15:57:42">2025-12-30</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By TDppy</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4-b1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4-b1"></script><script src="/js/main.js?v=5.5.4-b1"></script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

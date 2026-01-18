@@ -1,0 +1,229 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【操作系统】RISC-V PLIC总结 | 潘业成的博客</title><meta name="author" content="TDppy"><meta name="copyright" content="TDppy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="本文是对【操作系统】xv6操作系统中按下键盘回车后发生的事情一文的补充阅读。如果你对PLIC（Platform-Level Interrupt Controller，平台级中断控制器）感到困惑，不妨先阅读这篇文章，了解PLIC的基本概念和工作原理。 什么是PLIC？在现代计算机系统中，CPU需要与各种外部设备（如键盘、鼠标、硬盘、网络卡等）进行通信。这些设备往往需要主动向CPU报告某些事件，比如键">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【操作系统】RISC-V PLIC总结">
+<meta property="og:url" content="https://www.whyc.fun/2026/Q1/operating-system-riscv-plic/index.html">
+<meta property="og:site_name" content="潘业成的博客">
+<meta property="og:description" content="本文是对【操作系统】xv6操作系统中按下键盘回车后发生的事情一文的补充阅读。如果你对PLIC（Platform-Level Interrupt Controller，平台级中断控制器）感到困惑，不妨先阅读这篇文章，了解PLIC的基本概念和工作原理。 什么是PLIC？在现代计算机系统中，CPU需要与各种外部设备（如键盘、鼠标、硬盘、网络卡等）进行通信。这些设备往往需要主动向CPU报告某些事件，比如键">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.whyc.fun/img/butterfly-icon.png">
+<meta property="article:published_time" content="2026-01-18T15:25:18.000Z">
+<meta property="article:modified_time" content="2026-01-18T08:18:03.200Z">
+<meta property="article:author" content="TDppy">
+<meta property="article:tag" content="操作系统">
+<meta property="article:tag" content="RISC-V">
+<meta property="article:tag" content="中断">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.whyc.fun/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "【操作系统】RISC-V PLIC总结",
+  "url": "https://www.whyc.fun/2026/Q1/operating-system-riscv-plic/",
+  "image": "https://www.whyc.fun/img/butterfly-icon.png",
+  "datePublished": "2026-01-18T15:25:18.000Z",
+  "dateModified": "2026-01-18T08:18:03.200Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "TDppy",
+      "url": "https://www.whyc.fun"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://www.whyc.fun/2026/Q1/operating-system-riscv-plic/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4-b1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【操作系统】RISC-V PLIC总结',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(https://oss.012700.xyz/butterfly/2024/10/index.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">130</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://oss.012700.xyz/butterfly/2024/10/index.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">潘业成的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">【操作系统】RISC-V PLIC总结</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">【操作系统】RISC-V PLIC总结</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-01-18T15:25:18.000Z" title="发表于 2026-01-18 15:25:18">2026-01-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-01-18T08:18:03.200Z" title="更新于 2026-01-18 08:18:03">2026-01-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>本文是对<a href="/2026/Q1/operating-system-what-happens-after-pressing-enter-in-xv6-operating-system">【操作系统】xv6操作系统中按下键盘回车后发生的事情</a>一文的补充阅读。如果你对PLIC（Platform-Level Interrupt Controller，平台级中断控制器）感到困惑，不妨先阅读这篇文章，了解PLIC的基本概念和工作原理。</p>
+<h1 id="什么是PLIC？"><a href="#什么是PLIC？" class="headerlink" title="什么是PLIC？"></a>什么是PLIC？</h1><p>在现代计算机系统中，CPU需要与各种外部设备（如键盘、鼠标、硬盘、网络卡等）进行通信。这些设备往往需要主动向CPU报告某些事件，比如键盘被按下、数据传输完成等。为了实现这种主动通知，设备会发出<strong>中断信号</strong>。</p>
+<p>然而，在一个复杂的系统中，可能有数十甚至数百个设备同时发出中断请求。如果所有中断信号都直接涌向CPU，会导致混乱。因此，需要一个专门的<strong>硬件</strong>来管理和协调这些中断请求。这个硬件就是<strong>PLIC（Platform-Level Interrupt Controller，平台级中断控制器）</strong>。</p>
+<p>通俗地理解，PLIC就像公司的秘书，中断目标就像公司的老板，而外部中断请求就像要拜访老板的访客。由于访客众多，如果没有处理就让他们全挤在老板办公室，会非常嘈杂。于是，老板聘请了一个秘书，规定所有访客都要在秘书那里登记。秘书会根据访客的重要性排序，每次只通知优先级最高的访客去见老板，从而提高办公效率。</p>
+<h1 id="PLIC在RISC-V架构中的作用"><a href="#PLIC在RISC-V架构中的作用" class="headerlink" title="PLIC在RISC-V架构中的作用"></a>PLIC在RISC-V架构中的作用</h1><p>RISC-V是一个开源的指令集架构，在嵌入式系统和操作系统教学中应用广泛，目前也在往AI和服务器领域进军（<del>但效果不佳</del>）。在一个典型的RISC-V系统中，主要由以下几个核心部件组成：</p>
+<ul>
+<li><strong>Core</strong>：负责执行指令流水线</li>
+<li><strong>PLIC</strong>：负责管理外部中断</li>
+<li><strong>DM（Debug Module）</strong>：负责调试功能</li>
+</ul>
+<p>PLIC作为平台级中断控制器，理论上可以支持多达1023个外部中断源和15872个上下文（context）。当然，在实际的硬件实现中，通常不会用到这么多。</p>
+<h1 id="PLIC的工作原理"><a href="#PLIC的工作原理" class="headerlink" title="PLIC的工作原理"></a>PLIC的工作原理</h1><p>PLIC的核心功能是将外部设备的中断请求进行汇总、仲裁和分发。具体来说，它根据以下几项用户配置的信息来处理中断：</p>
+<ul>
+<li><strong>中断优先级</strong>：每个中断源的重要程度</li>
+<li><strong>中断使能</strong>：哪些中断被允许</li>
+<li><strong>中断阈值</strong>：只有优先级高于阈值的中断才会被处理</li>
+</ul>
+<p>通过这些配置，PLIC可以选择出”胜利者”（最高优先级且超过阈值的中断），将其转发给相应的CPU核心进行处理。由于这些参数都可以由软件配置，所以PLIC也被称为<strong>可编程中断控制器</strong>。<br> <img src="/2026/Q1/operating-system-riscv-plic/plic-arch.jpg" class="" title="PLIC中断框图"></p>
+<h1 id="中断处理流程"><a href="#中断处理流程" class="headerlink" title="中断处理流程"></a>中断处理流程</h1><p>让我们通过一个完整的中断处理流程来理解PLIC的工作机制：<br> <img src="/2026/Q1/operating-system-riscv-plic/PLIC-Interrupt-Flow.png" class="" title="PLIC中断流程"></p>
+<ol>
+<li><p><strong>中断请求到达</strong>：外部设备发出中断请求，中断网关（Interrupt Gateway）接收并处理这个请求。</p>
+</li>
+<li><p><strong>标记等待状态</strong>：网关将处理后的中断请求转发给PLIC内核，同时设置相应中断源的pending位（表示该中断正在等待处理）。</p>
+</li>
+<li><p><strong>仲裁与通知</strong>：PLIC根据配置信息对所有等待中的中断请求进行仲裁，选择出优先级最高的一个。然后，它向相应的CPU核心发送中断通知（notification），告知有中断需要处理。</p>
+</li>
+<li><p><strong>获取中断信息</strong>：CPU核心收到通知后，通过读取PLIC的claim寄存器来获取当前需要处理的中断源ID。此时，PLIC会清除该中断源的pending位，表示该中断已开始被服务。</p>
+</li>
+<li><p><strong>执行中断服务</strong>：CPU执行相应的中断服务程序，处理设备请求。</p>
+</li>
+<li><p><strong>完成处理</strong>：中断服务完成后，CPU向PLIC的complete寄存器写入中断ID，通知PLIC该中断已处理完毕。</p>
+</li>
+<li><p><strong>重启网关</strong>：网关收到完成通知后，会重新打开”门”，允许该中断源的下一次中断请求进入。</p>
+</li>
+</ol>
+<p>这个流程确保了中断处理的有序性和可靠性，避免了中断丢失或重复处理的问题。</p>
+<h1 id="关键概念详解"><a href="#关键概念详解" class="headerlink" title="关键概念详解"></a>关键概念详解</h1> <img src="/2026/Q1/operating-system-riscv-plic/PLIC-Operation-Parameter-Block-Diagram.png" class="" title="PLIC操作元素框图">
+<h2 id="Hart-Context（硬件线程上下文）"><a href="#Hart-Context（硬件线程上下文）" class="headerlink" title="Hart Context（硬件线程上下文）"></a>Hart Context（硬件线程上下文）</h2><p>在RISC-V中，hart指硬件线程，即CPU核心。中断目标通常是运行在特定特权模式下的特定hart。PLIC支持多hart系统，可以将不同的中断路由到不同的CPU核心。</p>
+<h2 id="Interrupt-Gateway（中断网关）"><a href="#Interrupt-Gateway（中断网关）" class="headerlink" title="Interrupt Gateway（中断网关）"></a>Interrupt Gateway（中断网关）</h2><p>中断网关是每个中断源的入口。它负责：</p>
+<ul>
+<li>将不同形式的中断信号（电平触发或边沿触发）转换为统一的格式</li>
+<li>控制中断请求的进入，确保同一时刻每个中断源最多只有一个请求在PLIC中等待</li>
+</ul>
+<p>网关就像一道门，只有在上一个中断处理完成后才会打开，允许新的中断请求进入。</p>
+<h2 id="Interrupt-Notification（中断通知）"><a href="#Interrupt-Notification（中断通知）" class="headerlink" title="Interrupt Notification（中断通知）"></a>Interrupt Notification（中断通知）</h2><p>当PLIC仲裁出需要处理的中断后，会通过设置EIP（External Interrupt Pending）位来通知CPU。需要注意的是：</p>
+<ul>
+<li>PLIC采用广播方式，所有hart都会收到通知</li>
+<li>实际由软件决定哪个hart负责处理</li>
+<li>EIP不同于具体的IP位，后者表示某个中断源的状态</li>
+</ul>
+<h2 id="Interrupt-Identifier（中断标识符）"><a href="#Interrupt-Identifier（中断标识符）" class="headerlink" title="Interrupt Identifier（中断标识符）"></a>Interrupt Identifier（中断标识符）</h2><p>每个全局中断源都有一个唯一的ID（从1开始，0表示无中断）。ID不仅用于标识中断源，还在优先级相同时作为仲裁的次要标准（ID小的优先）。</p>
+<h1 id="PLIC寄存器详解"><a href="#PLIC寄存器详解" class="headerlink" title="PLIC寄存器详解"></a>PLIC寄存器详解</h1><p>PLIC通过内存映射的寄存器进行配置和控制。不同处理器的PLIC可能位于不同的基地址，但访问方式都是base + offset。</p>
+<h2 id="中断优先级寄存器"><a href="#中断优先级寄存器" class="headerlink" title="中断优先级寄存器"></a>中断优先级寄存器</h2><p>每个中断源都有一个优先级设置：</p>
+<ul>
+<li>0：禁用该中断</li>
+<li>1-7（或更高）：优先级数值越大，越重要</li>
+<li>在仲裁时，优先级相同则ID小的胜出</li>
+</ul>
+<h2 id="中断pending指示寄存器（只读）"><a href="#中断pending指示寄存器（只读）" class="headerlink" title="中断pending指示寄存器（只读）"></a>中断pending指示寄存器（只读）</h2><p>每个中断源用1位表示是否处于等待状态。读取claim寄存器会自动清除对应位。</p>
+<h2 id="中断使能寄存器"><a href="#中断使能寄存器" class="headerlink" title="中断使能寄存器"></a>中断使能寄存器</h2><p>控制每个上下文（hart）可以接收哪些中断。每个中断源用1位表示。</p>
+<h2 id="中断阈值寄存器"><a href="#中断阈值寄存器" class="headerlink" title="中断阈值寄存器"></a>中断阈值寄存器</h2><p>设置每个上下文的最低中断处理优先级。低于此阈值的中断会被屏蔽。</p>
+<h2 id="中断claim寄存器"><a href="#中断claim寄存器" class="headerlink" title="中断claim寄存器"></a>中断claim寄存器</h2><p>CPU读取此寄存器获取下一个待处理中断的ID。如果没有中断，返回0。</p>
+<h2 id="中断完成寄存器"><a href="#中断完成寄存器" class="headerlink" title="中断完成寄存器"></a>中断完成寄存器</h2><p>与claim寄存器共享地址。写入中断ID表示处理完成，允许新中断进入。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>PLIC是RISC-V系统中不可或缺的中断管理组件，它通过仲裁和分发机制，确保CPU能够高效、有序地处理来自外部设备的各种请求。在xv6这样的教学操作系统中，理解PLIC的工作原理有助于我们深入掌握中断处理的全貌。</p>
+<p>如果你已经阅读完这篇文章，建议回到《【操作系统】xv6操作系统中按下键盘回车后发生的事情》，重新审视PLIC在实际系统中的应用。这样，你将对计算机中断机制有更加全面和深刻的理解。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://www.whyc.fun">TDppy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://www.whyc.fun/2026/Q1/operating-system-riscv-plic/">https://www.whyc.fun/2026/Q1/operating-system-riscv-plic/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://www.whyc.fun" target="_blank">潘业成的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><a class="post-meta__tags" href="/tags/RISC-V/">RISC-V</a><a class="post-meta__tags" href="/tags/%E4%B8%AD%E6%96%AD/">中断</a></div><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/Q1/hello-world/" title="欢迎来到潘业成的博客"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">欢迎来到潘业成的博客</div></div><div class="info-2"><div class="info-item-1">欢迎来到我的博客！我是潘业成，一名热爱计算机软硬件技术的程序员，致力于既会做网站与应用，也懂芯片与板卡。如果你也对计算机系统原理和实践感兴趣，请关注我！ 关于我 高中时期我是江苏的一名普通文科生，那时江苏高考满分480分，18年高考我考了304分，在全省排名中下游，去了一个普通的三本，南京邮电大学通达学院。填报志愿时，我突然发现自己想学一点炫酷的东西，于是在一众金融、师范、管理专业中勉强找到了一个和信息挂点勾的专业————信息管理与信息系统。  大一上学期有一门C语言程序设计的课程，我发现用这个可以做点有趣的事情，比如写个让别人电脑关机的程序、或者控制键盘和鼠标让他不断给QQ好友轰炸信息。一学期结束，我惊奇的发现，我的绩点竟然是专业第4，而我只是按时上课，作业也常常是临时赶的或者抄的。大二开学，辅导员在群里发转专业的通知，其中规定，绩点前5%可以无条件转入我校的任意专业。我还记得那时我们寝室是8415还是8409来着，室友问我“你要转吗？”。  那时是2018年，周围朋友都说，南邮的王牌专业是通信工程，而我觉得计算机专业好像听起来更酷一些，我有点兴趣的编程知识似乎也是在计算机专业...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2026/Q1/operating-system-hand-write-xv6-operating-system-types-h-param-h-memlayout-h-riscv-h-defs-h-header-file-analysis/" title="【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-01-06</div><div class="info-item-2">【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析</div></div><div class="info-2"><div class="info-item-1">概要main.c中引入了types.h&#x2F;param.h&#x2F;memlayout.h&#x2F;riscv.h&#x2F;defs.h头文件，各文件主要功能如下： 123456789101112131415161718192021// 数据类型重命名:// uint/ushort/uchar/uint8/uint16/uint32/uint64/pde_t 的定义#include &quot;types.h&quot;// 参数定义:// params.h 通过一系列宏定义，统一指定了操作系统内核中进程、CPU、文件、设备、文件系统等核心模块的最大值，// 为内核各功能模块的运行提供统一的参数配置依据#include &quot;param.h&quot;// 内存布局:// 定义QEMU virt平台下RISC-V架构的物理内存（硬件设备、内核RAM）与虚拟内存（内核栈、用户空间、trampoline/trapframe）布局，// 以及中断控制器等硬件地址常量，为内核内存管理和硬件交互提供地址映射依据#include &quot;memlayout.h&quot...</div></div></div></a><a class="pagination-related" href="/2025/Q4/operating-system-hand-write-xv6-operating-system-entry-s-and-start-c-analysis/" title="【操作系统】手撸xv6操作系统——entry.S和start.c解析"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-30</div><div class="info-item-2">【操作系统】手撸xv6操作系统——entry.S和start.c解析</div></div><div class="info-2"><div class="info-item-1">entry.S解析和调试代码分析entry.S是xv6上电后执行的第一段代码，用于设置每个CPU的栈指针并跳转到start函数，每个CPU拥有4KB的栈空间。 123456789101112.section .text_entry:        la sp, stack0        li a0, 1024*4			 csrr a1, mhartid        addi a1, a1, 1        mul a0, a0, a1        add sp, sp, a0	# jump to start() in start.c        call startspin:        j spin 整段代码的作用是令sp &#x3D; stack0的地址 + 4096 × (当前运行的CPU核心编号 + 1)。la sp,stack0，la是load address，将stack0的地址赋值到sp寄存器，在RISC-V架构中sp是栈指针寄存器。li a0,1024*4，li是load immediate，加载立即数4096到a0。csrr a1,mhartid，是...</div></div></div></a><a class="pagination-related" href="/2026/Q1/operating-system-what-happens-after-pressing-enter-in-xv6-operating-system/" title="【操作系统】xv6操作系统中按下键盘回车后发生的事情"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-01-10</div><div class="info-item-2">【操作系统】xv6操作系统中按下键盘回车后发生的事情</div></div><div class="info-2"><div class="info-item-1">xv6概述与学习价值xv6是麻省理工学院为MIT 6.S081操作系统课程设计的教学操作系统。总代码量约1万行，主要使用C语言编写，辅以少量汇编代码。它涵盖操作系统核心机制：进程调度、文件系统、中断处理、设备驱动等。 xv6基于Unix V6系统改进设计，”x”表示可扩展(eXtensible)。相比简单嵌入式OS如uC&#x2F;OS，xv6更接近现代操作系统架构。早期版本基于x86架构，2020年后推出RISC-V版本，本文分析该版本。 学习xv6的价值体现在多个方面：  深入理解系统实现：通过阅读和修改代码，掌握操作系统核心原理，包括：  I&#x2F;O机制：printf如何输出到屏幕 输入处理：键盘按键如何被捕获和处理 进程管理：操作系统如何调度和管理进程 软硬件接口：软件与硬件的交互方式   应聘技能提升：操作系统知识是嵌入式开发、固件开发、芯片运行时等岗位的核心要求，可以作为简历上的项目备战招聘。  系统设计思维培养：操作系统是典型的系统设计课程，我们需要了解其中的系统设计思想，为解决复杂问题提供思路。   本文通过分析按下键盘回车键后的完整执行流程，展示xv6的中...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">TDppy</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">130</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/TDppy"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/TDppy" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2287015934@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">如何呢，又能怎。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFPLIC%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">什么是PLIC？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PLIC%E5%9C%A8RISC-V%E6%9E%B6%E6%9E%84%E4%B8%AD%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">2.</span> <span class="toc-text">PLIC在RISC-V架构中的作用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PLIC%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">PLIC的工作原理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%AD%E6%96%AD%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B"><span class="toc-number">4.</span> <span class="toc-text">中断处理流程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E6%A6%82%E5%BF%B5%E8%AF%A6%E8%A7%A3"><span class="toc-number">5.</span> <span class="toc-text">关键概念详解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hart-Context%EF%BC%88%E7%A1%AC%E4%BB%B6%E7%BA%BF%E7%A8%8B%E4%B8%8A%E4%B8%8B%E6%96%87%EF%BC%89"><span class="toc-number">5.1.</span> <span class="toc-text">Hart Context（硬件线程上下文）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Interrupt-Gateway%EF%BC%88%E4%B8%AD%E6%96%AD%E7%BD%91%E5%85%B3%EF%BC%89"><span class="toc-number">5.2.</span> <span class="toc-text">Interrupt Gateway（中断网关）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Interrupt-Notification%EF%BC%88%E4%B8%AD%E6%96%AD%E9%80%9A%E7%9F%A5%EF%BC%89"><span class="toc-number">5.3.</span> <span class="toc-text">Interrupt Notification（中断通知）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Interrupt-Identifier%EF%BC%88%E4%B8%AD%E6%96%AD%E6%A0%87%E8%AF%86%E7%AC%A6%EF%BC%89"><span class="toc-number">5.4.</span> <span class="toc-text">Interrupt Identifier（中断标识符）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PLIC%E5%AF%84%E5%AD%98%E5%99%A8%E8%AF%A6%E8%A7%A3"><span class="toc-number">6.</span> <span class="toc-text">PLIC寄存器详解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%AD%E6%96%AD%E4%BC%98%E5%85%88%E7%BA%A7%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-number">6.1.</span> <span class="toc-text">中断优先级寄存器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%AD%E6%96%ADpending%E6%8C%87%E7%A4%BA%E5%AF%84%E5%AD%98%E5%99%A8%EF%BC%88%E5%8F%AA%E8%AF%BB%EF%BC%89"><span class="toc-number">6.2.</span> <span class="toc-text">中断pending指示寄存器（只读）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%AD%E6%96%AD%E4%BD%BF%E8%83%BD%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-number">6.3.</span> <span class="toc-text">中断使能寄存器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%AD%E6%96%AD%E9%98%88%E5%80%BC%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-number">6.4.</span> <span class="toc-text">中断阈值寄存器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%AD%E6%96%ADclaim%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-number">6.5.</span> <span class="toc-text">中断claim寄存器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%AD%E6%96%AD%E5%AE%8C%E6%88%90%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-number">6.6.</span> <span class="toc-text">中断完成寄存器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">7.</span> <span class="toc-text">总结</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-riscv-plic/" title="【操作系统】RISC-V PLIC总结">【操作系统】RISC-V PLIC总结</a><time datetime="2026-01-18T15:25:18.000Z" title="发表于 2026-01-18 15:25:18">2026-01-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/hello-world/" title="欢迎来到潘业成的博客">欢迎来到潘业成的博客</a><time datetime="2026-01-12T00:00:00.000Z" title="发表于 2026-01-12 00:00:00">2026-01-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-what-happens-after-pressing-enter-in-xv6-operating-system/" title="【操作系统】xv6操作系统中按下键盘回车后发生的事情">【操作系统】xv6操作系统中按下键盘回车后发生的事情</a><time datetime="2026-01-10T11:58:18.000Z" title="发表于 2026-01-10 11:58:18">2026-01-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/Q1/operating-system-hand-write-xv6-operating-system-types-h-param-h-memlayout-h-riscv-h-defs-h-header-file-analysis/" title="【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析">【操作系统】手撸xv6操作系统——types.h_param.h_memlayout.h_riscv.h_defs.h头文件解析</a><time datetime="2026-01-06T23:02:58.000Z" title="发表于 2026-01-06 23:02:58">2026-01-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/Q4/operating-system-hand-write-xv6-operating-system-entry-s-and-start-c-analysis/" title="【操作系统】手撸xv6操作系统——entry.S和start.c解析">【操作系统】手撸xv6操作系统——entry.S和start.c解析</a><time datetime="2025-12-30T15:57:42.000Z" title="发表于 2025-12-30 15:57:42">2025-12-30</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By TDppy</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4-b1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4-b1"></script><script src="/js/main.js?v=5.5.4-b1"></script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
