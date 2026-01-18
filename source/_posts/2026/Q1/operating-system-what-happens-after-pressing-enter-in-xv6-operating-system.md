@@ -73,6 +73,7 @@ PLIC 是 RISC-V 平台的中断控制器，负责：
  3. 分发最高优先级的中断给 CPU
 
 在操作系统初始化时会将PLIC初始化，配置PLIC相关寄存器。PLIC初始化会调用plicinit函数和plicinithart函数，在系统启动时main函数中调用一次，plicinit设置中断请求的优先级，plicinithart则启用中断并设置中断优先级阈值。
+如果你不清楚RISC-V中的PLIC，请阅读这篇：[【操作系统】RISC-V PLIC总结](/2026/Q1/operating-system-riscv-plic)
 ### plicinit函数
 每个中断源都有一个优先级值 (0-7 或更高，取决于实现)
 - 优先级 = 0: 中断被禁用
